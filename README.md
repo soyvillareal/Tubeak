@@ -175,9 +175,9 @@ In view of the absence of a live demo, I choose to leave here images of some vie
 
 ![Playlists](https://soyvillareal.com/docs/tubeak/images/screenshots/user/16_preview.png)
 
-#### Videos I like:
+#### Liked videos:
 
-![Videos I like](https://soyvillareal.com/docs/tubeak/images/screenshots/user/17_preview.png)
+![Liked videos](https://soyvillareal.com/docs/tubeak/images/screenshots/user/17_preview.png)
 
 #### More info:
 
