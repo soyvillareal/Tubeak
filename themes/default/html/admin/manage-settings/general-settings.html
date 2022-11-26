@@ -1,0 +1,752 @@
+<div class="container-admin">
+    <div class="user-setting-panel">   
+        <ul class="main-menu-links display-inline-flex margin-b10 border-all border-tertiary">
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary active" href="{$url->{admin/manage-settings/general-settings}}" target="_self">
+                    {$word->general}
+                </a>
+            </li>
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary" href="{$url->{admin/manage-settings/site-settings}}" target="_self">
+                    {$word->website}
+                </a>
+            </li>
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary last" href="{$url->{admin/manage-settings/email-settings}}" target="_self">
+                    {$word->email}
+                </a>
+            </li>
+        </ul>
+        <div class="margin-t10 padding-top-bottom-12 border-top border-tertiary">
+            <div class="user-setting-panel">
+                <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+                    <h3 class="cont-settings-title color-secondary">{$word->user_settings}</h3>
+                    <div class="margin-t10">
+                        <p class="color-secondary">{$word->configure_some_options_user}</p>
+                    </div>
+                </div> 
+                <div class="max-w-900 border-top-right-radius border-top-left-radius border-top border-right border-left border-tertiary background-primary margin-right-auto margin-left-auto">
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->user_registration}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_user user_registration radio-paper hidden" name="user_registration" id="user_registration-enabled" type="radio" value="on" <?php echo ($TEMP['#settings']['user_registration'] == 'on') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="user_registration-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_user user_registration radio-paper hidden" name="user_registration" id="user_registration-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['user_registration'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="user_registration-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->user_email_verification}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_user validate_email radio-paper hidden" name="validate_email" id="validate_email-enabled" type="radio" value="on" <?php echo ($TEMP['#settings']['validate_email'] == 'on') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="validate_email-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_user validate_email radio-paper hidden" name="validate_email" id="validate_email-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['validate_email'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="validate_email-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->delete_account}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_user delete_account radio-paper hidden" name="delete_account" id="delete_account-enabled" type="radio" value="on" <?php echo ($TEMP['#settings']['delete_account'] == 'on') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="delete_account-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_user delete_account radio-paper hidden" name="delete_account" id="delete_account-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['delete_account'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="delete_account-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->user_verification_badge}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_user verification_badge radio-paper hidden" name="verification_badge" id="verification_badge-enabled" type="radio" value="on" <?php echo ($TEMP['#settings']['verification_badge'] == 'on') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="verification_badge-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_user verification_badge radio-paper hidden" name="verification_badge" id="verification_badge-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['verification_badge'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="verification_badge-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="background-primary max-w-900 border-bottom-right-radius border-bottom-left-radius border-bottom border-right border-left border-tertiary padding-20 margin-b20 margin-right-auto margin-left-auto">
+                    <div class="display-flex flex-end">
+                        <span class="color-secondary vertical-center margin-r10 hidden" id="alert-user-settings"></span>
+                        <button id="user-settings" class="btn-trans global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                            <span class="color-white">{$word->save}</span>
+                            <div class="tb_content-spinner-circle">
+                                <div class="tb_spinner-circle"></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+                    <h3 class="cont-settings-title color-secondary">{$word->main_settings}</h3>
+                    <div class="margin-t10">
+                        <p class="color-secondary">{$word->general_website_settings}</p>
+                    </div>
+                </div> 
+                <div class="max-w-900 border-top-right-radius border-top-left-radius border-top border-right border-left border-tertiary background-primary margin-right-auto margin-left-auto">
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->upload_new_video}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_main upload_videos radio-paper hidden" name="upload_videos" id="upload_videos-enabled" type="radio" value="on"<?php echo ($TEMP['#settings']['upload_videos'] == 'on') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="upload_videos-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_main upload_videos radio-paper hidden" name="upload_videos" id="upload_videos-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['upload_videos'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="upload_videos-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->live_broadcast_title}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_main live_broadcast radio-paper hidden" name="live_broadcast" id="live_broadcast-enabled" type="radio" value="on"<?php echo ($TEMP['#settings']['live_broadcast'] == 'on') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="live_broadcast-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_main live_broadcast radio-paper hidden" name="live_broadcast" id="live_broadcast-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['live_broadcast'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="live_broadcast-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->watermark}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_main enable_watermark radio-paper hidden" name="enable_watermark" id="enable_watermark-enabled" type="radio" value="on" <?php echo ($TEMP['#settings']['enable_watermark'] == 'on') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="enable_watermark-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_main enable_watermark radio-paper hidden" name="enable_watermark" id="enable_watermark-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['enable_watermark'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="enable_watermark-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->autoplay}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_main autoplay radio-paper hidden" name="autoplay" id="autoplay-enabled" type="radio" value="on"<?php echo ($TEMP['#settings']['autoplay'] == 'on') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="autoplay-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_main autoplay radio-paper hidden" name="autoplay" id="autoplay-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['autoplay'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="autoplay-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->embed_video}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_main embed_video radio-paper hidden" name="embed_video" id="embed_video-enabled" type="radio" value="on"<?php echo ($TEMP['#settings']['embed_video'] == 'on') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="embed_video-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_main embed_video radio-paper hidden" name="embed_video" id="embed_video-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['embed_video'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="embed_video-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->history}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_main history radio-paper hidden" name="history" id="history-enabled" type="radio" value="on"<?php echo ($TEMP['#settings']['history'] == 'on') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="history-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_main history radio-paper hidden" name="history" id="history-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['history'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="history-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->downloads}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_main download_videos radio-paper hidden" name="download_videos" id="download_videos-enabled" type="radio" value="on" <?php echo ($TEMP['#settings']['download_videos'] == 'on') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="download_videos-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_main download_videos radio-paper hidden" name="download_videos" id="download_videos-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['download_videos'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="download_videos-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->download_type}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_main download_type radio-paper hidden" name="download_type" id="download_type-enabled" type="radio" value="0" <?php echo ($TEMP['#settings']['download_type'] == '0') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="download_type-enabled">
+                                        {$word->all_users}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_main download_type radio-paper hidden" name="download_type" id="download_type-disabled" type="radio" value="1"<?php echo ($TEMP['#settings']['download_type'] == '1') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="download_type-disabled">
+                                        {$word->registered_users}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->approve_videos_before_publishing}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_main approve_videos radio-paper hidden" name="approve_videos" id="approve_videos-enabled" type="radio" value="on" <?php echo ($TEMP['#settings']['approve_videos'] == 'on') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="approve_videos-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_main approve_videos radio-paper hidden" name="approve_videos" id="approve_videos-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['approve_videos'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="approve_videos-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->authentication}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_main authentication radio-paper hidden" name="authentication" id="authentication-enabled" type="radio" value="on"<?php echo ($TEMP['#settings']['authentication'] == 'on') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="authentication-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_main authentication radio-paper hidden" name="authentication" id="authentication-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['authentication'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="authentication-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->blocked_users}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_main blocked_users radio-paper hidden" name="blocked_users" id="blocked_users-enabled" type="radio" value="on"<?php echo ($TEMP['#settings']['blocked_users'] == 'on') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="blocked_users-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_main blocked_users radio-paper hidden" name="blocked_users" id="blocked_users-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['blocked_users'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="blocked_users-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="background-primary max-w-900 border-bottom-right-radius border-bottom-left-radius border-bottom border-right border-left border-tertiary padding-20 margin-b20 margin-right-auto margin-left-auto">
+                    <div class="display-flex flex-end">
+                        <span class="color-secondary vertical-center margin-r10 hidden" id="alert-main-settings"></span>
+                        <button id="main-settings" class="btn-trans global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                            <span class="color-white">{$word->save}</span>
+                            <div class="tb_content-spinner-circle">
+                                <div class="tb_spinner-circle"></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+                    <h3 class="cont-settings-title color-secondary">{$word->ffmpeg_ffprobe_configuration}</h3>
+                    <div class="margin-t10">
+                        <p class="color-secondary">{$word->system_will_compress_convert_optimize_videos_m3u8}.</p>
+                        <p class="color-secondary">{$word->if_you_still_cant_install_ffmpeg_please_contact}. </p>
+                        <?php if ($TEMP['#enabled'] == false){ ?>
+                        <p class="color-red">exec() {$word->has_been_disabled_for_security_reasons}.</p><br>
+                        <?php } ?>
+                    </div>
+                </div> 
+                <div class="max-w-900 border-top-right-radius border-top-left-radius border-top border-right border-left border-tertiary background-primary margin-right-auto margin-left-auto">
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->binary_path}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input id="binary_path" name="binary_path" class="cont-control border-focus-blue input_key_ffmpeg background-secondary color-secondary" type="text" value="{$settings->binary_path}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->max_process_in_same_time}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input id="max_queue" name="max_queue" class="cont-control border-focus-blue number input_key_ffmpeg background-secondary color-secondary" type="number" value="{$settings->max_queue}">
+                            </div>
+                        </div>
+                    </div>
+                    <?php if ($TEMP['#binary_found'] == true && $TEMP['#enabled'] == true){ ?>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->convert_video_speed}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <select id="convert_speed" class="cont-control area_changed_ffmpeg cont-select background-secondary color-secondary" name="convert_speed">
+                                    <option value="ultrafast" <?php echo ($TEMP['#settings']['convert_speed'] == 'ultrafast') ? 'selected': '';?>>Ultrafast</option>
+                                    <option value="superfast" <?php echo ($TEMP['#settings']['convert_speed'] == 'superfast') ? 'selected': '';?>>Superfast</option>
+                                    <option value="veryfast" <?php echo ($TEMP['#settings']['convert_speed'] == 'veryfast') ? 'selected': '';?>>Veryfast</option>
+                                    <option value="faster" <?php echo ($TEMP['#settings']['convert_speed'] == 'faster') ? 'selected': '';?>>Faster</option>
+                                    <option value="fast" <?php echo ($TEMP['#settings']['convert_speed'] == 'fast') ? 'selected': '';?>>Fast</option>
+                                    <option value="medium" <?php echo ($TEMP['#settings']['convert_speed'] == 'medium') ? 'selected': '';?>>Medium</option>
+                                    <option value="slow" <?php echo ($TEMP['#settings']['convert_speed'] == 'slow') ? 'selected': '';?>>Slow</option>
+                                    <option value="slower" <?php echo ($TEMP['#settings']['convert_speed'] == 'slower') ? 'selected': '';?>>Slower</option>
+                                    <option value="veryslow" <?php echo ($TEMP['#settings']['convert_speed'] == 'veryslow') ? 'selected': '';?>>Veryslow</option>
+                                </select>
+                                <div class="color-tertiary margin-t10">{$word->slower_setting_gives_better_compression}.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php } ?>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->animated_thumbnail}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_ffmpeg animation_video radio-paper hidden" name="animation_video" id="animation_video-enabled" type="radio" value="on" <?php echo ($TEMP['#settings']['animation_video'] == 'on') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="animation_video-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_ffmpeg animation_video radio-paper hidden" name="animation_video" id="animation_video-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['animation_video'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="animation_video-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">Storyboard</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_ffmpeg storyboard radio-paper hidden" name="storyboard" id="storyboard-enabled" type="radio" value="on" <?php echo ($TEMP['#settings']['storyboard'] == 'on') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="storyboard-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_ffmpeg storyboard radio-paper hidden" name="storyboard" id="storyboard-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['storyboard'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="storyboard-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="background-primary max-w-900 border-bottom-right-radius border-bottom-left-radius border-bottom border-right border-left border-tertiary padding-20 margin-b20 margin-right-auto margin-left-auto">
+                    <div class="display-flex flex-end">
+                        <span class="color-secondary vertical-center margin-r10 hidden" id="alert-ffmpeg-settings"></span>
+                        <button id="ffmpeg-settings" class="btn-trans global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                            <span class="color-white">{$word->save}</span>
+                            <div class="tb_content-spinner-circle">
+                                <div class="tb_spinner-circle"></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+                    <h3 class="cont-settings-title color-secondary">{$word->limit_settings}</h3>
+                    <div class="margin-t10">
+                        <p class="color-secondary">{$word->set_the_limit_of_some_items}</p>
+                    </div>
+                </div> 
+                <div class="max-w-900 border-top-right-radius border-top-left-radius border-top border-right border-left border-tertiary background-primary margin-right-auto margin-left-auto">
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->subscriber_cap_to_request_verification}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input class="cont-control border-focus-blue background-secondary color-secondary" id="verification_subscribers_cap" type="number" name="verification_subscribers_cap" min="0" value="{$settings->verification_subscribers_cap}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->page_limit_for_tables}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <select id="data_load_limit" class="cont-control area_changed_limit cont-select background-secondary color-secondary" name="data_load_limit">
+                                    <option value="16"<?php echo ($TEMP['#settings']['data_load_limit'] == '16') ? ' selected': '';?>>16</option>
+                                    <option value="24"<?php echo ($TEMP['#settings']['data_load_limit'] == '24') ? ' selected': '';?>>24</option>
+                                    <option value="32"<?php echo ($TEMP['#settings']['data_load_limit'] == '32') ? ' selected': '';?>>32</option>
+                                    <option value="40"<?php echo ($TEMP['#settings']['data_load_limit'] == '40') ? ' selected': '';?>>40</option>
+                                    <option value="48"<?php echo ($TEMP['#settings']['data_load_limit'] == '48') ? ' selected': '';?>>48</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->number_default_comments}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <select id="comments_load_limit" class="cont-control area_changed_limit cont-select background-secondary color-secondary" name="comments_load_limit">
+                                    <option value="16"<?php echo ($TEMP['#settings']['comments_load_limit'] == '16') ? ' selected': '';?>>16</option>
+                                    <option value="24"<?php echo ($TEMP['#settings']['comments_load_limit'] == '24') ? ' selected': '';?>>24</option>
+                                    <option value="32"<?php echo ($TEMP['#settings']['comments_load_limit'] == '32') ? ' selected': '';?>>32</option>
+                                    <option value="40"<?php echo ($TEMP['#settings']['comments_load_limit'] == '40') ? ' selected': '';?>>40</option>
+                                    <option value="48"<?php echo ($TEMP['#settings']['comments_load_limit'] == '48') ? ' selected': '';?>>48</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="background-primary max-w-900 border-bottom-right-radius border-bottom-left-radius border-bottom border-right border-left border-tertiary padding-20 margin-b20 margin-right-auto margin-left-auto">
+                    <div class="display-flex flex-end">
+                        <span class="color-secondary vertical-center margin-r10 hidden" id="alert-limit-settings">
+                            {$word->there_problems_with_some_fields}
+                        </span>
+                        <button id="limit-settings" class="btn-trans global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                            <span class="color-white">{$word->save}</span>
+                            <div class="tb_content-spinner-circle">
+                                <div class="tb_spinner-circle"></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+                    <h3 class="cont-settings-title color-secondary">{$word->carousel_configuration}</h3>
+                    <div class="margin-t10">
+                        <p class="color-secondary">{$word->configure_customize_player_carousel}</p>
+                    </div>
+                </div> 
+                <div class="max-w-900 border-top-right-radius border-top-left-radius border-top border-right border-left border-tertiary background-primary margin-right-auto margin-left-auto">
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->status}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_carrousel carrousel_players radio-paper hidden" name="carrousel_players" id="carrousel_players-enabled" type="radio" value="on" <?php echo ($TEMP['#settings']['carrousel_players'] == 'on') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="carrousel_players-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_carrousel carrousel_players radio-paper hidden" name="carrousel_players" id="carrousel_players-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['carrousel_players'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="carrousel_players-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->include}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_carrousel type_carrousel radio-paper hidden" name="type_carrousel" id="type_carrousel-all" type="radio" value="all" <?php echo ($TEMP['#settings']['type_carrousel'] == 'all') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="type_carrousel-all">
+                                        {$word->all}
+                                    </label>
+                                </div>
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_carrousel type_carrousel radio-paper hidden" name="type_carrousel" id="type_carrousel-videos" type="radio" value="videos" <?php echo ($TEMP['#settings']['type_carrousel'] == 'videos') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="type_carrousel-videos">
+                                        {$word->videos}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_carrousel type_carrousel radio-paper hidden" name="type_carrousel" id="type_carrousel-broadcast" type="radio" value="broadcast"<?php echo ($TEMP['#settings']['type_carrousel'] == 'broadcast') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="type_carrousel-broadcast">
+                                        {$word->live_broadcast_title}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="background-primary max-w-900 border-bottom-right-radius border-bottom-left-radius border-bottom border-right border-left border-tertiary padding-20 margin-b20 margin-right-auto margin-left-auto">
+                    <div class="display-flex flex-end">
+                        <span class="color-secondary vertical-center margin-r10 hidden" id="alert-carrousel-settings">
+                            {$word->there_problems_with_some_fields}
+                        </span>
+                        <button id="carrousel-settings" class="btn-trans global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                            <span class="color-white">{$word->save}</span>
+                            <div class="tb_content-spinner-circle">
+                                <div class="tb_spinner-circle"></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var GN = D.querySelectorAll('.number'),
+    GQ = D.querySelectorAll('.area_changed_user'),
+    GB = D.querySelector('#user-settings'),
+    GS = D.querySelector('#alert-user-settings'),
+    GW = D.querySelectorAll('.area_changed_main'),
+    GZ = D.querySelector('#main-settings'),
+    GH = D.querySelector('#alert-main-settings'),
+    GX = D.querySelectorAll('.input_key_ffmpeg'),
+    GJ = D.querySelectorAll('.area_changed_ffmpeg'),
+    GY = D.querySelector('#ffmpeg-settings'),
+    GC = D.querySelector('#alert-ffmpeg-settings'),
+    GO = D.querySelectorAll('.area_changed_limit'),
+    GM = D.querySelector('#limit-settings'),
+    GK = D.querySelector('#alert-limit-settings'),
+    GA = D.querySelectorAll('.area_changed_carrousel'),
+    GL = D.querySelector('#carrousel-settings'),
+    GP = D.querySelector('#alert-carrousel-settings'),
+    bDisabled = function(GG, GB){
+        if(GG){
+            GB.removeAttribute('disabled');
+        } else {
+            GB.setAttribute('disabled', true);
+        }
+    },
+    GV = [];
+addEvent(GB, "click", function(){
+    for(var j = 0, i = GQ.length; j < i; j++) {
+        if(GV.indexOf(GQ[j].name) == -1)
+            GV.push(GQ[j].name);
+    }
+    addClass(GB, 'tb_spinner-is-loading');
+    GB.setAttribute('disabled', true);
+    Req("{$url->{req/global-admin/settings}}", function(e){
+        if (e.status == 200) {
+            loadAlert(e.message), addClass(GS, 'hidden'), removeClass(GB, 'tb_spinner-is-loading');
+            if(e.err == false){
+                removeClass(GS, 'hidden'), GS.innerText = "{$word->some_settings_were_not_saved}";
+            }
+        } else {
+            GS.innerText = "{$word->there_problems_with_some_fields}", removeClass(GS, 'hidden'), removeClass(GB, 'tb_spinner-is-loading'), GB.removeAttribute('disabled');
+        }
+    }, "POST", "&user_registration=" + D.querySelector(".user_registration:checked").value + "&validate_email=" + D.querySelector('.validate_email:checked').value + "&delete_account=" + D.querySelector('.delete_account:checked').value + "&verification_badge=" + D.querySelector('.verification_badge:checked').value + "&radios=" + GV)
+}), addEvent(GZ, "click", function(){
+    for(var j = 0, i = GW.length; j < i; j++) {
+        if(GV.indexOf(GW[j].name) == -1)
+            GV.push(GW[j].name);
+    }
+    addClass(GZ, 'tb_spinner-is-loading'), GZ.setAttribute('disabled', true);
+    Req("{$url->{req/global-admin/settings}}", function(e){
+        if (e.status == 200) {
+            loadAlert(e.message), addClass(GH, 'hidden'), removeClass(GZ, 'tb_spinner-is-loading');
+            if(e.err == false){
+                removeClass(GH, 'hidden'), GH.innerText = "{$word->some_settings_were_not_saved}";
+            }
+        } else  {
+            GH.innerText = "{$word->there_problems_with_some_fields}", removeClass(GH, 'hidden'), removeClass(GZ, 'tb_spinner-is-loading'), GZ.removeAttribute('disabled');
+        }
+    }, "POST", "&upload_videos=" + D.querySelector(".upload_videos:checked").value + "&live_broadcast=" + D.querySelector(".live_broadcast:checked").value + "&enable_watermark=" + D.querySelector('.enable_watermark:checked').value + "&autoplay=" + D.querySelector('.autoplay:checked').value + "&embed_video=" + D.querySelector('.embed_video:checked').value + "&history=" + D.querySelector('.history:checked').value + "&download_videos=" + D.querySelector('.download_videos:checked').value + "&download_type=" + D.querySelector('.download_type:checked').value + "&approve_videos=" + D.querySelector('.approve_videos:checked').value + "&authentication=" + D.querySelector('.authentication:checked').value + "&blocked_users=" + D.querySelector('.blocked_users:checked').value + "&radios=" + GV)
+}), addEvent(GY, "click", function(){
+    GV.push('animation_video', 'storyboard');
+    addClass(GY, 'tb_spinner-is-loading');
+    GY.setAttribute('disabled', true);
+    Req("{$url->{req/global-admin/settings}}", function(e){
+        if (e.status == 200) {
+            loadAlert(e.message), addClass(GC, 'hidden'), removeClass(GY, 'tb_spinner-is-loading');
+            if(e.err == false){
+                removeClass(GC, 'hidden'), GC.innerText = "{$word->some_settings_were_not_saved}";
+            }
+        } else  {
+            GC.innerText = "{$word->there_problems_with_some_fields}", removeClass(GC, 'hidden'), removeClass(GY, 'tb_spinner-is-loading'), GY.removeAttribute('disabled');
+        }
+    }, "POST", "&binary_path=" + D.querySelector('#binary_path').value + "&max_queue=" + D.querySelector("#max_queue").value<?php echo($TEMP['#binary_found'] == true && $TEMP['#enabled'] == true) ? ' + "&convert_speed=" + D.querySelector("#convert_speed").value' : ''?> + "&animation_video=" + D.querySelector('.animation_video:checked').value + "&storyboard=" + D.querySelector('.storyboard:checked').value + "&radios=" + GV)
+}), addEvent(GM, "click", function(){
+    addClass(GM, 'tb_spinner-is-loading');
+    GM.setAttribute('disabled', true);
+    Req("{$url->{req/global-admin/settings}}", function(e){
+        if (e.status == 200) {
+            loadAlert(e.message), addClass(GK, 'hidden'), removeClass(GM, 'tb_spinner-is-loading');
+            if(e.err == false){
+                removeClass(GK, 'hidden'), GK.innerText = "{$word->some_settings_were_not_saved}";
+            }
+        } else  {
+            GK.innerText = "{$word->there_problems_with_some_fields}", removeClass(GK, 'hidden'), removeClass(GM, 'tb_spinner-is-loading'), GM.removeAttribute('disabled');
+        }
+    }, "POST", "&verification_subscribers_cap=" + D.querySelector("#verification_subscribers_cap").value + "&data_load_limit=" + D.querySelector('#data_load_limit').value + "&comments_load_limit=" + D.querySelector('#comments_load_limit').value)
+}), addEvent(D.querySelector('#verification_subscribers_cap'), 'keyup', function(e){
+    bDisabled(this.value != '', GM);
+}), addEvent(GL, "click", function(){
+    for(var j = 0, i = GA.length; j < i; j++) {
+        if(GV.indexOf(GA[j].name) == -1)
+            GV.push(GA[j].name);
+    }
+    addClass(GL, 'tb_spinner-is-loading');
+    GL.setAttribute('disabled', true);
+    Req("{$url->{req/global-admin/settings}}", function(e){
+        if (e.status == 200) {
+            loadAlert(e.message), addClass(GP, 'hidden'), removeClass(GL, 'tb_spinner-is-loading');
+            if(e.err == false){
+                removeClass(GP, 'hidden'), GP.innerText = "{$word->some_settings_were_not_saved}";
+            }
+        } else {
+            GP.innerText = "{$word->there_problems_with_some_fields}", removeClass(GP, 'hidden'), removeClass(GL, 'tb_spinner-is-loading'), GL.removeAttribute('disabled');
+        }
+    }, "POST", "&carrousel_players=" + D.querySelector('.carrousel_players:checked').value + "&type_carrousel=" + D.querySelector(".type_carrousel:checked").value + "&radios=" + GV)
+});
+for(var j = 0, i = GO.length; j < i; j++) addEvent(GO[j], 'change', function(){
+    bDisabled(this.value != '', GM);
+});
+for(var j = 0, i = GA.length; j < i; j++) addEvent(GA[j], 'change', function(){
+    bDisabled(this.value != '', GL);
+});
+for(var j = 0, i = GQ.length; j < i; j++) addEvent(GQ[j], 'change', function(){
+    bDisabled(D.querySelector(".user_registration:checked").value != '' && D.querySelector('.validate_email:checked').value != '' && D.querySelector('.delete_account:checked').value != '' && D.querySelector('.verification_badge:checked').value != '', GB);
+});
+for(var j = 0, i = GW.length; j < i; j++) addEvent(GW[j], 'change', function(){
+    bDisabled(D.querySelector(".upload_videos:checked").value != '' && D.querySelector('.enable_watermark:checked').value != '' && D.querySelector('.autoplay:checked').value != '' && D.querySelector('.embed_video:checked').value != '' && D.querySelector('.history:checked').value != '' && D.querySelector('.download_videos:checked').value != '' && D.querySelector('.download_type:checked').value != '' && D.querySelector('.approve_videos:checked').value != '' && D.querySelector('.authentication:checked').value != '' && D.querySelector('.blocked_users:checked').value != '', GZ);
+});
+for(var j = 0, i = GJ.length; j < i; j++) addEvent(GJ[j], 'change', function(){
+    bDisabled(D.querySelector(".animation_video:checked").value != '' && D.querySelector(".storyboard:checked").value != '' && D.querySelector('#max_queue').value != '' && D.querySelector('#convert_speed').value != '', GY);
+});
+for(var j = 0, i = GN.length; j < i; j++) addEvent(GN[j], 'input', function(){
+    this.value = this.value.replace(/[^0-9]/gi, '');
+});
+for(var j = 0, i = GX.length; j < i; j++) addEvent(GX[j], 'keyup', function(e){
+    bDisabled(this.value != '', GY);
+})
+</script>

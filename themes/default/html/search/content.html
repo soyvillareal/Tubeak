@@ -1,0 +1,311 @@
+<div class="container-horizontal">
+	<div class="cont-srch">
+		<div class="cont-horizontal-head border-bottom border-tertiary">
+			<button class="btn-trans vertical-center padding-top-bottom-12 hover-button color-for-hover" id="show-search-filter">
+				<svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					<path fill="currentColor" d="M 17.949 6.341 C 18.045 6.573 18.005 6.772 17.83 6.936 L 13.634 11.132 L 13.634 17.447 C 13.634 17.685 13.523 17.852 13.302 17.949 C 13.228 17.977 13.157 17.991 13.089 17.991 C 12.936 17.991 12.808 17.937 12.706 17.83 L 10.528 15.651 C 10.42 15.543 10.366 15.416 10.366 15.268 L 10.366 11.132 L 6.17 6.936 C 5.995 6.772 5.955 6.573 6.051 6.341 C 6.148 6.119 6.315 6.009 6.553 6.009 L 17.447 6.009 C 17.685 6.009 17.852 6.119 17.949 6.341 Z"></path>
+	  			</svg>
+				<div class="font-bold font-uppercase margin-r5">{$word->filter}</div>	
+		  	</button>
+			<div class="search-filter-container hide-in-mobile" id="filter_settings">
+		     	<div class="margin-b20 display-flex hide-in-mobile">
+			    	<div class="padding-right-30 w-25">
+						<h4 class="color-secondary border-bottom border-primary font-low font-bold group-title padding-top-bottom-12 font-uppercase" for="type">{$word->upload_date}</h4>
+							<div class="items-dfilter margin-top-12<?php echo (isset($_GET['date']) && $_GET['date'] == 'last_hour') ? ' selected': ''?>">
+								<a class="color-grey" href="search?keyword=<?php echo $_GET['keyword']; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['date']) && $_GET['date'] == 'last_hour') ? '': '&date=last_hour'; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" target="_self">
+								    <div class="vertical-center">
+								      	<div class="color-tertiary font-medium pointer search-filter-text">{$word->last_hour}</div>
+								       	<svg class="color-for-hover icon-little margin-l10 display-none search-filter-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								       		<path fill="currentColor" d="M 12 13.17 L 5.17 20 L 4 18.832 L 10.83 12 L 4 5.17 L 5.17 4 L 12 10.83 L 18.832 4 L 20 5.17 L 13.17 12 L 20 18.832 L 18.832 20 Z"></path>
+								      	</svg>
+							      	</div>
+							    </a>
+							</div>
+							<div class="items-dfilter margin-top-12<?php echo (isset($_GET['date']) && $_GET['date'] == 'today') ? ' selected': ''?>">
+								<a class="color-grey" href="search?keyword=<?php echo $_GET['keyword']; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['date']) && $_GET['date'] == 'today') ? '': '&date=today'; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" target="_self">
+								    <div class="vertical-center">
+								        <div class="color-tertiary font-medium pointer search-filter-text">{$word->today}</div>
+								        <svg class="color-for-hover icon-little margin-l10 display-none search-filter-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								        	<path fill="currentColor" d="M 12 13.17 L 5.17 20 L 4 18.832 L 10.83 12 L 4 5.17 L 5.17 4 L 12 10.83 L 18.832 4 L 20 5.17 L 13.17 12 L 20 18.832 L 18.832 20 Z"></path>
+								      	</svg>
+							      	</div>
+							    </a>
+							</div>
+							<div class="items-dfilter margin-top-12<?php echo (isset($_GET['date']) && $_GET['date'] == 'this_week') ? ' selected': ''?>">
+								<a class="color-grey" href="search?keyword=<?php echo $_GET['keyword']; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['date']) && $_GET['date'] == 'this_week') ? '': '&date=this_week'; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" target="_self">
+							    	<div class="vertical-center">
+							        	<div class="color-tertiary font-medium pointer search-filter-text">{$word->this_week}</div>
+								        <svg class="color-for-hover icon-little margin-l10 display-none search-filter-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+									   		<path fill="currentColor" d="M 12 13.17 L 5.17 20 L 4 18.832 L 10.83 12 L 4 5.17 L 5.17 4 L 12 10.83 L 18.832 4 L 20 5.17 L 13.17 12 L 20 18.832 L 18.832 20 Z"></path>
+									   	</svg>
+							      	</div>
+							    </a>
+							</div>
+							<div class="items-dfilter margin-top-12<?php echo (isset($_GET['date']) && $_GET['date'] == 'this_month') ? ' selected': ''?>">
+								<a class="color-grey" href="search?keyword=<?php echo $_GET['keyword']; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['date']) && $_GET['date'] == 'this_month') ? '': '&date=this_month'; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" target="_self">
+								    <div class="vertical-center">
+								       	<div class="color-tertiary font-medium pointer search-filter-text">{$word->this_month}</div>
+									    <svg class="color-for-hover icon-little margin-l10 display-none search-filter-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								        	<path fill="currentColor" d="M 12 13.17 L 5.17 20 L 4 18.832 L 10.83 12 L 4 5.17 L 5.17 4 L 12 10.83 L 18.832 4 L 20 5.17 L 13.17 12 L 20 18.832 L 18.832 20 Z"></path>
+								      	</svg>
+							      	</div>
+							    </a>
+							</div>
+							<div class="items-dfilter margin-top-12<?php echo (isset($_GET['date']) && $_GET['date'] == 'this_year') ? ' selected': ''?>">
+								<a class="color-grey" href="search?keyword=<?php echo $_GET['keyword']; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['date']) && $_GET['date'] == 'this_year') ? '': '&date=this_year'; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" target="_self">
+							    	<div class="vertical-center">
+							        	<div class="color-tertiary font-medium pointer search-filter-text">{$word->this_year}</div>
+								        <svg class="color-for-hover icon-little margin-l10 display-none search-filter-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+									       	<path fill="currentColor" d="M 12 13.17 L 5.17 20 L 4 18.832 L 10.83 12 L 4 5.17 L 5.17 4 L 12 10.83 L 18.832 4 L 20 5.17 L 13.17 12 L 20 18.832 L 18.832 20 Z"></path>
+									   	</svg>
+							      	</div>
+							    </a>
+							</div>
+					</div>
+					<div class="padding-right-30 w-25">
+						<h4 class="color-secondary border-bottom border-primary font-low font-bold group-title padding-top-bottom-12 font-uppercase">{$word->categories}</h4>
+						<?php foreach($TEMP['#categories'] as $key => $category) { ?>
+						<div class="items-dfilter margin-top-12<?php echo (isset($_GET['category']) && $_GET['category'] == $key) ? ' selected': ''?>">
+							<a class="color-grey" href="search?keyword=<?php echo $_GET['keyword']; echo (isset($_GET['date'])) ? '&date='.$_GET['date'] : ''; echo (isset($_GET['category']) && $_GET['category'] == $key) ? '': '&category='.$key; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" target="_self">
+								<div class="vertical-center">
+								    <div class="color-tertiary font-medium pointer search-filter-text"><?php echo $category; ?></div>
+								    <svg class="color-for-hover icon-little margin-l10 display-none search-filter-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+									    <path fill="currentColor" d="M 12 13.17 L 5.17 20 L 4 18.832 L 10.83 12 L 4 5.17 L 5.17 4 L 12 10.83 L 18.832 4 L 20 5.17 L 13.17 12 L 20 18.832 L 18.832 20 Z"></path>
+								    </svg>
+							    </div>
+							</a>
+						</div>
+						<?php } ?>
+					</div>
+					<div class="padding-right-30 w-25">
+						<h4 class="color-secondary border-bottom border-primary font-low font-bold group-title padding-top-bottom-12 font-uppercase">{$word->features}</h4>
+						<div class="items-dfilter margin-top-12<?php echo (isset($_GET['features']) && $_GET['features'] == '4k_feature') ? ' selected': ''?>">
+							<a class="color-grey" href="search?keyword=<?php echo $_GET['keyword']; echo (isset($_GET['date'])) ? '&date='.$_GET['date'] : ''; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['features']) && $_GET['features'] == '4k_feature') ? '': '&features=4k_feature'; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" target="_self">
+								<div class="vertical-center">
+								    <div class="color-tertiary font-medium pointer search-filter-text">4 K</div>
+							        <svg class="color-for-hover icon-little margin-l10 display-none search-filter-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							        	<path fill="currentColor" d="M 12 13.17 L 5.17 20 L 4 18.832 L 10.83 12 L 4 5.17 L 5.17 4 L 12 10.83 L 18.832 4 L 20 5.17 L 13.17 12 L 20 18.832 L 18.832 20 Z"></path>
+							      	</svg>
+						      	</div>
+						    </a>
+						</div>
+						<div class="items-dfilter margin-top-12<?php echo (isset($_GET['features']) && $_GET['features'] == 'hd_feature') ? ' selected': ''?>">
+							<a class="color-grey" href="search?keyword=<?php echo $_GET['keyword']; echo (isset($_GET['date'])) ? '&date='.$_GET['date'] : ''; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['features']) && $_GET['features'] == 'hd_feature') ? '': '&features=hd_feature'; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" target="_self">
+								<div class="vertical-center">
+							      	<div class="color-tertiary font-medium pointer search-filter-text">HD</div>
+							       	<svg class="color-for-hover icon-little margin-l10 display-none search-filter-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								   		<path fill="currentColor" d="M 12 13.17 L 5.17 20 L 4 18.832 L 10.83 12 L 4 5.17 L 5.17 4 L 12 10.83 L 18.832 4 L 20 5.17 L 13.17 12 L 20 18.832 L 18.832 20 Z"></path>
+									</svg>
+						      	</div>
+						    </a>
+						</div>
+					</div>
+					<div class="padding-right-30 w-25">
+						<h4 class="color-secondary border-bottom border-primary font-low font-bold group-title padding-top-bottom-12 font-uppercase">{$word->sort_by}</h4>
+							<div class="items-dfilter margin-top-12<?php echo (isset($_GET['order']) && $_GET['order'] == 'date_upload') ? ' selected': ''?>">
+								<a class="color-grey" href="search?keyword=<?php echo $_GET['keyword']; echo (isset($_GET['date'])) ? '&date='.$_GET['date'] : ''; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order']) && $_GET['order'] == 'date_upload') ? '': '&order=date_upload'?>" target="_self">
+									<div class="vertical-center">
+									    <div class="color-tertiary font-medium pointer search-filter-text">{$word->upload_date}</div>
+										<svg class="color-for-hover icon-little margin-l10 display-none search-filter-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								        	<path fill="currentColor" d="M 12 13.17 L 5.17 20 L 4 18.832 L 10.83 12 L 4 5.17 L 5.17 4 L 12 10.83 L 18.832 4 L 20 5.17 L 13.17 12 L 20 18.832 L 18.832 20 Z"></path>
+								      	</svg>
+							      	</div>
+							    </a>
+							</div>
+							<div class="items-dfilter margin-top-12<?php echo (isset($_GET['order']) && $_GET['order'] == 'count_views') ? ' selected': ''?>">
+								<a class="color-grey" href="search?keyword=<?php echo $_GET['keyword']; echo (isset($_GET['date'])) ? '&date='.$_GET['date'] : ''; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order']) && $_GET['order'] == 'count_views') ? '': '&order=count_views'?>" target="_self">
+								    <div class="vertical-center">
+								        <div class="color-tertiary font-medium pointer search-filter-text">{$word->view_count}</div>
+								        <svg class="color-for-hover icon-little margin-l10 display-none search-filter-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								        	<path fill="currentColor" d="M 12 13.17 L 5.17 20 L 4 18.832 L 10.83 12 L 4 5.17 L 5.17 4 L 12 10.83 L 18.832 4 L 20 5.17 L 13.17 12 L 20 18.832 L 18.832 20 Z"></path>
+								      	</svg>
+							      	</div>
+								</a>
+							</div>
+					</div>
+				</div>
+				<div class="hide-in-desktop">
+					<div class="display-flex padding-12">
+					    <div class="margin-r10">
+	                      	<label class="color-secondary">{$word->upload_date}</label>  
+		                    <div class="background-primary border-primary color-secondary padding-left-right-12 w-100 border-radius-4 display-inline-block border-all position-relative">
+		                        <select class="filter_select ellipsis-horizontal appearance-none font-medium w-100 color-secondary btn-trans padding-top-bottom-12 margin-r10">
+		                          	<option value="&one=search&keyword=<?php echo $_GET['keyword']; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>">{$word->all}</option>
+		                            <option value="&one=search&keyword=<?php echo $_GET['keyword']; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['date']) && $_GET['date'] == 'last_hour') ? '': '&date=last_hour'; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" <?php echo (isset($_GET['date']) && $_GET['date'] == 'last_hour') ? ' selected': ''?>>{$word->last_hour}</option>
+		                            <option value="&one=search&keyword=<?php echo $_GET['keyword']; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['date']) && $_GET['date'] == 'today') ? '': '&date=today'; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" <?php echo (isset($_GET['date']) && $_GET['date'] == 'today') ? ' selected': ''?>>{$word->today}</option>
+		                            <option value="&one=search&keyword=<?php echo $_GET['keyword']; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['date']) && $_GET['date'] == 'this_week') ? '': '&date=this_week'; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" <?php echo (isset($_GET['date']) && $_GET['date'] == 'this_week') ? ' selected': ''?>>{$word->this_week}</option>
+		                            <option value="&one=search&keyword=<?php echo $_GET['keyword']; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['date']) && $_GET['date'] == 'this_month') ? '': '&date=this_month'; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" <?php echo (isset($_GET['date']) && $_GET['date'] == 'this_month') ? ' selected': ''?>>{$word->this_month}</option>
+		                            <option value="&one=search&keyword=<?php echo $_GET['keyword']; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['date']) && $_GET['date'] == 'this_year') ? '': '&date=this_year'; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" <?php echo (isset($_GET['date']) && $_GET['date'] == 'this_year') ? ' selected': ''?>>{$word->this_year}</option>
+		                        </select>
+		                    </div>
+		                </div>
+		                <div class="margin-r10">
+		                    <label class="color-secondary">{$word->categories}</label>  
+		                    <div class="background-primary border-primary color-secondary padding-left-right-12 w-100 border-radius-4 display-inline-block border-all position-relative">
+		                        <select class="filter_select ellipsis-horizontal appearance-none font-medium w-100 color-secondary btn-trans padding-top-bottom-12 margin-r10">
+		                           	<option value="&one=search&keyword=<?php echo $_GET['keyword']; echo (isset($_GET['date'])) ? '&date='.$_GET['date'] : ''; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>">{$word->all}</option>
+		                           	<?php foreach($TEMP['#categories'] as $key => $category) { ?>
+		                           	<option value="&one=search&keyword=<?php echo $_GET['keyword']; echo (isset($_GET['date'])) ? '&date='.$_GET['date'] : ''; echo (isset($_GET['category']) && $_GET['category'] == $key) ? '': '&category='.$key; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" <?php echo (isset($_GET['category']) && $_GET['category'] == $key) ? ' selected': ''?>><?php echo $category; ?></option>
+		                            <?php } ?>
+		                        </select>
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="display-flex padding-12">
+		                <div class="margin-r10">
+		                    <label class="color-secondary">{$word->features}</label>  
+		                    <div class="background-primary border-primary color-secondary padding-left-right-12 w-100 border-radius-4 display-inline-block border-all position-relative">
+		                        <select class="filter_select ellipsis-horizontal appearance-none font-medium w-100 color-secondary btn-trans padding-top-bottom-12 margin-r10">
+	                            	<option value="&one=search&keyword=<?php echo $_GET['keyword']; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['features']) && $_GET['features'] == '4k_feature') ? '': '&features=4k_feature'; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>">{$word->all}</option>
+		                            <option value="&one=search&keyword=<?php echo $_GET['keyword']; echo (isset($_GET['date'])) ? '&date='.$_GET['date'] : ''; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['features']) && $_GET['features'] == '4k_feature') ? '': '&features=4k_feature'; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" <?php echo (isset($_GET['features']) && $_GET['features'] == '4k_feature') ? ' selected': ''?>>4 K</option>
+		                            <option value="&one=search&keyword=<?php echo $_GET['keyword']; echo (isset($_GET['date'])) ? '&date='.$_GET['date'] : ''; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['features']) && $_GET['features'] == 'hd_feature') ? '': '&features=hd_feature'; echo (isset($_GET['order'])) ? '&order='.$_GET['order'] : ''?>" <?php echo (isset($_GET['features']) && $_GET['features'] == 'hd_feature') ? ' selected': ''?>>HD</option>
+		                        </select>
+		                    </div>
+		                </div>
+		                <div class="margin-r10">
+		                    <label class="color-secondary">{$word->sort_by}</label>  
+		                    <div class="background-primary border-primary color-secondary padding-left-right-12 w-100 border-radius-4 display-inline-block border-all position-relative">
+		                        <select class="filter_select ellipsis-horizontal appearance-none font-medium w-100 color-secondary btn-trans padding-top-bottom-12 margin-r10">
+		                          	<option value="&one=search&keyword=<?php echo $_GET['keyword']; echo (isset($_GET['date'])) ? '&date='.$_GET['date'] : ''; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''?>">{$word->all}</option>
+		                            <option value="&one=search&keyword=<?php echo $_GET['keyword']; echo (isset($_GET['date'])) ? '&date='.$_GET['date'] : ''; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order']) && $_GET['order'] == 'date_upload') ? '': '&order=date_upload'?>" <?php echo (isset($_GET['order']) && $_GET['order'] == 'date_upload') ? ' selected': ''?>>{$word->upload_date}</option>
+		                            <option value="&one=search&keyword=<?php echo $_GET['keyword']; echo (isset($_GET['date'])) ? '&date='.$_GET['date'] : ''; echo (isset($_GET['category'])) ? '&category='.$_GET['category'] : ''; echo (isset($_GET['features'])) ? '&features='.$_GET['features'] : ''; echo (isset($_GET['order']) && $_GET['order'] == 'count_views') ? '': '&order=count_views'?>" <?php echo (isset($_GET['order']) && $_GET['order'] == 'count_views') ? ' selected': ''?>>{$word->view_count}</option>
+		                        </select>
+		                    </div>
+		                </div>
+		            </div>
+			    </div>
+			</div>
+		</div>
+		<div class="container-horizontal">
+			<div class="contsub-video-list-vertical" id="search-list">
+				{$content}
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+    <div class="comments-loading hidden">
+        <div class="tb_content-spinner-circle">
+            <div class="tb_spinner-circle"></div>
+        </div>
+   	</div>
+	<div class="clear"></div>
+</div>
+<script>
+var SH = D.querySelectorAll('.filter_select'),
+	SG = !0,
+    SB = D.querySelectorAll('#bt-subscribe'),
+    SS = function() {
+	    var this_ = this,
+	        by_id = this_.getAttribute('data-id'),
+	        type = this_.getAttribute('data-type'),
+	        subscribe_button = D.querySelector('.subscribe-id-' + by_id),
+	        subs = subscribe_button.getAttribute('data-subs'),
+	        sub_plus = Number(subs) + 1;
+	    if (!by_id || !type) { return false; }
+	    if (!{#loggedin} && M) {
+	        preloadPage('&one=login&to='+M);
+	        return false;
+	    }
+	    if (type == 'subscribe') {
+	        Req('{$url->{req/subscribe/channel}}', function(e) {
+	            removeClass(subscribe_button, 'btn-subscribe');
+	            addClass(subscribe_button, 'btn-subscribed');
+	            if (sub_plus < 1000) {
+	               	subscribe_button.innerHTML = '{$word->subscribed} <span class="margin-r5">'+sub_plus+'</span>';
+	            }
+	            subscribe_button.setAttribute('data-type', 'subscribed');
+	            subscribe_button.setAttribute('data-subs', sub_plus);
+	        }, "POST", "&by_id=" + by_id);
+	    } else {
+	        TB_ShowElement('warning-alert', 'warning-alert','sub_cancel','{$word->unsubscribe}',1,'normal','{$word->cancel_subscription}',0,by_id,'{$word->unsubscribe_from_channel}');
+	    }
+	};
+<?php if($TEMP['#users'] > 0){ ?>
+for (var j = 0, i = SB.length; j < i; j++) addEvent(SB[j], "click", SS);
+<?php } ?>
+addEvent(D.querySelector('#show-search-filter'), 'click', function(){
+	toggleClass(D.querySelector('#filter_settings'), 'show-filters');
+});
+<?php if($TEMP['#videos'] > 0){ ?>
+addEvent(D, 'scroll', function(){
+    if (((window.innerHeight + window.scrollY) >= D.querySelector('#global_content').offsetHeight - 200)){
+	    if(SG){
+	        let ids = [],
+	        	last_id = 0,
+	            SN = D.querySelector('#search-list').querySelectorAll(".video-wrapper[data-id]"),
+	            users_ids = [],
+	            last_user = 0,
+	            SU = D.querySelector('#search-list').querySelectorAll(".user-wrapper[data-id]"),
+	            spin = D.querySelector(".comments-loading");
+	       	removeClass(spin, 'hidden'), SG = !1;
+	        if (SN.length > 0) {
+	            last_id = SN[SN.length - 1].getAttribute('data-id');
+	        }
+	        if (SU.length > 0) {
+	            last_user = SU[SU.length - 1].getAttribute('data-id');
+	        }
+	        for (var j = 0, i = SN.length; j < i; j++) ids.push(SN[j].getAttribute('data-id'));
+	        for (var j = 0, i = SU.length; j < i; j++) users_ids.push(SU[j].getAttribute('data-id'));
+	        Req("{$url->{req/load-more/search-videos}}", function(e) { 
+	        if(e.status  == 200){
+	            var X = D.querySelector('#search-list');
+	            X.innerHTML += e.html, addClass(spin, 'hidden'), SG = !0, loadPage(X.querySelectorAll('a[target="_self"]'), true), SB = D.querySelectorAll('#bt-subscribe');
+	            <?php if($TEMP['#users'] > 0){ ?>
+				for (var j = 0, i = SB.length; j < i; j++) addEvent(SB[j], "click", SS);
+				<?php } ?>
+	        }else{
+	            spin.remove();
+	        }
+	    }, "POST", "&keyword=<?php echo $_GET['keyword']; ?>&date=<?php echo $_GET['date']; ?>&category=<?php echo $_GET['category']; ?>&features=<?php echo $_GET['features']; ?>&order=<?php echo $_GET['order']; ?>&last_id=" + last_id + "&ids=" + ids + "&last_user=" + last_user + "&users_ids=" + users_ids);
+	    }
+	}
+}, 1, !1, !0);
+<?php } ?>
+for (var j = 0, i = SH.length; j < i; j++) addEvent(SH[j], 'change', function(){
+	preloadPage(this.value);
+});
+function TB_ShowElement(type, el_content, button, by_id = 0, video_id = 0,price = 0, txt_btn = '', next_cont = '', extra, extra_new) {
+    var c = D.querySelector('#container_alerts'),
+      	  u = c.querySelector('#confirm-alert') ;
+    Req('{$url->{req/get-element}}', function(e) {
+        if (e.status == 200) {
+            if(!c.querySelector('#warning-alert') || u.getAttribute('data-extra') != extra) {
+	           	c.innerHTML = e.html;
+	            var SF = c.querySelector('#'+el_content);
+	            addEvent(c.querySelector('.sub_cancel'), 'click', function(){
+		            var subscribe_button = D.querySelector('.subscribe-id-' + extra),
+		                subs = subscribe_button.getAttribute('data-subs'),
+		           	    sub_plus = Number(subs) + 1,
+		                sub_m = Number(subs) - 1,
+		                subsCount = sub_m > 0 ? ' <span class="margin-r5">'+sub_m+'</span>' : "";
+		            Req('{$url->{req/subscribe/channel}}', function(e) {
+		                if(e.status == 304){
+	                        removeClass(subscribe_button, 'btn-subscribed')
+		                    addClass(subscribe_button, 'btn-subscribe');
+		                    if (sub_plus < 1000) {
+	                            subscribe_button.innerHTML = '{$word->subscribe}' + subsCount;
+		                    }
+		                    subscribe_button.setAttribute('data-type', 'subscribe');
+		                    subscribe_button.setAttribute('data-subs', sub_m);
+	                        SF.style.display = "none";
+	                    }
+		            }, "POST", "&by_id=" + extra);
+		        }, 2);
+	           	SF.style.display = "block";
+	           	addEvent(SF.querySelector('[data-dismiss]'), "click", function(){
+	               	SF.style.display = "none";
+	            }, 2);
+	           	addEvent(D, "click", function(e){
+	           		if (e.target == SF) {
+	               		SF.style.display = "none";
+	                }
+	           	}, 2);
+	        }else{
+	           	c.querySelector('#'+el_content).style.display = "block";
+	        }
+        }else{
+            loadAlert(e.error, 1);
+        }
+    }, "POST", "&type=" + type + "&actual_form=" + el_content + "&by_id=" + by_id + "&video_id=" + video_id + "&price=" + price + "&next_cont=" + next_cont + "&txt_btn=" + txt_btn + "&class_n=" + button + "&extra=" + extra + "&extra_new=" + extra_new);
+}
+</script>

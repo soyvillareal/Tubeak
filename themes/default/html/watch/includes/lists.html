@@ -1,0 +1,16 @@
+<div class="add-topl-cont">
+	<div class="w-100 text-left padding-top-bottom-12 border-bottom border-primary">
+		<div class="checkbox-normal">
+			<input type="checkbox" id="check-wl" class="checkbox-paper hidden"<?php echo($TEMP['#watch_later'] > 0) ? ' checked' : ''; ?>>
+			<label class="color-secondary vertical-center" for="check-wl">
+				<div class="margin-l10">
+					{$word->watch_later}
+				</div>
+				<svg class="vh-icon-md color-grey margin-left-auto" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					<path fill="currentColor" d="M 8.667 11.183 L 15.333 11.183 L 15.333 8.728 C 15.333 7.824 15.009 7.052 14.356 6.414 C 13.706 5.774 12.92 5.454 12 5.454 C 11.08 5.454 10.294 5.774 9.644 6.414 C 8.991 7.052 8.667 7.824 8.667 8.728 L 8.667 11.183 Z M 19.5 12.409 L 19.5 19.772 C 19.5 20.114 19.379 20.404 19.136 20.642 C 18.891 20.88 18.597 21 18.25 21 L 5.75 21 C 5.403 21 5.109 20.88 4.864 20.642 C 4.621 20.404 4.5 20.114 4.5 19.772 L 4.5 12.409 C 4.5 12.068 4.621 11.779 4.864 11.539 C 5.109 11.3 5.403 11.183 5.75 11.183 L 6.166 11.183 L 6.166 8.728 C 6.166 7.159 6.739 5.812 7.886 4.687 C 9.031 3.562 10.404 3 12 3 C 13.596 3 14.969 3.562 16.114 4.687 C 17.261 5.812 17.834 7.159 17.834 8.728 L 17.834 11.183 L 18.25 11.183 C 18.597 11.183 18.891 11.3 19.136 11.539 C 19.379 11.779 19.5 12.068 19.5 12.409 Z"></path>
+				</svg>
+			</label>
+		</div>
+	</div>
+	{$list}
+</div>

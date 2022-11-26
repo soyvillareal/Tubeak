@@ -1,0 +1,108 @@
+<div class="container-pages">
+	<h1 class="color-secondary text-center">{$word->contact_us}</h1>
+	<div class="max-w-900 border-top-right-radius border-top-left-radius border-top border-right border-left border-tertiary background-primary margin-right-auto margin-left-auto">
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="group-title color-secondary">*{$word->name}</label>
+                </div>
+               <div class="flex-grow">
+                    <input type="text" class="cont-control area_validate border-focus-blue background-secondary color-secondary" id="name" name="name">
+                    <div class="color-red text-left text-error"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="group-title color-secondary">{$word->subject}</label>
+                </div>
+                <div class="flex-grow position-relative">
+                    <select class="cont-control cont-select background-secondary color-secondary" id="subject" name="subject">
+                        <option value="0" selected>{$word->copyright_}</option>
+                        <option value="1">{$word->ads}</option>
+                        <option value="2">{$word->errors}</option>
+                        <option value="3">{$word->other}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="group-title color-secondary">*{$word->email}</label>
+                </div>
+                <div class="flex-grow position-relative">
+                    <input type="text" class="cont-control area_validate border-focus-blue background-secondary color-secondary" id="email" name="email">
+                    <div class="color-red text-left text-error"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="group-title color-secondary">*{$word->message}</label>
+                </div>
+                <div class="flex-grow">
+                    <textarea class="cont-control area_validate border-focus-blue area_validate_website background-secondary color-secondary" id="message" name="message" rows="5" cols="30"></textarea>
+                    <div class="color-red text-left text-error"></div>
+               	</div>
+            </div>
+        </div>
+    </div>
+    <div class="background-primary max-w-900 border-bottom-right-radius border-bottom-left-radius border-bottom border-right border-left border-tertiary padding-20 margin-b20 margin-right-auto margin-left-auto">
+        <div class="display-flex flex-end">
+            <button id="contact" class="btn-trans global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                <span class="color-white">{$word->send}</span>
+                <div class="tb_content-spinner-circle">
+                    <div class="tb_spinner-circle"></div>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+var CV = D.querySelectorAll('.area_validate'),
+	CB = D.querySelector('#contact'),
+	CN = D.querySelector("#name"),
+	CS = D.querySelector('#subject'),
+	CE = D.querySelector('#email'),
+	CM = D.querySelector('#message'),
+	bDisabled = function(){
+		var self = this,
+			el = self.parentNode.querySelector('.text-error');
+		CB.removeAttribute('disabled'), removeClass(self, 'border-red'), removeClass(self, 'boxshadow-red'), el && (el.innerText = '');
+	};
+addEvent(CB, 'click', function(){
+	if(['0', '1', '2', '3'].indexOf(CS.value) == -1){
+		loadAlert('{$word->error}', 1);
+		return false;
+	} else if(CN.value == '' || CS.value == '' || CE.value == '' || CM.value == ''){
+		for (var j = 0, i = CV.length; j < i; j++){
+		    var el = CV[j];
+		    if(el.value == '') {
+		    	el.parentNode.querySelector('.text-error').innerText = '*{$word->this_field_is_empty}', addClass(el, 'border-red'), addClass(el, 'boxshadow-red');
+		    }
+	    }
+	    return false;
+	}
+	addClass(CB, 'tb_spinner-is-loading'), CB.setAttribute('disabled', true);
+    Req("{$url->{req/contact}}", function(e){
+        if (e.status == 200) {
+            loadAlert(e.message), removeClass(CB, 'tb_spinner-is-loading'), CS.value = 0;
+            for (var j = 0, i = CV.length; j < i; j++) CV[j].value = '';
+        } else {
+        	if(e.emptys != undefined){
+		        for (var j = 0, i = e.emptys.length; j < i; j++){
+		        	var el = D.querySelector('#'+e.emptys[j]);
+		         	el.parentNode.querySelector('.text-error').innerText = '*{$word->this_field_is_empty}', addClass(el, 'border-red'), addClass(el, 'boxshadow-red');
+		        }
+		    } else {
+		        loadAlert('{$word->error}', 1);
+		    }
+      		removeClass(CB, 'tb_spinner-is-loading');
+        }
+    }, "POST", "&name=" + CN.value + "&subject=" + CS.value + "&email=" + CE.value + "&message=" + CM.value);
+}), addEvent(CS, 'change', bDisabled);
+for(var j = 0, i = CV.length; j < i; j++) addEvent(CV[j], 'keyup', bDisabled);
+</script>

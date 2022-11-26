@@ -1,0 +1,302 @@
+<div class="container-admin">
+    <div class="user-setting-panel">
+        <?php if(Specific::Moderator() === true){ ?>        
+        <ul class="main-menu-links display-inline-flex margin-b10 border-all border-tertiary">
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary active" href="{$url->{admin/manage-users/general-users}}" target="_self">
+                    <svg class="vh-icon-md" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M 8.559 12 C 7.547 12.033 6.719 12.462 6.075 13.286 L 4.819 13.286 C 4.306 13.286 3.875 13.15 3.525 12.879 C 3.175 12.608 3 12.211 3 11.689 C 3 9.325 3.388 8.143 4.163 8.143 C 4.2 8.143 4.336 8.213 4.57 8.354 C 4.805 8.494 5.109 8.637 5.484 8.781 C 5.859 8.925 6.231 8.997 6.6 8.997 C 7.019 8.997 7.434 8.92 7.847 8.766 C 7.816 9.013 7.8 9.234 7.8 9.429 C 7.8 10.359 8.053 11.217 8.559 12 Z M 18.6 18.398 C 18.6 19.202 18.372 19.837 17.916 20.302 C 17.459 20.767 16.853 21 16.097 21 L 7.903 21 C 7.147 21 6.541 20.767 6.084 20.302 C 5.628 19.837 5.4 19.202 5.4 18.398 C 5.4 18.044 5.411 17.697 5.433 17.359 C 5.455 17.021 5.498 16.656 5.564 16.264 C 5.63 15.872 5.713 15.509 5.813 15.174 C 5.913 14.839 6.047 14.513 6.216 14.195 C 6.384 13.877 6.578 13.605 6.797 13.381 C 7.016 13.157 7.283 12.978 7.598 12.844 C 7.914 12.71 8.263 12.643 8.644 12.643 C 8.706 12.643 8.841 12.715 9.047 12.859 C 9.253 13.003 9.481 13.164 9.731 13.341 C 9.981 13.518 10.316 13.679 10.734 13.823 C 11.153 13.967 11.575 14.039 12 14.039 C 12.425 14.039 12.847 13.967 13.266 13.823 C 13.684 13.679 14.019 13.518 14.269 13.341 C 14.519 13.164 14.747 13.003 14.953 12.859 C 15.159 12.715 15.294 12.643 15.356 12.643 C 15.738 12.643 16.086 12.71 16.402 12.844 C 16.717 12.978 16.984 13.157 17.203 13.381 C 17.422 13.605 17.616 13.877 17.784 14.195 C 17.953 14.513 18.088 14.839 18.188 15.174 C 18.288 15.509 18.37 15.872 18.436 16.264 C 18.502 16.656 18.545 17.021 18.567 17.359 C 18.589 17.697 18.6 18.044 18.6 18.398 Z M 9 5.571 C 9 6.281 8.766 6.887 8.297 7.39 C 7.828 7.892 7.263 8.143 6.6 8.143 C 5.938 8.143 5.372 7.892 4.903 7.39 C 4.434 6.887 4.2 6.281 4.2 5.571 C 4.2 4.862 4.434 4.256 4.903 3.753 C 5.372 3.251 5.938 3 6.6 3 C 7.263 3 7.828 3.251 8.297 3.753 C 8.766 4.256 9 4.862 9 5.571 Z M 15.6 9.429 C 15.6 10.493 15.248 11.402 14.545 12.156 C 13.842 12.909 12.994 13.286 12 13.286 C 11.006 13.286 10.158 12.909 9.455 12.156 C 8.752 11.402 8.4 10.493 8.4 9.429 C 8.4 8.364 8.752 7.455 9.455 6.701 C 10.158 5.948 11.006 5.571 12 5.571 C 12.994 5.571 13.842 5.948 14.545 6.701 C 15.248 7.455 15.6 8.364 15.6 9.429 Z M 21 11.689 C 21 12.211 20.825 12.608 20.475 12.879 C 20.125 13.15 19.694 13.286 19.181 13.286 L 17.925 13.286 C 17.281 12.462 16.453 12.033 15.441 12 C 15.947 11.217 16.2 10.359 16.2 9.429 C 16.2 9.234 16.184 9.013 16.153 8.766 C 16.566 8.92 16.981 8.997 17.4 8.997 C 17.769 8.997 18.141 8.925 18.516 8.781 C 18.891 8.637 19.195 8.494 19.43 8.354 C 19.664 8.213 19.8 8.143 19.838 8.143 C 20.613 8.143 21 9.325 21 11.689 Z M 19.8 5.571 C 19.8 6.281 19.566 6.887 19.097 7.39 C 18.628 7.892 18.063 8.143 17.4 8.143 C 16.738 8.143 16.172 7.892 15.703 7.39 C 15.234 6.887 15 6.281 15 5.571 C 15 4.862 15.234 4.256 15.703 3.753 C 16.172 3.251 16.738 3 17.4 3 C 18.063 3 18.628 3.251 19.097 3.753 C 19.566 4.256 19.8 4.862 19.8 5.571 Z"/>
+                    </svg>
+                    {$word->users}
+                </a>
+            </li>
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary" href="{$url->{admin/manage-videos}}" target="_self">
+                    <svg class="vh-icon-md" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M 20.5 6.9 L 20.5 17.1 C 20.5 17.363 20.377 17.547 20.13 17.653 C 20.048 17.684 19.969 17.7 19.893 17.7 C 19.722 17.7 19.58 17.641 19.466 17.522 L 15.643 13.744 L 15.643 15.3 C 15.643 16.044 15.376 16.68 14.841 17.208 C 14.307 17.736 13.663 18 12.911 18 L 6.232 18 C 5.48 18 4.836 17.736 4.302 17.208 C 3.767 16.68 3.5 16.044 3.5 15.3 L 3.5 8.7 C 3.5 7.956 3.767 7.32 4.302 6.792 C 4.836 6.264 5.48 6 6.232 6 L 12.911 6 C 13.663 6 14.307 6.264 14.841 6.792 C 15.376 7.32 15.643 7.956 15.643 8.7 L 15.643 10.247 L 19.466 6.478 C 19.58 6.359 19.722 6.3 19.893 6.3 C 19.969 6.3 20.048 6.316 20.13 6.347 C 20.377 6.453 20.5 6.638 20.5 6.9 Z"/>
+                    </svg>
+                    {$word->videos}
+                </a>
+            </li>
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary" href="{$url->{admin/manage-commens}}" target="_self">
+                    <svg class="vh-icon-md" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M 9.429 10.882 C 9.429 10.53 9.303 10.229 9.052 9.98 C 8.801 9.731 8.498 9.606 8.143 9.606 C 7.788 9.606 7.485 9.731 7.234 9.98 C 6.983 10.229 6.857 10.53 6.857 10.882 C 6.857 11.235 6.983 11.536 7.234 11.785 C 7.485 12.034 7.788 12.159 8.143 12.159 C 8.498 12.159 8.801 12.034 9.052 11.785 C 9.303 11.536 9.429 11.235 9.429 10.882 Z M 13.286 10.882 C 13.286 10.53 13.16 10.229 12.909 9.98 C 12.658 9.731 12.355 9.606 12 9.606 C 11.645 9.606 11.342 9.731 11.091 9.98 C 10.84 10.229 10.714 10.53 10.714 10.882 C 10.714 11.235 10.84 11.536 11.091 11.785 C 11.342 12.034 11.645 12.159 12 12.159 C 12.355 12.159 12.658 12.034 12.909 11.785 C 13.16 11.536 13.286 11.235 13.286 10.882 Z M 17.143 10.882 C 17.143 10.53 17.017 10.229 16.766 9.98 C 16.515 9.731 16.212 9.606 15.857 9.606 C 15.502 9.606 15.199 9.731 14.948 9.98 C 14.697 10.229 14.571 10.53 14.571 10.882 C 14.571 11.235 14.697 11.536 14.948 11.785 C 15.199 12.034 15.502 12.159 15.857 12.159 C 16.212 12.159 16.515 12.034 16.766 11.785 C 17.017 11.536 17.143 11.235 17.143 10.882 Z M 21 10.882 C 21 12.039 20.598 13.108 19.795 14.089 C 18.991 15.069 17.9 15.844 16.52 16.412 C 15.141 16.981 13.634 17.265 12 17.265 C 11.263 17.265 10.557 17.205 9.881 17.085 C 8.722 18.236 7.266 18.997 5.511 19.369 C 5.163 19.436 4.875 19.479 4.647 19.499 C 4.567 19.505 4.493 19.485 4.426 19.439 C 4.359 19.392 4.316 19.333 4.296 19.259 C 4.269 19.16 4.336 19.037 4.497 18.89 C 4.53 18.857 4.609 18.786 4.733 18.676 C 4.857 18.566 4.942 18.488 4.989 18.442 C 5.036 18.395 5.114 18.31 5.225 18.187 C 5.335 18.064 5.416 17.96 5.466 17.873 C 5.516 17.787 5.585 17.664 5.672 17.504 C 5.759 17.345 5.826 17.185 5.873 17.026 C 5.92 16.866 5.968 16.675 6.018 16.452 C 6.069 16.229 6.11 15.988 6.144 15.729 C 5.166 15.131 4.398 14.411 3.839 13.57 C 3.28 12.729 3 11.833 3 10.882 C 3 9.726 3.402 8.657 4.205 7.676 C 5.009 6.696 6.1 5.921 7.48 5.353 C 8.859 4.784 10.366 4.5 12 4.5 C 13.634 4.5 15.141 4.784 16.52 5.353 C 17.9 5.921 18.991 6.696 19.795 7.676 C 20.598 8.657 21 9.726 21 10.882 Z"/>
+                    </svg>
+                    {$word->comments}
+                </a>
+            </li>
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary last" href="{$url->{admin/manage-repors}}" target="_self">
+                    <svg class="vh-icon-md" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M 6.019 5.75 C 6.019 6.219 5.809 6.577 5.389 6.824 L 5.389 19.188 C 5.389 19.272 5.358 19.345 5.295 19.407 C 5.233 19.469 5.159 19.5 5.074 19.5 L 4.444 19.5 C 4.359 19.5 4.285 19.469 4.223 19.407 C 4.161 19.345 4.13 19.272 4.13 19.188 L 4.13 6.824 C 3.71 6.577 3.5 6.219 3.5 5.75 C 3.5 5.405 3.623 5.11 3.869 4.866 C 4.115 4.622 4.412 4.5 4.759 4.5 C 5.107 4.5 5.404 4.622 5.65 4.866 C 5.896 5.11 6.019 5.405 6.019 5.75 Z M 20.5 6.375 L 20.5 13.826 C 20.5 13.989 20.459 14.114 20.377 14.202 C 20.295 14.29 20.166 14.38 19.988 14.471 C 18.578 15.226 17.368 15.604 16.358 15.604 C 15.958 15.604 15.553 15.532 15.143 15.389 C 14.733 15.245 14.378 15.089 14.076 14.92 C 13.774 14.751 13.395 14.594 12.94 14.451 C 12.484 14.308 12.016 14.236 11.538 14.236 C 10.278 14.236 8.757 14.712 6.973 15.662 C 6.861 15.721 6.753 15.75 6.648 15.75 C 6.478 15.75 6.33 15.688 6.205 15.564 C 6.081 15.441 6.019 15.294 6.019 15.125 L 6.019 7.879 C 6.019 7.671 6.12 7.492 6.323 7.342 C 6.461 7.251 6.72 7.111 7.101 6.922 C 8.649 6.141 10.029 5.75 11.242 5.75 C 11.944 5.75 12.6 5.844 13.21 6.033 C 13.82 6.222 14.538 6.508 15.365 6.893 C 15.614 7.016 15.902 7.078 16.23 7.078 C 16.584 7.078 16.97 7.01 17.386 6.873 C 17.803 6.736 18.163 6.583 18.468 6.414 C 18.773 6.245 19.062 6.092 19.334 5.955 C 19.606 5.818 19.785 5.75 19.87 5.75 C 20.041 5.75 20.188 5.812 20.313 5.936 C 20.438 6.059 20.5 6.206 20.5 6.375 Z"/>
+                    </svg>
+                    {$word->reports}
+                </a>
+            </li>
+        </ul>
+        <?php } ?>
+	    <div class="main-submenu">
+            <ul class="main-menu-links display-inline-flex margin-b10 border-all border-tertiary">
+                <li>
+                    <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary active" href="{$url->{admin/manage-users/general-users}}" target="_self">
+                        {$word->all_users}
+                    </a>
+                </li>
+                <li>
+                    <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary" href="{$url->{admin/manage-users/applied-locks}}" target="_self">
+                        {$word->locks}
+                    </a>
+                </li>
+                <li>
+                    <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary last" href="{$url->{admin/manage-users/verification-request}}" target="_self">
+                        {$word->verification_requests}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="margin-t10 padding-top-bottom-12 border-top border-tertiary">
+            <div class="user-setting-panel">
+                <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+                    <h3 class="cont-settings-title color-secondary">{$word->manage_edit_users}</h3>
+                    <div class="margin-t10">
+                        <p class="color-secondary">{$word->manage_all_registered_users_perform_actions}.</p>
+                    </div>
+                </div> 
+                <div class="max-w-900 border-radius-4 border-all border-tertiary background-primary margin-right-auto margin-left-auto">
+                    <div class="cont-group w-100 padding-20">
+                        <div class="container-data-table">
+                            <div class="scroll-table-header">
+                                <div class="contsub-table-header padding-5 no-padding-left no-padding-right border-top border-tertiary">
+                                    <div class="cont-cell-header display-flex padding-left-right-12">
+                                        <div class="vertical-center margin-left-auto">
+                                            <div class="color-secondary margin-r10">{$word->search_keyword}:</div>
+                                            <input class="cont-control border-focus-blue background-secondary color-secondary" id="search-users" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="contsub-table-header display-flex padding-top-bottom-12 border-bottom border-top border-tertiary">
+                                    <div class="cont-cell-header padding-left-right-12 color-secondary">
+                                        {$word->id}
+                                    </div>
+                                    <div class="cont-cell-header padding-left-right-12 color-secondary">
+                                        {$word->username}
+                                    </div>
+                                    <div class="cont-cell-header padding-left-right-12 color-secondary">
+                                        {$word->email}
+                                    </div>
+                                    <div class="cont-cell-header padding-left-right-12 color-secondary">
+                                        {$word->ip_address}
+                                    </div>
+                                    <div class="cont-cell-header text-center padding-left-right-12 color-secondary">
+                                        {$word->status}
+                                    </div>
+                                    <div class="cont-cell-header text-center padding-left-right-12 color-secondary">
+                                        {$word->action}
+                                    </div>
+                                </div>
+                                <div id="container-pages">
+                                    {$users_list}
+                                </div>
+                            </div>
+                            <div class="vertical-center border-bottom border-tertiary">
+                                <div class="cont-more-button margin-right-auto padding-12">
+                                    <a class="font-low color-blue" href="{$url->{contact}}" target="_blank">
+                                        {$word->something_went_wrong}
+                                    </a>
+                                </div>
+                                <?php if ($TEMP['#total_pages'] > 1) { ?>
+                                <div class="vertical-center margin-left-auto padding-12" id="table-footer">
+                                    <div class="table-page-description padding-left-right-12 margin-r10 margin-l10">
+                                        <span class="color-secondary" id="page-now">1</span> 
+                                        <span class="color-secondary">{$word->of}</span>
+                                        <span class="color-secondary" id="total-pages">{#total_pages}</span>    
+                                    </div>
+                                    <button class="margin-r10 cursor-disabled color-for-hover hover-button btn-trans load-table-page" id="navigation-first" data-type="first" disabled>
+                                        <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" d="M 13.23 17.002 C 13.23 17.106 13.189 17.198 13.106 17.279 L 12.484 17.88 C 12.402 17.96 12.306 18 12.199 18 C 12.091 18 11.996 17.96 11.913 17.88 L 6.124 12.277 C 6.041 12.196 6 12.104 6 12 C 6 11.896 6.041 11.804 6.124 11.723 L 11.913 6.12 C 11.996 6.04 12.091 6 12.199 6 C 12.306 6 12.402 6.04 12.484 6.12 L 13.106 6.721 C 13.189 6.802 13.23 6.894 13.23 6.998 C 13.23 7.102 13.189 7.194 13.106 7.275 L 8.224 12 L 13.106 16.725 C 13.189 16.806 13.23 16.898 13.23 17.002 Z M 18 17.002 C 18 17.106 17.959 17.198 17.876 17.279 L 17.254 17.88 C 17.171 17.96 17.077 18 16.969 18 C 16.862 18 16.766 17.96 16.684 17.88 L 10.894 12.277 C 10.811 12.196 10.77 12.104 10.77 12 C 10.77 11.896 10.811 11.804 10.894 11.723 L 16.684 6.12 C 16.766 6.04 16.862 6 16.969 6 C 17.077 6 17.171 6.04 17.254 6.12 L 17.876 6.721 C 17.959 6.802 18 6.894 18 6.998 C 18 7.102 17.959 7.194 17.876 7.275 L 12.994 12 L 17.876 16.725 C 17.959 16.806 18 16.898 18 17.002 Z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="margin-r10 cursor-disabled color-for-hover hover-button btn-trans load-table-page" id="navigation-before" data-type="before" disabled>
+                                        <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" d="M 15.7 6.998 C 15.7 7.102 15.658 7.194 15.573 7.275 L 10.576 12 L 15.573 16.725 C 15.658 16.806 15.7 16.898 15.7 17.002 C 15.7 17.106 15.658 17.198 15.573 17.279 L 14.937 17.88 C 14.852 17.96 14.755 18 14.645 18 C 14.534 18 14.437 17.96 14.352 17.88 L 8.427 12.277 C 8.342 12.196 8.3 12.104 8.3 12 C 8.3 11.896 8.342 11.804 8.427 11.723 L 14.352 6.12 C 14.437 6.04 14.534 6 14.645 6 C 14.755 6 14.852 6.04 14.937 6.12 L 15.573 6.721 C 15.658 6.802 15.7 6.894 15.7 6.998 Z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="margin-r10 cursor-disabled color-for-hover hover-button btn-trans load-table-page" id="navigation-after" data-type="after">
+                                        <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" d="M 15.7 12 C 15.7 12.105 15.658 12.196 15.573 12.277 L 9.648 17.88 C 9.563 17.96 9.466 18 9.355 18 C 9.245 18 9.148 17.96 9.063 17.88 L 8.427 17.278 C 8.342 17.199 8.3 17.106 8.3 17.002 C 8.3 16.898 8.342 16.806 8.427 16.725 L 13.424 12 L 8.427 7.275 C 8.342 7.194 8.3 7.102 8.3 6.998 C 8.3 6.894 8.342 6.801 8.427 6.722 L 9.063 6.12 C 9.148 6.04 9.245 6 9.355 6 C 9.466 6 9.563 6.04 9.648 6.12 L 15.573 11.723 C 15.658 11.804 15.7 11.895 15.7 12 Z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="margin-r10 cursor-disabled color-for-hover hover-button btn-trans load-table-page" id="navigation-last" data-type="last">
+                                        <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" d="M 13.23 12 C 13.23 12.104 13.188 12.196 13.106 12.277 L 7.317 17.88 C 7.234 17.96 7.139 18 7.031 18 C 6.923 18 6.828 17.96 6.745 17.88 L 6.124 17.279 C 6.041 17.198 6 17.106 6 17.002 C 6 16.898 6.041 16.806 6.124 16.725 L 11.006 12 L 6.124 7.275 C 6.041 7.194 6 7.102 6 6.998 C 6 6.894 6.041 6.802 6.124 6.721 L 6.745 6.12 C 6.828 6.04 6.923 6 7.031 6 C 7.139 6 7.234 6.04 7.317 6.12 L 13.106 11.723 C 13.188 11.804 13.23 11.896 13.23 12 Z M 18 12 C 18 12.104 17.959 12.196 17.876 12.277 L 12.087 17.88 C 12.004 17.96 11.909 18 11.801 18 C 11.694 18 11.598 17.96 11.516 17.88 L 10.894 17.279 C 10.812 17.198 10.77 17.106 10.77 17.002 C 10.77 16.898 10.812 16.806 10.894 16.725 L 15.776 12 L 10.894 7.275 C 10.812 7.194 10.77 7.102 10.77 6.998 C 10.77 6.894 10.812 6.802 10.894 6.721 L 11.516 6.12 C 11.598 6.04 11.694 6 11.801 6 C 11.909 6 12.004 6.04 12.087 6.12 L 17.876 11.723 C 17.959 11.804 18 11.896 18 12 Z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var GH = D.querySelector('#search-users'),
+    VN = D.querySelector('#page-now'),
+    VE = D.querySelector('#navigation-after'),
+    VO = D.querySelector('#navigation-before'),
+    VR = D.querySelector('#navigation-first'),
+    VS = D.querySelector('#navigation-last'),
+    GK = D.querySelectorAll('#delete-user'),
+    GL = D.querySelectorAll('.load-table-page'),
+    GM = D.querySelectorAll('#info-user'),
+    GD = function(){
+        var self = this,
+            id = self.getAttribute('data-id');
+        addClass(self, 'tb_spinner-is-loading');
+        self.setAttribute('disabled', true);
+        TB_ShowElement('warning-alert', 'warning-alert','delete-user','{$word->delete_account}',1,'normal','{$word->delete}',0,id,'{$word->delete_your_account}');
+    },
+    GF = function(){
+        var self = this,
+            by_id = self.getAttribute('data-id');
+        addClass(self, 'tb_spinner-is-loading');
+        self.setAttribute('disabled', true);
+        Req('{$url->{req/global-admin/get-info-user}}', function(e){
+            if(e.status == 200){
+                TB_ShowElement('warning-alert', 'warning-alert','info-user','{$word->reported_content}',1,'normal','{$word->save}',0, by_id,e.html);
+            } else {
+                removeClass(self, 'tb_spinner-is-loading'), self.removeAttribute('disabled')
+            }
+        }, "POST", "&by_id=" + by_id)
+    },
+    VA = 1,
+    VT = {#total_pages};
+addEvent(GH, 'keyup', function(){
+    var self = this,
+        GS = D.querySelector('#table-footer');
+    Req('{$url->{req/global-admin/search-users}}', function(e){
+        if(e.status == 200){
+            <?php echo($TEMP['#total_pages'] > 1) ? "VT = e.total_pages, VA = 1, VO.setAttribute('disabled', true), VR.setAttribute('disabled', true), VE.removeAttribute('disabled'), VS.removeAttribute('disabled'), D.querySelector('#total-pages').innerText = VT, VN.innerText = VA, GS && (VT <= 1 ? GS.style.display = 'none' : GS.removeAttribute('style')), " : ""?>D.querySelector('#container-pages').innerHTML = e.html, loadPage(D.querySelectorAll('a[target="_self"]')), GM = D.querySelectorAll('#info-user'), GK = D.querySelectorAll('#delete-user');
+            for(var j = 0, i = GM.length; j < i; j++) addEvent(GM[j], "click", GF);
+            for(var j = 0, i = GK.length; j < i; j++) addEvent(GK[j], "click", GD);
+        } else {
+            D.querySelector('#container-pages').innerHTML = e.html, GS.style.display = "none"; 
+        }
+    }, "POST", "&keyword=" + self.value)
+});
+for(var j = 0, i = GM.length; j < i; j++) addEvent(GM[j], "click", GF);
+for(var j = 0, i = GK.length; j < i; j++) addEvent(GK[j], "click", GD);
+for (var j = 0, i = GL.length; j < i; j++) addEvent(GL[j], "click", function(){
+    var self = this,
+        type = self.getAttribute('data-type');
+    if(type == 'after') {
+        if(VT > VA) {
+            VA++;
+            VR.removeAttribute('disabled');
+            VO.removeAttribute('disabled');
+            VN.innerText = VA;
+        }
+    } else if(type == 'before'){
+        if(VA > 1){
+            VA--;
+            VS.removeAttribute('disabled');
+            VE.removeAttribute('disabled');
+            VN.innerText = VA;
+        }
+    } else if(type == 'last')   {
+        VA = VT;
+        VS.setAttribute('disabled', true);
+        VR.removeAttribute('disabled');
+        VO.removeAttribute('disabled');
+        VN.innerText = VT;
+    } else if(type == 'first') {
+        VA = 1;
+        VR.setAttribute('disabled', true);
+        VE.removeAttribute('disabled');
+        VS.removeAttribute('disabled');
+        VN.innerText = 1;
+    }
+    if(VA == 1){
+        VR.setAttribute('disabled', true);
+        VO.setAttribute('disabled', true);
+    } else if(VA == VT) {
+        VS.setAttribute('disabled', true);
+        VE.setAttribute('disabled', true);
+    }
+    Req("{$url->{req/table-load-pages}}", function(e){
+        if(e.status == 200){
+            D.querySelector('#container-pages').innerHTML = e.html, loadPage(D.querySelectorAll('a[target="_self"]')), GM = D.querySelectorAll('#info-user'), GK = D.querySelectorAll('#delete-user');
+            for(var j = 0, i = GM.length; j < i; j++) addEvent(GM[j], "click", GF);
+            for(var j = 0, i = GK.length; j < i; j++) addEvent(GK[j], "click", GD);
+        } else {
+            VE.setAttribute('disabled', true), VO.setAttribute('disabled', true), VR.setAttribute('disabled', true), VS.setAttribute('disabled', true), VA = 1, loadAlert('{$word->error}', 1);
+        }
+    }, "POST", "&page_id=" + VA + "&type=admin-users&keyword=" + GH.value)
+});
+
+
+function TB_ShowElement(type, el_content, button, by_id = 0, video_id = 0,price = 0, txt_btn = '', next_cont = '', extra, extra_new) {
+    var c = D.querySelector('#container_alerts'),
+        f = c.querySelector('#'+el_content),
+        h = c.querySelector('#beforeLoad'),
+        u = c.querySelector('#confirm-alert'),
+        EJ = D.querySelector('#user-' + extra),
+        self = EJ.querySelector('#' + button);
+  Req('{$url->{req/get-element}}', function(e) {
+    if (e.status == 200) {
+        removeAllEvents(2), removeClass(self, 'tb_spinner-is-loading'), self.removeAttribute('disabled');
+        if(!f || (type == 'warning-alert' && u && !hasClass(u, button)) || (type == 'warning-alert' && (!u || u.getAttribute('data-extra') != extra))){
+          c.innerHTML = e.html;
+        }
+        if(button == 'delete-user') {
+            addEvent(c.querySelector('.delete-user'), 'click', function(){
+                var self = this;
+                self.innerText = "{$word->please_wait}";
+                Req('{$url->{req/global-admin/delete-user}}', function(e){
+                    if(e.status == 200){
+                        loadAlert('{$word->your_account_was_deleted}'), preloadPage('&one=admin&two=manage-users&three=general-users');
+                    } else {
+                        self.innerText = "{$word->delete}", loadAlert('{$word->error}', 1);
+                    }
+                }, "POST", "&id=" + extra)
+
+            })
+        } else if(button == 'info-user'){
+            addEvent(c.querySelector('.info-user'), 'click', function(){
+                var self = this;
+                self.innerText = "{$word->please_wait}";
+                Req('{$url->{req/global-admin/info-user}}', function(e){
+                    if(e.status == 200){
+                        loadAlert('{$word->setting_updated}'), preloadPage('&one=admin&two=manage-users&three=general-users');
+                    } else {
+                        self.innerText = "{$word->save}", loadAlert('{$word->error}', 1);
+                    }
+                }, "POST", "&by_id=" + extra + "&upload_limit=" + c.querySelector('#upload_limit').value + "&status=" + c.querySelector('.status_user:checked').value<?php echo(Specific::Admin()) ? ' + "&type=" + c.querySelector(".type_user:checked").value' : '' ?> + "&verification=" + c.querySelector('.verification:checked').value + "&ban_ip=" + c.querySelector('.ban_ip:checked').value + "&ban_user=" + c.querySelector('.ban_user:checked').value)
+            }, 2)
+        }
+      var bb = c.querySelector('#'+el_content),
+      k = bb.querySelector('[data-dismiss]');
+      c.querySelector('#'+el_content).style.display = "block";
+      k && addEvent(k, "click", function(){
+        c.querySelector('#'+el_content).style.display = "none";
+      }, 2), addEvent(D, "click", function(e) {
+        if (e.target == c.querySelector('#'+el_content)) {
+           c.querySelector('#'+el_content).style.display = "none";
+        }
+      }, 2);
+    }else{
+      if(button != 0 && type != 'warning-alert'){
+        D.querySelector('#'+button).innerText = txt_btn;
+        D.querySelector('#'+button).removeAttribute('disabled');
+      } else if(h){
+        h.remove();
+      }
+      loadAlert(e.error, 1);
+    }
+  },
+  "POST", "&type=" + type + "&actual_form=" + el_content + "&by_id=" + by_id + "&video_id=" + video_id + "&price=" + price + "&next_cont=" + next_cont + "&txt_btn=" + txt_btn + "&class_n=" + button + "&extra=" + extra + "&extra_new=" + extra_new);
+}
+</script>

@@ -1,0 +1,51 @@
+<tr>
+	<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%; padding-top: 25px; color: #000000; font-family: sans-serif;">
+		<h6 style="color:inherit;font-family:Helvetica,Arial,sans-serif;font-size:18px;font-weight:500;line-height:1.3;margin:0;margin-bottom: 15px;padding:0;text-align:center;word-wrap:normal;color:#065fd4;">
+			{$word->hello}
+		</h6>
+		<p style="margin-bottom:10px;font-family:Helvetica,Arial,Verdana,'Trebuchet MS';font-size:16px;font-weight:300;line-height:24px;margin:0;padding:0;text-align:center">
+			{$word->confirm_are_who_trying_enter}
+		</p>
+	</td>
+</tr>
+<tr>
+	<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; padding-top: 25px; padding-bottom: 5px;" class="button">
+		<table border="0" cellpadding="0" cellspacing="0" align="center" style="max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0; padding: 0;">
+			<tr>
+				<td align="center" valign="middle" style="background: #065fd4; border: 2px solid #065fd4; border-collapse: collapse!important; color: #fff; font-family: Helvetica,Arial,sans-serif; font-size: 16px; font-weight: 600; line-height: 1.3; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word; border-radius: 2px; overflow: hidden;" bgcolor="#E9703E">
+					<a target="_blank" style="border-radius: 3px; color: #fff; display: inline-block; font-family: Helvetica,Arial,sans-serif; font-size: 14px; font-weight: 600; line-height: 1.3; margin: 0; padding: 10px 55px 10px 55px; text-align: left; text-decoration: none;" href="{$url->{authentication/{$token}}}/{$id}?insert={$code}">
+						{$word->enter_code}
+					</a>
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+<tr>	
+	<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%; padding-top: 15px;" class="line">
+		<hr color="#E0E0E0" align="center" width="100%" size="1" noshade style="margin: 0; padding: 0;" />
+	</td>
+</tr>
+<tr>
+	<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 16px; font-weight: 300; line-height: 160%; padding-top: 27px; padding-bottom: 16px; color: #000000; font-family: Helvetica,Arial,sans-serif;">
+		<table style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%">
+			<tbody>
+				<tr style="padding:0;text-align:left;vertical-align:top">
+					<th style="color:#322f37;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:300;line-height:1.3;margin:0;padding:0;text-align:left">
+						<p style="font-family:Helvetica,Arial,Verdana,'Trebuchet MS';font-size:14px;font-weight:300;line-height:24px;margin:0;padding:0;text-align:center">
+							{$word->you_write_verification_code}
+						</p>
+						<div style="color:#322f37;font-family:Helvetica,Arial,Verdana,'Trebuchet MS';font-size:24px;font-weight:400;line-height:24px;margin:0;padding:0;text-align:center;padding-top: 20px;padding-bottom:15px;">
+							<p style="background:#faf9fa;border:1px solid;border-style:solid;border-color:#dad8de;display:inline;padding:5px;">
+								{$code}
+							</p>
+						</div>
+						<p class="footer" align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 14px; font-weight: 400; line-height: 150%; padding-top: 20px; padding-bottom: 20px; color: #706a7c; font-family: sans-serif;">
+								{$word->arent_trying_access}, {$word->we_recommend_you} <a target="_blank" href="{$url->{reset-password/{$token}}}" style="color: #999; text-decoration: underline;">{$word->change_your_password}</a>
+						</p>
+					</th>
+				</tr>
+			</tbody>
+		</table>
+	</td>
+</tr>

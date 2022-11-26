@@ -1,0 +1,45 @@
+<div class="content-row-table vertical-center padding-top-bottom-12 border-bottom border-tertiary" id="request-{!id}">
+	<div class="cont-cell-header padding-left-right-12 color-secondary">
+        {!id}
+	</div>
+	<div class="cont-cell-header ellipsis-horizontal padding-left-right-12 color-secondary">
+        {!data->username}
+	</div>
+	<div class="cont-cell-header padding-left-right-12 color-secondary">
+        {!time}
+	</div>
+	<div class="cont-cell-header padding-left-right-12 color-secondary" id="cell-status">
+        {!status}
+	</div>
+	<div class="cont-cell-header text-center padding-left-right-12">
+		<?php if($TEMP['#status'] == 0){ ?>
+		<button class="btn-trans color-primary" id="accept-verification" data-id="{!id}">
+			<span class="color-primary">
+                <svg class="vh-icon" viewBox="0 0 32 32">
+	                <path d="M31.923,9.14L13.417,27.642c-0.496,0.494-1.299,0.494-1.793,0L0.37,16.316   c-0.494-0.496-0.494-1.302,0-1.795l2.689-2.687c0.496-0.495,1.299-0.495,1.793,0l7.678,7.729L27.438,4.654   c0.494-0.494,1.297-0.494,1.795,0l2.689,2.691C32.421,7.84,32.421,8.646,31.923,9.14z" fill="currentColor"></path>
+	            </svg>
+            </span>
+            <div class="tb_content-spinner-circle">
+                <div class="tb_spinner-circle"></div>
+            </div>
+		</button>
+		<?php } ?>
+		<a class="btn-trans color-primary" href="{!data->url}" target="_blank">
+         	<svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M 19.714 12 C 18.696 10.361 17.421 9.135 15.887 8.323 C 16.296 9.045 16.5 9.826 16.5 10.667 C 16.5 11.951 16.06 13.05 15.179 13.964 C 14.299 14.877 13.239 15.333 12 15.333 C 10.761 15.333 9.701 14.877 8.821 13.964 C 7.94 13.05 7.5 11.951 7.5 10.667 C 7.5 9.826 7.704 9.045 8.113 8.323 C 6.579 9.135 5.304 10.361 4.286 12 C 5.176 13.424 6.293 14.557 7.636 15.401 C 8.978 16.245 10.433 16.667 12 16.667 C 13.567 16.667 15.022 16.245 16.364 15.401 C 17.707 14.557 18.824 13.424 19.714 12 Z M 12.482 8 C 12.482 7.861 12.435 7.743 12.342 7.646 C 12.248 7.549 12.134 7.5 12 7.5 C 11.163 7.5 10.445 7.811 9.845 8.432 C 9.246 9.054 8.946 9.799 8.946 10.667 C 8.946 10.806 8.993 10.924 9.087 11.021 C 9.181 11.118 9.295 11.167 9.429 11.167 C 9.563 11.167 9.676 11.118 9.77 11.021 C 9.864 10.924 9.911 10.806 9.911 10.667 C 9.911 10.069 10.115 9.559 10.523 9.135 C 10.932 8.712 11.424 8.5 12 8.5 C 12.134 8.5 12.248 8.451 12.342 8.354 C 12.435 8.257 12.482 8.139 12.482 8 Z M 21 12 C 21 12.236 20.933 12.476 20.799 12.719 C 19.862 14.316 18.601 15.595 17.017 16.557 C 15.434 17.519 13.761 18 12 18 C 10.239 18 8.566 17.517 6.983 16.552 C 5.399 15.587 4.138 14.309 3.201 12.719 C 3.067 12.476 3 12.236 3 12 C 3 11.764 3.067 11.524 3.201 11.281 C 4.138 9.691 5.399 8.413 6.983 7.448 C 8.566 6.483 10.239 6 12 6 C 13.761 6 15.434 6.483 17.017 7.448 C 18.601 8.413 19.862 9.691 20.799 11.281 C 20.933 11.524 21 11.764 21 12 Z"/>
+            </svg>
+		</a>
+		<?php if($TEMP['#status'] == 0){ ?>
+		<button class="btn-trans color-primary" id="reject-verification" data-id="{!id}">
+            <span class="color-primary">
+               	<svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	               	<path fill="currentColor" d="M 12 13.17 L 5.17 20 L 4 18.832 L 10.83 12 L 4 5.17 L 5.17 4 L 12 10.83 L 18.832 4 L 20 5.17 L 13.17 12 L 20 18.832 L 18.832 20 Z"></path>
+	            </svg>
+            </span>
+            <div class="tb_content-spinner-circle">
+                <div class="tb_spinner-circle"></div>
+            </div>
+        </button>
+        <?php } ?>
+	</div>
+</div>

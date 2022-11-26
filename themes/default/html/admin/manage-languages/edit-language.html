@@ -1,0 +1,253 @@
+<div class="container-admin">
+    <div class="user-setting-panel">  
+        <ul class="main-menu-links display-inline-flex margin-b10 border-all border-tertiary">
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary active" href="{$url->{admin/manage-languages/general-languages}}" target="_self">
+                    {$word->all_languages}
+                </a>
+            </li>
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary last" href="{$url->{admin/manage-languages/add-word-language}}" target="_self">
+                    {$word->add_language_words}
+                </a>
+            </li>
+        </ul>
+        <div class="margin-t10 padding-top-bottom-12 border-top border-tertiary">
+            <div class="user-setting-panel">
+                <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+                    <h3 class="cont-settings-title color-secondary">{$word->manage_edit_languages}</h3>
+                    <div class="margin-t10">
+                        <p class="color-secondary">{$word->manage_languages_modify_correct_one_more_words}.</p>
+                    </div>
+                </div> 
+                <div class="max-w-900 border-radius-4 border-all border-tertiary background-primary margin-right-auto margin-left-auto">
+                    <div class="cont-group w-100 padding-20">
+                        <div class="container-data-table">
+                            <div class="scroll-table-header">
+                                <div class="contsub-table-header padding-5 no-padding-left no-padding-right border-top border-tertiary">
+                                    <div class="cont-cell-header display-flex padding-left-right-12">
+                                        <div class="vertical-center margin-left-auto">
+                                            <div class="color-secondary margin-r10">{$word->search_keyword}:</div>
+                                            <input class="cont-control border-focus-blue background-secondary color-secondary" id="search-words" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="contsub-table-header display-flex padding-top-bottom-12 border-bottom border-top border-tertiary">
+                                    <div class="cont-cell-header padding-left-right-12 color-secondary">
+                                        {$word->key_name}
+                                    </div>
+                                    <div class="cont-cell-header padding-left-right-12 color-secondary">
+                                        {$word->language_name}
+                                    </div>
+                                    <div class="cont-cell-header text-center padding-left-right-12 color-secondary">
+                                        {$word->action}
+                                    </div>
+                                </div>
+                                <div id="container-pages">
+                                    {$words_list}
+                                </div>
+                            </div>
+                            <div class="vertical-center border-bottom border-tertiary">
+                                <div class="cont-more-button margin-right-auto padding-12">
+                                    <a class="font-low color-blue" href="{$url->{contact}}" target="_blank">
+                                        {$word->something_went_wrong}
+                                    </a>
+                                </div>
+                                <?php if ($TEMP['#total_pages'] > 1) { ?>
+                                <div class="vertical-center margin-left-auto padding-12" id="table-footer">
+                                    <div class="table-page-description padding-left-right-12 margin-r10 margin-l10">
+                                        <span class="color-secondary" id="page-now">1</span> 
+                                        <span class="color-secondary">{$word->of}</span>
+                                        <span class="color-secondary" id="total-pages">{#total_pages}</span>    
+                                    </div>
+                                    <button class="margin-r10 cursor-disabled color-for-hover hover-button btn-trans load-table-page" id="navigation-first" data-type="first" disabled>
+                                        <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" d="M 13.23 17.002 C 13.23 17.106 13.189 17.198 13.106 17.279 L 12.484 17.88 C 12.402 17.96 12.306 18 12.199 18 C 12.091 18 11.996 17.96 11.913 17.88 L 6.124 12.277 C 6.041 12.196 6 12.104 6 12 C 6 11.896 6.041 11.804 6.124 11.723 L 11.913 6.12 C 11.996 6.04 12.091 6 12.199 6 C 12.306 6 12.402 6.04 12.484 6.12 L 13.106 6.721 C 13.189 6.802 13.23 6.894 13.23 6.998 C 13.23 7.102 13.189 7.194 13.106 7.275 L 8.224 12 L 13.106 16.725 C 13.189 16.806 13.23 16.898 13.23 17.002 Z M 18 17.002 C 18 17.106 17.959 17.198 17.876 17.279 L 17.254 17.88 C 17.171 17.96 17.077 18 16.969 18 C 16.862 18 16.766 17.96 16.684 17.88 L 10.894 12.277 C 10.811 12.196 10.77 12.104 10.77 12 C 10.77 11.896 10.811 11.804 10.894 11.723 L 16.684 6.12 C 16.766 6.04 16.862 6 16.969 6 C 17.077 6 17.171 6.04 17.254 6.12 L 17.876 6.721 C 17.959 6.802 18 6.894 18 6.998 C 18 7.102 17.959 7.194 17.876 7.275 L 12.994 12 L 17.876 16.725 C 17.959 16.806 18 16.898 18 17.002 Z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="margin-r10 cursor-disabled color-for-hover hover-button btn-trans load-table-page" id="navigation-before" data-type="before" disabled>
+                                        <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" d="M 15.7 6.998 C 15.7 7.102 15.658 7.194 15.573 7.275 L 10.576 12 L 15.573 16.725 C 15.658 16.806 15.7 16.898 15.7 17.002 C 15.7 17.106 15.658 17.198 15.573 17.279 L 14.937 17.88 C 14.852 17.96 14.755 18 14.645 18 C 14.534 18 14.437 17.96 14.352 17.88 L 8.427 12.277 C 8.342 12.196 8.3 12.104 8.3 12 C 8.3 11.896 8.342 11.804 8.427 11.723 L 14.352 6.12 C 14.437 6.04 14.534 6 14.645 6 C 14.755 6 14.852 6.04 14.937 6.12 L 15.573 6.721 C 15.658 6.802 15.7 6.894 15.7 6.998 Z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="margin-r10 cursor-disabled color-for-hover hover-button btn-trans load-table-page" id="navigation-after" data-type="after">
+                                        <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" d="M 15.7 12 C 15.7 12.105 15.658 12.196 15.573 12.277 L 9.648 17.88 C 9.563 17.96 9.466 18 9.355 18 C 9.245 18 9.148 17.96 9.063 17.88 L 8.427 17.278 C 8.342 17.199 8.3 17.106 8.3 17.002 C 8.3 16.898 8.342 16.806 8.427 16.725 L 13.424 12 L 8.427 7.275 C 8.342 7.194 8.3 7.102 8.3 6.998 C 8.3 6.894 8.342 6.801 8.427 6.722 L 9.063 6.12 C 9.148 6.04 9.245 6 9.355 6 C 9.466 6 9.563 6.04 9.648 6.12 L 15.573 11.723 C 15.658 11.804 15.7 11.895 15.7 12 Z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="margin-r10 cursor-disabled color-for-hover hover-button btn-trans load-table-page" id="navigation-last" data-type="last">
+                                        <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" d="M 13.23 12 C 13.23 12.104 13.188 12.196 13.106 12.277 L 7.317 17.88 C 7.234 17.96 7.139 18 7.031 18 C 6.923 18 6.828 17.96 6.745 17.88 L 6.124 17.279 C 6.041 17.198 6 17.106 6 17.002 C 6 16.898 6.041 16.806 6.124 16.725 L 11.006 12 L 6.124 7.275 C 6.041 7.194 6 7.102 6 6.998 C 6 6.894 6.041 6.802 6.124 6.721 L 6.745 6.12 C 6.828 6.04 6.923 6 7.031 6 C 7.139 6 7.234 6.04 7.317 6.12 L 13.106 11.723 C 13.188 11.804 13.23 11.896 13.23 12 Z M 18 12 C 18 12.104 17.959 12.196 17.876 12.277 L 12.087 17.88 C 12.004 17.96 11.909 18 11.801 18 C 11.694 18 11.598 17.96 11.516 17.88 L 10.894 17.279 C 10.812 17.198 10.77 17.106 10.77 17.002 C 10.77 16.898 10.812 16.806 10.894 16.725 L 15.776 12 L 10.894 7.275 C 10.812 7.194 10.77 7.102 10.77 6.998 C 10.77 6.894 10.812 6.802 10.894 6.721 L 11.516 6.12 C 11.598 6.04 11.694 6 11.801 6 C 11.909 6 12.004 6.04 12.087 6.12 L 17.876 11.723 C 17.959 11.804 18 11.896 18 12 Z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var GV = D.querySelector('#search-words'),
+    VN = D.querySelector('#page-now'),
+    GM = D.querySelector('#total-pages'),
+    VE = D.querySelector('#navigation-after'),
+    VO = D.querySelector('#navigation-before'),
+    VR = D.querySelector('#navigation-first'),
+    VS = D.querySelector('#navigation-last'),
+    gb = D.querySelectorAll('#edit-key'),
+    GK = D.querySelectorAll('#delete-word'),
+    GL = D.querySelectorAll('.load-table-page'),
+    GF = function(){
+        var self = this,
+            language = self.getAttribute('data-name'),
+            key = self.getAttribute('data-key');
+        addClass(self, 'tb_spinner-is-loading');
+        self.setAttribute('disabled', true);
+
+        var html = '<div class="form-edit-list"><div class="cont-group"><input id="word-name" type="text" class="cont-control here_now background-secondary color-secondary" value="'+language+'"></div></div>';
+        TB_ShowElement('warning-alert', 'warning-alert','edit-key','{$word->edit_word}',1,'normal','{$word->save}',key, 0,html);
+    },
+    GD = function(){
+        var self = this,
+            key = self.getAttribute('data-key');
+        addClass(self, 'tb_spinner-is-loading');
+        self.setAttribute('disabled', true);
+        TB_ShowElement('warning-alert', 'warning-alert','delete-word','{$word->delete_word}',1,'normal','{$word->delete}',key,0,'¿Seguro quieres eliminar esta palabra?');
+    },
+    VA = 1,
+    GG = "",
+    VT = {#total_pages};
+addEvent(GV, 'keyup', function(){
+    var self = this,
+        GS = D.querySelector('#table-footer');
+    Req('{$url->{req/global-admin/search-words}}', function(e){
+        if(e.status == 200){
+            <?php echo($TEMP['#total_pages'] > 1) ? "VT = e.total_pages, VA = 1, VO.setAttribute('disabled', true), VR.setAttribute('disabled', true), VE.removeAttribute('disabled'), VS.removeAttribute('disabled'), D.querySelector('#total-pages').innerText = VT, VN.innerText = VA, GS && (VT <= 1 ? GS.style.display = 'none' : GS.removeAttribute('style')), " : ""?>D.querySelector('#container-pages').innerHTML = e.html, loadPage(D.querySelectorAll('a[target="_self"]')), gb = D.querySelectorAll('#edit-key'), GK = D.querySelectorAll('#delete-word');
+            for(var j = 0, i = gb.length; j < i; j++) addEvent(gb[j], "click", GF);
+            for(var j = 0, i = GK.length; j < i; j++) addEvent(GK[j], "click", GD);
+        } else {
+            D.querySelector('#container-pages').innerHTML = e.html<?php echo($TEMP['#total_pages'] > 1) ? ', GS.style.display = "none"' : ''?>;   
+        }
+    }, "POST", "&keyword=" + self.value + "&language={$language}")
+});
+for(var j = 0, i = gb.length; j < i; j++) addEvent(gb[j], "click", GF);
+for(var j = 0, i = GK.length; j < i; j++) addEvent(GK[j], "click", GD);
+for (var j = 0, i = GL.length; j < i; j++) addEvent(GL[j], "click", function(){
+    var self = this,
+        type = self.getAttribute('data-type');
+    if(type == 'after') {
+        if(VT > VA) {
+            VA++;
+            VR.removeAttribute('disabled');
+            VO.removeAttribute('disabled');
+            VN.innerText = VA;
+        }
+    } else if(type == 'before'){
+        if(VA > 1){
+            VA--;
+            VS.removeAttribute('disabled');
+            VE.removeAttribute('disabled');
+            VN.innerText = VA;
+        }
+    } else if(type == 'last')   {
+        VA = VT;
+        VS.setAttribute('disabled', true);
+        VR.removeAttribute('disabled');
+        VO.removeAttribute('disabled');
+        VN.innerText = VT;
+    } else if(type == 'first') {
+        VA = 1;
+        VR.setAttribute('disabled', true);
+        VE.removeAttribute('disabled');
+        VS.removeAttribute('disabled');
+        VN.innerText = 1;
+    }
+    if(VA == 1){
+        VR.setAttribute('disabled', true);
+        VO.setAttribute('disabled', true);
+    } else if(VA == VT) {
+        VS.setAttribute('disabled', true);
+        VE.setAttribute('disabled', true);
+    }
+    Req("{$url->{req/table-load-pages}}", function(e){
+        if(e.status == 200){
+            D.querySelector('#container-pages').innerHTML = e.html, loadPage(D.querySelectorAll('a[target="_self"]')), gb = D.querySelectorAll('#edit-key'), GK = D.querySelectorAll('#delete-word');
+            for(var j = 0, i = gb.length; j < i; j++) addEvent(gb[j], "click", GF);
+            for(var j = 0, i = GK.length; j < i; j++) addEvent(GK[j], "click", GD);
+        } else {
+            VE.setAttribute('disabled', true), VO.setAttribute('disabled', true), VR.setAttribute('disabled', true), VS.setAttribute('disabled', true), VA = 1, loadAlert('{$word->error}', 1);
+        }
+    }, "POST", "&page_id=" + VA + "&type=edit-language&language={$language}&keyword=" + GV.value)
+});
+
+
+function TB_ShowElement(type, el_content, button, by_id = 0, video_id = 0,price = 0, txt_btn = '', next_cont = '', extra, extra_new) {
+    var c = D.querySelector('#container_alerts'),
+        f = c.querySelector('#'+el_content),
+        h = c.querySelector('#beforeLoad'),
+        u = c.querySelector('#confirm-alert'),
+        EJ = D.querySelector('#key-' + next_cont),
+        self = EJ.querySelector('#' + button);
+
+  Req('{$url->{req/get-element}}', function(e) {
+    if (e.status == 200) {
+        removeAllEvents(2), removeClass(self, 'tb_spinner-is-loading'), self.removeAttribute('disabled');
+        if(!f || (type == 'warning-alert' && u && !hasClass(u, button)) || (type == 'warning-alert' && (!u || GG != next_cont))){
+          c.innerHTML = e.html, GG = next_cont;
+        }
+        if(button == 'edit-key'){
+            addEvent(c.querySelector('.edit-key'), 'click', function(){
+                var self = this;
+                self.innerText = "{$word->please_wait}";
+                Req('{$url->{req/global-admin/edit-word}}', function(e){
+                    if(e.status == 200){
+                        EJ.querySelector('#cell-word-name').innerText = D.querySelector('#word-name').value, c.querySelector('#'+el_content).style.display = "none", loadAlert("{$word->the_word_was_successfully_modified}");
+                    } else {
+                        loadAlert('{$word->error}', 1), self.innerText = "{$word->save}";
+                    }
+                }, "POST", "&word=" + next_cont + "&language={$language}&word_name=" + D.querySelector('#word-name').value)
+
+            }, 2)
+        } else if(button == 'delete-word') {
+            addEvent(c.querySelector('.delete-word'), 'click', function(){
+                var self = this;
+                self.innerText = "{$word->please_wait}";
+                Req('{$url->{req/global-admin/delete-word}}', function(e){
+                    if(e.status == 200){
+                        c.querySelector('#'+el_content).style.display = "none", EJ.remove();
+                    } else {
+                        loadAlert('{$word->error}', 1), self.innerText = "{$word->delete}";
+                    }
+                }, "POST", "&word=" + next_cont)
+            })
+        }
+      var x = c.querySelector('.here_now');
+          x && x.focus();
+      var bb = c.querySelector('#'+el_content),
+      k = bb.querySelector('[data-dismiss]');
+      c.querySelector('#'+el_content).style.display = "block";
+      k && addEvent(k, "click", function(){
+        c.querySelector('#'+el_content).style.display = "none";
+      }, 2);
+      addEvent(D, "click", function(e) {
+            if (e.target == c.querySelector('#'+el_content)) {
+               c.querySelector('#'+el_content).style.display = "none";
+            }
+         }, 2);
+    }else{
+      if(button != 0 && type != 'warning-alert'){
+        D.querySelector('#'+button).innerText = txt_btn;
+        D.querySelector('#'+button).removeAttribute('disabled');
+      } else if(h){
+        h.remove();
+      }
+      loadAlert(e.error, 1);
+    }
+  },
+  "POST", "&type=" + type + "&actual_form=" + el_content + "&by_id=" + by_id + "&video_id=" + video_id + "&price=" + price + "&next_cont=" + next_cont + "&txt_btn=" + txt_btn + "&class_n=" + button + "&extra=" + extra + "&extra_new=" + extra_new);
+}
+</script>

@@ -1,0 +1,55 @@
+<div class="container-horizontal">
+	<div class="cont-horizontal-head border-bottom border-primary">
+		<div class="text-horizontal-head color-secondary">
+			{$word->playback_history}
+		</div>
+	</div>
+    <div class="contsub-video-list-vertical" id="history-list">
+        {$history_list}
+    </div>
+    <div class="clear"></div>
+    <div class="comments-loading hidden">
+        <div class="tb_content-spinner-circle">
+            <div class="tb_spinner-circle"></div>
+        </div>
+    </div>
+</div>
+<?php if($TEMP['#videos'] > 0) { ?>
+<script type="text/javascript">
+var YG = !0,
+	YD = D.querySelectorAll('#delete_history'),
+	YR = function() {
+	  	var id = this.getAttribute('data-id');
+	  	if (!id) {
+	    	return false;
+	  	}
+	  	Req('{$url->{req/delete/history}}', function(e) {
+	  		if(e.status == 200){
+	  			loadAlert('{$word->removed_history}'), D.querySelector('#video-'+id).innerHTML = '<div class="margin-auto padding-20 color-secondary">{$word->history_item_removed}</div>';
+	  		}
+	  	}, "POST", "&id=" + id);
+	};
+addEvent(D, 'scroll', function(){
+    if (((window.innerHeight + window.scrollY) >= D.querySelector('#global_content').offsetHeight - 200)){
+      	if(YG){
+	        var spin = D.querySelector(".comments-loading"),
+	            N = D.querySelectorAll(".video-wrapper"),
+	            ids = [];
+	        removeClass(spin, 'hidden'), YG = !1;
+		    for (var j = 0, i = N.length; j < i; j++) ids.push(N[j].getAttribute('data-id'));
+	        Req("{$url->{req/load-more/history}}", function(e){
+		        if (e.status == 200) {
+		           	var content = D.querySelector("#history-list");
+	                content.innerHTML += e.html, addClass(spin, 'hidden'), YG = !0, loadPage(content.querySelectorAll('a[target="_self"]'), true);
+		          	var YD = content.querySelectorAll('#delete_history');
+		           	for (var j = 0, i = YD.length; j < i; j++) addEvent(YD[j], 'click', YR);
+		        } else {
+		            spin.remove();
+		        }
+	       	}, "POST", "&ids="+ ids);
+      	}
+    }
+}, 1, !1, !0);
+for (var j = 0, i = YD.length; j < i; j++) addEvent(YD[j], 'click', YR);
+</script>
+<?php } ?>

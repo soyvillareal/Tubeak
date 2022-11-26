@@ -1,0 +1,188 @@
+<?php if ($TEMP['#settings']['authentication'] == 'on') { ?>
+<div class="margin-b10">
+    <label class="padding-5 color-secondary">{$word->authentication}</label>
+    <div class="display-inline-block">
+        <select id="authentication" name="authentication" class="cont-control cont-select background-secondary color-secondary">
+            <option value="0"<?php echo ($TEMP['#data']['authentication'] == 0) ? ' selected': '';?>>{$word->disabled}</option>
+            <option value="1"<?php echo ($TEMP['#data']['authentication'] == 1) ? ' selected': '';?>>{$word->enabled}</option>
+        </select>
+    </div>
+</div>
+<?php } ?>
+<div class="container-data-table">
+    <div class="scroll-table-header">
+        <div class="contsub-table-header display-flex padding-top-bottom-12 border-bottom border-top border-tertiary">
+            <div class="cont-cell-header padding-left-right-12 color-secondary">
+                {$word->browser}
+            </div>
+            <div class="cont-cell-header padding-left-right-12 color-secondary">
+                {$word->operating_system}
+            </div>
+            <div class="cont-cell-header padding-left-right-12 color-secondary">
+                {$word->ip_address}
+            </div>
+            <div class="cont-cell-header padding-left-right-12 color-secondary">
+                {$word->date}
+            </div>
+            <div class="cont-cell-header text-center padding-left-right-12 color-secondary">
+                {$word->log_out}
+            </div>
+        </div>
+        <div id="container-pages">
+            {$sessions}
+        </div>
+    </div>
+    <div class="vertical-center border-bottom border-tertiary">
+        <div class="cont-more-button margin-right-auto padding-12">
+            <a class="font-low color-blue" href="{$url->{contact}}" target="_blank">
+                {$word->something_went_wrong}
+            </a>
+        </div>
+        <?php if ($TEMP['#total_pages'] > 1) { ?>
+        <div class="vertical-center margin-left-auto padding-12">
+            <div class="table-page-description padding-left-right-12 margin-r10 margin-l10">
+                <span class="color-secondary" id="page-now">1</span> 
+                <span class="color-secondary">{$word->of}</span>
+                <span class="color-secondary">{#total_pages}</span>    
+            </div>
+            <button class="margin-r10 cursor-disabled color-for-hover hover-button btn-trans load-table-page" id="navigation-first" data-type="first" disabled>
+                <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M 13.23 17.002 C 13.23 17.106 13.189 17.198 13.106 17.279 L 12.484 17.88 C 12.402 17.96 12.306 18 12.199 18 C 12.091 18 11.996 17.96 11.913 17.88 L 6.124 12.277 C 6.041 12.196 6 12.104 6 12 C 6 11.896 6.041 11.804 6.124 11.723 L 11.913 6.12 C 11.996 6.04 12.091 6 12.199 6 C 12.306 6 12.402 6.04 12.484 6.12 L 13.106 6.721 C 13.189 6.802 13.23 6.894 13.23 6.998 C 13.23 7.102 13.189 7.194 13.106 7.275 L 8.224 12 L 13.106 16.725 C 13.189 16.806 13.23 16.898 13.23 17.002 Z M 18 17.002 C 18 17.106 17.959 17.198 17.876 17.279 L 17.254 17.88 C 17.171 17.96 17.077 18 16.969 18 C 16.862 18 16.766 17.96 16.684 17.88 L 10.894 12.277 C 10.811 12.196 10.77 12.104 10.77 12 C 10.77 11.896 10.811 11.804 10.894 11.723 L 16.684 6.12 C 16.766 6.04 16.862 6 16.969 6 C 17.077 6 17.171 6.04 17.254 6.12 L 17.876 6.721 C 17.959 6.802 18 6.894 18 6.998 C 18 7.102 17.959 7.194 17.876 7.275 L 12.994 12 L 17.876 16.725 C 17.959 16.806 18 16.898 18 17.002 Z"/>
+                </svg>
+            </button>
+            <button class="margin-r10 cursor-disabled color-for-hover hover-button btn-trans load-table-page" id="navigation-before" data-type="before">
+                <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M 15.7 6.998 C 15.7 7.102 15.658 7.194 15.573 7.275 L 10.576 12 L 15.573 16.725 C 15.658 16.806 15.7 16.898 15.7 17.002 C 15.7 17.106 15.658 17.198 15.573 17.279 L 14.937 17.88 C 14.852 17.96 14.755 18 14.645 18 C 14.534 18 14.437 17.96 14.352 17.88 L 8.427 12.277 C 8.342 12.196 8.3 12.104 8.3 12 C 8.3 11.896 8.342 11.804 8.427 11.723 L 14.352 6.12 C 14.437 6.04 14.534 6 14.645 6 C 14.755 6 14.852 6.04 14.937 6.12 L 15.573 6.721 C 15.658 6.802 15.7 6.894 15.7 6.998 Z"/>
+                </svg>
+            </button>
+            <button class="margin-r10 cursor-disabled color-for-hover hover-button btn-trans load-table-page" id="navigation-after" data-type="after">
+                <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M 15.7 12 C 15.7 12.105 15.658 12.196 15.573 12.277 L 9.648 17.88 C 9.563 17.96 9.466 18 9.355 18 C 9.245 18 9.148 17.96 9.063 17.88 L 8.427 17.278 C 8.342 17.199 8.3 17.106 8.3 17.002 C 8.3 16.898 8.342 16.806 8.427 16.725 L 13.424 12 L 8.427 7.275 C 8.342 7.194 8.3 7.102 8.3 6.998 C 8.3 6.894 8.342 6.801 8.427 6.722 L 9.063 6.12 C 9.148 6.04 9.245 6 9.355 6 C 9.466 6 9.563 6.04 9.648 6.12 L 15.573 11.723 C 15.658 11.804 15.7 11.895 15.7 12 Z"/>
+                </svg>
+            </button>
+            <button class="margin-r10 cursor-disabled color-for-hover hover-button btn-trans load-table-page" id="navigation-last" data-type="last">
+                <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M 13.23 12 C 13.23 12.104 13.188 12.196 13.106 12.277 L 7.317 17.88 C 7.234 17.96 7.139 18 7.031 18 C 6.923 18 6.828 17.96 6.745 17.88 L 6.124 17.279 C 6.041 17.198 6 17.106 6 17.002 C 6 16.898 6.041 16.806 6.124 16.725 L 11.006 12 L 6.124 7.275 C 6.041 7.194 6 7.102 6 6.998 C 6 6.894 6.041 6.802 6.124 6.721 L 6.745 6.12 C 6.828 6.04 6.923 6 7.031 6 C 7.139 6 7.234 6.04 7.317 6.12 L 13.106 11.723 C 13.188 11.804 13.23 11.896 13.23 12 Z M 18 12 C 18 12.104 17.959 12.196 17.876 12.277 L 12.087 17.88 C 12.004 17.96 11.909 18 11.801 18 C 11.694 18 11.598 17.96 11.516 17.88 L 10.894 17.279 C 10.812 17.198 10.77 17.106 10.77 17.002 C 10.77 16.898 10.812 16.806 10.894 16.725 L 15.776 12 L 10.894 7.275 C 10.812 7.194 10.77 7.102 10.77 6.998 C 10.77 6.894 10.812 6.802 10.894 6.721 L 11.516 6.12 C 11.598 6.04 11.694 6 11.801 6 C 11.909 6 12.004 6.04 12.087 6.12 L 17.876 11.723 C 17.959 11.804 18 11.896 18 12 Z"/>
+                </svg>
+            </button>
+        </div>
+        <?php } ?>
+    </div>
+</div>
+<script>
+var YF = D.querySelectorAll('#log-out-session'),
+    YL = D.querySelectorAll('.load-table-page'),
+    YA = 1,
+    YP = function(){
+        var id = this.getAttribute("data-session");
+        if (!id) { return false; }
+        TB_ShowElement('warning-alert', 'warning-alert','delete_sessions','{$word->confirmation}',1,'normal','{$word->delete}',0,id,'{$word->sure_you_wan_log_out}');
+    };
+<?php if ($TEMP['#settings']['authentication'] == 'on') { ?>
+addEvent(D.querySelector("#authentication"), "change", function(){
+    Req("{$url->{req/settings/authentication}}", function(e){
+        if (e.status == 200) {
+            loadAlert(e.message);
+        } else {
+            loadAlert('{$word->error}', 1);
+        }
+    }, "POST", "&by_id={$data->id}&authentication=" + this.value)
+});
+<?php } ?>
+
+for (var j = 0, i = YL.length; j < i; j++) addEvent(YL[j], "click", function(){
+    var self = this,
+        type = self.getAttribute('data-type'),
+        YE = D.querySelector('#navigation-after'),
+        YO = D.querySelector('#navigation-before'),
+        YR = D.querySelector('#navigation-first'),
+        YS = D.querySelector('#navigation-last'),
+        YN = D.querySelector('#page-now'),
+        YT = {#total_pages};
+    if(type == 'after') {
+        if(YT > YA) {
+            YA++;
+            YR.removeAttribute('disabled');
+            YO.removeAttribute('disabled');
+            YN.innerText = YA;
+        }
+    } else if(type == 'before'){
+        if(YA > 1){
+            YA--;
+            YS.removeAttribute('disabled');
+            YE.removeAttribute('disabled');
+            YN.innerText = YA;
+        }
+    } else if(type == 'last')   {
+        YA = YT;
+        YS.setAttribute('disabled', true);
+        YR.removeAttribute('disabled');
+        YO.removeAttribute('disabled');
+        YN.innerText = YT;
+    } else if(type == 'first') {
+        YA = 1;
+        YR.setAttribute('disabled', true);
+        YE.removeAttribute('disabled');
+        YS.removeAttribute('disabled');
+        YN.innerText = 1;
+    }
+    if(YA == 1){
+        YR.setAttribute('disabled', true);
+        YO.setAttribute('disabled', true);
+    } else if(YA == YT) {
+        YS.setAttribute('disabled', true);
+        YE.setAttribute('disabled', true);
+    } 
+    Req("{$url->{req/table-load-pages}}", function(e){
+        if(e.status == 200){
+            D.querySelector('#container-pages').innerHTML = e.html;
+            var YF = D.querySelectorAll('#log-out-session');
+            for (var j = 0, i = YF.length; j < i; j++) addEvent(YF[j], "click", YP);
+        } else {
+            YE.setAttribute('disabled', true), YO.setAttribute('disabled', true), YR.setAttribute('disabled', true), YS.setAttribute('disabled', true), YA = 1, loadAlert('{$word->error}', 1);
+        }
+    }, "POST", "&page_id=" + YA + "&type=sessions&by_id={$settings_id}")
+});
+for (var j = 0, i = YF.length; j < i; j++) addEvent(YF[j], "click", YP);
+
+function TB_ShowElement(type, el_content, button, by_id = 0, video_id = 0,price = 0, txt_btn = '', next_cont = '', extra, extra_new) {
+        var c = D.querySelector('#container_alerts'),
+            f = c.querySelector('#'+el_content),
+            h = c.querySelector('#beforeLoad'),
+            u = c.querySelector('#confirm-alert');
+        Req('{$url->{req/get-element}}', function(e) {
+            removeAllEvents(2), (button != 0 && type != 'warning-alert') && (D.querySelector('#'+button).innerText = txt_btn, D.querySelector('#'+button).removeAttribute('disabled'));
+            if (e.status == 200) {
+
+                if(!c.querySelector('#'+el_content) && type == 'warning-alert'){
+                    c.innerHTML += e.html;
+                    
+                    addEvent(c.querySelector('.delete_sessions'), 'click', function(){
+                        Req("{$url->{req/delete/session}}", function(e){
+                            if (e.reload == true) {
+                                location.reload();
+                            } else if (e.status == 200) {
+                                D.querySelector('#session_' + extra).remove();
+                            }
+                            c.querySelector('#'+type).style.display = "none";
+                        }, "POST", "&id=" + extra + "&by_id={$data->id}")
+                    })
+                }
+                var TF = c.querySelector('#'+type);
+                TF.style.display = "block";
+                addEvent(TF.querySelector('[data-dismiss]'), "click", function(){
+                    TF.style.display = "none";
+                }, 2);
+            } else {
+                if(button != 0 && type != 'warning-alert'){
+                    D.querySelector('#'+button).innerText = txt_btn;
+                    D.querySelector('#'+button).removeAttribute('disabled');
+                } else if(h){
+                    h.remove();
+                }
+                loadAlert(e.error, 1);
+            }
+        },
+        "POST", "&type=" + type + "&actual_form=" + el_content + "&by_id=" + by_id + "&video_id=" + video_id + "&price=" + price + "&next_cont=" + next_cont + "&txt_btn=" + txt_btn + "&class_n=" + button + "&extra=" + extra + "&extra_new=" + extra_new); 
+    }
+</script>

@@ -1,0 +1,60 @@
+<div class="container-grid-columns">
+    <div class="contsub-video-list-vertical" id="playlist-list">
+        {$lists}
+    </div>
+    <div class="clear"></div>
+    <div class="comments-loading hidden">
+        <div class="tb_content-spinner-circle">
+            <div class="tb_spinner-circle"></div>
+        </div>
+    </div>
+</div>
+<?php if($TEMP['#lists'] > 0) { ?>
+<script>
+var SG = !0,
+    SD = D.querySelectorAll('#delete-list'),
+    SP = D.querySelectorAll('#edit-list'),
+    SX = function(){
+      var id = this.getAttribute('data-id');
+      if (!id) { return false;}
+      TB_ShowElement('warning-alert', 'warning-alert','delete_list','{$word->confirmation}',1,'normal','{$word->yes_delete_it}','confirm_alert',id,'{$word->confirm_delist}');
+    },
+    SY = function(){
+        var id = this.getAttribute('data-id');
+        if (!id) {
+            return false;
+        }
+        Req('{$url->{req/list-actions/get-list}}', function(e){
+            if (e.status == 200) {
+              var html = '<div class="form-edit-list"><div class="cont-group"><input id="list-title" type="text" class="cont-control background-secondary color-secondary" value="'+e.title+'"></div><div class="cont-group"><select class="cont-control cont-select background-secondary color-secondary" id="list-type"><option value="1"'+e.public+'>{$word->public}</option><option value="0"'+e.private+'>{$word->private}</option></select></div><div class="cont-group"><textarea id="list-desc" rows="3" class="cont-control background-secondary color-secondary" placeholder="{$word->description}">'+e.desc+'</textarea></div></div>';
+              TB_ShowElement('warning-alert', 'warning-alert','edit_list','{$word->edit} '+e.title,1,'normal','{$word->save}','form_edit', e.id,html);
+            }
+        }, "POST", "&id=" + id)
+    };
+addEvent(D, 'scroll', function(){
+    if (((window.innerHeight + window.scrollY) >= D.querySelector('#global_content').offsetHeight - 200)){
+        if(SG == true){
+            var spin = D.querySelector(".comments-loading"),
+                N = D.querySelectorAll(".video-wrapper"),
+                ids = [];
+            removeClass(spin, 'hidden'), SG = !1;
+            for (var j = 0, i = N.length; j < i; j++) if(N[j].getAttribute('data-playlist') != null) ids.push(N[j].getAttribute('data-playlist'));
+            Req("{$url->{req/load-more/user-playlist}}", function(e){
+                if (e.status == 200) {
+                    var content = D.querySelector("#playlist-list");
+                    content.innerHTML += e.html, addClass(spin, 'hidden'), SG = !0, loadPage(content.querySelectorAll('a[target="_self"]'));
+                    var SD = D.querySelectorAll('#delete-list'),
+                        SP = D.querySelectorAll('#edit-list');
+                    for (var j = 0, i = SD.length; j < i; j++) addEvent(SD[j], 'click', SX);
+                    for (var j = 0, i = SP.length; j < i; j++) addEvent(SP[j], 'click', SY);  
+                } else {
+                  spin.remove(), SG = !1;
+                }            
+            }, "POST", "&ids="+ids+"&by_id={$data->id}");
+        }
+    }
+}, 1, !1, !0);
+for (var j = 0, i = SD.length; j < i; j++) addEvent(SD[j], 'click', SX);
+for (var j = 0, i = SP.length; j < i; j++) addEvent(SP[j], 'click', SY);
+</script>
+<?php } ?>

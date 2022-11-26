@@ -1,0 +1,347 @@
+<div class="content" id="container-upload">
+  <div class="margin-t10 margin-b10">
+    <div class="progress position-relative text-center hidden">
+      <span class="color-secondary margin-b10" id="percent">0%</span>
+      <div class="content-progress-bar">
+        <div class="bar progress-bar active"></div> 
+      </div>
+    </div>
+    <div class="display-flex drop_zone w-100 text-center pointer position-relative h-600 border-dashed" data-block="video-drop-zone">
+      <div class="padding-20 margin-b10 margin-auto">
+        <span class="text-center color-secondary" id="process-video"></span>
+        <p class="font-high margin-b10 color-secondary">{$word->darg_drop_video}</p>
+        <p class="font-medium color-tertiary">{$word->video_will_published}</p>
+            <button class="btn-trans general-upload-button hover-opacity">{$word->select_a_file}</button>    
+            <div class="cont-disclaimer">
+              <p class="font-low text-center color-secondary">{$word->upload_videos_share_friends_community}</p>
+              <p class="font-low text-center color-secondary">{$word->remember_not_violate_terms_accepted}</p>
+            </div>   
+          </div>       
+        </div>
+        <div class="content-upload hidden">
+         	<div class="margin-t20" id="upload-form">
+            <div class="cont-fields-left">
+              <div class="cont-group">
+            		<label class="color-secondary">{$word->video_title}*</label>
+               	<input id="title" type="text" class="cont-control border-focus-blue background-secondary area_validate color-secondary">
+                <div class="color-red text-left text-error"></div>
+              </div>
+              <div class="cont-group">
+                <label class="color-secondary">{$word->video_description}</label>
+               	<textarea id="description" cols="30" rows="5" class="cont-control border-focus-blue background-secondary color-secondary"></textarea>
+            	</div>
+              <div class="cont-group">
+               	<label class="color-secondary">{$word->tags}*</label>
+              	<input class="hidden" id="tags-upload" type="text">
+                <ul class="tags-content background-secondary color-secondary" id="tags">
+                  <li class="tagit-new">
+                    <input class="color-secondary area_validate" type="text" id="tags-val">
+                  </li>
+                </ul>
+                <div class="color-red text-left text-error"></div>
+              </div>
+            </div>
+            <div class="cont-fields-right">
+              <div class="cont-group">
+                <label class="color-secondary">{$word->category}</label>  
+                <select id="category" class="cont-control cont-select area_changed background-secondary color-secondary">
+                  <?php foreach($TEMP['#categories'] as $key => $category) {?>
+                  <option value="<?php echo $key?>"><?php echo $category?></option>
+                  <?php } ?>
+                </select>
+                <div class="color-red text-left text-error"></div>
+              </div>
+              <div class="cont-group">
+                <label class="color-secondary">{$word->privacy}</label>
+                <select id="privacy" class="cont-control cont-select area_changed background-secondary color-secondary">
+                  <option value="0">{$word->public}</option>
+                  <option value="1">{$word->private}</option>
+                  <option value="2">{$word->unlisted}</option>
+                </select>
+                <div class="color-red text-left text-error"></div>
+              </div>
+              <div class="cont-group">
+                <label class="color-secondary">{$word->can_video_seen_children}</label>
+                <select class="cont-control cont-select area_changed background-secondary color-secondary" id="adults_only">
+                  <option value="0">{$word->yes}</option>
+                  <option value="1">{$word->no}</option>
+                </select>
+                <div class="color-red text-left text-error"></div>
+              </div>
+            </div>
+            <div class="clear"></div>
+            <div class="cont-group hidden" id="video-thumbnails">
+              <label class="color-secondary">{$word->thumbnail}</label>
+              <div class="vertical-center-desktop max-w-600 processing" id="choose-thumbnail">
+                <div class="hover-action margin-left-auto margin-right-auto margin-t10 mw-150 text-center position-relative font-low font-bold pointer nw-tb" id="cont-edit">
+                  <div class="cont-more-actions hidden" id="container-custhumb">
+                    <div class="thumb-edit" data-index="3">
+                      <img src="">
+                    </div>
+                    <div class="no-relative">
+                      <button class="padding-5 margin-t10 margin-r10 top-0 position-absolute pos-right background-primary border-radius-med hover-button background-primary color-secondary btn-trans tabbable" data-toggle="dropdown">
+                        <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path fill="currentColor" d="M 14 16.728 L 14 18.908 C 14 19.212 13.903 19.468 13.708 19.68 C 13.514 19.892 13.278 20 13 20 L 11 20 C 10.722 20 10.486 19.892 10.292 19.68 C 10.097 19.468 10 19.212 10 18.908 L 10 16.728 C 10 16.424 10.097 16.168 10.292 15.956 C 10.486 15.744 10.722 15.636 11 15.636 L 13 15.636 C 13.278 15.636 13.514 15.744 13.708 15.956 C 13.903 16.168 14 16.424 14 16.728 Z M 14 10.908 L 14 13.092 C 14 13.392 13.903 13.652 13.708 13.864 C 13.514 14.076 13.278 14.18 13 14.18 L 11 14.18 C 10.722 14.18 10.486 14.076 10.292 13.864 C 10.097 13.652 10 13.392 10 13.092 L 10 10.908 C 10 10.608 10.097 10.348 10.292 10.136 C 10.486 9.924 10.722 9.82 11 9.82 L 13 9.82 C 13.278 9.82 13.514 9.924 13.708 10.136 C 13.903 10.348 14 10.608 14 10.908 Z M 14 5.092 L 14 7.272 C 14 7.576 13.903 7.832 13.708 8.044 C 13.514 8.256 13.278 8.364 13 8.364 L 11 8.364 C 10.722 8.364 10.486 8.256 10.292 8.044 C 10.097 7.832 10 7.576 10 7.272 L 10 5.092 C 10 4.788 10.097 4.532 10.292 4.32 C 10.486 4.108 10.722 4 11 4 L 13 4 C 13.278 4 13.514 4.108 13.708 4.32 C 13.903 4.532 14 4.788 14 5.092 Z"/>
+                        </svg>
+                        <div class="background-waver"></div>
+                      </button>
+                      <ul class="down-menu-container down-menu-right">
+                        <div class="down-wrapper background-primary padding-top-bottom-12 border-radius-4">
+                          <li class="vertical-center action-list-hover font-medium ellipsis-horizontal color-secondary padding-left-right-12 position-relative font-high pointer" id="chg-tb">
+                            {$word->change}
+                          </li>
+                        </div>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="border-dashed padding-20 border-secondary<?php echo ($TEMP['#is_thumb_cus']) ? ' hidden' : ''; ?>" id="cont-add-tmb">
+                    <svg class="vh-icon color-secondary" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path fill="currentColor" d="M 7.687 16.727 C 6.486 16.727 5.418 15.982 5.03 14.872 L 5.004 14.788 C 4.912 14.495 4.874 14.247 4.874 14 L 4.874 9.041 L 3.055 14.931 C 2.821 15.797 3.354 16.695 4.249 16.935 L 15.846 19.946 C 15.991 19.983 16.136 20 16.278 20 C 17.025 20 17.708 19.519 17.899 18.811 L 18.575 16.727 Z"/>
+                      <path fill="currentColor" d="M 9.749 9.091 C 10.577 9.091 11.249 8.439 11.249 7.636 C 11.249 6.834 10.577 6.182 9.749 6.182 C 8.922 6.182 8.249 6.834 8.249 7.636 C 8.249 8.439 8.922 9.091 9.749 9.091 Z"/>
+                      <path fill="currentColor" d="M 19.125 4 L 7.874 4 C 6.841 4 5.999 4.816 5.999 5.818 L 5.999 13.818 C 5.999 14.82 6.841 15.636 7.874 15.636 L 19.125 15.636 C 20.158 15.636 21 14.82 21 13.818 L 21 5.818 C 21 4.816 20.158 4 19.125 4 Z M 7.874 5.455 L 19.125 5.455 C 19.332 5.455 19.5 5.617 19.5 5.818 L 19.5 10.981 L 17.13 8.3 C 16.879 8.015 16.515 7.862 16.124 7.853 C 15.736 7.855 15.371 8.023 15.122 8.312 L 12.337 11.554 L 11.429 10.676 C 10.916 10.179 10.082 10.179 9.569 10.676 L 7.499 12.683 L 7.499 5.818 C 7.499 5.617 7.667 5.455 7.874 5.455 Z"/>
+                    </svg>
+                    <span class="ellipsis-horizontal color-secondary">{$word->upload_thumbnail}</span>
+                  </div>
+                </div>
+                <div class="cont-thumbs vertical-center margin-t10">
+                  <div class="vertical-center margin-auto">
+                    <div class="margin-r5 pointer process-item"></div>
+                    <div class="margin-r5 pointer process-item"></div>
+                    <div class="margin-r5 pointer process-item"></div>
+                  </div>
+                </div>                             
+              </div>
+            </div>
+            <div class="clear"></div>
+            <div class="display-flex margin-t10 margin-b10">
+              <button class="btn-trans global-button-blue cursor-disabled color-white hover-opacity margin-left-auto" id="upload-video" disabled>
+                <span class="color-white">{$word->publish}</span>
+                <div class="tb_content-spinner-circle">
+                  <div class="tb_spinner-circle"></div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>	   
+        <input class="hidden" id="upload-video-file" type="file" accept="video/mp4,video/*">
+        <input class="hidden" id="thumbnail" type="file" accept="image/jpg, image/png, image/jpeg">
+      </div>
+  </div>
+<script>
+var ZI = D.querySelectorAll('.area_validate'),
+    ZG = D.querySelectorAll('.area_change'),
+    UQ = D.querySelector('#choose-thumbnail'),
+    UJ = D.querySelector('#title'),
+    uk = D.querySelector('#cont-edit'),
+    ur = D.querySelector('#thumbnail'),
+    us = D.querySelector('.thumb-edit'),
+    uf = D.querySelector('#upload-video'),
+    uw = D.querySelector('#upload-video-file'),
+    ue = D.querySelector('.bar'),
+    up = D.querySelector('#percent'),
+    uv = D.querySelector('#process-video'),
+    UB = D.querySelector('#tags-upload'),
+    US = D.querySelector('#tags-val'),
+    UW = D.querySelector('#tags'),
+    um = D.querySelector("[data-block='video-drop-zone']"),
+    UO = Array(),
+    UG = Array(),
+    UP = "",
+    ud = "",
+    uh = "",
+    ut = "",
+    uo = "",
+    ui = "",
+    UC = !1,
+    ux = !0,
+    UD = !0, 
+    disableButton = function(){
+      var self = this,
+          el = self.parentNode.querySelector('.text-error');
+      uf.removeAttribute('disabled'), removeClass(self, 'border-red'), removeClass(self, 'boxshadow-red'), el && (el.innerText = '');
+    },
+    deleteUnload = function(){
+      if(ux){
+        Req("{$url->{req/media/delete-video}}", function(e){}, "POST", "&path=" + UP + "&video-thumbnail=" + uh + "&video-thumbnail_1=" + ut + "&video-thumbnail_2=" + uo + "&video-thumbnail_3=" + ui);
+      }
+      removeEvent(window, "beforeunload", deleteUnload);
+    }, createTag = function(UI){
+      var FU = D.createElement("li"),
+          uz = UG.indexOf(UI.value, 0);
+      removeClass(UW, 'border-red'), removeClass(UW, 'boxshadow-red'), UW.parentNode.querySelector('.text-error').innerText = '';
+      if(UG.indexOf(UI.value, 0) == -1){
+         FU.className = 'border-primary tagit-choice', FU.innerHTML = '<span class="color-secondary tagit-label">' + UI.value + '</span><span class="tagit-close"></span>', D.querySelector('.tags-content').insertBefore(FU, D.querySelector('.tagit-new')), UG.push(UI.value), UB.value = UG.join(), UI.value = "", addEvent(FU.querySelector('.tagit-close'), "click", function(){
+            FU.remove(), UG.splice(UG.indexOf(FU.querySelector('.tagit-label').innerText), 1), UB.value = UG;
+         });
+      } else {
+         var uy = D.querySelectorAll('.tagit-choice');
+         uy[uz].style.borderColor = "#c23321", timeDelay(function(){
+            uy[uz].style.borderColor = "";
+         }, 500);
+      }
+    },
+    uploadVideo = function(){
+      if (uw.files[0].size > "{$settings->max_upload_size}") {
+         TB_ShowElement('warning-alert', 'warning-alert','confirm_wrng_two','{$word->error}',1,'warning','ok',0,0,"{$max_upload_size}"), UD = !0;
+      }else{
+         removeClass(D.querySelector('.progress'), 'hidden'), addClass(D.querySelector('.drop_zone'), 'hidden');
+         Req("{$url->{req/media/upload-video}}?token={#token_session}", function(e){
+            if (e.status == 200) {
+              addEvent(window, "beforeunload", deleteUnload), removeClass(ue, 'progress-bar'), addClass(ue, 'background-green'), uv.innerText = '{$word->upload_successfully}', UP = e.path, loadAlert(e.filename + ' {$word->successfully_uplaoded}'), uw.value = "";
+              if(UJ.value.length == 0){
+                UJ.value = e.filename;
+              }
+              removeClass(D.querySelector('#choose-thumbnail'), 'processing'), UO = e.images, D.querySelector('.cont-thumbs').innerHTML = "";
+              for (var j = 0, i = UO.length; j < i; j++) D.querySelector('.cont-thumbs').innerHTML += '<div class="margin-r5 pointer item" data-index="' + j + '"><img src="' + UO[j] + '"></div>';
+              var UT = UQ.querySelectorAll('.cont-thumbs .item');
+              for (var j = 0, i = UT.length; j < i; j++) addEvent(UT[j], 'click', function(){
+                var self = this;
+                if (!hasClass(self, "active")) {
+                  if(UQ.querySelector('.thumb-edit.active')){
+                    removeClass(us, 'active');
+                  }else{
+                    removeClass(UQ.querySelector('.item.active'), 'active')
+                  }
+                  addClass(self, "active");
+                  var vsthumbs = UO[self.getAttribute('data-index')];
+                  uh = vsthumbs;    
+                }
+              });
+              addClass(UT[1], 'active'), uh = UO[1], ut = UO[0], uo = UO[1], ui = UO[2];
+            } else if (e.status == 400) {
+               D.querySelector('#container-upload').innerHTML = '<div class="display-flex"><div class="margin-auto text-center"><svg class="mw-80 color-red" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M 45.208 60.558 L 45.208 53.365 C 45.208 53.011 45.08 52.715 44.822 52.475 C 44.564 52.235 44.259 52.115 43.906 52.115 L 36.094 52.115 C 35.741 52.115 35.436 52.235 35.178 52.475 C 34.921 52.715 34.792 53.011 34.792 53.365 L 34.792 60.558 C 34.792 60.912 34.921 61.208 35.178 61.448 C 35.436 61.688 35.741 61.808 36.094 61.808 L 43.906 61.808 C 44.259 61.808 44.564 61.688 44.822 61.448 C 45.08 61.208 45.208 60.912 45.208 60.558 Z M 45.127 46.398 L 45.86 29.02 C 45.86 28.718 45.724 28.478 45.453 28.301 C 45.1 28.023 44.774 27.885 44.476 27.885 L 35.524 27.885 C 35.226 27.885 34.9 28.023 34.548 28.301 C 34.276 28.478 34.141 28.743 34.141 29.096 L 34.832 46.398 C 34.832 46.651 34.968 46.859 35.239 47.023 C 35.511 47.187 35.836 47.269 36.216 47.269 L 43.744 47.269 C 44.123 47.269 44.442 47.187 44.7 47.023 C 44.958 46.859 45.1 46.651 45.127 46.398 Z M 44.557 11.037 L 75.808 64.344 C 76.757 65.934 76.73 67.525 75.726 69.115 C 75.265 69.847 74.635 70.427 73.834 70.856 C 73.034 71.285 72.173 71.5 71.25 71.5 L 8.75 71.5 C 7.827 71.5 6.966 71.285 6.166 70.856 C 5.366 70.427 4.735 69.847 4.274 69.115 C 3.27 67.525 3.243 65.934 4.192 64.344 L 35.443 11.037 C 35.904 10.254 36.541 9.636 37.355 9.181 C 38.169 8.727 39.051 8.5 40 8.5 C 40.95 8.5 41.831 8.727 42.645 9.181 C 43.459 9.636 44.096 10.254 44.557 11.037 Z"></path></svg><p class="color-secondary">{$word->file_not_supported}</p><button class="btn-trans general-upload-button hover-opacity">{$word->try_again}</button></div></div>', addEvent(D.querySelector('#container-upload button'), "click", function(){
+                  preloadPage('&one=upload-video');
+               }) 
+            } else if(e.status == 403){
+               TB_ShowElement('warning-alert', 'warning-alert','confirm_wrng_two','{$word->error}',1,'warning','ok',0,0, e.error), UD = !0;
+            } else {
+               loadAlert(e.error, 1), UD = !0;
+            }
+         }, "POST", uw, "video", function(){
+            ue.style.width = '0%', up.innerText = '0%', UD = !1, D.querySelector('.drop_zone').setAttribute('state', 'upload-in'), addClass(D.querySelector('.cont-disclaimer'), 'hidden');
+         }, function(e){
+            if (e.lengthComputable) {
+              var percentVal = Math.round(e.loaded / e.total * 100);
+              uv.innerText = '{$word->porcessing_video}', ue.style.width = percentVal + '%', up.innerHTML = percentVal + '%';
+              if(percentVal > 50) {
+                addClass(up, 'white');
+                D.querySelector('.drop_zone').removeAttribute('state');
+                removeClass(D.querySelector('.content-upload'), 'hidden');
+                addClass(D.querySelector('.drop_zone'), 'hidden');
+                removeClass(D.querySelector("#video-thumbnails"), 'hidden');
+              }
+           }
+         }, function() {
+            loadAlert('{$word->there_error_uploading_file}', 1);
+         }, function() {
+            loadAlert('{$word->the_operation_canceled_connection_interrupted}', 1);
+         })
+      }
+    };
+
+if (typeof(window.FileReader)){
+   addEvent(um, "dragover", function(){
+      event.preventDefault();
+      D.querySelector('.drop_zone').setAttribute('state', 'upload-in');
+      return false;
+   }), addEvent(um, "dragleave", function(){
+      event.preventDefault();
+      D.querySelector('.drop_zone').removeAttribute('state');
+      return false;
+   }), addEvent(um, "drop", function(){
+      event.preventDefault();
+      D.querySelector('.drop_zone').removeAttribute('state');
+      var file = event.dataTransfer.files;
+      uw.files = file;
+      uploadVideo();
+   })
+}
+addEvent(us, 'click', function(){
+   if (!hasClass(this, "active")) {
+      removeClass(UQ.querySelector('.active'), 'active'), addClass(this, "active");
+      var vsthumbs = UO[this.getAttribute('data-index')];
+      uh = vsthumbs;
+   }
+}), addEvent(D.querySelector('#chg-tb'), "click", function(){
+   autoClick(ur);
+}), addEvent(uk, "click", function(){
+   if(!UC){
+      autoClick(ur);
+   }
+}), addEvent(ur, "change", function(){
+   Req("{$url->{req/media/upload-thumbnail}}?token={#token_session}&draft_thumb=" + ud, function(e){
+      if (e.status == 200) {
+         var UM = D.querySelector('#cont-add-tmb');
+         ud = e.thumbnail, uh = ud, removeClass(UQ.querySelector('.active'), 'active'), removeClass(UQ.querySelector('#container-custhumb'), 'hidden'), addClass(us, 'active'), uk.querySelector('img').setAttribute('src', e.thumbnail), UC = !0, UO.push(e.thumbnail), removeClass(D.querySelector("#cont-edit"), "nw-tb"), addClass(D.querySelector("#cont-edit"), "chg-tb"), (UM) && UM.remove();
+      }
+   }, "POST", D.querySelector('#thumbnail'), "thumbnail")
+}), addEvent(US, "keydown", function (c) {
+   var UI = this;
+   if (c.which == 8 && "" === UI.value) {
+      var UR = D.querySelectorAll('.tagit-choice'),
+          UL = UR[UR.length - 1];
+      UL && (UL.remove(), UG.splice(UG.indexOf(UL.querySelector('.tagit-label').innerText), 1), UB.value = UG);
+   }
+   if ("" !== UI.value && UI.value.trim().length != 0 && UI.value.indexOf(',', 0) == -1 && ((c.which === 13 && !1 === c.shiftKey) || c.which === 13 || c.which == 9 || (c.which == 188 && (',' != UI.value.trim().replace(/^s*/, "").charAt(0) || (',' == UI.value.trim().charAt(0) && ',' == UI.value.trim().charAt(UI.value.trim().length - 1) && 0 !== UI.value.trim().length - 1)))  )) {
+      (c.which === 13 && "" === UI.value) || c.preventDefault(), createTag(UI);
+   }
+}), addEvent(US, "blur", function (c) {
+   if("" !== this.value) createTag(this);
+}), addEvent(uf, "click", function(){
+  var UF = D.querySelector('#upload-form'),
+      LE = D.querySelectorAll('.border-red');
+  ux = !1, addClass(uf, 'tb_spinner-is-loading'), uf.setAttribute('disabled', true);
+  Req("{$url->{req/media/send-video}}", function(e){
+    if (e.status == 200) {
+      preloadPage('&one=watch&v='+e.video_id);
+    } else {
+      if(e.errors != undefined){
+        for (var j = 0, i = e.errors.length; j < i; j++){
+          var el = D.querySelector('#'+e.errors[j]['el']);
+          el.parentNode.querySelector('.text-error').innerText = '*'+(e.errors[j]['type'] == 'empty' ? '{$word->this_field_is_empty}' : '{$word->there_problems_with_some_fields}'), addClass(el, 'border-red'), addClass(el, 'boxshadow-red');
+        }
+      } else {
+        loadAlert('{$word->error}', 1);
+      }
+      removeClass(uf, 'tb_spinner-is-loading');
+    }
+  }, "POST", "&title=" + encodeURIComponent(UF.querySelector('#title').value) + "&description=" + encodeURIComponent(UF.querySelector('#description').value) + "&tags=" + UF.querySelector('#tags-upload').value + "&category=" + UF.querySelector('#category').value + "&privacy=" + UF.querySelector('#privacy').value + "&adults_only=" + UF.querySelector('#adults_only').value + "&thumbnail=" + (UF.querySelector('#thumbnail') ? UF.querySelector('#thumbnail').value : '') + "&path=" + UP + "&video-thumbnail=" + uh + "&video-thumbnail_1=" + ut + "&video-thumbnail_2=" + uo + "&video-thumbnail_3=" + ui + "&draft_thumb=" + ud)
+}), addEvent(uw, "change", uploadVideo), addEvent(D.querySelector('.drop_zone'), 'click', function(e) {
+   if(UD && D.createEvent){
+      autoClick(uw);
+   }
+});
+for (var j = 0, i = ZI.length; j < i; j++) addEvent(ZI[j], 'keyup', disableButton);
+for (var j = 0, i = ZG.length; j < i; j++) addEvent(ZG[j], 'change', disableButton);
+function TB_ShowElement(type, el_content, button, by_id = 0, video_id = 0,price = 0, txt_btn = '', next_cont = '', extra, extra_new) {
+    var c = D.querySelector('#container_alerts');
+    Req('{$url->{req/get-element}}', function(e) {
+        if (e.status == 200) {
+            uv.innerText = "", uw.value = "", D.querySelector('.drop_zone').removeAttribute('state'), removeClass(D.querySelector('.cont-disclaimer'), 'hidden'), removeClass(D.querySelector('.drop_zone'), 'hidden'), addClass(D.querySelector('.progress .bar'), 'progress-bar'), removeClass(D.querySelector('.progress .bar'), 'background-green'), addClass(D.querySelector('.progress'), 'hidden'), addClass(D.querySelector('.content-upload'), 'hidden'), addClass(D.querySelector("#video-thumbnails"), 'hidden');
+            if(!c.querySelector('#warning-alert')) {
+               c.innerHTML = e.html;
+               var SF = c.querySelector('#'+el_content);
+               if(button == 'confirm_wrng_two'){
+                  addEvent(c.querySelector('.confirm_wrng_two'), 'click', function(){
+                     SF.style.display = "none";
+                  }, 2);
+               }
+
+               SF.style.display = "block";
+               addEvent(SF.querySelector('[data-dismiss]'), "click", function(){
+                  SF.style.display = "none";
+               }, 2);
+               addEvent(D, "click", function(e){
+                  if (e.target == SF) {
+                     SF.style.display = "none";
+                  }
+               }, 2);
+           }else{
+               c.querySelector('#'+el_content).style.display = "block";
+           }
+        }else{
+          loadAlert(e.error, 1);
+        }
+    }, "POST", "&type=" + type + "&actual_form=" + el_content + "&by_id=" + by_id + "&video_id=" + video_id + "&price=" + price + "&next_cont=" + next_cont + "&txt_btn=" + txt_btn + "&class_n=" + button + "&extra=" + extra + "&extra_new=" + extra_new);
+}
+</script>

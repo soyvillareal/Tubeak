@@ -1,0 +1,30 @@
+<div class="cont-video-list-vertical video-wrapper mouse_hover" data-id="{!id}">
+	<div class="video-thumb position-relative">
+		<a href="{!url}" target="_self">
+			<img src="{!thumbnail}" alt="{!title}">
+			<div class="hover_animation" data-img="{!animation}"></div>
+		</a>
+		<?php if($TEMP['!live'] == true){ ?>
+		<div class="video-duration font-low font-bold position-absolute color-white">{!duration}</div>
+		<?php } ?>
+		<?php if(!empty($TEMP['!get_progress'])){ ?>
+		<div class="cont-time-loaded position-absolute background-grey">
+		    <div class="background-red h-100" style="width: {!progress_value}%;"></div>
+		</div>
+		<?php } ?>
+	</div>
+	<div class="cont-video-metadata display-flex">
+		<a class="display-inline-flex margin-r10 margin-t10" href="{!data->url}" target="_self">
+			<img class="avatar-rich border-radius-med" src="{!data->avatar}" />
+		</a>
+		<div class="w-100">
+			<a class="font-medium font-bold margin-t10 ellipsis-vertical-2 color-secondary" href="{!url}" target="_self" title="{!title}">{!title}</a>
+			<div class="video-meta-name margin-t5">
+				{!data->user_v}
+			</div>
+			<span class="color-tertiary">
+				{!views} {$word->views} • {!time}
+			</span>
+		</div>		
+	</div>
+</div>

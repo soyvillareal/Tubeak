@@ -1,0 +1,147 @@
+<div class="container-admin">
+    <div class="user-setting-panel">  
+        <ul class="main-menu-links display-inline-flex margin-b10 border-all border-tertiary">
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary" href="{$url->{admin/manage-languages/general-languages}}" target="_self">
+                    {$word->all_languages}
+                </a>
+            </li>
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary active last" href="{$url->{admin/manage-languages/add-word-language}}" target="_self">
+                    {$word->add_language_words}
+                </a>
+            </li>
+        </ul>
+        <div class="margin-t10 padding-top-bottom-12 border-top border-tertiary">
+            <div class="user-setting-panel">
+                <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+                    <h3 class="cont-settings-title color-secondary">{$word->add_new_language}</h3>
+                    <div class="margin-t10">
+                        <p class="color-secondary">{$word->add_new_language_website_make}</p>
+                    </div>
+                </div> 
+                <div class="max-w-900 border-top-right-radius border-top-left-radius border-top border-right border-left border-tertiary background-primary margin-right-auto margin-left-auto">
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->language_name}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input id="language" name="language" class="cont-control area_validate_language border-focus-blue background-secondary color-secondary" type="text" placeholder="{$word->only_english_letters_no_spaces_allowed_example_english}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->language_key}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input id="type" name="type" class="cont-control area_validate_language border-focus-blue background-secondary color-secondary" type="text" placeholder="{$word->only_two_letters_lowercase_spaces_allowed}" maxlength="2">
+                                <div class="color-tertiary margin-t10">{$word->note_may_take_minutes}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="background-primary max-w-900 border-bottom-right-radius border-bottom-left-radius border-bottom border-right border-left border-tertiary padding-20 margin-b20 margin-right-auto margin-left-auto">
+                    <div class="display-flex flex-end">
+                        <span class="color-secondary vertical-center margin-r10 hidden" id="alert-add-language-settings">
+                            {$word->this_word_is_already_used}
+                        </span>
+                        <button id="add-language-settings" class="btn-trans global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                            <span class="color-white">{$word->add_language}</span>
+                            <div class="tb_content-spinner-circle">
+                                <div class="tb_spinner-circle"></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+                    <h3 class="cont-settings-title color-secondary">{$word->add_new_word}</h3>
+                    <div class="margin-t10">
+                        <p class="color-secondary">{$word->add_new_word_languages}</p>
+                    </div>
+                </div> 
+                <div class="max-w-900 border-top-right-radius border-top-left-radius border-top border-right border-left border-tertiary background-primary margin-right-auto margin-left-auto">
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->add_word}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input id="word" name="word" class="cont-control border-focus-blue background-secondary color-secondary" type="text" placeholder="{$word->only_english_letters_no_spaces_allowed_example_key}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="background-primary max-w-900 border-bottom-right-radius border-bottom-left-radius border-bottom border-right border-left border-tertiary padding-20 margin-b20 margin-right-auto margin-left-auto">
+                    <div class="display-flex flex-end">
+                        <span class="color-secondary vertical-center margin-r10 hidden" id="alert-key-name-settings">
+                            {$word->this_word_already_use_another}
+                        </span>
+                        <button id="key-name-settings" class="btn-trans global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                            <span class="color-white">{$word->add_word}</span>
+                            <div class="tb_content-spinner-circle">
+                                <div class="tb_spinner-circle"></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var GU = D.querySelectorAll('.area_validate_language'),
+    gb = D.querySelector('#add-language-settings'),
+    gs = D.querySelector('#alert-add-language-settings'),
+    GH = D.querySelector('#key-name-settings'),
+    GP = D.querySelector('#alert-key-name-settings'),
+    bDisabled = function(GG, GB){
+        if(GG){
+            GB.removeAttribute('disabled');
+        } else {
+            GB.setAttribute('disabled', true);
+        }
+    };
+addEvent(gb, "click", function(){
+    addClass(gb, 'tb_spinner-is-loading');
+    gb.setAttribute('disabled', true);
+    Req("{$url->{req/global-admin/add-language}}", function(e){
+        if (e.status == 200) {
+            D.querySelector('#language').value = "", D.querySelector('#type').value = "", loadAlert("{$word->language_successfully_added}"), addClass(gs, 'hidden'), removeClass(gb, 'tb_spinner-is-loading');
+        } else {
+            if(e.status == 400){
+                removeClass(gs, 'hidden');
+            } else {
+                loadAlert("{$word->error}", 1);
+            }
+            removeClass(gb, 'tb_spinner-is-loading'), gb.removeAttribute('disabled');
+        }
+    }, "POST", "&language=" + D.querySelector('#language').value + "&type=" + D.querySelector('#type').value)
+}), addEvent(D.querySelector('#language'), 'keyup', function(e){
+    bDisabled(this.value != '', gb);
+}), addEvent(GH, "click", function(){
+    addClass(GH, 'tb_spinner-is-loading');
+    GH.setAttribute('disabled', true);
+    Req("{$url->{req/global-admin/add-word}}", function(e){
+        if (e.status == 200) {
+            D.querySelector('#word').value = "", loadAlert("{$word->word_successfully_added}"), addClass(GP, 'hidden'), removeClass(GH, 'tb_spinner-is-loading');
+        } else {
+            removeClass(GP, 'hidden'), removeClass(GH, 'tb_spinner-is-loading'), GH.removeAttribute('disabled');
+        }
+    }, "POST", "&word=" + D.querySelector('#word').value)
+}), addEvent(D.querySelector('#word'), 'keyup', function(e){
+    bDisabled(this.value != '', GH);
+}), addEvent(D.querySelector('#word'), 'input', function(){
+    this.value = this.value.replace(/ /g, '_');
+}), addEvent(D.querySelector('#word'), 'input', function(){
+    this.value = this.value.replace(/[`~!@#$%^&*()|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '').replace(/ /g, '_').toLowerCase();
+});
+
+for(var j = 0, i = GU.length; j < i; j++) addEvent(GU[j], 'input', function(){
+    this.value = this.value.replace(/ /g, '').replace(/_/g, '');
+});
+</script>

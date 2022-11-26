@@ -1,0 +1,69 @@
+<div class="video-wrap border-tertiary video-wrapper hover-action" data-id="{!id}" id="video-{!id}">
+    <div class="video-thumb">
+        <a href="{!url}" target="_self"><img src="{!thumbnail}" alt="{!title}"></a>
+        <?php if($TEMP['!live'] == true){ ?>
+        <div class="video-duration font-low font-bold position-absolute color-white">{!duration}</div>
+        <?php } ?>
+    </div>
+    <div class="video-info">
+        <div class="video-title">
+            <a class="color-secondary" href="{!url}" target="_self">{!title}</a> 
+        </div>
+        <div class="video-desc color-tertiary">
+            {!description}
+        </div>
+    </div>
+    <div class="container-icons-studio">
+        <div class="icon-studio color-secondary">
+            {!views}
+        </div>
+        <div class="icon-studio color-secondary">
+            {!likes}
+        </div>
+        <div class="icon-studio color-secondary">
+            {!dislikes}
+        </div>
+        <div class="icon-studio color-secondary">
+            {!comments}
+        </div>
+        <div class="cont-more-actions no-relative">
+            <button class="btn-trans waber-container hover-button color-for-hover tabbable" data-toggle="dropdown">
+                <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" pointer-events="none">
+                    <path fill="currentColor" d="M 14 16.728 L 14 18.908 C 14 19.212 13.903 19.468 13.708 19.68 C 13.514 19.892 13.278 20 13 20 L 11 20 C 10.722 20 10.486 19.892 10.292 19.68 C 10.097 19.468 10 19.212 10 18.908 L 10 16.728 C 10 16.424 10.097 16.168 10.292 15.956 C 10.486 15.744 10.722 15.636 11 15.636 L 13 15.636 C 13.278 15.636 13.514 15.744 13.708 15.956 C 13.903 16.168 14 16.424 14 16.728 Z M 14 10.908 L 14 13.092 C 14 13.392 13.903 13.652 13.708 13.864 C 13.514 14.076 13.278 14.18 13 14.18 L 11 14.18 C 10.722 14.18 10.486 14.076 10.292 13.864 C 10.097 13.652 10 13.392 10 13.092 L 10 10.908 C 10 10.608 10.097 10.348 10.292 10.136 C 10.486 9.924 10.722 9.82 11 9.82 L 13 9.82 C 13.278 9.82 13.514 9.924 13.708 10.136 C 13.903 10.348 14 10.608 14 10.908 Z M 14 5.092 L 14 7.272 C 14 7.576 13.903 7.832 13.708 8.044 C 13.514 8.256 13.278 8.364 13 8.364 L 11 8.364 C 10.722 8.364 10.486 8.256 10.292 8.044 C 10.097 7.832 10 7.576 10 7.272 L 10 5.092 C 10 4.788 10.097 4.532 10.292 4.32 C 10.486 4.108 10.722 4 11 4 L 13 4 C 13.278 4 13.514 4.108 13.708 4.32 C 13.903 4.532 14 4.788 14 5.092 Z"/>
+                </svg>
+                <div class="background-waver"></div>
+            </button>
+            <ul class="down-menu-container down-menu-right">
+                <div class="down-wrapper background-primary padding-top-bottom-12 border-radius-4">
+                    <li class="vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative pointer">
+                        <a class="waber-container position-relative tabbable vertical-center" href="{$url->{edit-video/{!id}}}" target="_self" title="{$word->edit_video}">
+                            <svg class="vh-icon color-grey" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="currentColor" d="M 7.313 19.479 L 8.394 18.398 L 5.602 15.606 L 4.521 16.687 L 4.521 17.958 L 6.042 17.958 L 6.042 19.479 L 7.313 19.479 Z M 13.526 8.453 C 13.526 8.279 13.44 8.192 13.265 8.192 C 13.186 8.192 13.119 8.22 13.064 8.275 L 6.623 14.715 C 6.569 14.77 6.541 14.838 6.541 14.917 C 6.541 15.092 6.628 15.178 6.802 15.178 C 6.881 15.178 6.948 15.151 7.004 15.095 L 13.444 8.656 C 13.499 8.6 13.526 8.532 13.526 8.453 Z M 12.886 6.173 L 17.828 11.115 L 7.943 21 L 3 21 L 3 16.057 Z M 21 7.313 C 21 7.733 20.853 8.09 20.561 8.382 L 18.588 10.355 L 13.645 5.412 L 15.618 3.452 C 15.903 3.15 16.26 3 16.687 3 C 17.107 3 17.468 3.15 17.768 3.452 L 20.561 6.232 C 20.853 6.541 21 6.901 21 7.313 Z"/>
+                            </svg>
+                            <div class="color-secondary">{$word->edit_video}</div>
+                            <div class="background-waver"></div>
+                        </a>
+                    </li>
+                    <li class="vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative pointer">
+                        <a class="waber-container position-relative tabbable vertical-center" href="{$url->{channel}}?page=video-statistics&id={!video_id}" target="_self" title="{$word->statistics}">
+                            <svg class="vh-icon color-grey" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="currentColor" d="M 22 18.25 L 22 19.5 L 2 19.5 L 2 4.5 L 3.25 4.5 L 3.25 18.25 L 22 18.25 Z M 20.75 6.063 L 20.75 10.311 C 20.75 10.447 20.687 10.543 20.56 10.599 C 20.433 10.654 20.317 10.63 20.213 10.525 L 19.031 9.344 L 12.85 15.525 C 12.785 15.59 12.71 15.623 12.625 15.623 C 12.54 15.623 12.465 15.59 12.4 15.525 L 10.125 13.25 L 6.063 17.313 L 4.188 15.438 L 9.9 9.725 C 9.965 9.66 10.04 9.627 10.125 9.627 C 10.21 9.627 10.285 9.66 10.35 9.725 L 12.625 12 L 17.156 7.469 L 15.975 6.287 C 15.87 6.183 15.846 6.067 15.901 5.94 C 15.957 5.813 16.053 5.75 16.189 5.75 L 20.438 5.75 C 20.529 5.75 20.604 5.779 20.662 5.838 C 20.721 5.896 20.75 5.971 20.75 6.063 Z"/>
+                            </svg>
+                            <div class="color-secondary">{$word->statistics}</div>
+                            <div class="background-waver"></div>
+                        </a>
+                    </li>
+                    <li class="vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative pointer">
+                        <button class="btn-trans waber-container tabbable vertical-center" id="delete_video" data-id="{!id}" data-page="manage-page" title="{$word->delete_videos}">
+                            <svg class="vh-icon color-grey" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="currentColor" d="M 10.091 16.688 L 10.091 9.813 C 10.091 9.721 10.061 9.646 10.001 9.588 C 9.942 9.529 9.866 9.5 9.773 9.5 L 9.136 9.5 C 9.044 9.5 8.967 9.529 8.908 9.588 C 8.848 9.646 8.818 9.721 8.818 9.813 L 8.818 16.688 C 8.818 16.779 8.848 16.854 8.908 16.912 C 8.967 16.971 9.044 17 9.136 17 L 9.773 17 C 9.866 17 9.942 16.971 10.001 16.912 C 10.061 16.854 10.091 16.779 10.091 16.688 Z M 12.636 16.688 L 12.636 9.813 C 12.636 9.721 12.607 9.646 12.547 9.588 C 12.487 9.529 12.411 9.5 12.318 9.5 L 11.682 9.5 C 11.589 9.5 11.513 9.529 11.453 9.588 C 11.393 9.646 11.364 9.721 11.364 9.813 L 11.364 16.688 C 11.364 16.779 11.393 16.854 11.453 16.912 C 11.513 16.971 11.589 17 11.682 17 L 12.318 17 C 12.411 17 12.487 16.971 12.547 16.912 C 12.607 16.854 12.636 16.779 12.636 16.688 Z M 15.182 16.688 L 15.182 9.813 C 15.182 9.721 15.152 9.646 15.092 9.588 C 15.033 9.529 14.956 9.5 14.864 9.5 L 14.227 9.5 C 14.134 9.5 14.058 9.529 13.999 9.588 C 13.939 9.646 13.909 9.721 13.909 9.813 L 13.909 16.688 C 13.909 16.779 13.939 16.854 13.999 16.912 C 14.058 16.971 14.134 17 14.227 17 L 14.864 17 C 14.956 17 15.033 16.971 15.092 16.912 C 15.152 16.854 15.182 16.779 15.182 16.688 Z M 9.773 7 L 14.227 7 L 13.75 5.857 C 13.704 5.799 13.647 5.763 13.581 5.75 L 10.429 5.75 C 10.363 5.763 10.306 5.799 10.26 5.857 Z M 19 7.313 L 19 7.938 C 19 8.029 18.97 8.104 18.911 8.162 C 18.851 8.221 18.775 8.25 18.682 8.25 L 17.727 8.25 L 17.727 17.508 C 17.727 18.048 17.572 18.515 17.26 18.909 C 16.948 19.303 16.574 19.5 16.136 19.5 L 7.864 19.5 C 7.426 19.5 7.052 19.31 6.74 18.929 C 6.429 18.548 6.273 18.087 6.273 17.547 L 6.273 8.25 L 5.318 8.25 C 5.225 8.25 5.149 8.221 5.089 8.162 C 5.03 8.104 5 8.029 5 7.938 L 5 7.313 C 5 7.221 5.03 7.146 5.089 7.088 C 5.149 7.029 5.225 7 5.318 7 L 8.391 7 L 9.087 5.369 C 9.186 5.128 9.365 4.923 9.624 4.754 C 9.882 4.585 10.144 4.5 10.409 4.5 L 13.591 4.5 C 13.856 4.5 14.118 4.585 14.376 4.754 C 14.635 4.923 14.814 5.128 14.913 5.369 L 15.609 7 L 18.682 7 C 18.775 7 18.851 7.029 18.911 7.088 C 18.97 7.146 19 7.221 19 7.313 Z"/>
+                            </svg>
+                            <div class="color-secondary">{$word->delete_videos}</div>
+                            <div class="background-waver"></div>
+                        </button>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>

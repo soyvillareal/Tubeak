@@ -1,0 +1,25 @@
+<div class="comment_info" id="comment-item-{!comment_id}" data-comment-id="{!comment_id}">
+    <div class="user-comments" id="video-user-comments">
+      <div class="video-wrap video-wrapper border-tertiary">
+          <div class="container-comments-studio">
+            {!comment}
+          </div>
+          <div class="container-icons-studio">
+              <div class="video-thumb">
+                <a href="{!url}" target="_self">
+                  <img src="{!thumbnail}" alt="{!title}">
+                </a>
+                <div class="video-duration font-low font-bold position-absolute color-white">{!duration}</div> 
+              </div>
+              <div class="video-info">
+                <div class="video-title">
+                  <a class="color-secondary" href="{!url}" tabindex="-1" target="_self">{!title}</a> 
+                </div>
+                <div class="video-desc color-tertiary">
+                  {!description}
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>

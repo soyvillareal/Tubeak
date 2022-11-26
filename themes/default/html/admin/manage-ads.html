@@ -1,0 +1,136 @@
+<div class="container-admin">
+    <div class="user-setting-panel">
+        <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+            <h3 class="cont-settings-title color-secondary">{$word->website_ads}</h3>
+            <div class="margin-t10">
+                <p class="color-secondary">{$word->set_website_ads_here}</p>
+            </div>
+        </div> 
+        <div class="max-w-900 border-top-right-radius border-top-left-radius border-top border-right border-left border-tertiary background-primary margin-right-auto margin-left-auto">
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->header_ad}</label>
+                    </div>
+                    <div class="flex-grow">
+                        <textarea id="header-website-ad" cols="20" class="cont-control input_key background-secondary color-secondary" rows="5">{$header_ad}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label vertical-center">
+                        <label class="group-title color-secondary">{$word->status}</label>
+                    </div>
+                    <div class="cont-radio margin-r10">
+                        <input class="area_changed_ad header_ad_stat radio-paper hidden" name="header_ad_stat" id="header_ad_stat-enabled" type="radio" value="1"<?php echo($TEMP['#header_ad_stat'] == 1) ? ' checked' : ''?>>
+                        <label class="color-secondary ellipsis-horizontal" for="header_ad_stat-enabled">
+                            {$word->enabled}
+                        </label>
+                    </div>
+                    <div class="cont-radio">
+                        <input class="area_changed_ad header_ad_stat radio-paper hidden" name="header_ad_stat" id="header_ad_stat-disabled" type="radio" value="0"<?php echo($TEMP['#header_ad_stat'] == 0) ? ' checked' : ''?>>
+                        <label class="color-secondary ellipsis-horizontal" for="header_ad_stat-disabled">
+                            {$word->disabled}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->sidebar_ad}</label>
+                    </div>
+                    <div class="flex-grow">
+                        <textarea id="sidebar-website-ad" cols="20" class="cont-control input_key background-secondary color-secondary" rows="5">{$sidebar_ad}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label vertical-center">
+                        <label class="group-title color-secondary">{$word->status}</label>
+                    </div>
+                    <div class="cont-radio margin-r10">
+                        <input class="area_changed_ad sidebar_ad_stat radio-paper hidden" name="sidebar_ad_stat" id="sidebar_ad_stat-enabled" type="radio" value="1"<?php echo($TEMP['#sidebar_ad_stat'] == 1) ? ' checked' : ''?>>
+                        <label class="color-secondary ellipsis-horizontal" for="sidebar_ad_stat-enabled">
+                            {$word->enabled}
+                        </label>
+                    </div>
+                    <div class="cont-radio">
+                        <input class="area_changed_ad sidebar_ad_stat radio-paper hidden" name="sidebar_ad_stat" id="sidebar_ad_stat-disabled" type="radio" value="0"<?php echo($TEMP['#sidebar_ad_stat'] == 0) ? ' checked' : ''?>>
+                        <label class="color-secondary ellipsis-horizontal" for="sidebar_ad_stat-disabled">
+                            {$word->disabled}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->comments_ad}</label>
+                    </div>
+                    <div class="flex-grow">
+                        <textarea id="comments-website-ad" cols="20" class="cont-control input_key background-secondary color-secondary" rows="5">{$comments_ad}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label vertical-center">
+                        <label class="group-title color-secondary">{$word->status}</label>
+                    </div>
+                    <div class="cont-radio margin-r10">
+                        <input class="area_changed_ad comments_ad_stat radio-paper hidden" name="comments_ad_stat" id="comments_ad_stat-enabled" type="radio" value="1"<?php echo($TEMP['#comments_ad_stat'] == 1) ? ' checked' : ''?>>
+                        <label class="color-secondary ellipsis-horizontal" for="comments_ad_stat-enabled">
+                            {$word->enabled}
+                        </label>
+                    </div>
+                    <div class="cont-radio">
+                        <input class="area_changed_ad comments_ad_stat radio-paper hidden" name="comments_ad_stat" id="comments_ad_stat-disabled" type="radio" value="0"<?php echo($TEMP['#comments_ad_stat'] == 0) ? ' checked' : ''?>>
+                        <label class="color-secondary ellipsis-horizontal" for="comments_ad_stat-disabled">
+                            {$word->disabled}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="background-primary max-w-900 border-bottom-right-radius border-bottom-left-radius border-bottom border-right border-left border-tertiary padding-20 margin-b20 margin-right-auto margin-left-auto">
+            <div class="display-flex flex-end">
+                <span class="color-secondary vertical-center margin-r10 hidden" id="alert-website-settings">
+                    {$word->there_problems_with_some_fields}
+                </span>
+                <button id="website-settings" class="btn-trans global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                    <span class="color-white">{$word->save}</span>
+                    <div class="tb_content-spinner-circle">
+                        <div class="tb_spinner-circle"></div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var GX = D.querySelectorAll('.area_changed_ad'),
+    GL = D.querySelectorAll('.input_key'),
+    GM = D.querySelector('#website-settings'),
+    GK = D.querySelector('#alert-website-settings');
+addEvent(GM, "click", function(){
+    addClass(GM, 'tb_spinner-is-loading');
+    GM.setAttribute('disabled', true);
+    Req("{$url->{req/global-admin/update-website-ad}}", function(e){
+        if (e.status == 200) {
+            loadAlert('{$word->changes_saved_successfully}'), addClass(GK, 'hidden'), removeClass(GM, 'tb_spinner-is-loading');
+        } else {
+            removeClass(GK, 'hidden'), removeClass(GM, 'tb_spinner-is-loading'), GM.removeAttribute('disabled');
+        }
+    }, "POST", "&header_ad=" + D.querySelector("#header-website-ad").value + "&sidebar_ad=" + D.querySelector('#sidebar-website-ad').value + "&comments_ad=" + D.querySelector('#comments-website-ad').value + "&header_ad_stat=" + D.querySelector('.header_ad_stat:checked').value + "&sidebar_ad_stat=" + D.querySelector('.sidebar_ad_stat:checked').value + "&comments_ad_stat=" + D.querySelector('.comments_ad_stat:checked').value);
+});
+for(var j = 0, i = GX.length; j < i; j++) addEvent(GX[j], 'change', function(){
+    GM.removeAttribute('disabled');
+})
+for(var j = 0, i = GL.length; j < i; j++) addEvent(GL[j], 'keyup', function(e){
+    GM.removeAttribute('disabled');
+});
+</script>

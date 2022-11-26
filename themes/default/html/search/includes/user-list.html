@@ -1,0 +1,27 @@
+<div class="cont-video-list-horizontal user-wrapper w-100" data-id="{!id}">
+    <div class="cont-horizontal-list display-flex">
+    	<div class="cont-thumbnail-horizontal">
+	        <div class="channel-thumb">
+	            <a href="{!data->url}" target="_self">
+					<img class="border-radius-med" src="{!data->avatar}" alt="{!data->username}">
+				</a>
+	        </div>
+	    </div>
+        <div class="cont-horizontal-metadata display-flex margin-r10 margin-l10">
+        	<div class="cont-video-metadata-left">
+	        	<div class="video-meta-name">
+					{!data->user_v}
+				</div>
+	            <div class="color-grey margin-t5 margin-b10">
+	                {!subs} • {!count} {$word->videos}
+	            </div>
+	            <span class="color-tertiary hide-in-mobile">
+	                {!data->about}
+	            </span>
+	        </div>
+	        <div class="cont-video-metadata-right margin-left-auto vertical-center hide-in-mobile">
+				{!subscribe_button}
+			</div>
+        </div>
+    </div>
+</div>

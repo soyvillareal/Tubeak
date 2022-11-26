@@ -1,0 +1,27 @@
+<div class="cont-video-list-horizontal video-wrapper" data-id="{!id}">
+    <div class="cont-horizontal-list display-flex video-wrap mouse_hover">
+        <div class="cont-thumbnail-horizontal video-thumb position-relative">
+            <a href="{!url}" target="_self">
+                <img src="{!thumbnail}" alt="{!title}">
+                <div class="hover_animation" data-img="{!animation}"></div>
+            </a>
+            <?php if($TEMP['!live'] == true){ ?>
+            <div class="video-duration font-low font-bold position-absolute color-white">{!duration}</div>
+            <?php } ?>
+            <?php if(!empty($TEMP['!get_progress'])){ ?>
+            <div class="cont-time-loaded position-absolute background-grey">
+                <div class="background-red h-100" style="width: {!progress_value}%;"></div>
+            </div>
+            <?php } ?>
+        </div>
+        <div class="cont-horizontal-metadata margin-r10 margin-l10">
+            <a class="font-high color-secondary ellipsis-vertical-2" title="{!title}" href="{!url}" target="_self">{!title}</a>
+            <div class="video-meta-name color-grey">
+                {!data->user_v} {!views} {$word->views} • {!time}
+            </div>
+            <span class="color-tertiary hide-in-mobile">
+                {!description}
+            </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+<div class="display-flex-desktop padding-left-right-12">
+  <div class="channel-about-left flex-grow padding-right-30">
+    <?php if (!empty($TEMP['#data']['about'])) { ?>
+    <div class="padding-top-bottom-12 margin-b20 border-bottom border-primary border-primary">
+      <div class="font-high font-bold color-secondary margin-t20 margin-b20">
+        {$word->description}
+      </div> 
+      <p class="font-medium color-secondary">{$data->about}</p>
+    </div>
+    <?php } ?>
+    <div class="padding-top-bottom-12 margin-b20 border-bottom border-primary border-primary">
+      <div class="font-high font-bold color-secondary margin-t20 margin-b20">{$word->details}</div>
+      <div  class="vertical-center padding-top-bottom-12">
+        <div class="w-50 font-medium color-tertiary">{$word->gender}:</div>
+        <div class="w-50 font-medium color-tertiary">{$data->gender_text}</div> 
+      </div>
+      <?php if (!empty($TEMP['#data']['country_name'])) { ?>
+      <div class="vertical-center padding-top-bottom-12">
+        <div class="w-50 font-medium color-tertiary">{$word->location}:</div>
+        <div class="w-50 font-medium color-tertiary">{$data->country_name}</div>
+      </div>
+      <?php } ?>
+    </div>
+    <?php if (!empty($TEMP['#data']['facebook']) || !empty($TEMP['#data']['google']) || !empty($TEMP['#data']['twitter'])) { ?>
+    <div class="padding-top-bottom-12 margin-b20 border-bottom border-primary">
+      <div class="font-high font-bold color-secondary margin-t20 margin-b20">{$word->links}</div>
+      <div class="vertical-center padding-top-bottom-12">
+        <?php if (!empty($TEMP['#data']['facebook'])) { ?>
+        <div class="w-50 font-medium color-tertiary">
+          <a class="color-blue" href="{$data->facebook}" target="_blank">{$word->facebook}</a>
+        </div>
+        <?php } ?>
+        <?php if (!empty($TEMP['#data']['mail_contact'])) { ?>
+        <div class="w-50 font-medium color-tertiary">
+          <a class="color-blue" href="mailto:{$data->mail_contact}" target="_blank">{$word->mail_contact}</a>
+        </div>
+        <?php } ?>
+      </div>
+      <div class="vertical-center padding-top-bottom-12">
+        <?php if (!empty($TEMP['#data']['twitter'])) { ?>
+        <div class="w-50 font-medium color-tertiary">
+          <a class="color-blue" href="{$data->twitter}" target="_blank">{$word->twitter}</a>
+        </div>
+        <?php } ?>
+        <?php if (!empty($TEMP['#data']['instagram'])) { ?>
+        <div class="w-50 font-medium color-tertiary">
+          <a class="color-blue" href="{$data->instagram}" target="_blank">{$word->instagram}</a>
+        </div>
+        <?php } ?>
+      </div>
+    </div>
+    <?php } ?>
+  </div>
+  <div class="channel-about-right">
+    <?php if(!empty($TEMP['#views'])){ ?>
+    <div class="font-medium padding-top-bottom-12 color-secondary border-bottom border-primary">{$word->statistics}</div>
+    <div class="font-medium padding-top-bottom-12 color-secondary border-bottom border-primary">{#views} {$word->visualizations}</div>  
+    <?php } ?> 
+    <div class="font-medium padding-top-bottom-12 color-secondary border-bottom border-primary">{$word->incorporation_date}: {$date_time}</div>
+    <div class="padding-top-bottom-12 margin-t10">
+      <button class="btn-trans tabbable" data-toggle="dropdown">
+        <svg class="vh-icon color-grey" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill="currentColor" d="M 6.019 5.75 C 6.019 6.219 5.809 6.577 5.389 6.824 L 5.389 19.188 C 5.389 19.272 5.358 19.345 5.295 19.407 C 5.233 19.469 5.159 19.5 5.074 19.5 L 4.444 19.5 C 4.359 19.5 4.285 19.469 4.223 19.407 C 4.161 19.345 4.13 19.272 4.13 19.188 L 4.13 6.824 C 3.71 6.577 3.5 6.219 3.5 5.75 C 3.5 5.405 3.623 5.11 3.869 4.866 C 4.115 4.622 4.412 4.5 4.759 4.5 C 5.107 4.5 5.404 4.622 5.65 4.866 C 5.896 5.11 6.019 5.405 6.019 5.75 Z M 20.5 6.375 L 20.5 13.826 C 20.5 13.989 20.459 14.114 20.377 14.202 C 20.295 14.29 20.166 14.38 19.988 14.471 C 18.578 15.226 17.368 15.604 16.358 15.604 C 15.958 15.604 15.553 15.532 15.143 15.389 C 14.733 15.245 14.378 15.089 14.076 14.92 C 13.774 14.751 13.395 14.594 12.94 14.451 C 12.484 14.308 12.016 14.236 11.538 14.236 C 10.278 14.236 8.757 14.712 6.973 15.662 C 6.861 15.721 6.753 15.75 6.648 15.75 C 6.478 15.75 6.33 15.688 6.205 15.564 C 6.081 15.441 6.019 15.294 6.019 15.125 L 6.019 7.879 C 6.019 7.671 6.12 7.492 6.323 7.342 C 6.461 7.251 6.72 7.111 7.101 6.922 C 8.649 6.141 10.029 5.75 11.242 5.75 C 11.944 5.75 12.6 5.844 13.21 6.033 C 13.82 6.222 14.538 6.508 15.365 6.893 C 15.614 7.016 15.902 7.078 16.23 7.078 C 16.584 7.078 16.97 7.01 17.386 6.873 C 17.803 6.736 18.163 6.583 18.468 6.414 C 18.773 6.245 19.062 6.092 19.334 5.955 C 19.606 5.818 19.785 5.75 19.87 5.75 C 20.041 5.75 20.188 5.812 20.313 5.936 C 20.438 6.059 20.5 6.206 20.5 6.375 Z"/>
+        </svg>
+        <div class="background-waver"></div>
+      </button>
+      <ul class="down-menu-container down-menu-left down-menu-mob-bottom">
+        <div class="down-wrapper background-primary padding-top-bottom-12 border-radius-4">
+          <?php if($TEMP['#loggedin'] === true && $TEMP['#is_owner'] == false && $TEMP['#data']['role'] == 0){ ?>
+          <li class="vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative">
+            <button class="color-secondary btn-trans" id="block-user" data-id="{$block_id}">{$text}</button>
+          </li>
+          <?php } ?>
+          <li class="vertical-center action-list-hover font-medium ellipsis-horizontal color-secondary padding-left-right-12 position-relative font-high pointer" id="report-user">
+            {$word->report}
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+<script>
+addEvent(D.querySelector('#report-user'), 'click', function(){
+    var self = this;
+    if (!self) { return false;}
+    if (!{#loggedin} && M) {
+      TB_ShowElement('warning-alert', 'warning-alert','report_user','{$word->do_you_want_report}',1,'normal','{$word->login}','{$word->logged_do_you_want_repor}');
+    } else {
+    var html = '<ul><li><div class="cont-radio"><input class="radio-paper report-v hidden" type="radio" name="option" id="report-1" value="1"><label class="color-secondary" for="report-1">{$word->spam}</label></div></li><li><div class="cont-radio"><input class="radio-paper report-v hidden" type="radio" name="option" id="report-3" value="5"><label class="color-secondary" for="report-3">{$word->identity_fraud}</label></div></li><li><div class="cont-radio"><input class="radio-paper report-v hidden" type="radio" name="option" id="report-6" value="6"><label class="color-secondary" for="report-6">{$word->invasion_privacy}</label></div></li><li><div class="cont-radio"><input class="radio-paper report-v hidden" type="radio" name="option" id="report-7" value="7"><label class="color-secondary" for="report-7">{$word->noting_reply}</label></div></li></ul>';
+        TB_ShowElement('warning-alert', 'warning-alert','send_report','{$word->report_this_user}',1,'normal','{$word->send}','form_send_user',0,html);
+    }
+});
+<?php if($TEMP['#loggedin'] === true && $TEMP['#is_owner'] == false){ ?>
+addEvent(D.querySelector('#block-user'), 'click', function(){
+  var self = this;
+  Req("{$url->{req/settings/block-user}}", function(e) {
+    if (e.status == 200) {
+      self.innerText = e.message, preloadPage('&one=user&two={$data->user_id}&three=about');
+    } else {
+      loadAlert(e.error, 1);
+    }
+  }, "POST", "&by_id=" + self.getAttribute('data-id'));
+});
+<?php } ?>
+</script>

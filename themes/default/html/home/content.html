@@ -1,0 +1,147 @@
+<?php if($TEMP['#settings']['carrousel_players'] == 'on' && !empty($TEMP['#carrousel']) && count($TEMP['#carrousel']) == 5){ ?>
+<div class="cont-carrousel-players margin-b10 hide-in-mobile">
+    <div class="contsub-carrousel-players margin-auto w-100 h-100">
+        <div class="vertical-center h-100 position-relative">
+            <div class="carrousel-button-left position-absolute margin-l10">
+                <button class="btn-trans color-secondary cursor-disabled" id="back-item-carrousel">
+                    <svg class="vh-icon<?php echo($TEMP['#language_dir'] == 'rtl') ? ' rotate-180' : ''?>" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M 15.7 6.998 C 15.7 7.102 15.658 7.194 15.573 7.275 L 10.576 12 L 15.573 16.725 C 15.658 16.806 15.7 16.898 15.7 17.002 C 15.7 17.106 15.658 17.198 15.573 17.279 L 14.937 17.88 C 14.852 17.96 14.755 18 14.645 18 C 14.534 18 14.437 17.96 14.352 17.88 L 8.427 12.277 C 8.342 12.196 8.3 12.104 8.3 12 C 8.3 11.896 8.342 11.804 8.427 11.723 L 14.352 6.12 C 14.437 6.04 14.534 6 14.645 6 C 14.755 6 14.852 6.04 14.937 6.12 L 15.573 6.721 C 15.658 6.802 15.7 6.894 15.7 6.998 Z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="content-carrousel-players vertical-center w-100 h-100 position-relative margin-left-auto margin-right-auto">
+                {$carrousel_players}
+            </div>
+            <div class="carrousel-button-right position-absolute pos-right margin-r10">
+                <button class="btn-trans color-secondary cursor-disabled" id="next-item-carrousel">
+                    <svg class="vh-icon<?php echo($TEMP['#language_dir'] == 'rtl') ? ' rotate-180' : ''?>" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M 15.7 12 C 15.7 12.105 15.658 12.196 15.573 12.277 L 9.648 17.88 C 9.563 17.96 9.466 18 9.355 18 C 9.245 18 9.148 17.96 9.063 17.88 L 8.427 17.278 C 8.342 17.199 8.3 17.106 8.3 17.002 C 8.3 16.898 8.342 16.806 8.427 16.725 L 13.424 12 L 8.427 7.275 C 8.342 7.194 8.3 7.102 8.3 6.998 C 8.3 6.894 8.342 6.801 8.427 6.722 L 9.063 6.12 C 9.148 6.04 9.245 6 9.355 6 C 9.466 6 9.563 6.04 9.648 6.12 L 15.573 11.723 C 15.658 11.804 15.7 11.895 15.7 12 Z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <script>
+        var json = JSON.parse('{$json_carrousel}'),
+            items = D.querySelectorAll('.items-carrousel-players'),
+            clicks = 0,
+            is_click = !1;
+        for(var key in json){
+          new TubeakPlayer(D.querySelector('#tb-video-'+json[key]['id']), {
+            mediaSources: JSON.stringify(json[key]['json_path']),
+            words: {"play": "{$word->play}", "pause": "{$word->pause}", "time-slider": "{$word->time_slider}", "mute": "{$word->mute}", "unmute": "{$word->unmute}", "settings": "{$word->settings_}", "quality": "{$word->quality}", "cine-mode": "{$word->cine_mode}", "fullscreen": "{$word->fullscreen}", "t-share": "{$word->share}", "t-subscribed": "{$word->subscribed}", "t-unsubscribe": "{$word->subscribe}", "video-title": "{#title}", "username": "{$data->username}", "title-next-end": "{$title_nextend}", "p-next-end": "{$word->next_endvideo}", "owner-user": "{$owner_nextend}", "cancel-text": "{$word->cancel}", "cp-video-embed": "{$word->copy_embed_code}", "cp-video-url": "{$word->copy_video_url}", "views": "{$word->views}", "title-prev-end": "{$title_prevend}", "playlist-prev": "{$word->playlist_prev}", "playlist-next": "{$word->playlist_next}", "in-loop": "{$word->in_loop}", "replay": "{$word->replay}", "cp-url-at-time": "{$word->copy_url_at_current_time}", "time-fast-back": "{$word->time_fast_back}", "time-fast-forward": "{$word->time_fast_forward}", "seconds": "{$word->seconds}", "normal": "{$word->normal}", "speed": "{$word->speed}", "live-broadcast" : "{$word->live_broadcast}"},
+            features: ['progress', 'playpause', 'backforward', 'volume', 'current', 'duration', 'settings', 'quality', 'fullscreen'],
+            domain: '{#site_url}',
+            idVString: json[key]['video_id'],
+            autoRewind: !1,
+            enableGlobalMediaControls: !1,
+            idShort: json[key]['short_id'],
+            autoplay: json[key]['autoplay'],
+            userPhoto: json[key]['user_photo'],
+            userLink: json[key]['user_link'],
+            waterMark: json[key]['watermark'],
+            startWaterMark: json[key]['start_watermark'],
+            userOwnerId: json[key]['user_owner_id'],
+            isSub: json[key]['is_sub'],
+            tokenSession: '{#token_session}',
+            poster: json[key]['thumbnail'],
+            idUserViewer: json[key]['user_viewer'],
+            videoDuration: json[key]['duration'],
+            nowUrl: '{#now_url}',
+            isLogged: {#loggedin},
+            forceLive: json[key]['force_live'],
+            forceProgress: json[key]['force_progress'],
+            typeWatch: 'carrousel'
+          });
+        }
+        for (var J = 0, I = items.length; J < I; J++) addEvent(items[J], 'click', function(){
+            var self = this;
+            if(!hasClass(self, 'item-active') && !is_click){
+                var active = D.querySelector('.item-active');
+                active.querySelector('video').pause();
+                active.setAttribute('index', self.getAttribute("index"));
+                removeClass(active, 'item-active');
+                self.setAttribute('index', 0);
+                addClass(self, 'item-active');
+                self.querySelector('video').play();
+            }
+        });
+        addEvent(D.querySelector('#next-item-carrousel'), 'click', function(){
+            var self = this;
+            is_click = !0, self.setAttribute('disabled', true);
+            timeDelay(function(){
+                is_click = !1, self.removeAttribute('disabled');
+            }, 700);
+            if(clicks < 4){
+                if(clicks >= items.length) {
+                    clicks = 0;
+                } else {
+                    clicks++;
+                }
+                var active = D.querySelector('.item-active');
+                active.querySelector('video').pause(), active.setAttribute('index', clicks), removeClass(active, 'item-active'), items[clicks].setAttribute('index', 0), addClass(items[clicks], 'item-active'), items[clicks].querySelector('video').play();
+            } else {
+                removeClass(items[4], 'item-active'), addClass(items[0], 'item-active'), items[0].querySelector('video').play(), clicks = 0;
+                for (var J = 0, I = items.length; J < I; J++) {
+                    items[J].setAttribute('index', J), items[J].querySelector('video').pause();
+                }
+            }
+        }), addEvent(D.querySelector('#back-item-carrousel'), 'click', function(){
+            var self = this;
+            is_click = !0, self.setAttribute('disabled', true);
+            timeDelay(function(){
+                is_click = !1, self.removeAttribute('disabled');
+            }, 700);
+            if(clicks <= 0) {
+                clicks = items.length - 1;
+            } else {
+                clicks--;
+            }
+            if(clicks > 0){
+                var active = D.querySelector('.item-active');
+                active.querySelector('video').pause(), active.setAttribute('index', clicks), removeClass(active, 'item-active'), items[clicks].setAttribute('index', 0), addClass(items[clicks], 'item-active'), items[clicks].querySelector('video').play();
+            } else {
+                removeClass(items[1], 'item-active'), addClass(items[0], 'item-active'), items[0].querySelector('video').play(), clicks = 0;
+                for (var J = 0, I = items.length; J < I; J++) {
+                    items[J].setAttribute('index', J), items[J].querySelector('video').pause();
+                }
+            }
+        });
+        </script>
+    </div>
+</div>
+<?php } ?>
+<div class="container-grid-columns">
+    <div class="contsub-video-list-vertical" id="home-list">
+        {$latest_list}
+    </div>
+    <div class="clear"></div>
+    <div class="comments-loading hidden">
+        <div class="tb_content-spinner-circle">
+            <div class="tb_spinner-circle"></div>
+        </div>
+    </div>
+</div>
+<?php if($TEMP['#videos'] > 0) { ?>
+<script>
+var OG = !0;
+addEvent(D, 'scroll', function(){
+    if (((window.innerHeight + window.scrollY) >= D.querySelector('#global_content').offsetHeight - 200)){
+        if(OG){
+            var spin = D.querySelector(".comments-loading"),
+                N = D.querySelectorAll(".video-wrapper"),
+                ids = [];
+            removeClass(spin, 'hidden'), OG = !1;
+            for (var j = 0, i = N.length; j < i; j++) ids.push(N[j].getAttribute('data-id'));
+            Req("{$url->{req/load-more/home}}", function(e){
+                if (e.status == 200) {
+                    var content = D.querySelector("#home-list");
+                    content.innerHTML += e.html, addClass(spin, 'hidden'), OG = !0, loadPage(content.querySelectorAll('a[target="_self"]'), true);      
+                } else {
+                  spin.remove();
+                }            
+            }, "POST", "&ids="+ids);
+        }
+    }
+});
+</script>
+<?php } ?>

@@ -1,0 +1,31 @@
+<li class="cont-notifications-list">
+    <a class="vertical-center action-list-hover padding-10" href="{!url}" target="_self">
+        <div class="cont-point border-radius-med margin-r10{!point_active}"></div>
+		<div class="notifications-avatar w-10 margin-r10">
+			<?php if (in_array($TEMP['!notify']['type'], $TEMP['!admin_types'])) { ?>
+			<img class="border-radius-med" src="{!admin_thumb}" alt="{$settings->name}">
+			<?php }else{ ?>
+			<img class="border-radius-med" src="{!data->avatar}" alt="{$data->username}">
+			<?php } ?>
+		</div>
+		<div class="notifications-info margin-r10 w-50">
+			<h3 class="notifications-message no-margin font-medium ellipsis-vertical-2 color-secondary">
+				<?php if (in_array($TEMP['!notify']['type'], $TEMP['!admin_types'])) { ?>
+				{$settings->title}
+				<?php }else{ ?>
+				{!data->username}
+				<?php } ?>
+				{!title}
+				<?php if(!empty($TEMP['!video'])) { ?>
+				{!text}
+				<?php } ?>
+			</h3>
+			<time class="notifications-meta font-low color-tertiary">{!time}</time>
+		</div>
+		<?php if(!empty($TEMP['!video'])) { ?>
+		<div class="w-25 margin-auto">
+	        <img src="{!thumbnail}">
+	    </div>
+	   	<?php } ?>
+	</a>
+</li>

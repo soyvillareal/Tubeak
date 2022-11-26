@@ -1,0 +1,112 @@
+<div class="form-edit-list" id="report-{$id}">
+    <?php if(!empty($TEMP['#video']) && $TEMP['#type'] == 'video'){ ?>
+	<div class="cont-group">
+		<iframe id="video-{$id}" src="{$url->{embed/{$video_id}}}" frameborder="0" width="100%" height="400" allowfullscreen></iframe>
+	</div>
+    <div class="cont-group">
+        <label class="color-secondary ellipsis-horizontal">{$word->reason}: {$text}</label>
+    </div>
+    <h1 class="color-secondary text-center padding-top-bottom-12 border-top border-bottom border-tertiary">{$word->take_action_on_this_content}</h1>
+    <div class="margin-b10" id="normal-radios">
+        <label class="color-secondary margin-t10 margin-b10">{$word->can_video_seen_children}:</label>
+        <div class="display-flex">
+            <div class="cont-radio margin-r10">
+                <input class="adults_only radio-paper hidden" name="adults_only" id="adults_only-enabled" type="radio" value="0"<?php echo($TEMP['#adults_only'] == 0) ? ' checked' : ''?>>
+                <label class="color-secondary ellipsis-horizontal" for="adults_only-enabled">
+                    {$word->yes}
+                </label>
+            </div>
+            <div class="cont-radio">
+                <input class="adults_only radio-paper hidden" name="adults_only" id="adults_only-disabled" type="radio" value="1"<?php echo($TEMP['#adults_only'] == 1) ? ' checked' : ''?>>
+                <label class="color-secondary ellipsis-horizontal" for="adults_only-disabled">
+                    {$word->no}
+                </label>
+            </div>
+        </div>
+        <?php if($TEMP['#settings']['approve_videos'] == 'on'){ ?>
+        <label class="color-secondary margin-t10">{$word->approved}:</label>
+        <div class="display-flex">
+            <div class="cont-radio margin-r10">
+                <input class="approved radio-paper hidden" name="approved" id="approved-enabled" type="radio" value="0"<?php echo($TEMP['#approved'] == 0) ? ' checked' : ''?>>
+                <label class="color-secondary ellipsis-horizontal" for="approved-enabled">
+                    {$word->no}
+                </label>
+            </div>
+            <div class="cont-radio">
+                <input class="approved radio-paper hidden" name="approved" id="approved-disabled" type="radio" value="1"<?php echo($TEMP['#approved'] == 1) ? ' checked' : ''?>>
+                <label class="color-secondary ellipsis-horizontal" for="approved-disabled">
+                    {$word->yes}
+                </label>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
+    <label class="color-secondary margin-t10 margin-b10">{$word->delete_videos}:</label>
+    <div class="display-flex">
+        <div class="cont-radio margin-r10">
+            <input class="delete_video radio-paper hidden" name="delete_video" id="delete_video-disabled" type="radio" value="0" checked>
+            <label class="color-secondary ellipsis-horizontal" for="delete_video-disabled">
+                {$word->no}
+            </label>
+        </div>
+        <div class="cont-radio">
+            <input class="delete_video radio-paper hidden" name="delete_video" id="delete_video-enabled" type="radio" value="1">
+            <label class="color-secondary ellipsis-horizontal" for="delete_video-enabled">
+                {$word->yes}
+            </label>
+        </div>
+    </div>
+    <div class="color-tertiary margin-t10 hidden" id="msj-delete">{$word->video_deleted_once_click_send}.</div>
+    <?php } else if(!empty($TEMP['#data']) && $TEMP['#type'] == 'user'){ ?>
+    <div class="cont-group">
+        <div class="display-block padding-20 border-radius-4 background-tertiary">
+            <div class="mw-80 margin-right-auto margin-left-auto">
+                <a href="{$data->url}" target="_blank">
+                    <img class="border-radius-med" src="{$data->avatar}" alt="{$data->username}">
+                </a>
+            </div>
+            <div class="text-center margin-t10">
+                <a class="color-secondary" href="{$data->url}" target="_blank">
+                    {$data->username}
+                </a>
+            </div>
+            <div class="text-center margin-t10">
+                {$word->reported} {$time}
+            </div>
+        </div>
+    </div>
+    <div class="cont-group">
+        <label class="color-secondary ellipsis-horizontal">{$word->reason}: {$text}</label>
+    </div>
+    <label class="color-secondary margin-t10 margin-b10">{$word->block_user_ip}:</label>
+    <div class="display-flex">
+        <div class="cont-radio margin-r10">
+            <input class="ban_ip radio-paper hidden" name="ban_ip" id="ban_ip-disabled" type="radio" value="0" checked>
+            <label class="color-secondary ellipsis-horizontal" for="ban_ip-disabled">
+                {$word->no}
+            </label>
+        </div>
+        <div class="cont-radio">
+            <input class="ban_ip radio-paper hidden" name="ban_ip" id="ban_ip-enabled" type="radio" value="1">
+            <label class="color-secondary ellipsis-horizontal" for="ban_ip-enabled">
+                {$word->yes}
+            </label>
+        </div>
+    </div>
+    <label class="color-secondary margin-t10 margin-b10">{$word->lock_account}:</label>
+    <div class="display-flex">
+        <div class="cont-radio margin-r10">
+            <input class="ban_user radio-paper hidden" name="ban_user" id="ban_user-disabled" type="radio" value="0" checked>
+            <label class="color-secondary ellipsis-horizontal" for="ban_user-disabled">
+                {$word->no}
+            </label>
+        </div>
+        <div class="cont-radio">
+            <input class="ban_user radio-paper hidden" name="ban_user" id="ban_user-enabled" type="radio" value="1">
+            <label class="color-secondary ellipsis-horizontal" for="ban_user-enabled">
+                {$word->yes}
+            </label>
+        </div>
+    </div>
+    <?php } ?>
+</div>

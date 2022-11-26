@@ -1,0 +1,80 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^$ index.php?one=home [NC,QSA]
+RewriteRule ^reset-password/([^\/]+)(\/|)$ index.php?one=reset-password&code=$1 [NC,QSA]
+RewriteRule ^verify-email/([^/.]+)/([^\/]+)(\/|)?$ index.php?one=verify-email&code=$1&id=$2 [NC,QSA]
+RewriteRule ^authentication/([^/.]+)/([^\/]+)(\/|)?$ index.php?one=authentication&code=$1&id=$2 [NC,QSA]
+RewriteRule ^change-email/([^/.]+)/([^\/]+)(\/|)?$ index.php?one=change-email&code=$1&id=$2 [NC,QSA]
+RewriteRule ^not-me/([^/.]+)/([^\/]+)(\/|)?$ index.php?one=not-me&code=$1&id=$2 [NC,QSA]
+
+RewriteRule ^admin$ index.php?one=admin&two=manage-dashboard [NC,QSA]
+RewriteRule ^admin/([^/.]+)?$ index.php?one=admin&two=$1 [NC,QSA]
+RewriteRule ^admin/([^/.]+)/([^/.]+)?$ index.php?one=admin&two=$1&three=$2 [NC,QSA]
+
+RewriteRule ^user/([^/.]+)?$ index.php?one=user&two=$1 [NC,QSA]
+
+RewriteRule ^categories/([^/.]+)$ index.php?one=categories&two=$1 [NC,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^req/([^/.]+)/?$ requests.php?request-name=$1 [L,QSA]
+RewriteRule ^req/([^/.]+)/([^/.]+)/?$ requests.php?request-name=$1&one=$2 [L,QSA]
+
+RewriteRule ^edit-video/(.*)?$ index.php?one=edit-video&two=$1 [L,QSA]
+RewriteRule ^download-video/([^/.]+)?$ index.php?one=download-video&video_id=$1 [NC,QSA]
+RewriteRule ^embed/(.*)?$ index.php?one=embed&two=$1 [L,QSA]
+RewriteRule ^pages/([^\/]+)(\/|)$ index.php?one=pages&two=$1 [QSA]
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\/]+)(\/|)$  index.php?one=$1 [QSA]
+
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE image/x-icon
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/x-font
+  AddOutputFilterByType DEFLATE application/x-font-truetype
+  AddOutputFilterByType DEFLATE application/x-font-ttf
+  AddOutputFilterByType DEFLATE application/x-font-otf
+  AddOutputFilterByType DEFLATE application/x-font-opentype
+  AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/opentype
+  BrowserMatch ^Mozilla/4 gzip-only-text/html
+  BrowserMatch ^Mozilla/4\.0[678] no-gzip
+  BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
+<IfModule mod_security.c>
+  SecFilterScanPOST Off
+</IfModule>
+## EXPIRES CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/gif "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType text/css "access plus 1 month"
+ExpiresByType application/pdf "access plus 1 month"
+ExpiresByType text/x-javascript "access plus 1 month"
+ExpiresByType application/x-shockwave-flash "access plus 1 month"
+ExpiresByType image/x-icon "access plus 1 year"
+ExpiresDefault "access plus 190 days"
+</IfModule>
+## EXPIRES CACHING ##

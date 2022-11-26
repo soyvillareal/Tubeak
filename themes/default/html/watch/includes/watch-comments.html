@@ -1,0 +1,182 @@
+<div class="comments-content display-block w-100 border-top border-primary">
+  <div class="margin-b10 position-relative">{$comment_ad}</div>
+  <div class="vertical-center margin-b20">
+    <span class="font-high color-secondary">{$count_comments} {$word->comments}</span>
+    <span class="sort-comments-down margin-l10">
+			<button class="btn-trans font-medium font-uppercase color-tertiary" data-toggle="dropdown" data-title="{$word->sort_comments}">
+        <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill="currentColor" d="M 10.206 16.25 C 10.206 16.313 10.171 16.376 10.103 16.437 L 6.842 18.93 C 6.774 18.976 6.696 19 6.607 19 C 6.525 19 6.447 18.976 6.372 18.93 L 3.1 16.429 C 2.998 16.346 2.974 16.255 3.029 16.156 C 3.083 16.052 3.186 16 3.336 16 L 5.298 16 L 5.298 5.249 C 5.298 5.178 5.329 5.117 5.39 5.07 C 5.453 5.024 5.53 5 5.625 5 L 7.588 5 C 7.685 5 7.762 5.024 7.823 5.07 C 7.885 5.117 7.915 5.178 7.915 5.249 L 7.915 16 L 9.878 16 C 9.973 16 10.053 16.023 10.113 16.071 C 10.175 16.118 10.206 16.177 10.206 16.25 Z M 21 17.25 L 21 18.751 C 21 18.822 20.971 18.883 20.908 18.93 C 20.847 18.976 20.77 19 20.674 19 L 12.168 19 C 12.073 19 11.994 18.976 11.934 18.93 C 11.871 18.883 11.841 18.822 11.841 18.751 L 11.841 17.25 C 11.841 17.177 11.871 17.118 11.934 17.071 C 11.994 17.023 12.073 17.001 12.168 17.001 L 20.674 17.001 C 20.77 17.001 20.847 17.023 20.908 17.071 C 20.971 17.118 21 17.177 21 17.25 Z M 19.038 13.25 L 19.038 14.75 C 19.038 14.823 19.008 14.882 18.946 14.93 C 18.884 14.977 18.806 15 18.712 15 L 12.168 15 C 12.073 15 11.994 14.977 11.934 14.93 C 11.871 14.882 11.841 14.823 11.841 14.75 L 11.841 13.25 C 11.841 13.177 11.871 13.117 11.934 13.07 C 11.994 13.024 12.073 13 12.168 13 L 18.712 13 C 18.806 13 18.884 13.024 18.946 13.07 C 19.008 13.117 19.038 13.177 19.038 13.25 Z M 17.075 9.25 L 17.075 10.75 C 17.075 10.823 17.045 10.884 16.984 10.93 C 16.922 10.976 16.843 11 16.749 11 L 12.168 11 C 12.073 11 11.994 10.976 11.934 10.93 C 11.871 10.884 11.841 10.823 11.841 10.75 L 11.841 9.25 C 11.841 9.177 11.871 9.118 11.934 9.071 C 11.994 9.023 12.073 9.001 12.168 9.001 L 16.749 9.001 C 16.843 9.001 16.922 9.023 16.984 9.071 C 17.045 9.118 17.075 9.177 17.075 9.25 Z M 15.112 5.249 L 15.112 6.75 C 15.112 6.823 15.082 6.884 15.021 6.929 C 14.959 6.977 14.88 6.999 14.786 6.999 L 12.168 6.999 C 12.073 6.999 11.994 6.977 11.934 6.929 C 11.871 6.884 11.841 6.823 11.841 6.75 L 11.841 5.249 C 11.841 5.178 11.871 5.117 11.934 5.07 C 11.994 5.024 12.073 5 12.168 5 L 14.786 5 C 14.88 5 14.959 5.024 15.021 5.07 C 15.082 5.117 15.112 5.178 15.112 5.249 Z"/>
+        </svg>
+        {$word->sort_by}
+			</button>
+			<ul class="down-menu-container down-menu-left">
+        <div class="down-wrapper background-primary padding-top-bottom-12 border-radius-4">
+          <li class="sort-comments vertical-center action-list-hover font-medium ellipsis-horizontal color-secondary padding-left-right-12 position-relative font-high pointer" data-type="1">
+            {$word->best_comments}
+          </li>
+          <li class="sort-comments vertical-center action-list-hover font-medium ellipsis-horizontal color-secondary padding-left-right-12 position-relative font-high pointer" data-type="2">
+            {$word->latest_comments}
+          </li>
+        </div>
+			</ul>
+    </span>
+  </div>
+  <div class="vertical-center margin-b20">
+  	<?php if ($TEMP['#loggedin'] === true){ ?>
+  	<img class="comments-avatar" src="{$me->avatar}" alt="{$me->username}" />
+    <?php } else { ?>
+    <img class="comments-avatar" src="{$theme->{images/default-nologged.jpg}}" alt="{$me->username}" />
+  	<?php } ?>
+    <div class="w-100">
+    	<textarea class="expanded-area background-trans overflow-hidden w-100 margin-b10 border-bottom border-primary" name="comment" rows="1" data-min-rows="1" id="comment-textarea" placeholder="{$word->write_your_comment}"></textarea>
+      <div class="vertical-center hidden" id="buttons_comm">
+        <button class="btn-trans margin-left-auto margin-r10 padding-10 border-radius-4 font-medium font-bold font-uppercase color-tertiary tabbable" id="comment-bh">
+          {$word->cancel}
+          <div class="background-border"></div>
+        </button>
+        <button class="btn-trans padding-10 border-radius-4 font-medium font-bold font-uppercase background-blue color-white cursor-disabled tabbable" id="comment-bp" disabled>
+          {$word->comment}
+          <div class="background-border"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="comment-button">
+    <div class="user-comments" id="video-pinned-comments">
+      {$pinned_comment}
+    </div>
+  </div>
+  <div class="user-comments">
+    <div id="video-outstanding-comments"></div>
+    <div id="video-user-comments"></div>
+  </div>
+  <div class="comments-load hidden">
+    <div class="comments-loading">
+      <div class="tb_content-spinner-circle">
+        <div class="tb_spinner-circle"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+ var CI = D.querySelector('.time-url'),
+     OG = !0,
+     loadingReplys = '<div class="replys-load mw-80"><div class="comments-loading"><div class="tb_content-spinner-circle showing" id="spinnerLoad"><div class="tb_spinner-circle"></div></div></div></div>';
+  <?php if($TEMP['#pin']) { ?>
+  addEvent(CI, 'click', copyText);
+  <?php } ?>
+  addEvent(D.querySelector('#comment-textarea'), "focus", function(e) {
+    e.preventDefault();
+    if (!{#loggedin} && M) {
+      preloadPage('&one=login&to='+M);
+      return false;
+    }else{
+      removeClass(D.querySelector('#buttons_comm'), 'hidden');
+    }
+  });
+  addEvent(D.querySelector('#comment-bh'), 'click', function(){
+    D.querySelector('#comment-textarea').value = "";
+    addClass(D.querySelector('#buttons_comm'), 'hidden');
+    D.querySelector('#comment-textarea').style.borderColor = "";
+  });
+  addEvent(D.querySelector('#comment-textarea'), "keyup", function(){
+    if(!D.querySelector('#comment-textarea').value){
+      D.querySelector('#comment-bp').setAttribute('disabled', true);
+    } else {
+      D.querySelector('#comment-bp').removeAttribute('disabled');
+      D.querySelector('#comment-textarea').style.borderColor = "";
+    }
+  });
+  <?php if ((!empty($_GET['cl']) && is_numeric($_GET['cl'])) || (!empty($_GET['rl']) && is_numeric($_GET['rl']))){ ?>
+  Req('{$url->{req/get-comment-reply}}', function(e) {
+      if (e.status == 200) {
+        var cm = D.querySelector("#comment-"+e.comm_id),
+            CE = e.pin_comment ? D.querySelector('#video-pinned-comments') : D.querySelector('#video-outstanding-comments'),
+            CQ = e.pin_comment ? CE : D.createElement("div");
+        if(!e.pin_comment){
+          cm && cm.remove(), CQ.className = "container-outstanding-comments", CQ.innerHTML = e.comment, loadPage(CQ.querySelectorAll('a[target="_self"]'));
+          if(D.querySelector('.main-comment')){
+            CE.insertBefore(CQ, CE.childNodes[0]);
+          }else{
+            CE.appendChild(CQ);
+          }
+          var cz = CQ.querySelector('#time-goto'),
+              cl = CQ.querySelectorAll('#comm_like'),
+              cp = CQ.querySelector('.show-replys');
+          cz && addEvent(cz, 'click', cd);
+          cp && addEvent(cp, 'click', ce);
+          addEvent(CQ.querySelector('.reply_input'), 'keyup', cb);
+          <?php if($TEMP['#video_owner'] == true){ ?>
+          addEvent(CQ.querySelector('#pin-comm'), 'click', ct);
+          <?php } ?>
+          addEvent(CQ.querySelector('#delete-comm'), 'click', CJ);
+          addEvent(CQ.querySelector('#hide-area'), 'click', cf);
+          addEvent(CQ.querySelector('#comment-rp'), 'click', CG);
+          addEvent(CQ.querySelector('#reply-comm'), 'click', cv);
+          addEvent(CQ.querySelector('.time-url'), 'click', copyText);
+          for (var j = 0, i = cl.length; j < i; j++) addEvent(cl[j], 'click', ck);
+        }
+        if(e.reply){
+          var CM = document.createElement("div");
+          CM.className = "container-addet-reply", CM.innerHTML = e.reply, CQ.querySelector('.comment-item-replies').appendChild(CM), loadPage(CQ.querySelectorAll('a[target="_self"]'));
+          var CE = CE.querySelector('.main-comment-reply'),
+              CT = CE.querySelector('#delete-reply'),
+              cr = CE.querySelectorAll('#reply-like'),
+              cp = e.pin_comment ? CQ.querySelector('.show-replys') : cp,
+              count = cp.getAttribute('data-treplys');
+          addEvent(CE.querySelector('#comment-rp'), 'click', CG);
+          addEvent(CE.querySelector('.time-url'), 'click', copyText);
+          CT && addEvent(CT, 'click', CZ);
+          for (var j = 0, i = cr.length; j < i; j++) addEvent(cr[j], "click", ch);
+          if(count == 1){
+            cp.setAttribute('data-type', 'hide');
+            cp.innerHTML = '<div class="vertical-center"><svg class="icon-vhm color-blue" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M 17 13.944 C 17 14.095 16.938 14.225 16.814 14.335 C 16.691 14.445 16.544 14.5 16.375 14.5 L 7.625 14.5 C 7.456 14.5 7.309 14.445 7.186 14.335 C 7.062 14.225 7 14.095 7 13.944 C 7 13.794 7.062 13.664 7.186 13.554 L 11.561 9.665 C 11.684 9.555 11.831 9.5 12 9.5 C 12.169 9.5 12.316 9.555 12.439 9.665 L 16.814 13.554 C 16.938 13.664 17 13.794 17 13.944 Z"></path></svg><span class="color-blue">{$word->hide} '+count+' {$word->answers}</span></div>';
+          }
+        }
+      }
+  }, "POST", "&video_id={$id}&comment=<?php echo($_GET['cl']); ?>&reply=<?php echo($_GET['rl']); ?>");
+  <?php } ?>
+  addEvent(D, 'scroll', function(){
+      if (((window.innerHeight + window.scrollY) >= D.querySelector('#global_content').offsetHeight - 200)){
+         if(OG){
+          let last_id = 0,
+              comment_ids = [],
+              count = D.querySelector('#video-user-comments').querySelectorAll(".main-comment"),
+              CO = D.querySelector('#video-outstanding-comments').querySelector(".main-comment"),
+              spin = D.querySelector(".comments-load");
+          removeClass(spin, 'hidden'), OG = !1, (count.length > 0) && (last_id = count[count.length - 1].getAttribute('data-id')), CO && comment_ids.push(CO.getAttribute('data-id'));
+          for (var j = 0, i = count.length; j < i; j++) comment_ids.push(count[j].getAttribute('data-id'));
+          Req('{$url->{req/load-more-commens}}', function(e) {
+            if (e.status == 200) {
+              var CQ = D.querySelector('#video-user-comments');
+              CQ.innerHTML += e.html, OG = !0, loadPage(CQ.querySelectorAll('a[target="_self"]'));
+              var CW = CQ.querySelectorAll('.show-replys'),
+                  cg = CQ.querySelectorAll('#time-goto'),
+                  CS = CQ.querySelectorAll('.reply_input'),
+                  CP = CQ.querySelectorAll('#delete-comm'),
+                  CA = CQ.querySelectorAll('#hide-area'),
+                  CF = CQ.querySelectorAll('#pin-comm'),
+                  CB = CQ.querySelectorAll('#comment-rp'),
+                  CC = CQ.querySelectorAll('#reply-comm'),
+                  cl = CQ.querySelectorAll('#comm_like'),
+                  CI = CQ.querySelectorAll('.time-url');
+
+                for (var j = 0, i = CW.length; j < i; j++) addEvent(CW[j], 'click', ce);
+                for (var j = 0, i = cg.length; j < i; j++) addEvent(cg[j], 'click', cd);
+                for (var j = 0, i = CS.length; j < i; j++) addEvent(CS[j], 'keyup', cb);
+                <?php if($TEMP['#video_owner'] == true){ ?>
+                for (var j = 0, i = CF.length; j < i; j++) addEvent(CF[j], 'click', ct);
+                <?php } ?>
+                for (var j = 0, i = CP.length; j < i; j++) addEvent(CP[j], 'click', CJ);
+                for (var j = 0, i = CA.length; j < i; j++) addEvent(CA[j], 'click', cf);
+                for (var j = 0, i = CB.length; j < i; j++) addEvent(CB[j], 'click', CG);
+                for (var j = 0, i = CC.length; j < i; j++) addEvent(CC[j], 'click', cv);
+                for (var j = 0, i = cl.length; j < i; j++) addEvent(cl[j], 'click', ck);
+                for (var j = 0, i = CI.length; j < i; j++) addEvent(CI[j], 'click', copyText);
+            }
+            addClass(spin, 'hidden')
+          }, "POST", "&last_id=" + last_id + "&video_id={$id}&sort_by=" + sort_by + "&comment_ids=" + comment_ids);
+         }
+      }
+  }, 1, !1, !0);
+</script>

@@ -1,0 +1,34 @@
+<div class="modal matdialog {$mode_alert}" id="warning-alert">
+   <div class="modal-dialog">
+      <div class="cont-popup background-modal">     
+         <div class="contsub-text-alert">
+            <div class="top-header">
+               <?php if($TEMP['#show_t'] == 1) { ?>
+               <div class="top-title color-secondary">
+                  {$cont_t}
+               </div>
+               <?php } ?>
+               <?php if($TEMP['#close_mode'] == 1) { ?>
+               <button class="color-tertiary close-popup btn-trans" data-dismiss>
+                  <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                     <path fill="currentColor" d="M 12 13.17 L 5.17 20 L 4 18.832 L 10.83 12 L 4 5.17 L 5.17 4 L 12 10.83 L 18.832 4 L 20 5.17 L 13.17 12 L 20 18.832 L 18.832 20 Z"></path>
+                  </svg>
+               </button>
+               <?php } ?>
+            </div>
+            <div class="modal-body color-tertiary">{$cont_p}</div>
+         </div>
+         <?php if($TEMP['#close_mode'] != 1) { ?>
+         <div class="cont-alert-btns display-flex">
+            <div class="contsub-alert-btns margin-left-auto margin-r10">
+               <?php if($TEMP['#mode_alert'] == 'normal') { ?>
+               <button class="btn-trans font-medium font-bold font-uppercase padding-5 color-tertiary" data-dismiss>{$word->cancel}</button>
+               <?php } ?>
+               <button class="{$class_n} btn-trans font-medium font-bold font-uppercase padding-5 margin-r5 margin-r10 color-blue" id="confirm-alert"<?php echo($TEMP['#mode_alert'] != 'normal') ? ' data-dismiss' : ' data-extra="{$extra}"'?>>{$button_txt}</button>
+            </div>
+         </div>
+         <?php } ?>
+      </div>
+   </div>
+</div>
+<div class="background-pointer"></div>

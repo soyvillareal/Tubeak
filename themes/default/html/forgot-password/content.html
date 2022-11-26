@@ -1,0 +1,115 @@
+<div class="login-page">
+	<div class="login-form margin-auto text-center">
+    	<div class="cont-login-center">
+		    <div class="border-radius-4 padding-20 border-all border-primary">
+		   	    <h2 class="margin-b10 color-secondary">{$word->forgotten_password}</h2>
+		       	<p class="color-secondary">{$word->enter_email}</p>
+		   	    <div class="cont-group">
+		    	    <div class="background-primary errors"></div>
+		    	</div>
+				<div class="cont-group">
+					<label class="display-flex group-title color-secondary">{$word->your_email_address}</label>
+					<input class="cont-control border-focus-blue background-secondary color-secondary" type="text" id="email" required>
+					<div class="color-red text-left text-error"></div>
+				</div>
+				<div class="cont-group">
+					<button class="btn-trans background-red cursor-disabled hover-opacity w-100 margin-b20 border-radius-4 padding-10" id="to-access" disabled>
+						<span class="color-white">{$word->request_new_password}</span>
+						<div class="tb_content-spinner-circle">
+							<div class="tb_spinner-circle"></div>
+						</div>
+					</button>
+				</div>
+				<div class="color-secondary">
+					{$word->got_your_password} <a class="hover-button color-for-hover" href="{$url->{login}}" target="_self">{$word->login_}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<ul class="container-bubbles">
+	<?php foreach ($TEMP['#bubbles']['avatar'] as $key => $avatar){ ?>
+	<li class="bubble-<?php echo $key;?>">
+		<img id="bubble-<?php echo $key;?>" src="<?php echo $avatar; ?>">
+	</li>
+	<?php } ?>
+</ul>
+<script>
+var FM = D.querySelector('#email'),
+	FE = D.querySelector('.errors'),
+	FB = D.querySelector('#to-access'),
+	FF = function(){
+		FX = !1;
+		if(FM.value == ''){
+			D.querySelector('.text-error').innerText = '*{$word->this_field_is_empty}', addClass(FM, 'border-red'), addClass(FM, 'boxshadow-red');
+			return false;
+		} else {
+			removeClass(FM, 'border-red'), removeClass(FM, 'boxshadow-red')
+		}
+		FE.innerText = "";
+		removeClass(FE, 'color-green');
+		removeClass(FE, 'border-green');
+		addClass(FB, 'tb_spinner-is-loading');
+		FB.setAttribute('disabled', true);
+		Req("{$url->{req/to-access/forgot-password}}", function(e){
+			if(e.status == 200){
+				addClass(FE, 'color-green');
+				addClass(FE, 'border-green');
+				removeClass(FB, 'tb_spinner-is-loading');
+				FB.removeAttribute('disabled');
+				FE.innerText = e.message;
+			} else {
+				if(e.error != undefined){
+					removeClass(FB, 'tb_spinner-is-loading');
+					FB.removeAttribute('disabled');
+					D.querySelector('.text-error').innerText = '*'+e.error, addClass(FM, 'border-red'), addClass(FM, 'boxshadow-red');
+				} else if(e.html != undefined){
+					removeClass(FB, 'tb_spinner-is-loading');
+					FB.removeAttribute('disabled');
+					FE.innerHTML = e.html;
+					loadPage(FE.querySelectorAll('a[target="_self"]'));
+				} else {
+					removeClass(FB, 'tb_spinner-is-loading');
+					FB.removeAttribute('disabled');
+					FE.innerText = e.message;
+				}
+			}
+		}, "POST", "&email=" + FM.value)
+	},
+	FX = !1,
+	FO = "{$bubbles}".split(',');
+FM.focus(), timeDelay(function(){
+	if(FO.length > 0){
+		Req("{$url->{req/to-access/bubbles}}", function(e){
+			if(e.status == 200){
+				FO = e.bubbles;
+				for (var j = 0, i = e.bubble.length; j < i; j++){
+					var FC = e.bubble[j],
+						el = D.querySelector('#bubble-'+j);
+					if(el){
+						el.setAttribute('src', FC);
+					} else {
+						D.querySelector('.container-bubbles').innerHTML += '<li class="bubble-'+j+'"><img id="bubble-'+j+'" src="'+FC+'"/></li>'
+					}
+				}
+			}
+		}, "POST", "&bubbles=" + FO)
+	}
+}, 14000, 1), addEvent(D, 'keydown', function(e){
+	if((e.which == 13 || e.keyCode == 13) && FX){
+		FF();
+	}
+}), addEvent(FB, 'click', FF), addEvent(FM, 'keyup', function(e){
+	if(e.which != 13 || e.keyCode != 13){
+		var self = this;
+		removeClass(self, 'border-red'), removeClass(self, 'boxshadow-red'), D.querySelector('.text-error').innerText = "";
+		if(self.value != ''){
+			FB.removeAttribute('disabled');
+			FX = !0;
+		} else {
+			FB.setAttribute('disabled', true);
+			FX = !1;
+		}
+	}
+});
+</script>

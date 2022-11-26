@@ -1,0 +1,143 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{$title}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="{$theme->{assets/css/fonts/fonts.min.css}}" rel="stylesheet">
+    <link rel="stylesheet" href="{$theme->{assets/css/tubeak-player.min.css}}" />
+    <link rel="shortcut icon" type="image/png" href="{$icon_favicon}"/>
+    <script src="{$theme->{assets/js/tubeak-player.min.js}}"></script>
+</head>
+<body>
+  <div class="player-video embed-video-player">
+    <?php if($TEMP['#is_deleted'] == false) { ?>
+    <?php if ($TEMP['#is_approved'] == true || Specific::Admin()) { ?>
+    <?php if ($TEMP['#is_public'] == true || Specific::Admin()) { ?>
+    <?php if ($TEMP['#video']['converted'] == 1 && $TEMP['#in_queue'] == false){ ?>
+    <video id="tb-video" playsinline webkit-playsinline style="width:100%; height:100%;position: relative;">
+      Your browser does not support HTML5 video.
+    </video>
+    <script>
+      var er = '{$end_related}';
+      new TubeakPlayer(document.querySelector('video'), {
+        mediaSources: '{$json_path}',
+        videoCategory: "{$category_key}",
+        words: {"play": "{$word->play}", "pause": "{$word->pause}", "time-slider": "{$word->time_slider}", "mute": "{$word->mute}", "unmute": "{$word->unmute}", "settings": "{$word->settings_}", "quality": "{$word->quality}", "fullscreen": "{$word->fullscreen}", "t-share": "{$word->share}", "t-subscribed": "{$word->subscribed}", "t-unsubscribe": "{$word->subscribe}", "video-title": "{$title}", "username": "{$data->username}", "cp-video-embed": "{$word->copy_embed_code}", "cp-video-url": "{$word->copy_video_url}", "views": "{$word->views}", "in-loop": "{$word->in_loop}", "replay": "{$word->replay}", "cp-url-at-time": "{$word->copy_url_at_current_time}", "time-fast-back": "{$word->time_fast_back}", "time-fast-forward": "{$word->time_fast_forward}", "seconds": "{$word->seconds}", "normal": "{$word->normal}", "speed": "{$word->speed}"},
+        features: ['progress', 'playpause', 'backforward', 'volume', 'current', 'duration', 'settings', 'skipback', 'contextmenu', 'quality', 'fullscreen'],
+        domain: '{#site_url}',
+        idVString: '{$video_id}',
+        idShort: '{$short_id}',
+        userPhoto: '{$data->avatar}',
+        userLink: '{$data->url}',
+        urlShare: '{$encoded_url}',
+        waterMark: '{$watermark}',
+        startWaterMark: '{$start_watermark}',
+        userOwnerId: {$data->id},
+        isSub: {$is_sub},
+        tokenSession: '{#token_session}',
+        poster: '{$thumbnail}',
+        noProgress: [{$no_progress}],
+        progressCk: {$progress_value},
+        percentPgsCk: {$percent_value},
+        idVideo: {$id},
+        idUserViewer: {$user_viewer},
+        videoDuration: '{$duration}',
+        endRelatedVideos: er,
+        isLogged: {#loggedin},
+        typeWatch: 'embed'
+      });
+    </script>
+    <?php }else{ ?>
+    <div class="video-processing">
+      <img class="position-absolute" src="{$thumbnail}" alt="{$title}">
+      <div class="vertical-center margin-auto">
+        <div class="cont-block-wtch">
+          <svg class="margin-l10 w-20" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M 40 4.5 C 46.441 4.5 52.38 6.087 57.819 9.261 C 63.258 12.435 67.565 16.742 70.739 22.181 C 73.913 27.62 75.5 33.559 75.5 40 C 75.5 46.441 73.913 52.38 70.739 57.819 C 67.565 63.258 63.258 67.565 57.819 70.739 C 52.38 73.913 46.441 75.5 40 75.5 C 33.559 75.5 27.62 73.913 22.181 70.739 C 16.742 67.565 12.435 63.258 9.261 57.819 C 6.087 52.38 4.5 46.441 4.5 40 C 4.5 33.559 6.087 27.62 9.261 22.181 C 12.435 16.742 16.742 12.435 22.181 9.261 C 27.62 6.087 33.559 4.5 40 4.5 Z M 45.917 62.141 L 45.917 53.359 C 45.917 52.927 45.778 52.565 45.501 52.272 C 45.223 51.98 44.884 51.833 44.484 51.833 L 35.609 51.833 C 35.208 51.833 34.854 51.987 34.546 52.296 C 34.237 52.604 34.083 52.958 34.083 53.359 L 34.083 62.141 C 34.083 62.542 34.237 62.896 34.546 63.204 C 34.854 63.513 35.208 63.667 35.609 63.667 L 44.484 63.667 C 44.884 63.667 45.223 63.52 45.501 63.228 C 45.778 62.935 45.917 62.573 45.917 62.141 Z M 45.824 46.24 L 46.656 17.535 C 46.656 17.165 46.502 16.888 46.194 16.703 C 45.886 16.457 45.516 16.333 45.085 16.333 L 34.915 16.333 C 34.484 16.333 34.114 16.457 33.806 16.703 C 33.498 16.888 33.344 17.165 33.344 17.535 L 34.13 46.24 C 34.13 46.548 34.284 46.818 34.592 47.049 C 34.9 47.28 35.27 47.396 35.701 47.396 L 44.253 47.396 C 44.684 47.396 45.046 47.28 45.339 47.049 C 45.632 46.818 45.793 46.548 45.824 46.24 Z"/>
+          </svg>
+          <div class="contsub-info-wtch">
+            <div class="cont-info-wtch">
+              <?php if ($TEMP['#in_queue'] == true) { ?>
+              <div class="title-wtch">{$word->the_video_is_in_queue}</div>
+              <div class="message-wtch">
+                <?php if (!empty($TEMP['#video_owner'])){ ?>
+                {$word->video_preparing_for_processing}
+                <?php }else{ ?>
+                {$word->this_video_queue}
+                <?php } ?>
+              </div>
+              <?php }else{ ?>
+              <div class="title-wtch">{$word->processing_the_video}</div>
+              <div class="message-wtch">
+                <?php if (!empty($TEMP['#video_owner'])){ ?>
+                {$word->this_video_being_converted_few_resolutions}
+                <?php }else{ ?>
+                {$word->this_video_porcessing}
+                <?php } ?>
+              </div>
+              <?php } ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php } ?>
+    <?php } else { ?>
+    <div class="video-processing">
+      <div class="vertical-center margin-auto">
+        <div class="cont-block-wtch">
+          <svg class="margin-l10 w-20" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M 40 4.5 C 46.441 4.5 52.38 6.087 57.819 9.261 C 63.258 12.435 67.565 16.742 70.739 22.181 C 73.913 27.62 75.5 33.559 75.5 40 C 75.5 46.441 73.913 52.38 70.739 57.819 C 67.565 63.258 63.258 67.565 57.819 70.739 C 52.38 73.913 46.441 75.5 40 75.5 C 33.559 75.5 27.62 73.913 22.181 70.739 C 16.742 67.565 12.435 63.258 9.261 57.819 C 6.087 52.38 4.5 46.441 4.5 40 C 4.5 33.559 6.087 27.62 9.261 22.181 C 12.435 16.742 16.742 12.435 22.181 9.261 C 27.62 6.087 33.559 4.5 40 4.5 Z M 45.917 62.141 L 45.917 53.359 C 45.917 52.927 45.778 52.565 45.501 52.272 C 45.223 51.98 44.884 51.833 44.484 51.833 L 35.609 51.833 C 35.208 51.833 34.854 51.987 34.546 52.296 C 34.237 52.604 34.083 52.958 34.083 53.359 L 34.083 62.141 C 34.083 62.542 34.237 62.896 34.546 63.204 C 34.854 63.513 35.208 63.667 35.609 63.667 L 44.484 63.667 C 44.884 63.667 45.223 63.52 45.501 63.228 C 45.778 62.935 45.917 62.573 45.917 62.141 Z M 45.824 46.24 L 46.656 17.535 C 46.656 17.165 46.502 16.888 46.194 16.703 C 45.886 16.457 45.516 16.333 45.085 16.333 L 34.915 16.333 C 34.484 16.333 34.114 16.457 33.806 16.703 C 33.498 16.888 33.344 17.165 33.344 17.535 L 34.13 46.24 C 34.13 46.548 34.284 46.818 34.592 47.049 C 34.9 47.28 35.27 47.396 35.701 47.396 L 44.253 47.396 C 44.684 47.396 45.046 47.28 45.339 47.049 C 45.632 46.818 45.793 46.548 45.824 46.24 Z"/>
+          </svg>
+          <div class="contsub-info-wtch">
+            <div class="cont-info-wtch">
+              <div class="title-wtch">{$word->private_video}</div>
+              <div class="message-wtch">{$word->video_private_text}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php } ?>
+    <?php } else { ?>
+    <div class="video-processing">
+      <div class="vertical-center margin-auto">
+        <div class="cont-block-wtch">
+          <svg class="margin-l10 w-20" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M 40 4.5 C 46.441 4.5 52.38 6.087 57.819 9.261 C 63.258 12.435 67.565 16.742 70.739 22.181 C 73.913 27.62 75.5 33.559 75.5 40 C 75.5 46.441 73.913 52.38 70.739 57.819 C 67.565 63.258 63.258 67.565 57.819 70.739 C 52.38 73.913 46.441 75.5 40 75.5 C 33.559 75.5 27.62 73.913 22.181 70.739 C 16.742 67.565 12.435 63.258 9.261 57.819 C 6.087 52.38 4.5 46.441 4.5 40 C 4.5 33.559 6.087 27.62 9.261 22.181 C 12.435 16.742 16.742 12.435 22.181 9.261 C 27.62 6.087 33.559 4.5 40 4.5 Z M 45.917 62.141 L 45.917 53.359 C 45.917 52.927 45.778 52.565 45.501 52.272 C 45.223 51.98 44.884 51.833 44.484 51.833 L 35.609 51.833 C 35.208 51.833 34.854 51.987 34.546 52.296 C 34.237 52.604 34.083 52.958 34.083 53.359 L 34.083 62.141 C 34.083 62.542 34.237 62.896 34.546 63.204 C 34.854 63.513 35.208 63.667 35.609 63.667 L 44.484 63.667 C 44.884 63.667 45.223 63.52 45.501 63.228 C 45.778 62.935 45.917 62.573 45.917 62.141 Z M 45.824 46.24 L 46.656 17.535 C 46.656 17.165 46.502 16.888 46.194 16.703 C 45.886 16.457 45.516 16.333 45.085 16.333 L 34.915 16.333 C 34.484 16.333 34.114 16.457 33.806 16.703 C 33.498 16.888 33.344 17.165 33.344 17.535 L 34.13 46.24 C 34.13 46.548 34.284 46.818 34.592 47.049 C 34.9 47.28 35.27 47.396 35.701 47.396 L 44.253 47.396 C 44.684 47.396 45.046 47.28 45.339 47.049 C 45.632 46.818 45.793 46.548 45.824 46.24 Z"/>
+          </svg>
+          <div class="contsub-info-wtch">
+            <div class="cont-info-wtch">
+              <div class="title-wtch">{$word->video_not_approved}</div>
+              <div class="message-wtch">{$word->video_approve_text}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php } ?>
+    <?php } else { ?>
+    <div class="video-processing">
+      <div class="vertical-center margin-auto">
+        <div class="cont-block-wtch">
+          <svg class="margin-l10 w-20" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M 40 4.5 C 46.441 4.5 52.38 6.087 57.819 9.261 C 63.258 12.435 67.565 16.742 70.739 22.181 C 73.913 27.62 75.5 33.559 75.5 40 C 75.5 46.441 73.913 52.38 70.739 57.819 C 67.565 63.258 63.258 67.565 57.819 70.739 C 52.38 73.913 46.441 75.5 40 75.5 C 33.559 75.5 27.62 73.913 22.181 70.739 C 16.742 67.565 12.435 63.258 9.261 57.819 C 6.087 52.38 4.5 46.441 4.5 40 C 4.5 33.559 6.087 27.62 9.261 22.181 C 12.435 16.742 16.742 12.435 22.181 9.261 C 27.62 6.087 33.559 4.5 40 4.5 Z M 45.917 62.141 L 45.917 53.359 C 45.917 52.927 45.778 52.565 45.501 52.272 C 45.223 51.98 44.884 51.833 44.484 51.833 L 35.609 51.833 C 35.208 51.833 34.854 51.987 34.546 52.296 C 34.237 52.604 34.083 52.958 34.083 53.359 L 34.083 62.141 C 34.083 62.542 34.237 62.896 34.546 63.204 C 34.854 63.513 35.208 63.667 35.609 63.667 L 44.484 63.667 C 44.884 63.667 45.223 63.52 45.501 63.228 C 45.778 62.935 45.917 62.573 45.917 62.141 Z M 45.824 46.24 L 46.656 17.535 C 46.656 17.165 46.502 16.888 46.194 16.703 C 45.886 16.457 45.516 16.333 45.085 16.333 L 34.915 16.333 C 34.484 16.333 34.114 16.457 33.806 16.703 C 33.498 16.888 33.344 17.165 33.344 17.535 L 34.13 46.24 C 34.13 46.548 34.284 46.818 34.592 47.049 C 34.9 47.28 35.27 47.396 35.701 47.396 L 44.253 47.396 C 44.684 47.396 45.046 47.28 45.339 47.049 C 45.632 46.818 45.793 46.548 45.824 46.24 Z"/>
+          </svg>
+          <div class="contsub-info-wtch margin-r10">
+            <div class="cont-info-wtch">
+              <?php if($TEMP['#video']['broadcast'] == 0){ ?>
+              <div class="title-wtch">{$word->video_deleted}</div>
+              <div class="message-wtch">{$word->content_longer_available_because_removed}</div>
+              <?php } else { ?>
+              <div class="title-wtch">{$word->this_direct_ended}</div>
+              <div class="message-wtch">{$word->live_ended_author_decided_not_save}</div>
+              <?php } ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php } ?>
+  </div>
+</body>
+</html>

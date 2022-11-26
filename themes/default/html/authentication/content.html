@@ -1,0 +1,219 @@
+<div class="login-page">
+	<div class="login-form margin-auto text-center">
+	   	<div class="cont-login-center">
+	    	<div class="border-radius-4 padding-20 border-all border-primary">
+	    		<h2 class="margin-b10 color-secondary">{$title}</h2>
+				<p class="color-secondary">{$word->we_have_sent_code}</p>
+				<div class="cont-group">
+					<label class="display-flex group-title color-secondary">{$word->confirm_code}</label>
+					<div class="display-flex">
+						<input class="cont-control input_key number h-36 text-center border-focus-blue background-secondary color-secondary" type="text" id="one" maxlength="1" value="{$desone}" required>
+						<input class="cont-control input_key number h-36 text-center margin-l10 border-focus-blue background-secondary color-secondary" type="text" id="two" maxlength="1" value="{$destwo}" required>
+						<input class="cont-control input_key number h-36 text-center margin-l10 border-focus-blue background-secondary color-secondary" type="text" id="three" maxlength="1" value="{$desthree}" required>
+						<input class="cont-control input_key number h-36 text-center margin-l10 border-focus-blue background-secondary color-secondary" type="text" id="four" maxlength="1" value="{$desfour}" required>
+						<input class="cont-control input_key number h-36 text-center margin-l10 border-focus-blue background-secondary color-secondary" type="text" id="five" maxlength="1" value="{$desfive}" required>
+						<input class="cont-control input_key number h-36 text-center margin-l10 border-focus-blue background-secondary color-secondary" type="text" id="six" maxlength="1" value="{$dessix}" required>
+					</div>
+					<div class="color-red text-left text-error"></div>
+					<div class="margin-t10 text-left">
+						<button class="btn-trans color-blue underline-hover" id="resend-{$type}">{$word->resend_code}</button>
+					</div>
+				</div>
+				<div class="cont-group">
+					<button class="btn-trans background-red cursor-disabled hover-opacity w-100 margin-b20 border-radius-4 padding-10" id="to-access"<?php echo(empty($TEMP['#descode'])) ? ' disabled' : ''?>>
+						<span class="color-white">{$word->send}</span>
+						<div class="tb_content-spinner-circle">
+							<div class="tb_spinner-circle"></div>
+						</div>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<ul class="container-bubbles">
+	<?php foreach ($TEMP['#bubbles']['avatar'] as $key => $avatar){ ?>
+	<li class="bubble-<?php echo $key;?>">
+		<img id="bubble-<?php echo $key;?>" src="<?php echo $avatar; ?>">
+	</li>
+	<?php } ?>
+</ul> 
+<script>
+var TI = D.querySelectorAll('.input_key'),
+	TN = D.querySelectorAll('.number'),
+	TO = D.querySelector('#one'),
+	TT = D.querySelector('#two'),
+	TQ = D.querySelector('#three'),
+	TU = D.querySelector('#four'),
+	TV = D.querySelector('#five'),
+	TS = D.querySelector('#six'),
+	TB = D.querySelector('#to-access'),
+	TM = "{$code}",
+	TW = function(el, pos) {
+	    el.value = el.value;
+	    if (el.createTextRange) {
+	        var range = el.createTextRange();
+	   	    range.move('character', pos);
+	        range.select();
+	        return true;
+	    } else {
+	        if (el.selectionStart || el.selectionStart === 0) {
+	            el.focus();
+	            el.setSelectionRange(pos, pos);
+	            return true;
+	        } else  {
+	            el.focus();
+	            return false;
+	        }
+	    }
+	},
+	TG = function(el) {
+	 	var pos = 0;
+	 	if (el.selectionStart || el.selectionStart == 0) {
+	  		pos = el.selectionStart;
+	 	} else if(D.selection) {
+	  		el.focus ();
+	  		var Sel = D.selection.createRange();
+	  		Sel.moveStart ('character', -el.value.length);
+	  		pos = Sel.text.length;
+	 	}
+	 	return pos;
+	},
+	TF = function(){
+		TX = !1;
+		var TC = TO.value+TT.value+TQ.value+TU.value+TV.value+TS.value,
+			TZ = TO.parentNode,
+			TH = hasClass(TZ, 'cont-group') ? TZ : TZ.parentNode;
+		if(TO.value == '' || TT.value == '' || TQ.value == '' || TU.value == '' || TV.value == '' || TS.value == ''){
+			for (var j = 0, i = TI.length; j < i; j++){
+				var el = TI[j];
+				if(el.value == ''){
+					addClass(el, 'border-red'), addClass(el, 'boxshadow-red');
+				}
+			}
+			TH.querySelector('.text-error').innerText = '*{$word->this_field_is_empty}';
+			return false;
+		} else {
+			for (var j = 0, i = TI.length; j < i; j++) {
+				var el = TI[j],
+					TZ = el.parentNode,
+					TH = hasClass(TZ, 'cont-group') ? TZ : TZ.parentNode;
+				if(el.value != '')
+					TH.querySelector('.text-error').innerText = "", removeClass(el, 'border-red'), removeClass(el, 'boxshadow-red');
+			}
+		}
+		addClass(TB, 'tb_spinner-is-loading');
+		TB.setAttribute('disabled', true);
+		Req("{$url->{req/to-access/verify-{$type}}}", function(e){
+			if(e.status == 200){
+				timeDelay(function(){
+					if(e.url == 'settings'){
+						preloadPage("&one=settings&two=general<?php echo(Specific::Admin()) ? '&id={$id}' : ''?>");
+					} else {
+						window.location = e.url;
+					}
+				}, 2000)
+			} else {
+				removeClass(TB, 'tb_spinner-is-loading');
+				TB.removeAttribute('disabled');
+				for (var j = 0, i = TI.length; j < i; j++){
+					var el = TI[j];
+					addClass(el, 'border-red'), addClass(el, 'boxshadow-red');
+				}
+				TH.querySelector('.text-error').innerText = '*'+e.message;
+			}
+		}, "POST", "&ecode=" + TC + "&id={$id}&to={$to}")
+	},
+	TX = !1,
+	TY = "{$bubbles}".split(',');
+<?php echo(empty($TEMP['#descode'])) ? 'TO.focus()' : 'TF()'?>, timeDelay(function(){
+	if(TY.length > 0){
+		Req("{$url->{req/to-access/bubbles}}", function(e){
+			if(e.status == 200){
+				TY = e.bubbles;
+				for (var j = 0, i = e.bubble.length; j < i; j++){
+					var av = e.bubble[j],
+						el = D.querySelector('#bubble-'+j);
+					if(el){
+						el.setAttribute('src', av);
+					} else {
+						D.querySelector('.container-bubbles').innerHTML += '<li class="bubble-'+j+'"><img id="bubble-'+j+'" src="'+av+'"/></li>'
+					}
+				}
+			}
+		}, "POST", "&bubbles=" + TY)
+	}
+}, 14000, 1), addEvent(D, 'keydown', function(e){
+	if((e.which == 13 || e.keyCode == 13) && TX){
+		FF();
+	}
+}), addEvent(TB, 'click', TF), addEvent(D.querySelector('#resend-{$type}'), 'click', function(){
+	var self = this;
+	self.setAttribute('disabled', true);
+	self.innerText = "{$word->please_wait}";
+	Req("{$url->{req/to-access/resend-{$type}}}", function(e){
+		var clss = e.status == 200 ? 'color-green' : 'color-red';
+		if(e.status == 200 || e.status == 400){
+			TM = e.ecode, addClass(self, clss), self.innerText = e.message;
+			timeDelay(function(){
+				removeClass(self, clss)
+				self.innerText = "{$word->resend_code}", self.removeAttribute('disabled');
+			}, 3000)
+		} else {
+			self.innerText = "{$word->resend_code}", self.removeAttribute('disabled'), loadAlert(e.message, 1);
+		}
+	}, "POST", "&code=" + TM + "&id={$id}")
+});
+for(var j = 0, i = TN.length; j < i; j++) addEvent(TN[j], 'input', function(){
+	var self = this;
+	if(self.value == ''){
+		TB.setAttribute('disabled', true), TX = !1;
+	} else {
+		self.value = self.value.replace(/[^0-9]/gi, '');
+	}
+});
+for(var j = 0, i = TN.length; j < i; j++) addEvent(TN[j], 'paste', function(e){
+	var TD = (e.clipboardData || window.clipboardData).getData('text');
+	if(!/[^0-9]/gi.test(TD)){
+		TO.value = TD.slice(0,1), TT.value = TD.slice(1,2), TQ.value = TD.slice(2,3), TU.value = TD.slice(3,4), TV.value = TD.slice(4,5), TS.value = TD.slice(5,6), TW(TI[TI.length-1], 1), TF();
+	}
+});
+for (var j = 0, i = TI.length; j < i; j++) addEvent(TI[j], 'keyup', function(e){
+	var TK = e.which || e.keyCode,
+		ctrlKey = e.ctrlKey || e.metaKey;
+	if(TK != 13 && TK != 8 && TK != 37 && TK != 39){
+		if(TO.value != '' && TT.value != '' && TQ.value != '' && TU.value != '' && TV.value != '' && TS.value != ''){
+			TB.removeAttribute('disabled'), TX = !0;
+		}
+	}
+});
+for (var j = 0, i = TI.length; j < i; j++) addEvent(TI[j], 'keydown', function(e){
+	var self = this,
+		TZ = self.parentNode,
+		TH = hasClass(TZ, 'cont-group') ? TZ : TZ.parentNode,
+		TR = Array.prototype.slice.call(TI),
+		TP = TR.indexOf(self),
+		TE = TP+1,
+		TK = e.which || e.keyCode,
+		ctrlKey = e.ctrlKey || e.metaKey,
+		TL = function(){
+			timeDelay(function(){
+				TW(TI[TP-1], TI[TP-1].value.length)
+			})
+		};
+	if(TK != 13 && TK != 8 && TK != 37 && TK != 39 && (TK > 47 && TK < 58) && !(ctrlKey && TK == 86)){
+		self.value.length == 1 && TE < TR.length && (TW(TI[TE], TI[TE].value.length)), removeClass(self, 'border-red'), removeClass(self, 'boxshadow-red'), TH.querySelector('.text-error').innerText = "";
+	} else if(TK == 8 && TP != 0){
+		if(TO.value == '' || TT.value == '' || TQ.value == '' || TU.value == '' || TV.value == '' || TS.value == ''){
+			TB.setAttribute('disabled', true), TX = !1;
+		}
+		TL();
+	} else if(TK == 37 && TP > 0){
+		TL();
+	} else if(TK == 39 && TE < TR.length && (TG(self) == 1 && self.value != '' || self.value == '')){
+		timeDelay(function(){
+			TW(TI[TE], TI[TE].value.length);
+		})
+	}
+});
+</script>

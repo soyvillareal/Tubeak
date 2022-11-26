@@ -1,0 +1,217 @@
+<div class="settings-watermark-row margin-left-auto margin-right-auto margin-t20">
+		<div class="settings-preview-container w-100 position-relative" id="watermark-preview-container">
+			<img src="{$theme->{images/video-player.jpg}}">
+			<div class="settings-watermark-area position-absolute" id="watermark-area">
+				<svg class="color-red<?php echo(!empty($TEMP['#data']['watermark'])) ? ' hidden' : ''; ?>" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg">
+				  	<polygon fill="currentColor" points="22.28 6 6 22.28 6 27.468 27.468 6"/>
+				  	<path fill="currentColor" d="M 9.667 6 C 7.65 6 6 7.65 6 9.667 L 6 13.343 L 13.343 6 L 9.667 6 Z"/>
+				  	<polygon fill="currentColor" points="352.213,1.6 352.213,1.6 352.213,1.6"/>
+				  	<polygon fill="currentColor" points="17.532 39 22.72 39 39 22.72 39 17.532"/>
+				  	<path fill="currentColor" d="M 36.269 6.138 L 6.138 36.269 C 6.303 36.901 6.623 37.469 7.073 37.919 L 7.081 37.928 C 7.531 38.377 8.099 38.697 8.731 38.862 L 38.862 8.731 C 38.523 7.467 37.533 6.477 36.269 6.138 Z"/>
+				  	<path fill="currentColor" d="M 35.333 39 C 36.342 39 37.259 38.588 37.919 37.928 C 38.588 37.259 39 36.342 39 35.333 L 39 31.658 L 31.658 39 L 35.333 39 Z"/>
+				</svg>
+               	<img id="image-watermark"<?php echo(empty($TEMP['#data']['watermark'])) ? ' class="hidden"' : ''; ?> src="{$watermark}">
+            </div>
+        </div>
+        <p class="settings-watermark-note font-low margin-t5 color-secondary">
+            <?php echo(empty($TEMP['#data']['watermark'])) ? '{$word->watermark_appear_videos_bottom_right_player}' : '{$word->watermark_appear_all_videos}'; ?>
+        </p>
+        <button class="color-blue btn-trans settings-channel-watermark margin-t5 padding-10 font-medium font-uppercase font-bold ellipsis-horizontal" id="choose-image-cancel"<?php echo(empty($TEMP['#data']['watermark'])) ? ' disabled' : ''; ?>>
+	    	{$word->delete}
+		</button>
+        <button class="color-blue btn-trans settings-channel-watermark margin-t5 padding-10 font-medium font-uppercase font-bold ellipsis-horizontal" id="choose-image-button">
+        	<?php echo(empty($TEMP['#data']['watermark'])) ? '{$word->choose_image}' : '{$word->replace}'; ?>
+        </button>
+	    <div id="upload-file-watermark"<?php echo(empty(!$TEMP['#data']['watermark'])) ? ' class="hidden"' : ''; ?>>
+	        <p class="font-medium color-secondary">
+	            {$word->adding_watermark_videos_great_step_increase} 
+	        </p>
+	        <span class="color-tertiary font-low">
+	            {$word->alert_watermark_file}
+	        </span>
+	    </div>
+	    <div id="modify-file-watermark"<?php echo(empty($TEMP['#data']['watermark'])) ? ' class="hidden"' : ''; ?>>
+			<div class="cont-subsection-watermark font-low margin-b10 color-secondary position-relative">
+	            <span class="color-secondary">{$word->display_time}</span>
+	            <span class="container-tooltip" data-toggle="tooltip">
+	            	<button class="color-secondary btn-trans margin-t5">
+			            <svg class="icon-vhm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			              	<path fill="currentColor" d="M 13.417 17.313 L 13.417 15.188 C 13.417 15.084 13.383 14.999 13.317 14.933 C 13.251 14.867 13.166 14.833 13.063 14.833 L 10.938 14.833 C 10.834 14.833 10.749 14.867 10.683 14.933 C 10.617 14.999 10.583 15.084 10.583 15.188 L 10.583 17.313 C 10.583 17.416 10.617 17.501 10.683 17.567 C 10.749 17.633 10.834 17.667 10.938 17.667 L 13.063 17.667 C 13.166 17.667 13.251 17.633 13.317 17.567 C 13.383 17.501 13.417 17.416 13.417 17.313 Z M 16.25 9.875 C 16.25 9.226 16.045 8.624 15.636 8.071 C 15.226 7.518 14.715 7.09 14.103 6.787 C 13.49 6.485 12.863 6.333 12.221 6.333 C 10.428 6.333 9.06 7.119 8.115 8.691 C 8.005 8.868 8.034 9.023 8.204 9.156 L 9.665 10.262 C 9.716 10.307 9.786 10.329 9.875 10.329 C 9.993 10.329 10.085 10.285 10.152 10.196 C 10.543 9.694 10.86 9.355 11.104 9.178 C 11.354 9.001 11.672 8.912 12.055 8.912 C 12.41 8.912 12.725 9.008 13.002 9.2 C 13.278 9.392 13.417 9.609 13.417 9.853 C 13.417 10.133 13.343 10.358 13.195 10.528 C 13.048 10.698 12.797 10.864 12.443 11.026 C 11.978 11.233 11.552 11.552 11.164 11.983 C 10.777 12.415 10.583 12.878 10.583 13.372 L 10.583 13.771 C 10.583 13.874 10.617 13.959 10.683 14.025 C 10.749 14.092 10.834 14.125 10.938 14.125 L 13.063 14.125 C 13.166 14.125 13.251 14.092 13.317 14.025 C 13.383 13.959 13.417 13.874 13.417 13.771 C 13.417 13.631 13.496 13.448 13.655 13.223 C 13.813 12.998 14.014 12.815 14.258 12.675 C 14.494 12.542 14.675 12.437 14.8 12.36 C 14.926 12.282 15.095 12.153 15.309 11.972 C 15.523 11.792 15.687 11.614 15.802 11.441 C 15.916 11.268 16.019 11.044 16.112 10.771 C 16.204 10.498 16.25 10.2 16.25 9.875 Z M 20.5 12 C 20.5 13.542 20.12 14.964 19.36 16.267 C 18.6 17.569 17.569 18.6 16.267 19.36 C 14.964 20.12 13.542 20.5 12 20.5 C 10.458 20.5 9.036 20.12 7.733 19.36 C 6.431 18.6 5.4 17.569 4.64 16.267 C 3.88 14.964 3.5 13.542 3.5 12 C 3.5 10.458 3.88 9.036 4.64 7.733 C 5.4 6.431 6.431 5.4 7.733 4.64 C 9.036 3.88 10.458 3.5 12 3.5 C 13.542 3.5 14.964 3.88 16.267 4.64 C 17.569 5.4 18.6 6.431 19.36 7.733 C 20.12 9.036 20.5 10.458 20.5 12 Z"></path>
+			            </svg>
+			        </button>
+		    		<div class="cont-paper-tooltip" hidden>
+		    			<div class="container-tooltip-placeholder font-medium background-primary border-radius-4 padding-20 color-secondary">    
+						    {$word->customize_watermark_displayed_videos}
+					  	</div>
+					</div>
+				</span>
+	        </div>
+	        	<div class="cont-start-video-time">
+	              	<input class="radio-paper time-start-watermark hidden" type="radio" name="start-watermark" id="entire-video-radio-button" value="all"<?php echo($TEMP['#watermark_start'] == 'all') ? ' checked' : '';?>>
+	              	<label class="color-secondary" for="entire-video-radio-button">
+	                	{$word->all_video}
+	              	</label>
+	            </div>
+	            <div class="cont-custom-video-time">
+	              	<input class="radio-paper time-start-watermark hidden" type="radio" name="start-watermark" id="custom-start-time-radio-button" value="custom" <?php echo($TEMP['#isStarNumeric']) ? ' checked' : '';?>>
+	              	<label class="color-secondary" for="custom-start-time-radio-button">
+	                	{$word->custom_start_time}
+	                	<div id="custom-start-time-input-container" class="custom-time-watermark display-none margin-t10">
+			                <input class="background-tertiary border-radius-4 padding-5 mw-80 text-center border-all color-secondary border-tertiary" id="custom-start-time-input" placeholder="00:00" value="<?php echo($TEMP['#isStarNumeric']) ? $TEMP['#watermark_start'] : '00:05';?>">
+			                <div id="custom-start-time-error-message" class="color-red text-left hidden">*{$word->invalid_custom_start_time}</div>
+			            </div>
+	              	</label>
+	          	</div>
+	            <div class="cont-end-video-time position-relative">
+	              	<input class="radio-paper time-start-watermark hidden" type="radio" name="start-watermark" id="end-of-video-radio-button" value="end"<?php echo($TEMP['#watermark_start'] == 'end') ? ' checked' : '';?>>
+	              	<label class="color-secondary" for="end-of-video-radio-button">
+		                {$word->end_of_video}
+	              	</label>
+	              	<span class="container-tooltip" data-toggle="tooltip">
+			           	<button class="color-secondary btn-trans">
+					        <svg class="icon-vhm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+				              	<path fill="currentColor" d="M 13.417 17.313 L 13.417 15.188 C 13.417 15.084 13.383 14.999 13.317 14.933 C 13.251 14.867 13.166 14.833 13.063 14.833 L 10.938 14.833 C 10.834 14.833 10.749 14.867 10.683 14.933 C 10.617 14.999 10.583 15.084 10.583 15.188 L 10.583 17.313 C 10.583 17.416 10.617 17.501 10.683 17.567 C 10.749 17.633 10.834 17.667 10.938 17.667 L 13.063 17.667 C 13.166 17.667 13.251 17.633 13.317 17.567 C 13.383 17.501 13.417 17.416 13.417 17.313 Z M 16.25 9.875 C 16.25 9.226 16.045 8.624 15.636 8.071 C 15.226 7.518 14.715 7.09 14.103 6.787 C 13.49 6.485 12.863 6.333 12.221 6.333 C 10.428 6.333 9.06 7.119 8.115 8.691 C 8.005 8.868 8.034 9.023 8.204 9.156 L 9.665 10.262 C 9.716 10.307 9.786 10.329 9.875 10.329 C 9.993 10.329 10.085 10.285 10.152 10.196 C 10.543 9.694 10.86 9.355 11.104 9.178 C 11.354 9.001 11.672 8.912 12.055 8.912 C 12.41 8.912 12.725 9.008 13.002 9.2 C 13.278 9.392 13.417 9.609 13.417 9.853 C 13.417 10.133 13.343 10.358 13.195 10.528 C 13.048 10.698 12.797 10.864 12.443 11.026 C 11.978 11.233 11.552 11.552 11.164 11.983 C 10.777 12.415 10.583 12.878 10.583 13.372 L 10.583 13.771 C 10.583 13.874 10.617 13.959 10.683 14.025 C 10.749 14.092 10.834 14.125 10.938 14.125 L 13.063 14.125 C 13.166 14.125 13.251 14.092 13.317 14.025 C 13.383 13.959 13.417 13.874 13.417 13.771 C 13.417 13.631 13.496 13.448 13.655 13.223 C 13.813 12.998 14.014 12.815 14.258 12.675 C 14.494 12.542 14.675 12.437 14.8 12.36 C 14.926 12.282 15.095 12.153 15.309 11.972 C 15.523 11.792 15.687 11.614 15.802 11.441 C 15.916 11.268 16.019 11.044 16.112 10.771 C 16.204 10.498 16.25 10.2 16.25 9.875 Z M 20.5 12 C 20.5 13.542 20.12 14.964 19.36 16.267 C 18.6 17.569 17.569 18.6 16.267 19.36 C 14.964 20.12 13.542 20.5 12 20.5 C 10.458 20.5 9.036 20.12 7.733 19.36 C 6.431 18.6 5.4 17.569 4.64 16.267 C 3.88 14.964 3.5 13.542 3.5 12 C 3.5 10.458 3.88 9.036 4.64 7.733 C 5.4 6.431 6.431 5.4 7.733 4.64 C 9.036 3.88 10.458 3.5 12 3.5 C 13.542 3.5 14.964 3.88 16.267 4.64 C 17.569 5.4 18.6 6.431 19.36 7.733 C 20.12 9.036 20.5 10.458 20.5 12 Z"></path>
+				            </svg>
+				        </button>
+			    		<div class="cont-paper-tooltip" hidden>
+				    		<div class="container-tooltip-placeholder font-medium background-primary border-radius-4 padding-20 color-secondary">
+							    {$word->watermarks_15_seconds_less_video}
+						  	</div>
+						</div>
+					</span>
+	          	</div>
+	            <button class="color-blue btn-trans settings-channel-watermark padding-10 font-medium font-uppercase font-bold ellipsis-horizontal" id="choose-start-watermark">
+					{$word->save}
+				</button>
+		</div>
+	<input type="file" id="upload-watermark" class="hidden" name="watermark" accept="image/png, image/jpeg, image/jpg, image/jpg, image/gif">
+</div>
+<script>
+var WB = D.querySelector('#choose-image-cancel'),
+	WH = D.querySelector('#choose-image-button'),
+	WU = D.querySelector('#upload-watermark'),
+	WR = D.querySelector('#modify-file-watermark'),
+	WD = D.querySelector('#upload-file-watermark'),
+	WV = D.querySelector('#image-watermark'),
+	WX = D.querySelector('#watermark-area svg'),
+	WO = D.querySelector('.settings-watermark-note'),
+	WK = D.querySelector('#custom-start-time-error-message'),
+	WP = function(){
+		removeClass(WD, 'hidden'), addClass(WR, 'hidden'), WU.value = "", removeClass(WX, 'hidden'), addClass(WV, 'hidden'), WV.removeAttribute('src'), WO.innerText = "{$word->watermark_appear_videos_bottom_right_player}";
+	},
+	WS = function(){
+		addClass(WD, 'hidden'), removeClass(WR, 'hidden'), removeClass(WV, 'hidden'), addClass(WX, 'hidden'), WB.removeAttribute('disabled'), WO.innerText = "{$word->watermark_appear_all_videos}", D.querySelector('#entire-video-radio-button').setAttribute('checked', true);
+	},
+	WT = null;
+addEvent(D.querySelector('#choose-start-watermark'), 'click', function(){
+	var self = this,
+		cus = D.querySelector('.time-start-watermark:checked').value,
+		start = cus == 'custom' ? D.querySelector('#custom-start-time-input').value : cus;
+	self.innerText = "{$word->please_wait}";
+	Req("{$url->{req/user/water-start}}?token={#token_session}&by_id={$data->id}", function(e){
+	    if (e.status == 200) {
+			loadAlert(e.message);
+	    } else {
+	      	addClass(WH, 'el-background'), clearTimeout(WT), WT = timeDelay(function(){
+	      		removeClass(WH, 'el-background')
+	      	},3000), loadAlert(e.error, 1);
+		}
+		self.innerText = "{$word->save}";
+    }, "POST", "&start=" + start)
+}), addEvent(WH, 'click', function(){
+	if(!WU.files[0]){
+		autoClick(WU);
+	} else {
+		WH.innerText = "{$word->please_wait}";
+		Req("{$url->{req/user/upload}}?token={#token_session}&by_id={$data->id}", function(e){
+		    if (e.status == 200) {
+			    WU.value = "", WH.innerText = "{$word->replace}", loadAlert(e.message);
+			} else if(e.status == 401){
+	            WH.innerText = "{$word->save}", loadAlert(e.error, 1);
+	        } else {
+		      	WH.innerText = "{$word->save}", loadAlert("{$word->error}", 1);
+		    }
+	    }, "POST", WU, "watermark")
+	}
+}), addEvent(WU, 'change', function(){
+	var el = D.createElement("img");
+	readURL(el, WU), addEvent(el, 'load', function(){
+		if(this.width.toFixed(0) != this.height.toFixed(0) && this.width.toFixed(0) > 150 && this.height.toFixed(0) > 150){
+			TB_ShowElement('warning-alert', 'warning-alert','yes_next','{$word->confirmation}',1,'normal','{$word->continue}',0,0,'{$word->this_image_not_valid_watermark}');
+		} else {
+			readURL(WV, WU), WH.innerText = "{$word->save}", WS()
+		}
+	})
+}), addEvent(WB, 'click', function(){
+	if(WU.files[0] || "{$watermark}" != "") {
+		TB_ShowElement('warning-alert', 'warning-alert','yes_delete','{$word->confirmation}',1,'normal','{$word->delete}',0,0,'{$word->are_you_remove_watermark}');
+	}
+}), addEvent(D.querySelector('#custom-start-time-input'), 'input', function(){
+	var self = this,
+		KH = self.value,
+		KA = KH.charAt(0),
+		KB = KH.charAt(1),
+		KC = KH.charAt(2),
+		KD = KH.charAt(3),
+		KE = KH.charAt(5),
+		KF = KH.charAt(6),
+		KW = KH.length < 6 ? KC : KE;
+	if(KW != ':' || KA > 2 || KB > 4 || KD > 5 || KF > 5 || KH.length > 8 || !/^([0-9])*$/.test(KH.slice(-1))){
+		removeClass(WK, 'hidden'), self.style.borderColor = "#CC0000";
+	} else if(KW == ':') {
+		addClass(WK, 'hidden'), self.style.borderColor = "";
+	}
+});
+function TB_ShowElement(type, el_content, button, by_id = 0, video_id = 0,price = 0, txt_btn = '', next_cont = '', extra, extra_new) {
+        var c = D.querySelector('#container_alerts'),
+            f = c.querySelector('#'+el_content),
+            h = c.querySelector('#beforeLoad'),
+            u = c.querySelector('#confirm-alert');
+        Req('{$url->{req/get-element}}', function(e) {
+            removeAllEvents(2), (button != 0 && type != 'warning-alert') && (D.querySelector('#'+button).innerText = txt_btn, D.querySelector('#'+button).removeAttribute('disabled'));
+            if (e.status == 200) {
+                    c.innerHTML = e.html;
+                    if(button == 'yes_next'){
+                    	addEvent(c.querySelector('.yes_next'), 'click', function(){
+                    		readURL(WV, WU), WH.innerText = "{$word->save}", WS(), c.querySelector('#'+type).style.display = "none";
+	                    })
+                    } else {
+                    	addEvent(c.querySelector('.yes_delete'), 'click', function(){
+	                    	if(WU.files[0]){
+	                    		if("{$watermark}" != ""){
+	                    			WV.setAttribute('src', "{$watermark}"), WU.value = "", WH.innerText = "{$word->replace}";
+	                    		} else {
+	                    			WP();
+	                    		}
+	                    	} else {
+	                    		Req("{$url->{req/delete/watermark}}", function(e){
+								    if (e.status == 200) {
+								      	WP(), WH.innerText = "{$word->choose_image}", loadAlert(e.message);
+								    } else if(e.status == 401){
+							            loadAlert(e.error, 1);
+							        } else {
+								      	loadAlert("{$word->error}", 1);
+								    }
+								}, "POST", "&by_id={$data->id}")
+	                    	}
+	                    	c.querySelector('#'+type).style.display = "none";
+	                    })
+                    }
+                var TF = c.querySelector('#'+type);
+                TF.style.display = "block";
+                addEvent(TF.querySelector('[data-dismiss]'), "click", function(){
+                    (button == 'yes_next') && (WU.value = ""), TF.style.display = "none";
+                }, 2);
+            } else {
+                if(button != 0 && type != 'warning-alert'){
+                    D.querySelector('#'+button).innerText = txt_btn;
+                    D.querySelector('#'+button).removeAttribute('disabled');
+                } else if(h){
+                    h.remove();
+                }
+                loadAlert(e.error, 1);
+            }
+        },
+        "POST", "&type=" + type + "&actual_form=" + el_content + "&by_id=" + by_id + "&video_id=" + video_id + "&price=" + price + "&next_cont=" + next_cont + "&txt_btn=" + txt_btn + "&class_n=" + button + "&extra=" + extra + "&extra_new=" + extra_new); 
+    }
+</script>

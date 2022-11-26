@@ -1,0 +1,158 @@
+<div class="login-page">
+	<div class="login-form margin-auto text-center">
+    	<div class="cont-login-center">
+		    <div class="border-radius-4 padding-20 border-all border-primary">
+		   	    <h2 class="margin-b10 color-secondary">{$word->reset_your_password}</h2>
+				<div class="cont-group">
+					<label class="display-flex group-title color-secondary">{$word->password}</label>
+					<div class="position-relative">
+						<input class="cont-control border-focus-blue padding-right-30 input_key background-secondary color-secondary" type="password" id="password" required>
+						<button class="btn-trans display-flex color-grey binput-inleft" tabindex="-1">
+							<svg class="icon-little" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path fill="currentColor" d="M 19.714 12 C 18.696 10.361 17.421 9.135 15.887 8.323 C 16.296 9.045 16.5 9.826 16.5 10.667 C 16.5 11.951 16.06 13.05 15.179 13.964 C 14.299 14.877 13.239 15.333 12 15.333 C 10.761 15.333 9.701 14.877 8.821 13.964 C 7.94 13.05 7.5 11.951 7.5 10.667 C 7.5 9.826 7.704 9.045 8.113 8.323 C 6.579 9.135 5.304 10.361 4.286 12 C 5.176 13.424 6.293 14.557 7.636 15.401 C 8.978 16.245 10.433 16.667 12 16.667 C 13.567 16.667 15.022 16.245 16.364 15.401 C 17.707 14.557 18.824 13.424 19.714 12 Z M 12.482 8 C 12.482 7.861 12.435 7.743 12.342 7.646 C 12.248 7.549 12.134 7.5 12 7.5 C 11.163 7.5 10.445 7.811 9.845 8.432 C 9.246 9.054 8.946 9.799 8.946 10.667 C 8.946 10.806 8.993 10.924 9.087 11.021 C 9.181 11.118 9.295 11.167 9.429 11.167 C 9.563 11.167 9.676 11.118 9.77 11.021 C 9.864 10.924 9.911 10.806 9.911 10.667 C 9.911 10.069 10.115 9.559 10.523 9.135 C 10.932 8.712 11.424 8.5 12 8.5 C 12.134 8.5 12.248 8.451 12.342 8.354 C 12.435 8.257 12.482 8.139 12.482 8 Z M 21 12 C 21 12.236 20.933 12.476 20.799 12.719 C 19.862 14.316 18.601 15.595 17.017 16.557 C 15.434 17.519 13.761 18 12 18 C 10.239 18 8.566 17.517 6.983 16.552 C 5.399 15.587 4.138 14.309 3.201 12.719 C 3.067 12.476 3 12.236 3 12 C 3 11.764 3.067 11.524 3.201 11.281 C 4.138 9.691 5.399 8.413 6.983 7.448 C 8.566 6.483 10.239 6 12 6 C 13.761 6 15.434 6.483 17.017 7.448 C 18.601 8.413 19.862 9.691 20.799 11.281 C 20.933 11.524 21 11.764 21 12 Z"/>
+							</svg>
+						</button>
+						<div class="color-red text-left text-error"></div>
+					</div>
+				</div>
+				<div class="cont-group">
+					<label class="display-flex group-title color-secondary">{$word->confirm_password}</label>
+					<div class="position-relative">
+						<input class="cont-control border-focus-blue padding-right-30 input_key background-secondary color-secondary" type="password" id="re-password" required>
+						<button class="btn-trans display-flex color-grey binput-inleft" tabindex="-1">
+							<svg class="icon-little" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path fill="currentColor" d="M 19.714 12 C 18.696 10.361 17.421 9.135 15.887 8.323 C 16.296 9.045 16.5 9.826 16.5 10.667 C 16.5 11.951 16.06 13.05 15.179 13.964 C 14.299 14.877 13.239 15.333 12 15.333 C 10.761 15.333 9.701 14.877 8.821 13.964 C 7.94 13.05 7.5 11.951 7.5 10.667 C 7.5 9.826 7.704 9.045 8.113 8.323 C 6.579 9.135 5.304 10.361 4.286 12 C 5.176 13.424 6.293 14.557 7.636 15.401 C 8.978 16.245 10.433 16.667 12 16.667 C 13.567 16.667 15.022 16.245 16.364 15.401 C 17.707 14.557 18.824 13.424 19.714 12 Z M 12.482 8 C 12.482 7.861 12.435 7.743 12.342 7.646 C 12.248 7.549 12.134 7.5 12 7.5 C 11.163 7.5 10.445 7.811 9.845 8.432 C 9.246 9.054 8.946 9.799 8.946 10.667 C 8.946 10.806 8.993 10.924 9.087 11.021 C 9.181 11.118 9.295 11.167 9.429 11.167 C 9.563 11.167 9.676 11.118 9.77 11.021 C 9.864 10.924 9.911 10.806 9.911 10.667 C 9.911 10.069 10.115 9.559 10.523 9.135 C 10.932 8.712 11.424 8.5 12 8.5 C 12.134 8.5 12.248 8.451 12.342 8.354 C 12.435 8.257 12.482 8.139 12.482 8 Z M 21 12 C 21 12.236 20.933 12.476 20.799 12.719 C 19.862 14.316 18.601 15.595 17.017 16.557 C 15.434 17.519 13.761 18 12 18 C 10.239 18 8.566 17.517 6.983 16.552 C 5.399 15.587 4.138 14.309 3.201 12.719 C 3.067 12.476 3 12.236 3 12 C 3 11.764 3.067 11.524 3.201 11.281 C 4.138 9.691 5.399 8.413 6.983 7.448 C 8.566 6.483 10.239 6 12 6 C 13.761 6 15.434 6.483 17.017 7.448 C 18.601 8.413 19.862 9.691 20.799 11.281 C 20.933 11.524 21 11.764 21 12 Z"/>
+							</svg>
+						</button>
+						<div class="color-red text-left text-error"></div>
+					</div>
+				</div>
+				<div class="cont-group">
+					<button class="btn-trans background-red cursor-disabled hover-opacity w-100 margin-b20 border-radius-4 padding-10" id="to-access" disabled>
+						<span class="color-white">{$word->change_password}</span>
+						<div class="tb_content-spinner-circle">
+							<div class="tb_spinner-circle"></div>
+						</div>
+					</button>
+				</div>
+				<div class="color-secondary">
+					{$word->got_your_password} <a class="hover-button color-for-hover" href="{$url->{login}}" target="_self">{$word->login_}</a>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>
+<ul class="container-bubbles">
+	<?php foreach ($TEMP['#bubbles']['avatar'] as $key => $avatar){ ?>
+	<li class="bubble-<?php echo $key;?>">
+		<img id="bubble-<?php echo $key;?>" src="<?php echo $avatar; ?>">
+	</li>
+	<?php } ?>
+</ul> 
+<script>
+var RI = D.querySelectorAll('.input_key'),
+	RV = D.querySelectorAll('.binput-inleft'),
+	RB = D.querySelector('#to-access'),
+	RM = D.querySelector('#password'),
+	RR = D.querySelector('#re-password'),
+	RF = function(){
+		RX = !1;
+		for (var j = 0, i = RI.length; j < i; j++) {
+			var el = RI[j];
+			if(el.value != '')
+				removeClass(el, 'border-red'), removeClass(el, 'boxshadow-red');
+		}
+		if((RM.value == '' || RR.value == '') && !RX){
+			for (var j = 0, i = RI.length; j < i; j++){
+				var el = RI[j];
+				if(el.value == '')
+					el.parentNode.querySelector('.text-error').innerText = '*{$word->this_field_is_empty}', addClass(el, 'border-red'), addClass(el, 'boxshadow-red');
+			}
+			return false;
+		}
+		addClass(RB, 'tb_spinner-is-loading');
+		RB.setAttribute('disabled', true);
+		Req("{$url->{req/to-access/reset-password}}", function(e){
+			if(e.status == 200){
+				preloadPage(e.url);
+			} else {
+				removeClass(RB, 'tb_spinner-is-loading');
+				RB.removeAttribute('disabled');
+				if(e.emptys != undefined){
+					for (var j = 0, i = e.emptys.length; j < i; j++){
+						var el = D.querySelector('#'+e.emptys[j]);
+						el.parentNode.querySelector('.text-error').innerText = '*{$word->this_field_is_empty}', addClass(el, 'border-red'), addClass(el, 'boxshadow-red');
+					}
+				}
+			}
+		}, "POST", "&password=" + RM.value + "&re-password=" + RR.value + "&code={$code}")
+	},
+	RX = !1,
+	RO = "{$bubbles}".split(',');
+RM.focus(), timeDelay(function(){
+	if(RO.length > 0){
+		Req("{$url->{req/to-access/bubbles}}", function(e){
+			if(e.status == 200){
+				RO = e.bubbles;
+				for (var j = 0, i = e.bubble.length; j < i; j++){
+					var RC = e.bubble[j],
+						el = D.querySelector('#bubble-'+j);
+					if(el){
+						el.setAttribute('src', RC);
+					} else {
+						D.querySelector('.container-bubbles').innerHTML += '<li class="bubble-'+j+'"><img id="bubble-'+j+'" src="'+RC+'"/></li>'
+					}
+				}
+			}
+		}, "POST", "&bubbles=" + RO)
+	}
+}, 14000, 1), addEvent(D, 'keydown', function(e){
+	if((e.which == 13 || e.keyCode == 13) && RX){
+		RF();
+	}
+}), addEvent(RB, 'click', RF);
+for (var j = 0, i = RV.length; j < i; j++) addEvent(RV[j], 'click', function(){
+	var self = this,
+		el = self.parentNode.querySelector('input'),
+		svg = self.querySelector('svg');
+	if(el.getAttribute('type') == 'password'){
+		svg.innerHTML = '<path fill="currentColor" d="M 8.575 15.348 L 9.358 14.089 C 8.776 13.714 8.32 13.241 7.992 12.67 C 7.664 12.098 7.5 11.494 7.5 10.857 C 7.5 10.137 7.704 9.467 8.113 8.848 C 6.579 9.545 5.304 10.595 4.286 12 C 5.404 13.536 6.834 14.652 8.575 15.348 Z M 12.482 8.571 C 12.482 8.452 12.435 8.351 12.342 8.268 C 12.248 8.185 12.134 8.143 12 8.143 C 11.163 8.143 10.445 8.409 9.845 8.942 C 9.246 9.475 8.946 10.113 8.946 10.857 C 8.946 10.976 8.993 11.077 9.087 11.161 C 9.181 11.244 9.295 11.286 9.429 11.286 C 9.563 11.286 9.676 11.244 9.77 11.161 C 9.864 11.077 9.911 10.976 9.911 10.857 C 9.911 10.345 10.115 9.908 10.523 9.545 C 10.932 9.182 11.424 9 12 9 C 12.134 9 12.248 8.958 12.342 8.875 C 12.435 8.792 12.482 8.69 12.482 8.571 Z M 16.128 6.866 C 16.128 6.908 16.125 6.935 16.118 6.946 C 15.408 8.071 14.35 9.759 12.944 12.009 C 11.538 14.259 10.483 15.943 9.78 17.062 L 9.288 17.857 C 9.221 17.952 9.127 18 9.007 18 C 8.926 18 8.478 17.792 7.661 17.375 C 7.554 17.315 7.5 17.232 7.5 17.125 C 7.5 17.054 7.647 16.795 7.942 16.348 C 6.984 15.961 6.102 15.446 5.295 14.804 C 4.488 14.161 3.79 13.432 3.201 12.616 C 3.067 12.432 3 12.226 3 12 C 3 11.774 3.067 11.568 3.201 11.384 C 4.225 9.985 5.498 8.881 7.018 8.071 C 8.538 7.262 10.199 6.857 12 6.857 C 12.596 6.857 13.199 6.908 13.808 7.009 L 14.35 6.143 C 14.417 6.048 14.511 6 14.632 6 C 14.665 6 14.725 6.018 14.813 6.054 C 14.9 6.089 15.003 6.135 15.124 6.192 C 15.244 6.248 15.355 6.304 15.455 6.357 C 15.556 6.411 15.661 6.466 15.772 6.522 C 15.882 6.579 15.948 6.613 15.968 6.625 C 16.075 6.685 16.128 6.765 16.128 6.866 Z M 16.5 10.857 C 16.5 11.685 16.235 12.439 15.706 13.121 C 15.177 13.802 14.478 14.292 13.607 14.589 L 16.42 10.107 C 16.473 10.375 16.5 10.625 16.5 10.857 Z M 21 12 C 21 12.208 20.933 12.414 20.799 12.616 C 20.538 12.997 20.173 13.429 19.704 13.911 C 18.7 14.935 17.536 15.729 16.214 16.295 C 14.891 16.86 13.487 17.143 12 17.143 L 12.743 15.964 C 14.163 15.857 15.477 15.449 16.686 14.741 C 17.895 14.033 18.904 13.119 19.714 12 C 18.944 10.935 18 10.06 16.882 9.375 L 17.515 8.375 C 18.151 8.756 18.762 9.211 19.348 9.741 C 19.934 10.271 20.417 10.818 20.799 11.384 C 20.933 11.586 21 11.792 21 12 Z"/>';
+		el.setAttribute('type', 'text');
+	} else {
+		svg.innerHTML = '<path fill="currentColor" d="M 19.714 12 C 18.696 10.361 17.421 9.135 15.887 8.323 C 16.296 9.045 16.5 9.826 16.5 10.667 C 16.5 11.951 16.06 13.05 15.179 13.964 C 14.299 14.877 13.239 15.333 12 15.333 C 10.761 15.333 9.701 14.877 8.821 13.964 C 7.94 13.05 7.5 11.951 7.5 10.667 C 7.5 9.826 7.704 9.045 8.113 8.323 C 6.579 9.135 5.304 10.361 4.286 12 C 5.176 13.424 6.293 14.557 7.636 15.401 C 8.978 16.245 10.433 16.667 12 16.667 C 13.567 16.667 15.022 16.245 16.364 15.401 C 17.707 14.557 18.824 13.424 19.714 12 Z M 12.482 8 C 12.482 7.861 12.435 7.743 12.342 7.646 C 12.248 7.549 12.134 7.5 12 7.5 C 11.163 7.5 10.445 7.811 9.845 8.432 C 9.246 9.054 8.946 9.799 8.946 10.667 C 8.946 10.806 8.993 10.924 9.087 11.021 C 9.181 11.118 9.295 11.167 9.429 11.167 C 9.563 11.167 9.676 11.118 9.77 11.021 C 9.864 10.924 9.911 10.806 9.911 10.667 C 9.911 10.069 10.115 9.559 10.523 9.135 C 10.932 8.712 11.424 8.5 12 8.5 C 12.134 8.5 12.248 8.451 12.342 8.354 C 12.435 8.257 12.482 8.139 12.482 8 Z M 21 12 C 21 12.236 20.933 12.476 20.799 12.719 C 19.862 14.316 18.601 15.595 17.017 16.557 C 15.434 17.519 13.761 18 12 18 C 10.239 18 8.566 17.517 6.983 16.552 C 5.399 15.587 4.138 14.309 3.201 12.719 C 3.067 12.476 3 12.236 3 12 C 3 11.764 3.067 11.524 3.201 11.281 C 4.138 9.691 5.399 8.413 6.983 7.448 C 8.566 6.483 10.239 6 12 6 C 13.761 6 15.434 6.483 17.017 7.448 C 18.601 8.413 19.862 9.691 20.799 11.281 C 20.933 11.524 21 11.764 21 12 Z"/>';
+		el.setAttribute('type', 'password');
+	}
+});
+for (var j = 0, i = RI.length; j < i; j++) addEvent(RI[j], 'keyup', function(e){
+	if(e.which != 13 || e.keyCode != 13){
+		var self = this,
+			RA = self.id,
+			RW = self.value;
+		if(RM.value != '' && RR.value != ''){
+			RB.removeAttribute('disabled');
+		} else {
+			RB.setAttribute('disabled', true)
+		}
+		if(RW == ''){
+			self.parentNode.querySelector('.text-error').innerText = "", removeClass(self, 'border-red'), removeClass(self, 'boxshadow-red'), RX = !1;
+			return false;
+		}
+		Req("{$url->{req/key-validate}}", function(e){
+			if(e.status == 200){
+				var msg = e.message;
+				if(msg == ''){
+					removeClass(self, 'border-red'), removeClass(self, 'boxshadow-red');
+				} else {
+					addClass(self, 'border-red'), addClass(self, 'boxshadow-red');
+				}
+				self.parentNode.querySelector('.text-error').innerText = msg, RX = !0;
+				if((RA == 'password' || RA == 're-password') && D.querySelector('#'+RA).value != '' && RM.value == RR.value){
+					RR.parentNode.querySelector('.text-error').innerText = "", removeClass(RR, 'border-red'), removeClass(RR, 'boxshadow-red');
+				}
+			} else {
+				loadAlert(e.message, 1);
+			}
+		}, "POST", "&input=" + RW + "&type=" + RA + "&password=" + RM.value + "&re-password=" + RR.value)
+	}
+});
+</script>

@@ -1,0 +1,454 @@
+<div class="profile-container">
+  <div class="cover-container hovered">
+    <div class="container-cover">
+      <img class="cover-img w-100" src="{$data->cover}" alt="{$data->username}">
+    </div>
+    <?php if ($TEMP['#loggedin'] === true && $TEMP['#is_owner'] == true) { ?> 
+    <div class="contsub-ediown position-absolute">
+      <div class="display-flex cont-inteditown">
+        <button class="contsub-ediown cont-ediown background-dreg padding-12 margin-r10 border-none border-radius-med" id="cover-image" data-title="{$word->modify_channel_layout}">
+          <svg class="vh-icon color-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M 12 10.462 C 12.826 10.462 13.533 10.732 14.12 11.274 C 14.707 11.816 15 12.468 15 13.231 C 15 13.994 14.707 14.646 14.12 15.188 C 13.533 15.729 12.826 16 12 16 C 11.174 16 10.467 15.729 9.88 15.188 C 9.293 14.646 9 13.994 9 13.231 C 9 12.468 9.293 11.816 9.88 11.274 C 10.467 10.732 11.174 10.462 12 10.462 Z M 19.333 6.462 C 20.069 6.462 20.698 6.702 21.219 7.183 C 21.74 7.663 22 8.244 22 8.923 L 22 17.538 C 22 18.218 21.74 18.798 21.219 19.279 C 20.698 19.76 20.069 20 19.333 20 L 4.667 20 C 3.931 20 3.302 19.76 2.781 19.279 C 2.26 18.798 2 18.218 2 17.538 L 2 8.923 C 2 8.244 2.26 7.663 2.781 7.183 C 3.302 6.702 3.931 6.462 4.667 6.462 L 7 6.462 L 7.531 5.154 C 7.663 4.84 7.905 4.569 8.255 4.341 C 8.606 4.114 8.965 4 9.333 4 L 14.667 4 C 15.035 4 15.394 4.114 15.745 4.341 C 16.095 4.569 16.337 4.84 16.469 5.154 L 17 6.462 L 19.333 6.462 Z M 12 17.538 C 13.285 17.538 14.384 17.117 15.297 16.274 C 16.21 15.431 16.667 14.417 16.667 13.231 C 16.667 12.045 16.21 11.03 15.297 10.188 C 14.384 9.345 13.285 8.923 12 8.923 C 10.715 8.923 9.616 9.345 8.703 10.188 C 7.79 11.03 7.333 12.045 7.333 13.231 C 7.333 14.417 7.79 15.431 8.703 16.274 C 9.616 17.117 10.715 17.538 12 17.538 Z"/>
+          </svg>
+        </button>
+        <?php if($TEMP['#repos_enabled'] == true) { ?>
+        <button class="contsub-ediown cont-ediown background-dreg padding-12 border-none border-radius-med" id="repos-img" data-title="{$word->modify_design_position}">
+          <svg class="vh-icon color-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path fill="currentColor" d="M 16.209 9.099 L 19.789 5.519 L 18.481 4.211 L 14.901 7.791 Z M 21.67 5.519 C 21.67 5.739 21.597 5.922 21.45 6.069 L 5.739 21.78 C 5.592 21.927 5.409 22 5.189 22 C 4.969 22 4.786 21.927 4.639 21.78 L 2.22 19.361 C 2.073 19.214 2 19.031 2 18.811 C 2 18.591 2.073 18.408 2.22 18.261 L 17.931 2.55 C 18.078 2.403 18.261 2.33 18.481 2.33 C 18.701 2.33 18.884 2.403 19.031 2.55 L 21.45 4.969 C 21.597 5.116 21.67 5.299 21.67 5.519 Z M 5.164 3.198 L 6.361 3.563 L 5.164 3.93 L 4.798 5.128 L 4.431 3.93 L 3.234 3.563 L 4.431 3.198 L 4.798 2 Z M 9.44 5.177 L 11.836 5.91 L 9.44 6.642 L 8.708 9.038 L 7.974 6.642 L 5.58 5.91 L 7.974 5.177 L 8.708 2.782 Z M 20.802 11.017 L 22 11.383 L 20.802 11.75 L 20.437 12.947 L 20.07 11.75 L 18.872 11.383 L 20.07 11.017 L 20.437 9.819 Z M 12.983 3.198 L 14.181 3.563 L 12.983 3.93 L 12.617 5.128 L 12.25 3.93 L 11.053 3.563 L 12.25 3.198 L 12.617 2 Z"/>
+          </svg>
+        </button>
+        <?php } ?>
+      </div>
+      <div class="cover-position hidden">
+        <div class="user-reposition-dragable-container">
+          <button class="btn-trans padding-10 margin-r10 background-grey hover-button border-radius-4 failed-pos">{$word->cancel}</button>
+          <button class="btn-trans padding-10 margin-r10 background-blue hover-button border-radius-4 success-pos">{$word->save}</button>
+        </div>
+      </div>
+    </div>
+    <?php } ?>
+    <?php if (!empty($TEMP['#data']['facebook']) || !empty($TEMP['#data']['mail_contact']) || !empty($TEMP['#data']['twitter']) || !empty($TEMP['#data']['instagram'])) { ?>
+    <div class="vertical-center background-dreg bottom-0 pos-right padding-12 margin-b10 margin-r10 border-radius-4 position-absolute">
+      <?php if (!empty($TEMP['#data']['mail_contact'])) { ?>
+      <a title="{$word->contact}" href="mailto:{$data->mail_contact}" target="_blank">
+        <div class="icon-p vertical-center">
+          <div class="icon-little">
+            <img src="{$theme->{images/mail.png}}">
+          </div>
+          <span class="margin-r5 color-white">{$word->contact}</span>
+        </div>
+      </a>
+      <?php } ?>
+      <?php if (!empty($TEMP['#data']['facebook'])) { ?>
+      <a class="margin-l10" title="{$word->facebook}" href="{$data->facebook}" target="_blank">
+        <div class="icon-little">
+          <img src="{$theme->{images/facebook.png}}">
+        </div>
+      </a>
+      <?php } ?>
+      <?php if (!empty($TEMP['#data']['twitter'])) { ?>
+      <a class="margin-l10" title="{$word->twitter}" href="{$data->twitter}" target="_blank">
+        <div class="icon-little">
+          <img src="{$theme->{images/twitter.png}}">
+        </div>
+      </a>
+      <?php } ?>
+      <?php if (!empty($TEMP['#data']['instagram'])) { ?>
+      <a class="margin-l10" title="{$word->instagram}" href="{$data->instagram}" target="_blank">
+        <div class="icon-little">
+          <img src="{$theme->{images/instagram.png}}">
+        </div>
+      </a>
+      <?php } ?>
+    </div>
+    <?php } ?>
+    <?php if ($TEMP['#loggedin'] === true && $TEMP['#is_owner'] == true) { ?> 
+    <div class="cont-change-imagetml hidden">
+      <button class="change-imagetml">
+        {$word->upload}
+      </button>
+    </div>
+    <?php } ?>
+    <div class="progress position-relative hidden">
+      <div class="content-progress-bar">
+        <div class="bar upload-progress-bar progress-bar"></div> 
+      </div>
+    </div>
+  </div>
+  <div class="cont-channel-info vertical-center padding-20">
+    <div class="avatar-container position-relative margin-r10 tb-icon-supra hovered">
+      <img class="avatar-img border-radius-med" src="{$data->avatar}" alt="{$data->username}">
+      <?php if ($TEMP['#loggedin'] === true && $TEMP['#is_owner'] == true) { ?>
+      <button class="btn-trans contsub-ediown cont-ediown background-dreg padding-12 border-radius-med position-absolute" id="avatar-image" data-title="{$word->edit_profile_picture}">
+        <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill="currentColor" d="M 12 10.462 C 12.826 10.462 13.533 10.732 14.12 11.274 C 14.707 11.816 15 12.468 15 13.231 C 15 13.994 14.707 14.646 14.12 15.188 C 13.533 15.729 12.826 16 12 16 C 11.174 16 10.467 15.729 9.88 15.188 C 9.293 14.646 9 13.994 9 13.231 C 9 12.468 9.293 11.816 9.88 11.274 C 10.467 10.732 11.174 10.462 12 10.462 Z M 19.333 6.462 C 20.069 6.462 20.698 6.702 21.219 7.183 C 21.74 7.663 22 8.244 22 8.923 L 22 17.538 C 22 18.218 21.74 18.798 21.219 19.279 C 20.698 19.76 20.069 20 19.333 20 L 4.667 20 C 3.931 20 3.302 19.76 2.781 19.279 C 2.26 18.798 2 18.218 2 17.538 L 2 8.923 C 2 8.244 2.26 7.663 2.781 7.183 C 3.302 6.702 3.931 6.462 4.667 6.462 L 7 6.462 L 7.531 5.154 C 7.663 4.84 7.905 4.569 8.255 4.341 C 8.606 4.114 8.965 4 9.333 4 L 14.667 4 C 15.035 4 15.394 4.114 15.745 4.341 C 16.095 4.569 16.337 4.84 16.469 5.154 L 17 6.462 L 19.333 6.462 Z M 12 17.538 C 13.285 17.538 14.384 17.117 15.297 16.274 C 16.21 15.431 16.667 14.417 16.667 13.231 C 16.667 12.045 16.21 11.03 15.297 10.188 C 14.384 9.345 13.285 8.923 12 8.923 C 10.715 8.923 9.616 9.345 8.703 10.188 C 7.79 11.03 7.333 12.045 7.333 13.231 C 7.333 14.417 7.79 15.431 8.703 16.274 C 9.616 17.117 10.715 17.538 12 17.538 Z"/>
+        </svg>
+      </button>
+      <?php } ?>
+    </div>
+    <div class="info-container display-inline-flex font-supra">
+      {$data->user_v}
+    </div>
+    <div class="margin-left-auto">
+      {$subscribe_button}
+    </div>
+  </div>
+  <ul class="cont-links">
+    <div class="contsub-links vertical-center">
+      <li class="margin-r10 margin-l10">
+        <a class="display-block padding-12 font-medium font-bold color-secondary hover-button<?php echo ($TEMP['#page'] == 'user') ? ' active' : ''?>" href="{$url->{user/{$data->user_id}}}" target="_self">{$word->videos}</a>
+      </li>
+      <li class="margin-r10 margin-l10">
+        <a class="display-block padding-12 font-medium font-bold color-secondary hover-button<?php echo ($TEMP['#page'] == 'playlists') ? ' active' : ''?>" href="{$url->{user/{$data->user_id}?page=playlists}}" target="_self">{$word->playlists}</a>
+      </li>
+      <li class="display-block margin-r10 margin-l10">
+        <a class="padding-12 font-medium font-bold color-secondary hover-button<?php echo ($TEMP['#page'] == 'liked-videos') ? ' active' : ''?>" href="{$url->{user/{$data->user_id}?page=liked-videos}}" target="_self">{$word->liked_videos}</a>
+      </li>
+      <li class="display-block margin-r10 margin-l10">
+        <a class="padding-12 font-medium font-bold color-secondary hover-button<?php echo ($TEMP['#page'] == 'about') ? ' active' : ''?>" href="{$url->{user/{$data->user_id}?page=about}}" target="_self">{$word->more_info}</a>
+      </li>
+    </div>
+  </ul>
+  <div class="page-container">
+    {$second_page}
+  </div>
+  <input type="file" class="hidden" id="cover-img" name="cover" accept="image/x-png, image/gif, image/jpeg">
+  <input type="file" class="hidden" id="avatar-img" name="avatar" accept="image/x-png, image/gif, image/jpeg">
+  <input id="cover-position" name="pos" value="0" type="hidden">
+</div>
+<script type="text/javascript">
+var MG = D.querySelector('#cover-img'),
+    MX = D.querySelector('#avatar-img'),
+    MR = D.querySelector('.cover-img'),
+    bar = D.querySelector('.bar'),
+    MO = function(el, event, view, el, elY, elX) {
+         var startX = event.clientX, 
+             startY = event.clientY,
+             origX = el.offsetLeft, 
+             origY = el.offsetTop,
+             deltaX = startX - origX, 
+             deltaY = startY - origY;
+         if (D.addEventListener) {
+             D.addEventListener("mousemove", moveHandler, true);
+             D.addEventListener("mouseup", upHandler, true);
+         } else if (D.attachEvent) {
+             el.setCapture();
+             el.attachEvent("onmousemove", moveHandler);
+             el.attachEvent("onmouseup", upHandler);
+             el.attachEvent("onclosecapture", upHandler);
+         } else {
+            var oldmovehandler = D.onmousemove,
+                olduphandler = D.onmouseup;
+             D.onmousemove = moveHandler;
+             D.onmouseup = upHandler;
+         }
+
+         if (event.stopPropagation) event.stopPropagation();
+         else event.cancelBubble = true;
+         if (event.preventDefault) event.preventDefault();
+         else event.returnValue = false;
+
+          function moveHandler(e) {
+              if (!e) e = window.event;
+
+              if(view == 'x' || view == 'xy'){
+                x1 = el.parentNode.offsetWidth;
+                x2 = el.offsetWidth;
+                if ((e.clientX - deltaX) >= 0) {
+                  el.style.left = 0;
+                }else{
+                  if ((e.clientX - deltaX) <= (x1-x2)) {
+                      el.style.left = x1-x2;
+                  }else{
+                    el.style.left = (e.clientX - deltaX) + "px";
+                  }
+                }
+                elX.value = posX;
+              }
+              if(view == 'y' || view == 'xy'){
+                var y1 = el.parentNode.offsetHeight;
+                    y2 = el.offsetHeight,
+                    posY = 0;
+                if ((e.clientY - deltaY) >= 0) {
+                  posY = 0, el.style.top = 0;
+                }else{
+                  if ((e.clientY - deltaY) <= (y1-y2)) {
+                      posY = y1-y2, el.style.top = y1-y2;
+                  }else{
+                    posY = (e.clientY - deltaY), el.style.top = (e.clientY - deltaY) + "px";
+                  }
+                }
+                elY.value = posY;
+              }
+              if (e.stopPropagation) e.stopPropagation();
+              else e.cancelBubble = true;
+          }
+
+          function upHandler(e) {
+            if (!e) e = window.event;
+              if (D.removeEventListener) {
+                    D.removeEventListener("mouseup", upHandler, true);
+                    D.removeEventListener("mousemove", moveHandler, true);
+                } else if (D.detachEvent) {
+                    el.detachEvent("onlosecapture", upHandler);
+                    el.detachEvent("onmouseup", upHandler);
+                    el.detachEvent("onmousemove", moveHandler);
+                    el.releaseCapture();
+                } else {
+                    D.onmouseup = olduphandler;
+                    D.onmousemove = oldmovehandler;
+                }
+
+                if (e.stopPropagation) e.stopPropagation();
+                else e.cancelBubble = true;
+      }
+    },
+    MU = function(MH = true) {
+      if(MH) addClass(D.querySelector('.cont-inteditown'), 'hidden'), removeClass(D.querySelector('.cover-position'), 'hidden');
+
+      addClass(D.querySelector('.cover-container'), 'drag_img');
+      MR.setAttribute('draggable', true);
+      addEvent(MR, "mousedown", function(){
+        MO(MR, event, 'y', this, D.querySelector('#cover-position'))
+      }, 3)
+    },
+    loading_html = '<div class="tb_overlay tb_layer" id="beforeLoad"><div class="tb_content-spinner-circle showing"><div class="tb_spinner-circle tb_loading-spinner-player"></div></div></div>';
+<?php if ($TEMP['#loggedin'] === true && $TEMP['#is_owner'] == true) { ?>
+<?php if($TEMP['#repos_enabled'] == true) { ?>addEvent(D.querySelector('#repos-img'), "click", function(){
+  var img = MR.getAttribute('src').split('uploads'),
+      img2 = '{#site_url}/uploads'+img[1].split('.')[0] + '_full.' + img[1].split('.')[1].split('?')[0],
+      imagen1 = "{$data->full_cover_media}";
+    MR.setAttribute('src', imagen1 == img2.split('?')[0] ? imagen1 : img2), MU();
+}), addEvent(D.querySelector('.success-pos'), 'click', function(){
+  Req("{$url->{req/user/cover-position}}?by_id={$data->id}", function(e){
+    bar.style.width = '0%';
+    addClass(D.querySelector('.progress'), 'hidden');
+    if (e.status == 200) {
+      MR.setAttribute('src', e.media);
+      MR.removeAttribute('style');
+      removeClass(D.querySelector('.cover-container'), 'drag_img');
+      MR.removeAttribute('draggable');
+      addClass(D.querySelector('.cover-position'), 'hidden');
+      removeClass(D.querySelector('.cont-inteditown'), 'hidden');
+    }
+  }, "POST", "&pos=" + D.querySelector('#cover-position').value, true, function(){
+    bar.style.width = '0%', removeClass(D.querySelector('.progress'), 'hidden');
+  }, function(e){
+    if (e.lengthComputable) {
+      bar.style.width = Math.round(e.loaded / e.total * 100) + '%';
+      if (Math.round(e.loaded / e.total * 100) == 100) {
+        removeClass(D.querySelector('.progress .bar'), 'upload-progress-bar');
+      }
+    }
+  }, function() {
+    loadAlert('{$word->there_error_uploading_file}', 1);
+  }, function() {
+    loadAlert('{$word->the_operation_canceled_connection_interrupted}', 1);
+  })
+}), <?php } ?>addEvent(D.querySelector('#cover-image'), "click", function(){
+    autoClick(MG);
+}), addEvent(D.querySelector('#avatar-image'), "click", function(){
+    autoClick(MX);
+}), addEvent(MG, 'change', function(){
+  MU(false), addClass(D.querySelector('.cover-container'), 'upload-img'), removeClass(D.querySelector('.cont-change-imagetml'), 'hidden'), readURL(MR, this);
+}), addEvent(MX, 'change', function() {
+  readURL(D.querySelector(".avatar-img"), this), TB_ShowElement('warning-alert', 'warning-alert','change_avatar','{$word->confirmation}',1,'normal','{$word->change}','{$word->do_really_want_change_picture}');
+}), addEvent(D.querySelector('.change-imagetml'), 'click', function(){
+  Req("{$url->{req/user/upload}}?token={#token_session}&by_id={$data->id}&pos=" + D.querySelector('#cover-position').value, function(e){
+    addClass(D.querySelector('.progress'), 'hidden'), bar.style.width = '0%';
+    if (e.status == 200) {
+      MR.setAttribute('src', e.media), MR.removeAttribute('style'), addClass(D.querySelector('.cont-change-imagetml'), 'hidden'), removeClass(D.querySelector('.cover-container'), 'drag_img'), MR.removeAttribute('draggable'), removeClass(D.querySelector('.cover-container'), 'upload-img'), loadAlert(e.message);
+    } else {
+      loadAlert('{$word->error}', 1);
+    }
+  }, "POST", MG, "cover", function(){
+    removeClass(D.querySelector('.progress'), 'hidden'), bar.style.width = '0%';
+  }, function(e){
+    if (e.lengthComputable) {
+      bar.style.width = Math.round(e.loaded / e.total * 100) + '%';
+      if (Math.round(e.loaded / e.total * 100) == 100) {
+        removeClass(D.querySelector('.progress .bar'), 'upload-progress-bar');
+      }
+    }
+  }, function() {
+    loadAlert('{$word->there_error_uploading_file}', 1);
+  }, function() {
+    loadAlert('{$word->the_operation_canceled_connection_interrupted}', 1);
+  })
+}), addEvent(D.querySelector('.failed-pos'), "click", function(){
+  var img = MR.getAttribute('src').split('_full'),
+      img2 = img[0] + img[1],
+      imagen1 = "{$data->cover}";
+  D.querySelector('#cover-position').value = "";
+  MR.setAttribute('src', imagen1 == img2.split('?')[0] ? imagen1 : img2);
+  D.querySelector('.cover-container img').style.cursor = "";
+  MR.removeAttribute('style');
+  addClass(D.querySelector('.cover-position'), 'hidden');
+  removeClass(D.querySelector('.cont-inteditown'), 'hidden');
+  removeClass(D.querySelector('.cover-container'), 'drag_img');
+  MR.removeAttribute('draggable');
+});
+<?php } if($TEMP['#blocked'] == true && $TEMP['#is_owner'] == false) { ?>
+addEvent(D.querySelector('#bt-subscribe'), "click", function() {
+  var this_ = this,
+      by_id = this_.getAttribute('data-id'),
+      type = this_.getAttribute('data-type'),
+      subscribe_button = D.querySelector('.subscribe-id-' + by_id),
+      subs = subscribe_button.getAttribute('data-subs'),
+      sub_plus = Number(subs) + 1,
+      sub_m = Number(subs) - 1;
+  if (!by_id || !type) { return false; }
+  if (!{#loggedin} && M) {
+    preloadPage('&one=login&to='+M);
+    return false;
+  }
+  if (type == 'subscribe') {
+    Req('{$url->{req/subscribe/channel}}', function(e) {
+      removeClass(subscribe_button, 'btn-subscribe');
+      addClass(subscribe_button, 'btn-subscribed');
+      if (sub_plus < 1000) {
+        subscribe_button.innerHTML = '{$word->subscribed} <span class="margin-r5">'+sub_plus+'</span>';
+      }
+      subscribe_button.setAttribute('data-type', 'subscribed');
+      subscribe_button.setAttribute('data-subs', sub_plus);
+    }, "POST", "&by_id=" + by_id);
+  } else {
+    TB_ShowElement('warning-alert', 'warning-alert','sub_cancel','{$word->unsubscribe}',1,'normal','{$word->cancel_subscription}',0,by_id,'{$word->unsubscribe_from_channel}');
+  }
+})
+<?php } ?>
+function TB_ShowElement(type, el_content, button, by_id = 0, video_id = 0,price = 0, txt_btn = '', next_cont = '', extra, extra_new) {
+  var c = D.querySelector('#container_alerts'),
+          f = c.querySelector('#'+el_content),
+          h = c.querySelector('#beforeLoad'),
+          u = c.querySelector('#confirm-alert');
+  Req('{$url->{req/get-element}}', function(e) {
+    if (e.status == 200) {
+      removeAllEvents(2), (button != 0 && type != 'warning-alert') && (D.querySelector('#'+button).innerText = txt_btn, D.querySelector('#'+button).removeAttribute('disabled'));
+      if(!f || (type == 'warning-alert' && u && !hasClass(u, button)) || (type == 'warning-alert' && (!u || u.getAttribute('data-extra') != extra))){
+        c.innerHTML = e.html;
+      }
+      if(next_cont == 'form_send_user'){
+        addEvent(c.querySelector('.send_report'), 'click', function(){
+          var option = c.querySelector('.report-v:checked').value;
+          if (!option) {
+            loadAlert('{$word->there_problems_with_some_fields}', 1);
+          }
+          Req("{$url->{req/report/user}}", function(e){
+            if (e.status == 200) {
+              TB_ShowElement('warning-alert', 'warning-alert','confirm_scs','{$word->thanks}',1,'success','ok','{$word->we_have_received_complaint}');
+            }
+          }, "POST", "&id={$data->id}&option=" + option)
+        }, 2)
+      }else if(next_cont == 'form_edit'){
+        addEvent(c.querySelector('.edit_list'), 'click', function(){
+          var id       = this.getAttribute('data-extra'),
+              title     = c.querySelector('#list-title').value,
+              privacy  = c.querySelector('#list-type').value,
+              desc     = c.querySelector('#list-desc').value;
+          if (!title) {
+            loadAlert('{$word->the_name_playlist_required}', 1);
+            return false;
+          } else if(['0', '1'].indexOf(privacy) == -1){
+            loadAlert('{$word->there_problems_with_some_fields}', 1);
+            return false;
+          }
+          Req("{$url->{req/list-actions/update-list}}", function(e){
+            if (e.status == 200) {
+              D.querySelector('[data-playlist="' + id + '"] #meta-video-title').innerText = title, TB_ShowElement('warning-alert', 'warning-alert','confirm_scs',title,1,'success','ok','{$word->the_playlist_saved_successfully}');
+            }else{
+              TB_ShowElement('warning-alert', 'warning-alert','confirm_wrng','{$word->error}',1,'warning','ok','{$word->unknown_error}');
+            }
+          }, "POST", "&title=" + title + "&desc=" + desc + "&privacy=" + privacy + "&id=" + id);
+        }, 2)
+      }else if (next_cont == 'confirm_alert'){
+        addEvent(c.querySelector('.delete_list'), 'click', function(){
+          var id = this.getAttribute('data-extra');
+          if (!id) { return false;}
+          Req("{$url->{req/list-actions/delete-list}}", function(e){
+            if (e.status == 200) {
+              TB_ShowElement('warning-alert', 'warning-alert','confirm_scs','{$word->deleted}',1,'success','ok',e.title + '{$word->was_deleted}'), D.querySelector("[data-playlist='"+id+"']").remove();
+            }else{
+              TB_ShowElement('warning-alert', 'warning-alert','confirm_wrng','{$word->error}',1,'warning','ok','{$word->unknown_error}');
+            }
+          }, "POST", "&id=" + id)
+        }, 2)
+      } else if(button == 'sub_cancel'){
+        addEvent(c.querySelector('.sub_cancel'), 'click', function(){
+          var subscribe_button = D.querySelector('.subscribe-id-' + extra),
+            subs = subscribe_button.getAttribute('data-subs'),
+            sub_plus = Number(subs) + 1,
+            sub_m = Number(subs) - 1;
+          Req('{$url->{req/subscribe/channel}}', function(e) {
+            if(e.status == 304){
+              removeClass(subscribe_button, 'btn-subscribed')
+              addClass(subscribe_button, 'btn-subscribe');
+              if (sub_plus < 1000) {
+                subscribe_button.innerHTML = '{$word->subscribe} <span class="margin-r5">'+sub_m+'</span>';
+              }
+              subscribe_button.setAttribute('data-type', 'subscribe');
+              subscribe_button.setAttribute('data-subs', sub_m);
+              c.querySelector('#warning-alert').remove();
+            }
+          }, "POST", "&by_id=" + extra);
+        }, 2);
+      } else if (button == 'change_avatar'){
+        addEvent(c.querySelector('.change_avatar'), 'click', function(){
+          Req("{$url->{req/user/upload}}?token={#token_session}&by_id={$data->id}", function(e){
+            addClass(D.querySelector('.progress'), 'hidden'), bar.style.width = '0%';
+            if (e.status == 200) {
+              D.querySelector('#warning-alert').style.display = "none", loadAlert(e.message);
+            } else {
+              loadAlert('{$word->error}', 1);
+            }
+          }, "POST", MX, "avatar", function(){
+            removeClass(D.querySelector('.progress'), 'hidden'), bar.style.width = '0%';
+          }, function(e){
+            if (e.lengthComputable) {
+              bar.style.width = Math.round(e.loaded / e.total * 100) + '%';
+              if (Math.round(e.loaded / e.total * 100) == 100) {
+                removeClass(D.querySelector('.progress .bar'), 'upload-progress-bar');
+              }
+            }
+          }, function() {
+            loadAlert('{$word->there_error_uploading_file}', 1);
+          }, function() {
+            loadAlert('{$word->the_operation_canceled_connection_interrupted}', 1);
+          })
+        }, 2);
+      }
+      var x = c.querySelector('.here_now');
+      x && x.focus();    
+      
+      if(!{#loggedin} && M && c.querySelector('#confirm-alert')){
+        addEvent(c.querySelector('#confirm-alert'), "click", function(){
+          preloadPage('&one=login&to='+M);
+        }, 2)
+      }
+      var bb = c.querySelector('#'+el_content),
+          k = bb.querySelector('[data-dismiss]');
+      c.querySelector('#'+el_content).style.display = "block", k && addEvent(k, "click", function(){
+        var MA = c.querySelector('.change_avatar');
+        if(MA && hasClass(MA, 'change_avatar')){
+          D.querySelector('.avatar-img').setAttribute('src', "{$data->avatar}");
+        }
+        c.querySelector('#'+el_content).style.display = "none";
+      }, 2);
+      addEvent(D, "click", function(e) {
+        if (e.target == c.querySelector('#'+el_content)) {
+          c.querySelector('#'+el_content).style.display = "none";
+        }
+      }, 2);
+    }else{
+      if(button != 0 && type != 'warning-alert'){
+        D.querySelector('#'+button).innerText = txt_btn;
+        D.querySelector('#'+button).removeAttribute('disabled');
+      } else if(h){
+        h.remove();
+      }
+      loadAlert(e.error, 1);
+    }
+  },
+  "POST", "&type=" + type + "&actual_form=" + el_content + "&by_id=" + by_id + "&video_id=" + video_id + "&price=" + price + "&next_cont=" + next_cont + "&txt_btn=" + txt_btn + "&class_n=" + button + "&extra=" + extra + "&extra_new=" + extra_new);
+}
+</script>

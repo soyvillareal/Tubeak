@@ -1,0 +1,80 @@
+<div class="login-page">
+	<div class="login-form margin-auto text-center">
+	   	<div class="cont-login-center">
+	    	<div class="border-radius-4 padding-20 border-all border-primary">
+	    		<?php if($TEMP['#reports'] == 0){ ?>
+	    		<div class="notme-container">
+		    		<h2 class="margin-b10 color-secondary" id="notme-title">{$word->didnt_create_this_account}</h2>
+					<p class="color-secondary" id="notme-content">{$word->not_create_account_associated_email}</p>
+				</div>
+				<?php } else { ?>
+				<div class="notme-container">
+					<h2 class="margin-b10 color-secondary" id="notme-title">{$word->the_account_been_reported}</h2>
+					<p class="color-secondary" id="notme-content">{$word->thanks_for_letting_us_know}</p>
+					<p class="color-secondary">
+						{$word->if_you_need_more_help} <a class="color-blue" href="{$url->{contact-us}}" target="_self">{$word->contact_our_helpdesk}</a>
+					</p>
+				</div>
+				<?php } ?>
+				<div class="cont-group">
+					<div class="display-flex" id="notme-buttons">
+						<?php if($TEMP['#reports'] == 0){ ?>
+						<button class="btn-trans background-red cursor-disabled hover-opacity w-100 margin-b20 border-radius-4 padding-10"  id="report-account">
+							<span class="color-white">{$word->report_this_account}</span>
+							<div class="tb_content-spinner-circle">
+								<div class="tb_spinner-circle"></div>
+							</div>
+						</button>
+						<a class="margin-l10 position-relative background-grey hover-opacity to-access" href="{$url->{verify-email/{$token}/{$user_id}}}" target="_self">
+							{$word->this_is_my_account}
+						</a>
+						<?php } else { ?>
+						<a class="margin-l10 position-relative background-red hover-opacity to-access" href="{$url->{home}}" target="_self">{$word->return_to}</a>
+						<?php } ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<ul class="container-bubbles">
+	<?php foreach ($TEMP['#bubbles']['avatar'] as $key => $avatar){ ?>
+	<li class="bubble-<?php echo $key;?>">
+		<img id="bubble-<?php echo $key;?>" src="<?php echo $avatar; ?>">
+	</li>
+	<?php } ?>
+</ul> 
+<script>
+var TY = "{$bubbles}".split(',');
+timeDelay(function(){
+	if(TY.length > 0){
+		Req("{$url->{req/to-access/bubbles}}", function(e){
+			if(e.status == 200){
+				TY = e.bubbles;
+				for (var j = 0, i = e.bubble.length; j < i; j++){
+					var av = e.bubble[j],
+						el = D.querySelector('#bubble-'+j);
+					if(el){
+						el.setAttribute('src', av);
+					} else {
+						D.querySelector('.container-bubbles').innerHTML += '<li class="bubble-'+j+'"><img id="bubble-'+j+'" src="'+av+'"/></li>'
+					}
+				}
+			}
+		}, "POST", "&bubbles=" + TY)
+	}
+}, 14000, 1);
+<?php if($TEMP['#reports'] == 0){ ?>
+addEvent(D.querySelector('#report-account'), 'click', function(){
+	var self = this;
+	addClass(self, 'tb_spinner-is-loading'), self.setAttribute('disabled', true);
+    Req("{$url->{req/report/user}}", function(e){
+        if (e.status == 200) {
+            D.querySelector('#notme-title').innerText = '{$word->the_account_been_reported}', D.querySelector('#notme-content').innerHTML = '{$word->thanks_for_letting_us_know}', D.querySelector('.notme-container').innerHTML += '<p class="color-secondary">{$word->if_you_need_more_help} <a class="color-blue" href="{$url->{contact-us}}" target="_self">{$word->contact_our_helpdesk}</a></p>', D.querySelector('#notme-buttons').innerHTML = '<a class="margin-l10 position-relative background-red hover-opacity to-access" href="{$url->{home}}" target="_self">{$word->return_to}</a>';
+        } else {
+        	removeClass(self, 'tb_spinner-is-loading'), self.removeAttribute('disabled'), loadAlert("{$word->error}", 1);
+        }
+   	}, "POST", "&id={$id}&option=8")
+})
+<?php } ?>
+</script>

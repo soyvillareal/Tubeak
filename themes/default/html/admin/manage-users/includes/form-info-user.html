@@ -1,0 +1,127 @@
+<div class="form-edit-list" id="user-{$data->id}">
+
+    <div class="cont-group">
+        <div class="display-block padding-20 border-radius-4 background-tertiary">
+            <div class="mw-80 margin-right-auto margin-left-auto">
+                <a href="{$data->url}" target="_blank">
+                    <img class="border-radius-med" src="{$data->avatar}" alt="{$data->username}">
+                </a>
+            </div>
+            <div class="text-center margin-t10">
+                <a class="color-secondary" href="{$data->url}" target="_blank">
+                    {$data->username}
+                </a>
+            </div>
+            <div class="text-center margin-t10">
+                {$word->created} {$data->time}
+            </div>
+        </div>
+    </div>
+
+    <div class="cont-group margin-t10 margin-b10">
+        <div class="display-flex flex-wrap">
+            <div class="cont-label">
+                <label class="color-secondary">{$word->upload_limit}:</label>
+            </div>
+            <div class="flex-grow">
+                <select id="upload_limit" class="cont-control cont-select background-secondary color-secondary">
+                    <option value="8000000"<?php echo($TEMP['#data']['upload_limit'] == '8000000') ? ' selected' : ''?>>8MB</option>
+                    <option value="16000000"<?php echo($TEMP['#data']['upload_limit'] == '16000000') ? ' selected' : ''?>>16MB</option>
+                    <option value="32000000"<?php echo($TEMP['#data']['upload_limit'] == '32000000') ? ' selected' : ''?>>32MB</option>
+                    <option value="64000000"<?php echo($TEMP['#data']['upload_limit'] == '64000000') ? ' selected' : ''?>>64MB</option>
+                    <option value="128000000"<?php echo($TEMP['#data']['upload_limit'] == '128000000') ? ' selected' : ''?>>128MB</option>
+                    <option value="256000000"<?php echo($TEMP['#data']['upload_limit'] == '256000000') ? ' selected' : ''?>>256MB</option>
+                    <option value="512000000"<?php echo($TEMP['#data']['upload_limit'] == '512000000') ? ' selected' : ''?>>512MB</option>
+                    <option value="1000000000"<?php echo($TEMP['#data']['upload_limit'] == '1000000000') ? ' selected' : ''?>>1GB</option>
+                    <option value="5000000000"<?php echo($TEMP['#data']['upload_limit'] == '5000000000') ? ' selected' : ''?>>5GB</option>
+                    <option value="0"<?php echo($TEMP['#data']['upload_limit'] == '0') ? ' selected' : ''?>>Unlimited</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <label class="color-secondary margin-t10 margin-b10">{$word->status}:</label>
+    <div class="display-flex">
+        <div class="cont-radio margin-r10">
+            <input class="status_user radio-paper hidden" name="status_user" id="status_user-disabled" type="radio" value="0"<?php echo($TEMP['#status'] == 0) ? ' checked' : ''?>>
+            <label class="color-secondary ellipsis-horizontal" for="status_user-disabled">
+                {$word->pending}
+            </label>
+        </div>
+        <div class="cont-radio">
+            <input class="status_user radio-paper hidden" name="status_user" id="status_user-enabled" type="radio" value="1"<?php echo($TEMP['#status'] == 1) ? ' checked' : ''?>>
+            <label class="color-secondary ellipsis-horizontal" for="status_user-enabled">
+                {$word->active}
+            </label>
+        </div>
+    </div>
+    <?php if(Specific::Admin()) { ?>
+    <label class="color-secondary margin-t10 margin-b10">{$word->type}:</label>
+    <div class="display-flex">
+        <div class="cont-radio margin-r10">
+            <input class="type_user radio-paper hidden" name="type_user" id="type_user-user" type="radio" value="0"<?php echo($TEMP['#role'] == 0) ? ' checked' : ''?>>
+            <label class="color-secondary ellipsis-horizontal" for="type_user-user">
+                {$word->user}
+            </label>
+        </div>
+        <div class="cont-radio">
+            <input class="type_user radio-paper hidden" name="type_user" id="type_user-admin" type="radio" value="1"<?php echo($TEMP['#role'] == 1) ? ' checked' : ''?>>
+            <label class="color-secondary ellipsis-horizontal" for="type_user-admin">
+                {$word->admin}
+            </label>
+        </div>
+        <div class="cont-radio">
+            <input class="type_user radio-paper hidden" name="type_user" id="type_user-mod" type="radio" value="2"<?php echo($TEMP['#role'] == 2) ? ' checked' : ''?>>
+            <label class="color-secondary ellipsis-horizontal" for="type_user-mod">
+                {$word->moderator}
+            </label>
+        </div>
+    </div>
+    <?php } ?>
+    <label class="color-secondary margin-t10 margin-b10">{$word->verification}:</label>
+    <div class="display-flex">
+        <div class="cont-radio margin-r10">
+            <input class="verification radio-paper hidden" name="verification" id="verification-disabled" type="radio" value="0"<?php echo($TEMP['#verification'] == 0) ? ' checked' : ''?>>
+            <label class="color-secondary ellipsis-horizontal" for="verification-disabled">
+                {$word->no}
+            </label>
+        </div>
+        <div class="cont-radio">
+            <input class="verification radio-paper hidden" name="verification" id="verification-enabled" type="radio" value="1"<?php echo($TEMP['#verification'] == 1) ? ' checked' : ''?>>
+            <label class="color-secondary ellipsis-horizontal" for="verification-enabled">
+                {$word->yes}
+            </label>
+        </div>
+    </div>
+
+    <label class="color-secondary margin-t10 margin-b10">{$word->block_user_ip}:</label>
+    <div class="display-flex">
+        <div class="cont-radio margin-r10">
+            <input class="ban_ip radio-paper hidden" name="ban_ip" id="ban_ip-disabled" type="radio" value="0"<?php echo($TEMP['#ban_ip'] == 0) ? ' checked' : ''?>>
+            <label class="color-secondary ellipsis-horizontal" for="ban_ip-disabled">
+                {$word->no}
+            </label>
+        </div>
+        <div class="cont-radio">
+            <input class="ban_ip radio-paper hidden" name="ban_ip" id="ban_ip-enabled" type="radio" value="1"<?php echo($TEMP['#ban_ip'] > 0) ? ' checked' : ''?>>
+            <label class="color-secondary ellipsis-horizontal" for="ban_ip-enabled">
+                {$word->yes}
+            </label>
+        </div>
+    </div>
+    <label class="color-secondary margin-t10 margin-b10">{$word->lock_account}:</label>
+    <div class="display-flex">
+        <div class="cont-radio margin-r10">
+            <input class="ban_user radio-paper hidden" name="ban_user" id="ban_user-disabled" type="radio" value="0"<?php echo($TEMP['#ban_user'] == 0) ? ' checked' : ''?>>
+            <label class="color-secondary ellipsis-horizontal" for="ban_user-disabled">
+                {$word->no}
+            </label>
+        </div>
+        <div class="cont-radio">
+            <input class="ban_user radio-paper hidden" name="ban_user" id="ban_user-enabled" type="radio" value="1"<?php echo($TEMP['#ban_user'] > 0) ? ' checked' : ''?>>
+            <label class="color-secondary ellipsis-horizontal" for="ban_user-enabled">
+                {$word->yes}
+            </label>
+        </div>
+    </div>
+ 
+</div>

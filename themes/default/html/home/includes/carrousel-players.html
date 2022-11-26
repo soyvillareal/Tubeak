@@ -1,0 +1,28 @@
+<div class="items-carrousel-players position-absolute{!item_active}" index="{!index}">
+	<div class="item-carrousel-players vertical-center">
+	    <div class="carrousel-player player-video">
+	        <video id="tb-video-{!index}" playsinline webkit-playsinline style="width:100%; height:100%;position: relative;">
+	            Your browser does not support HTML5 video.
+	        </video>
+	    </div>
+	    <div class="cont-carrousel-info background-primary h-100">
+	    	<div class="carrousel-info-top padding-10">
+	    		<div class="vertical-center margin-b10">
+		    		<a class="display-inline-flex vh-icon-lg margin-r10 margin-t10 hide-from-mobile" href="{!data->url}" target="_self">
+						<img class="border-radius-med" src="{!data->avatar}" />
+					</a>
+					<div class="video-meta-name margin-t5">
+						{!data->user_v}
+					</div>
+				</div>
+	    		<a class="carrousel-title font-medium font-bold margin-t10 ellipsis-vertical-2 color-secondary" href="{!url}" target="_self" title="{!title}">{!title}</a>
+				<span class="color-tertiary">
+					{!views} {!word_views} • {!time}
+				</span>
+				<p class="carrousel-description font-low overflow-hidden color-tertiary margin-t10">
+					{!description}
+				</p>
+	    	</div>
+	    </div>
+	</div>
+</div>

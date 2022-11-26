@@ -1,0 +1,191 @@
+<?php if($TEMP['#chat_broadcast'] == 1 || $TEMP['#page'] == 'live-broadcast') { ?>
+<div class="border-all border-radius-4 border-primary">
+  <div class="next-list-video background-primary">
+    <div class="vertical-center margin-l10 margin-r10">
+      <h3 class="font-medium color-secondary margin-right-auto">
+        {$word->live_chat}        
+      </h3>
+      <?php if($TEMP['#page'] == 'live-broadcast'){ ?>
+      <div class="toggle-box vertical-center position-relative margin-l10">
+        <input class="hidden" id="chat-broadcast-status" type="checkbox"{$checked_chat}{$disabled_chat}>
+        <label for="chat-broadcast-status" data-title="{$word->this_option_is_activated_the_chat}"></label>
+      </div>
+      <?php } ?>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="container-broadcast-chat">
+    <div class="comments-loading hidden" id="loading-chat">
+      <div class="tb_content-spinner-circle">
+        <div class="tb_spinner-circle"></div>
+      </div>
+    </div>
+    <div class="container-item-stream-chat margin-t10" id="broadcast-chat">
+      <?php if($TEMP['#is_live_now'] == true) { ?>
+        {$broadcast_text}
+      <?php } else { ?>
+      <div class="color-secondary padding-20 text-center" id="start-text">
+        {$word->no_messages_found_within_chat_yet}.
+      </div>
+      <?php } ?>
+    </div>
+    <div class="container-broadcast-send-text padding-10 border-top border-tertiary margin-t10">
+      <?php if($TEMP['#loggedin'] === true && $TEMP['#is_live_now'] == true) { ?>
+      <div class="position-relative display-flex">
+        <div class="content-broadcast-new-text position-relative display-flex w-100">
+          <textarea class="background-primary color-primary" id="broadcast-chat-text" rows="1" data-min-rows="1" maxlength="200"></textarea>
+        </div>
+      </div>
+      <div class="vertical-center margin-t10">
+        <span class="color-secondary" id="broadcast-limit-chars">0/200</span>
+        <div class="margin-left-auto">
+          <button class="btn-trans" id="broadcast-send-text">
+            <svg class="vh-icon color-grey" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor" d="M 21.688 2.122 C 21.933 2.301 22.034 2.539 21.99 2.837 L 19.132 19.98 C 19.095 20.196 18.976 20.363 18.775 20.482 C 18.671 20.541 18.555 20.571 18.429 20.571 C 18.348 20.571 18.258 20.553 18.161 20.516 L 13.105 18.451 L 10.404 21.743 C 10.271 21.914 10.089 22 9.858 22 C 9.761 22 9.68 21.986 9.612 21.956 C 9.471 21.903 9.358 21.816 9.272 21.693 C 9.187 21.57 9.143 21.434 9.143 21.286 L 9.143 17.391 L 18.786 5.571 L 6.856 15.896 L 2.448 14.087 C 2.172 13.983 2.023 13.778 2.001 13.473 C 1.987 13.176 2.106 12.956 2.358 12.814 L 20.929 2.1 C 21.041 2.033 21.16 2 21.286 2 C 21.435 2 21.569 2.041 21.688 2.122 Z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <?php } else { ?>
+      <div class="display-flex padding-10">
+        <p class="color-secondary margin-auto">
+          <?php if($TEMP['#is_live_now'] == true) { ?>
+          <a class="color-blue" href="{$url->{login}}" target="_self">{$word->sign_in}</a> {$word->to_use_the_chat}.
+          <?php } else { ?>
+          {$word->you_watching_replay_chat}.
+          <?php } ?>
+        </p>
+      </div>
+      <?php } ?>
+    </div>
+  </div>
+</div>
+<script>
+var BJ = D.querySelector('#broadcast-chat-text'),
+    BW = D.querySelector('.video-player'),
+    BO = D.querySelector('.container-broadcast-send-text'),
+    BK = D.querySelector('.next-list-video'),
+    BX = D.querySelector("#broadcast-chat"),
+    BY = D.querySelector('#loading-chat'),
+    BB = BW && (BW.innerHeight || BW.clientHeight),
+    BV = BO.innerHeight || BO.clientHeight,
+    BM = BK.innerHeight || BK.clientHeight,
+    sendBroadcastText = function(){
+      if(BJ.value == '' || BJ.value.length > 200){
+         return false;
+      }
+      Req('{$url->{req/broadcast/new-text-chat}}', function(e){
+         if(e.status == 200){
+            BJ.setAttribute('rows', 1), BX.innerHTML += e.html, loadPage(BX.querySelectorAll('a[target="_self"]')), BJ.value = "", scrollTo(BX.scrollHeight, BX);
+         } else {
+            loadAlert('{$word->error}', 1);
+         }
+      }, "POST", "&video_id={$id}&text="+BJ.value)
+    },
+    loadFetch = function(type = 'online', last_id = 0, time = 0){
+         var N = D.querySelectorAll('.item-stream-chat'),
+             ids = [0];
+         for (var j = 0, i = N.length; j < i; j++) ids.push(N[j].getAttribute('data-id'));
+         Req('{$url->{req/load-more/fetch-chat}}', function(e){
+            if (e.status == 200) {
+               if (e.html.length > 0 || Object.keys(e.json).length > 0) {
+                  if(last_id == 0){
+                     var newNode = D.createElement("div");
+                     newNode.className = "load-new-text", newNode.innerHTML = e.html, BX.insertBefore(newNode, BX.childNodes[0]), loadPage(BX.querySelectorAll('a[target="_self"]')), BC = !0;
+                  } else if(e.json != null){
+                     offline_chat = e.json, BF = !0;
+                  } else {
+                     BX.innerHTML += e.html, loadPage(BX.querySelectorAll('a[target="_self"]')), scrollTo(BX.scrollHeight, BX);
+                  }
+               } else {
+                  BC = !1;
+               }
+               addClass(BY, 'hidden');
+            } else {
+               addClass(BY, 'hidden');
+            }
+         }, "POST", "&video_id={$id}&ids="+ids+"&last_id="+last_id+"&broadcast-time="+time+"&type="+type);
+    },
+    BC = !0,
+    offline_chat = JSON.parse('{$json_broadcast_text}'),
+    BF = !0,
+    BT = 0;
+
+scrollTo(BX.scrollHeight, BX), BX.style.maxHeight = (BB - BV - BM) + "px";
+<?php if($TEMP['#page'] == 'watch') { ?>
+addEvent(window, "resize", function(){
+      var BB = BW.innerHeight || BW.clientHeight,
+          BV = BO.innerHeight || BO.clientHeight,
+          BM = BK.innerHeight || BK.clientHeight;
+   BX.style.maxHeight = (BB - BV - BM) + "px";
+});
+<?php } ?>
+<?php if($TEMP['#loggedin'] === true && $TEMP['#is_live_now'] == true) { ?>
+addEvent(BJ, 'input', function(){
+      var s = this,
+          minRows = s.getAttribute('data-min-rows')|0,
+          rows;
+    s.value == '' ? rows = minRows : (s.rows = minRows, rows = Math.ceil((s.scrollHeight - s.baseScrollHeight) / 24), s.rows = minRows + rows);
+}), addEvent(BJ, "focus", function(){
+      var s = this,
+          savedValue = s.value;
+      s.value = '', s.baseScrollHeight = s.scrollHeight, s.value = savedValue;
+}), addEvent(BJ, 'keyup', function(e){
+    BJ.value.length == 0 ? (BJ.setAttribute('rows', 1), D.querySelector('#broadcast-limit-chars').innerText = "0/200") : BJ.value.length > 200 && (BJ.value = BJ.value.substr(0, 200));
+}), addEvent(D.querySelector('#broadcast-send-text'), 'click', sendBroadcastText), addEvent(BJ, 'keydown', function(e){
+   if (e.keyCode == 13 && !e.shiftKey) {
+      e.preventDefault(), BJ.setAttribute('rows', 1), sendBroadcastText();  
+   }
+   BJ.value.length <= 200 && (D.querySelector('#broadcast-limit-chars').innerText = BJ.value.length+"/200");
+})
+<?php } ?>
+<?php if($TEMP['#is_live_now'] == true){ ?>
+addEvent(BX, 'scroll', function(){
+   if (this.scrollTop == 0 && BC){
+      removeClass(BY, 'hidden'), BC = !1;
+      loadFetch();
+   }
+}), timeDelay(function(){
+  var BC = D.querySelectorAll('.item-stream-chat'),
+      BE = BC.length > 0 ? BC[BC.length - 1].getAttribute('data-id') : 0;
+  loadFetch('online', BE);  
+}, 3000, 1);
+<?php } else { ?>
+addEvent(D.querySelector('#tb-video_native_hls'), 'timeupdate', function(e){
+   var currentTime = Math.floor(this.currentTime),
+       data_broadcast = offline_chat[currentTime],
+       N = D.querySelectorAll('.item-stream-chat'),
+       lastId = N[N.length -1],
+       keys = Object.keys(offline_chat);
+   if(currentTime >= keys[keys.length - 1]){
+      var BC = D.querySelectorAll('.item-stream-chat'),
+         jsonArr = Object.values(offline_chat),
+         realdata = jsonArr[jsonArr.length - 1],
+         LASTID = lastId ? lastId.getAttribute('data-id') : realdata[realdata.length - 1]['id'];
+      BF && (loadFetch('offline', LASTID, (currentTime*2)), BF = !1);
+   } else if(keys.length == 0 && currentTime >= BT) {
+      loadFetch('offline', -1, currentTime+15), BT = currentTime+15;
+   }
+   if(data_broadcast != undefined){
+      for (var j = 0, i = data_broadcast.length; j < i; j++){
+         if((lastId != undefined && data_broadcast[j]['id'] > lastId.getAttribute('data-id')) || lastId == undefined){
+            if(data_broadcast[j]['html'] != undefined){
+               D.querySelector('#start-text') && (BX.innerHTML = ''), BX.innerHTML += data_broadcast[j]['html'], loadPage(BX.querySelectorAll('a[target="_self"]')), scrollTo(BX.scrollHeight, BX);
+            }
+         }
+      }
+   }
+});
+<?php } ?>
+</script>
+<?php } else { ?>
+<div class="border-all border-primary border-radius-4">
+  <div class="next-list-video background-primary">
+    <div class="vertical-center padding-12">
+      <h3 class="font-medium color-secondary margin-auto">
+        {$word->live_chat} {$word->disabled}        
+      </h3>
+    </div>
+  </div>
+</div>
+<?php } ?>

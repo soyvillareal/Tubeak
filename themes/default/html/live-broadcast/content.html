@@ -1,0 +1,327 @@
+<div class="content-live-broadcast display-flex">
+    <div class="live-broadcast-left w-100">
+        <div class="margin-t10 margin-r10 margin-l10 border-radius-4 border-all border-tertiary background-primary">
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->title}*</label>
+                    </div>
+                    <div class="flex-grow">
+                        <input id="title" name="title" type="text" class="cont-control border-focus-blue area_validate background-secondary color-secondary" value="{$title}">
+                        <div class="color-red text-left text-error"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->category}</label>
+                    </div>
+                    <div class="flex-grow">
+                        <select id="category" class="cont-control area_changed cont-select background-secondary color-secondary margin-t5" name="category">
+                            <?php foreach($TEMP['#categories'] as $key => $category) {?>
+                            <option value="<?php echo $key?>"<?php echo($key == $TEMP['#category']) ? ' selected' : ''?>><?php echo $category?></option>
+                            <?php } ?>
+                        </select>
+                        <div class="color-red text-left text-error"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->privacy}</label>
+                    </div>
+                    <div class="flex-grow">
+                        <select id="privacy" class="cont-control area_changed cont-select background-secondary color-secondary margin-t5" name="privacy">
+                            <option value="0"<?php echo($TEMP['#privacy'] == 0) ? ' selected' : ''?>>{$word->public}</option>
+                            <option value="1"<?php echo($TEMP['#privacy'] == 1) ? ' selected' : ''?>>{$word->private}</option>
+                            <option value="2"<?php echo($TEMP['#privacy'] == 2) ? ' selected' : ''?>>{$word->unlisted}</option>
+                        </select>
+                        <div class="color-red text-left text-error"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->can_broadcast_seen_children}</label>
+                    </div>
+                    <div class="flex-grow">
+                        <select id="adults_only" name="adults_only" class="cont-control area_changed cont-select background-secondary color-secondary margin-t5">
+                            <option value="0"<?php echo ($TEMP['#adults_only'] == 0) ? ' selected' : '' ?>>{$word->yes}</option>
+                            <option value="1"<?php echo ($TEMP['#adults_only'] == 1) ? ' selected' : '' ?>>{$word->no}</option>
+                        </select>
+                        <div class="color-red text-left text-error"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->description}</label>
+                    </div>
+                    <div class="flex-grow">
+                        <textarea id="description" name="description" cols="30" rows="10" class="cont-control border-focus-blue area_validate background-secondary color-secondary">{$description}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->tags}*</label>
+                    </div>
+                    <div class="flex-grow">
+                        <input class="hidden" id="tags-upload" type="text" value="{$tags}">
+                        <ul class="tags-content background-secondary color-secondary" id="tags">
+                            <?php foreach ($TEMP['#tags'] as $key => $value) { ?>
+                            <li class="tagit-choice border-primary">
+                                <span class="color-secondary tagit-label"><?php echo $value; ?></span>
+                                <span class="tagit-close"></span>
+                            </li>
+                            <?php } ?>
+                            <li class="tagit-new">
+                                <input class="color-secondary area_validate" type="text" id="tags-val">
+                            </li>
+                        </ul>
+                        <div class="color-red text-left text-error"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->save_live_stream_when_finished}</label>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="toggle-box vertical-center position-relative margin-l10">
+                            <input class="hidden" id="save-broadcast" type="checkbox"{$checked_save}>
+                            <label for="save-broadcast" data-title="{$word->this_option_activated_live_be_saved}."></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="margin-t10 margin-r10 margin-l10">
+                <div class="display-flex flex-end">
+                    <button id="edit-broadcast" class="btn-trans margin-left-auto global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                        <span class="color-white">{$word->save}</span>
+                        <div class="tb_content-spinner-circle">
+                            <div class="tb_spinner-circle"></div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="border-bottom-right-radius border-bottom-left-radius border-bottom border-top border-tertiary margin-t20 padding-20 margin-b20 background-primary">
+                <div class="display-flex">
+                    <div class="vertical-center margin-auto">
+                        <div class="content-broadcast-status display-flex position-relative margin-r10{$broadcast_is_live}">
+                            <div class="broadcast-status"></div>
+                        </div>
+                        <div class="color-secondary" id="broadcast-status-text">{$broadast_status}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->stream_url}</label>
+                    </div>
+                    <div class="flex-grow position-relative">
+                        <input type="text" readonly="true" class="cont-control background-secondary color-secondary input-value" value="{$rtmp_url}">
+                        <button class="btn-trans copy-string binput-inleft padding-5 border-top-right-radius border-bottom-right-radius background-grey hover-opacity color-whiblack" data-copy="{$rtmp_url}">
+                            {$word->copy}
+                        </button>
+                        <div class="color-tertiary margin-t10">{$word->url_contains_private_transmission_not_share_anyone}.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->transmission_key}</label>
+                    </div>
+                    <div class="flex-grow position-relative">
+                        <input type="text" readonly="true" class="cont-control background-secondary color-secondary input-value" value="{$video_id}">
+                        <button class="btn-trans copy-string binput-inleft padding-5 border-top-right-radius border-bottom-right-radius background-grey hover-opacity color-whiblack" data-copy="{$video_id}">
+                            {$word->copy}
+                        </button>
+                        <div class="color-tertiary margin-t10">{$word->this_is_your_public_transmission_key}.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="live-broadcast-right padding-10 max-w-400 w-100">
+        <div class="margin-b20 w-100">
+            <video id="tb-video" playsinline webkit-playsinline style="width:100%; height:100%;position: relative;">
+                Your browser does not support HTML5 video.
+            </video>
+            <script>
+                new TubeakPlayer(document.querySelector('video'), {
+                    mediaSources: '{$json_path}',
+                    words: {"play": "{$word->play}", "pause": "{$word->pause}", "mute": "{$word->mute}", "unmute": "{$word->unmute}", "fullscreen": "{$word->fullscreen}", "video-title": "{#title}", "cp-video-embed": "{$word->copy_embed_code}", "cp-video-url": "{$word->copy_video_url}", "replay": "{$word->replay}", "cp-url-at-time": "{$word->copy_url_at_current_time}", "live-broadcast" : "{$word->live_broadcast}"},
+                    features: ['progress', 'playpause', 'volume', 'current', 'duration', 'settings', 'contextmenu', 'quality', 'fullscreen'],
+                    autoplay: true,
+                    forceLive: true,
+                    updateMediaSource: {$update_media_source},
+                    poster: '{#thumbnail}',
+                    forceProgress: {$force_progress}
+                });
+            </script>
+        </div>
+        <div class="border-radius-4 border-all border-tertiary margin-b20 position-relative">
+            <?php if($TEMP['#enable_clear'] == true){ ?>
+            <button class="btn-trans position-absolute pos-right padding-5 color-for-hover hover-button{$hidden_img}" id="clear-thumbnail">
+                <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M 12 13.17 L 5.17 20 L 4 18.832 L 10.83 12 L 4 5.17 L 5.17 4 L 12 10.83 L 18.832 4 L 20 5.17 L 13.17 12 L 20 18.832 L 18.832 20 Z"></path>
+                </svg>
+            </button>
+            <?php } ?>
+            <img class="thumbnail-img{$hidden_img}" src="{#thumbnail}" alt="{$title}">
+            <button class="btn-trans w-100 padding-20 text-center background-primary action-list-hover" id="upload-thumbnail"> 
+                <span class="color-secondary" id="text-upload">{$word_thumbnail}</span>
+                <div class="tb_content-spinner-circle">
+                    <div class="tb_spinner-circle"></div>
+                </div>
+            </button>
+        </div>
+        {$broadcast_chat}
+    </div>
+    <input type="file" class="hidden" id="thumbnail" name="thumbnail" accept="image/x-png, image/gif, image/jpeg">
+</div>
+<script>
+var LC = D.querySelectorAll('.copy-string'),
+    LK = D.querySelectorAll('.area_changed'),
+    LT = D.querySelectorAll(".area_validate"),
+    LB =  D.querySelector('#edit-broadcast'),
+    LS = D.querySelector('.content-broadcast-status'),
+    LX = D.querySelector('#broadcast-status-text'),
+    LG = D.querySelector('#tags'),
+    LD = D.querySelectorAll('.tagit-close'),
+    LP = D.querySelector('#tags-upload'),
+    LH = LP.value ? LP.value.split(',') : Array(),
+    LR = D.querySelector('#tags-val'),
+    MX = D.querySelector('#thumbnail'),
+    LF = D.querySelector('#clear-thumbnail'),
+    LQ = D.querySelector(".thumbnail-img"),
+    LW = D.querySelector('#upload-thumbnail'),
+    la = LW.querySelector('#text-upload'),
+    createTag = function(LI){
+      var LU = D.createElement("li"),
+          LJ = LH.indexOf(LI.value, 0);
+    removeClass(LG, 'border-red'), removeClass(LG, 'boxshadow-red'), LG.parentNode.querySelector('.text-error').innerText = '';
+      if(LJ == -1){
+        LU.className = 'border-primary tagit-choice', LU.innerHTML = '<span class="color-secondary tagit-label">' + LI.value + '</span><span class="tagit-close"></span>', D.querySelector('.tags-content').insertBefore(LU, D.querySelector('.tagit-new')), LH.push(LI.value), LP.value = LH.join(), LI.value = "", addEvent(LU.querySelector('.tagit-close'), "click", function(){
+            LU.remove(), LH.splice(LH.indexOf(LU.querySelector('.tagit-label').innerText), 1), LP.value = LH;
+        });
+      } else {
+        var LY = D.querySelectorAll('.tagit-choice');
+        LY[LJ].setAttribute('style', 'border-color: #c23321 !important;'), timeDelay(function(){
+            LY[LJ].removeAttribute('style');
+        }, 500);
+      }
+    }, disableButton = function(){
+        var self = this,
+            el = self.parentNode.querySelector('.text-error');
+        LB.removeAttribute('disabled'), removeClass(self, 'border-red'), removeClass(self, 'boxshadow-red'), el && (el.parentNode.querySelector('.text-error').innerText = '');
+    },
+    LM = 9,
+    LV,
+    LN,
+    LA;
+
+addEvent(LW, "click", function(){
+    autoClick(MX);
+}), addEvent(MX, 'change', function() {
+    addClass(LW, 'tb_spinner-is-loading');
+    LW.setAttribute('disabled', true);
+    readURL(LQ, this), Req("{$url->{req/broadcast/upload-thumbnail}}?token={#token_session}&video_id={$id}", function(e){
+        if (e.status == 200) {
+            la.innerText = '{$word->change}', LF && removeClass(LF, 'hidden'), loadAlert(e.message), LW.removeAttribute('disabled'), removeClass(LW, 'tb_spinner-is-loading');
+        } else {
+            loadAlert('{$word->error}', 1);
+        }
+    }, "POST", MX, "thumbnail")
+})<?php if($TEMP['#enable_clear'] == true){ ?>, addEvent(LF, 'click', function(){
+    var self = this;
+    Req("{$url->{req/broadcast/delete-thumbnail}}", function(e){
+        if(e.status == 200){
+            MX.value = '', la.innerText = '{$word->upload_thumbnail} ({$word->optional})', addClass(self, 'hidden'), addClass(LQ, 'hidden'), loadAlert(e.message);
+        } else {
+            loadAlert('{$word->error}', 1);
+        }
+    }, "POST", "&video_id={$video_id}")
+})<?php } ?>, addEvent(LR, "keydown", function (e) {
+    var LI = this;
+    if (e.which == 8 && "" === LI.value) {
+        var LO = D.querySelectorAll('.tagit-choice'),
+            LL = LO[LO.length - 1];
+        LL && (LL.remove(), LH.splice(LH.indexOf(LL.querySelector('.tagit-label').innerText), 1), LP.value = LH);
+    }
+    if ("" !== LI.value && LI.value.trim().length != 0 && LI.value.indexOf(',', 0) == -1 && ((e.which === 13 && !1 === e.shiftKey) || e.which === 13 || e.which == 9 || (e.which == 188 && (',' != LI.value.trim().replace(/^s*/, "").charAt(0) || (',' == LI.value.trim().charAt(0) && ',' == LI.value.trim().charAt(LI.value.trim().length - 1) && 0 !== LI.value.trim().length - 1)))  )) {
+            (e.which === 13 && "" === LI.value) || e.preventDefault(), createTag(LI);
+    }
+}), addEvent(LR, "blur", function () {
+    if("" !== this.value) createTag(this);
+}), addEvent(LB, 'click', function(){
+    var LE = D.querySelectorAll('.border-red');
+    addClass(LB, 'tb_spinner-is-loading'), LB.setAttribute('disabled', true);
+    Req("{$url->{req/broadcast/edit-broadcast}}", function(e){
+        if (e.status == 200) {
+            loadAlert('{$word->changes_saved_successfully}'), removeClass(LB, 'tb_spinner-is-loading');
+            for (var j = 0, i = LE.length; j < i; j++){
+                addClass(LE[j], 'border-red'), addClass(LE[j], 'boxshadow-red');
+            }
+        } else {
+            for (var j = 0, i = e.errors.length; j < i; j++){
+                var el = D.querySelector('#'+e.errors[j]['el']);
+                el.parentNode.querySelector('.text-error').innerText = '*'+(e.errors[j]['type'] == 'empty' ? '{$word->this_field_is_empty}' : '{$word->there_problems_with_some_fields}');
+                addClass(el, 'border-red'), addClass(el, 'boxshadow-red');
+            }
+            removeClass(LB, 'tb_spinner-is-loading'), LB.removeAttribute('disabled');
+        }
+    }, "POST", "&video_id={$video_id}&title=" + D.querySelector("#title").value + "&category=" + D.querySelector('#category').value + "&privacy=" + D.querySelector('#privacy').value + "&adults_only=" + D.querySelector('#adults_only').value + "&description=" + encodeURIComponent(D.querySelector('#description').value) + "&tags=" + LP.value + "&save-broadcast=" + D.querySelector('#save-broadcast').checked);
+}), addEvent(D.querySelector('#save-broadcast'), 'change', function(){
+    Req("{$url->{req/broadcast/save-broadcast}}", function(e){
+        if (e.status == 200) {
+            loadAlert('{$word->changes_saved_successfully}');
+        } else {
+            loadAlert('{$word->there_problems_with_some_fields}', 1);
+        }
+    }, "POST", "&video_id={$video_id}&save-broadcast=" + this.checked);
+}), addEvent(D.querySelector('#chat-broadcast-status'), 'change', function(){
+    Req("{$url->{req/broadcast/chat-broadcast-status}}", function(e){
+        if (e.status == 200) {
+            loadAlert('{$word->changes_saved_successfully}');
+        } else {
+            loadAlert('{$word->there_problems_with_some_fields}', 1);
+        }
+    }, "POST", "&video_id={$video_id}&chat-broadcast-status=" + this.checked);
+}), LA = timeDelay(function(){
+    Req("{$url->{req/broadcast/broadcast-status}}", function(e){
+        if (e.status == 200) {
+            if(e.live == 1){
+                addClass(LS, 'broadcast-is-live'), LX.innerText = '{$word->successful_connection_now_you_are_broadcasting}', D.querySelector('#privacy').setAttribute('disabled', true), D.querySelector('#chat-broadcast-status').setAttribute('disabled', true), LF && LF.remove();
+            } else if(e.live == 2 && e.save == 1){
+                preloadPage('&one=watch&v={$video_id}');
+            }
+            LN = function(){
+                removeClass(LS, 'broadcast-is-live'), LX.innerHTML = '{$word->just_finished_live_page_reload_in} <span id="time-for-reload">10</span>', LV = timeDelay(function(){
+                    D.querySelector('#time-for-reload').innerText = LM--, LM == 0 && (clearInterval(LV), preloadPage('&one=live-broadcast'));
+                }, 1000, 1), clearInterval(LA);
+            }
+        } else {
+            if(typeof LN == 'function'){
+                LN();
+            }
+        }
+    }, "POST", "&video_id={$video_id}");
+}, 3000, 1);
+for (var j = 0, i = LD.length; j < i; j++) addEvent(LD[j], "click", function(){
+    var LZ = this.parentNode;
+    LZ.remove(), LH.splice(LH.indexOf(LZ.querySelector('.tagit-label').innerText), 1), LB.removeAttribute('disabled'), LP.value = LH;
+});
+for(var j = 0, i = LT.length; j < i; j++) addEvent(LT[j], 'keyup', disableButton);
+for(var j = 0, i = LK.length; j < i; j++) addEvent(LK[j], 'change', disableButton);
+for(var j = 0, i = LC.length; j < i; j++) addEvent(LC[j], 'click', copyText);
+</script>

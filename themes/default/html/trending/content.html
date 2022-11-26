@@ -1,0 +1,39 @@
+<div class="container-grid-columns">
+    <div class="contsub-video-list-vertical" id="trending-list">
+        {$videos}
+    </div>
+    <div class="clear"></div>
+    <div class="comments-loading hidden">
+        <div class="tb_content-spinner-circle">
+            <div class="tb_spinner-circle"></div>
+        </div>
+    </div>
+</div>
+<?php if($TEMP['#videos'] > 0) { ?>
+<script>
+var VG = !0;
+addEvent(D, 'scroll', function(){
+    if (((window.innerHeight + window.scrollY) >= D.querySelector('#global_content').offsetHeight - 200)){
+        if(VG){
+            var ids = [],
+            	spin = D.querySelector(".comments-loading"),
+                count = D.querySelectorAll(".video-wrapper"),
+                last_id = 0;
+            removeClass(spin, 'hidden'), VG = !1;
+            if (count.length > 0) {
+                last_id = count[count.length - 1].getAttribute('data-id');
+            }
+            for (var j = 0, i = count.length; j < i; j++) ids.push(count[j].getAttribute('data-id'));
+            Req("{$url->{req/load-more/trending}}", function(e){
+                if (e.status == 200) {
+                    var content = D.querySelector("#trending-list");
+                    content.innerHTML += e.html, addClass(spin, 'hidden'), VG = !0, loadPage(content.querySelectorAll('a[target="_self"]'), true);      
+                } else {
+                  spin.remove();
+                }            
+            }, "POST", "&last_id="+ last_id + "&ids=" + ids);
+        }
+    }
+}, 1, !1, !0);
+</script>
+<?php } ?>

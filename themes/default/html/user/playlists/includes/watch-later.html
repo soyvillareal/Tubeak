@@ -1,0 +1,27 @@
+<div class="cont-video-list-vertical video-wrapper">
+  <div class="video-thumb position-relative">
+    <a href="{!url}" target="_self">
+      <img src="{!thumbnail}" alt="{$word->watch_later}">
+      <div class="cont-vertical-overlays">
+        <div class="vertical-right-overlay margin-left-auto vertical-center color-secondary">
+          <div class="text-center w-100 color-white">
+            <p>{!count}</p>
+            <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor" d="M 14.513 13.836 L 14.513 16 C 14.513 16.77 15.348 17.251 16.013 16.866 C 16.323 16.687 16.513 16.357 16.513 16 L 16.513 8 C 16.513 7.23 15.681 6.749 15.013 7.134 C 14.706 7.313 14.513 7.643 14.513 8 L 14.513 10.164 L 10.586 7.356 C 10.266 7.126 9.881 7.001 9.488 7 C 8.398 7 7.513 7.941 7.513 9.102 L 7.513 14.898 C 7.513 15.316 7.631 15.722 7.849 16.068 C 8.456 17.033 9.68 17.29 10.586 16.644 L 14.516 13.836 Z M 12 22 C 6.478 22 2 17.523 2 12 C 2 6.477 6.478 2 12 2 C 17.522 2 22 6.477 22 12 C 22 17.523 17.522 22 12 22 Z M 9.356 9.08 L 13.41 11.978 L 9.356 14.876 L 9.356 9.08 Z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="overlay-message display-flex">
+          <span class="color-white font-bold font-uppercase margin-auto"> 
+            {$word->play_all}
+          </span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="cont-video-metadata display-flex">
+    <div class="w-100">
+      <a class="font-medium font-bold margin-t10 ellipsis-vertical-2 color-secondary" href="{!url}" target="_self" title="{$word->watch_later}">{$word->watch_later}</a>
+    </div>      
+  </div>
+</div>

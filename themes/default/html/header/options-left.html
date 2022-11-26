@@ -1,0 +1,146 @@
+<?php if($TEMP['#loggedin'] === false){ ?>
+<li class="item-sub top-header profile-main">
+	<a class="background-soft position-relative padding-5 vertical-center color-blue border-radius-4 hover-opacity" href="{$url->{login}}" target="_self">
+		<div class="padding-left-right-12 ellipsis-horizontal font-uppercase">{$word->login_}</div>
+	</a>
+</li>
+<?php } else { ?>
+<li class="item-sub profile-main vertical-center">
+	<button class="btn-trans" data-toggle="dropdown">
+		<img class="header-image" src="{$me->avatar}" alt="{$me->username}" />
+	</button>
+	<ul class="down-menu-container drop-menu-edit down-menu-right">
+		<div class="container-dropdown-content background-primary border-bottom border-primary" scroll custom-height="true">
+			<li class="container-dropdown-head vertical-center border-bottom border-primary padding-12" id="menu-header-title">
+				<div class="container-active-account-header margin-r10">
+			    	<a href="{$me->url}" target="_self">
+			    		<img class="border-radius-med" src="{$me->avatar}">
+			    	</a>
+			    </div>
+				<a class="font-medium font-bold ellipsis-horizontal color-secondary" href="{$me->url}" target="_self">{$me->username}</a>
+			</li>
+			<li class="cont-dropdown-content" id="container-profile-menu">
+				<ul>
+					<div class="down-wrapper padding-top-bottom-12">
+						<li>
+							<a class="profile-list vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative pointer" href="{$url->{channel}}" target="_self">
+								<div class="cont-minmincon">
+									<svg class="vh-icon color-invert" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+										<path fill="currentColor" d="M 12 2 C 13.814 2 15.488 2.447 17.02 3.341 C 18.551 4.236 19.764 5.449 20.659 6.98 C 21.553 8.512 22 10.186 22 12 C 22 13.814 21.553 15.488 20.659 17.02 C 19.764 18.551 18.551 19.764 17.02 20.659 C 15.488 21.553 13.814 22 12 22 C 10.186 22 8.512 21.553 6.98 20.659 C 5.449 19.764 4.236 18.551 3.341 17.02 C 2.447 15.488 2 13.814 2 12 C 2 10.186 2.447 8.512 3.341 6.98 C 4.236 5.449 5.449 4.236 6.98 3.341 C 8.512 2.447 10.186 2 12 2 Z M 17 12.717 C 17.278 12.56 17.417 12.321 17.417 12 C 17.417 11.679 17.278 11.44 17 11.283 L 9.917 7.117 C 9.648 6.952 9.37 6.948 9.083 7.104 C 8.806 7.269 8.667 7.512 8.667 7.833 L 8.667 16.167 C 8.667 16.488 8.806 16.731 9.083 16.896 C 9.222 16.966 9.361 17 9.5 17 C 9.648 17 9.787 16.961 9.917 16.883 Z"/>
+									</svg>
+								</div>
+								<span class="font-medium ellipsis-horizontal color-secondary">{$word->video_studio}</span>
+							</a>
+						</li>
+						<li>
+							<a class="profile-list vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative pointer" href="{$url->{settings}}" target="_self">
+								<div class="cont-minmincon">
+									<svg class="vh-icon color-invert" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+										<path fill="currentColor" d="M 15.833 12.5 C 15.833 11.58 15.508 10.794 14.857 10.143 C 14.206 9.492 13.42 9.167 12.5 9.167 C 11.58 9.167 10.794 9.492 10.143 10.143 C 9.492 10.794 9.167 11.58 9.167 12.5 C 9.167 13.42 9.492 14.206 10.143 14.857 C 10.794 15.508 11.58 15.833 12.5 15.833 C 13.42 15.833 14.206 15.508 14.857 14.857 C 15.508 14.206 15.833 13.42 15.833 12.5 Z M 22.5 11.081 L 22.5 13.971 C 22.5 14.076 22.465 14.175 22.396 14.271 C 22.326 14.366 22.24 14.423 22.135 14.44 L 19.727 14.805 C 19.562 15.273 19.392 15.668 19.219 15.99 C 19.523 16.424 19.987 17.023 20.612 17.786 C 20.699 17.891 20.742 17.999 20.742 18.112 C 20.742 18.225 20.703 18.325 20.625 18.411 C 20.391 18.733 19.961 19.201 19.336 19.818 C 18.711 20.434 18.303 20.742 18.112 20.742 C 18.008 20.742 17.895 20.703 17.773 20.625 L 15.977 19.219 C 15.595 19.418 15.2 19.583 14.792 19.714 C 14.653 20.894 14.527 21.701 14.414 22.135 C 14.353 22.378 14.197 22.5 13.945 22.5 L 11.055 22.5 C 10.933 22.5 10.827 22.463 10.736 22.389 C 10.645 22.316 10.595 22.222 10.586 22.109 L 10.221 19.714 C 9.796 19.575 9.405 19.414 9.049 19.232 L 7.214 20.625 C 7.127 20.703 7.018 20.742 6.888 20.742 C 6.766 20.742 6.658 20.694 6.563 20.599 C 5.469 19.609 4.753 18.88 4.414 18.411 C 4.353 18.325 4.323 18.225 4.323 18.112 C 4.323 18.008 4.358 17.908 4.427 17.813 C 4.557 17.63 4.779 17.342 5.091 16.947 C 5.404 16.552 5.638 16.246 5.794 16.029 C 5.56 15.595 5.382 15.165 5.26 14.74 L 2.878 14.388 C 2.765 14.371 2.674 14.316 2.604 14.225 C 2.535 14.134 2.5 14.032 2.5 13.919 L 2.5 11.029 C 2.5 10.924 2.535 10.825 2.604 10.729 C 2.674 10.634 2.756 10.577 2.852 10.56 L 5.273 10.195 C 5.395 9.796 5.564 9.397 5.781 8.997 C 5.434 8.503 4.97 7.904 4.388 7.201 C 4.301 7.096 4.258 6.992 4.258 6.888 C 4.258 6.801 4.297 6.701 4.375 6.589 C 4.601 6.276 5.028 5.809 5.658 5.189 C 6.287 4.568 6.697 4.258 6.888 4.258 C 7.001 4.258 7.114 4.301 7.227 4.388 L 9.023 5.781 C 9.405 5.582 9.8 5.417 10.208 5.286 C 10.347 4.106 10.473 3.299 10.586 2.865 C 10.647 2.622 10.803 2.5 11.055 2.5 L 13.945 2.5 C 14.067 2.5 14.173 2.537 14.264 2.611 C 14.355 2.684 14.405 2.778 14.414 2.891 L 14.779 5.286 C 15.204 5.425 15.595 5.586 15.951 5.768 L 17.799 4.375 C 17.878 4.297 17.982 4.258 18.112 4.258 C 18.225 4.258 18.333 4.301 18.438 4.388 C 19.557 5.421 20.273 6.159 20.586 6.602 C 20.647 6.671 20.677 6.766 20.677 6.888 C 20.677 6.992 20.642 7.092 20.573 7.188 C 20.443 7.37 20.221 7.658 19.909 8.053 C 19.596 8.448 19.362 8.754 19.206 8.971 C 19.431 9.405 19.609 9.831 19.74 10.247 L 22.122 10.612 C 22.235 10.629 22.326 10.684 22.396 10.775 C 22.465 10.866 22.5 10.968 22.5 11.081 Z"></path>
+									</svg>
+								</div>
+								<span class="font-medium ellipsis-horizontal color-secondary">{$word->settings}</span>
+							</a>
+						</li>
+						<?php if ($TEMP['#owner_global'] === true) { ?> 
+						<li>
+							<a class="profile-list vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative pointer" href="<?php echo(Specific::Admin() === true) ? '{$url->{admin/manage-dashboard}}' : '{$url->{admin/manage-users/general-users}}'?>" target="_self">			
+								<div class="cont-minmincon">
+							        <svg class="vh-icon color-invert" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+										<path fill="currentColor" d="M 6.424 18.36 C 6.424 18.149 6.348 17.967 6.193 17.812 C 6.039 17.659 5.855 17.581 5.644 17.581 C 5.432 17.581 5.25 17.659 5.096 17.812 C 4.941 17.967 4.864 18.149 4.864 18.36 C 4.864 18.571 4.941 18.754 5.096 18.908 C 5.25 19.062 5.432 19.139 5.644 19.139 C 5.855 19.139 6.039 19.062 6.193 18.908 C 6.348 18.754 6.424 18.571 6.424 18.36 Z M 14.273 13.248 L 5.961 21.55 C 5.66 21.85 5.295 22 4.864 22 C 4.441 22 4.073 21.85 3.755 21.55 L 2.464 20.234 C 2.154 19.943 2 19.578 2 19.139 C 2 18.709 2.154 18.34 2.464 18.031 L 10.763 9.742 C 11.08 10.538 11.545 11.241 12.159 11.854 C 12.773 12.467 13.476 12.931 14.273 13.248 Z M 22 7.952 C 22 8.269 21.906 8.699 21.72 9.243 C 21.338 10.33 20.67 11.213 19.715 11.89 C 18.76 12.568 17.71 12.907 16.564 12.907 C 15.061 12.907 13.775 12.373 12.708 11.307 C 11.639 10.239 11.104 8.954 11.104 7.453 C 11.104 5.952 11.639 4.668 12.708 3.601 C 13.775 2.533 15.061 2 16.564 2 C 17.035 2 17.529 2.067 18.045 2.201 C 18.561 2.334 18.998 2.523 19.355 2.767 C 19.485 2.857 19.55 2.97 19.55 3.108 C 19.55 3.246 19.485 3.359 19.355 3.449 L 15.784 5.506 L 15.784 8.232 L 18.136 9.534 C 18.178 9.511 18.497 9.313 19.099 8.944 C 19.7 8.576 20.251 8.247 20.751 7.959 C 21.25 7.67 21.536 7.527 21.61 7.527 C 21.731 7.527 21.827 7.567 21.896 7.648 C 21.965 7.729 22 7.831 22 7.952 Z"/>
+									</svg>
+								</div>
+								<span class="font-medium ellipsis-horizontal color-secondary">{$control_panel}</span>
+							</a>
+						</li> 
+						<?php } ?>
+						<li class="divider border-bottom border-primary"></li>
+						<li class="profile-list profile-next-button vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative pointer" data-type="select-word">
+							<div class="cont-minmincon">
+								<svg class="vh-icon color-invert" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+									<path fill="currentColor" d="M 10.738 14.031 C 10.731 14.054 10.685 14.052 10.6 14.026 C 10.515 14 10.399 13.957 10.251 13.897 L 10.03 13.797 C 9.705 13.648 9.384 13.466 9.067 13.25 C 9.015 13.213 8.864 13.096 8.613 12.898 C 8.362 12.701 8.222 12.595 8.193 12.58 C 7.698 13.347 7.204 14.02 6.71 14.6 C 6.112 15.307 5.725 15.717 5.548 15.828 C 5.518 15.843 5.446 15.858 5.332 15.873 C 5.217 15.888 5.149 15.888 5.127 15.873 C 5.171 15.843 5.474 15.501 6.035 14.846 C 6.189 14.667 6.505 14.24 6.981 13.563 C 7.457 12.885 7.746 12.446 7.85 12.246 C 7.975 12.022 8.163 11.656 8.414 11.146 C 8.665 10.637 8.798 10.348 8.813 10.281 C 8.753 10.274 8.348 10.397 7.595 10.65 C 7.536 10.664 7.435 10.692 7.291 10.733 C 7.147 10.774 7.02 10.81 6.909 10.839 C 6.798 10.869 6.735 10.888 6.721 10.895 C 6.706 10.91 6.699 10.949 6.699 11.012 C 6.699 11.076 6.695 11.111 6.688 11.118 C 6.651 11.193 6.536 11.249 6.344 11.286 C 6.175 11.338 6.001 11.338 5.824 11.286 C 5.691 11.256 5.588 11.178 5.514 11.051 C 5.485 11.007 5.466 10.921 5.459 10.795 C 5.503 10.78 5.594 10.761 5.73 10.739 C 5.867 10.717 5.975 10.694 6.057 10.672 C 6.485 10.553 6.872 10.434 7.219 10.315 C 7.957 10.054 8.333 9.924 8.348 9.924 C 8.421 9.909 8.58 9.837 8.824 9.706 C 9.067 9.576 9.229 9.496 9.311 9.467 C 9.377 9.444 9.456 9.414 9.549 9.377 C 9.641 9.34 9.694 9.32 9.709 9.316 C 9.724 9.312 9.746 9.314 9.775 9.321 C 9.79 9.411 9.786 9.533 9.764 9.69 C 9.764 9.705 9.718 9.805 9.626 9.991 C 9.534 10.177 9.436 10.376 9.333 10.588 C 9.229 10.8 9.167 10.925 9.145 10.962 C 8.96 11.334 8.676 11.821 8.292 12.424 L 9.001 12.737 C 9.089 12.781 9.364 12.9 9.825 13.094 C 10.286 13.287 10.535 13.391 10.572 13.406 C 10.602 13.414 10.641 13.509 10.688 13.691 C 10.736 13.873 10.753 13.987 10.738 14.031 Z M 8.469 8.607 C 8.492 8.719 8.477 8.823 8.425 8.92 C 8.337 9.091 8.152 9.232 7.872 9.344 C 7.65 9.433 7.429 9.478 7.208 9.478 C 7.016 9.455 6.835 9.359 6.665 9.188 C 6.562 9.076 6.496 8.923 6.466 8.73 L 6.477 8.696 C 6.499 8.719 6.571 8.737 6.693 8.752 C 6.815 8.767 6.913 8.767 6.986 8.752 C 7.06 8.737 7.274 8.678 7.628 8.574 C 7.894 8.484 8.097 8.432 8.237 8.417 C 8.362 8.417 8.44 8.481 8.469 8.607 Z M 16.195 10.047 L 16.892 12.58 L 15.354 12.112 Z M 3.932 18.975 L 11.613 16.386 L 11.613 4.868 L 3.932 7.469 L 3.932 18.975 Z M 17.667 15.438 L 18.796 15.783 L 16.792 8.451 L 15.686 8.105 L 13.295 14.087 L 14.424 14.433 L 14.922 13.205 L 17.257 13.931 Z M 12.1 4.701 L 18.441 6.754 L 18.441 2.513 Z M 15.542 19.467 L 17.29 19.612 L 16.693 21.397 L 16.25 20.661 C 15.291 21.278 14.273 21.68 13.195 21.866 C 12.767 21.955 12.432 22 12.188 22 L 11.258 22 C 10.676 22 9.94 21.855 9.05 21.565 C 8.161 21.275 7.484 20.958 7.02 20.616 C 6.961 20.564 6.931 20.504 6.931 20.438 C 6.931 20.378 6.949 20.328 6.986 20.287 C 7.023 20.246 7.071 20.225 7.13 20.225 C 7.16 20.225 7.226 20.253 7.329 20.309 C 7.433 20.365 7.545 20.426 7.667 20.493 C 7.789 20.56 7.864 20.601 7.894 20.616 C 8.433 20.891 9.021 21.12 9.659 21.302 C 10.297 21.485 10.878 21.576 11.402 21.576 C 12.103 21.576 12.719 21.522 13.251 21.414 C 13.782 21.306 14.361 21.118 14.988 20.85 C 15.099 20.798 15.211 20.741 15.326 20.677 C 15.44 20.614 15.566 20.544 15.702 20.465 C 15.839 20.387 15.944 20.326 16.018 20.281 Z M 20.5 7.424 L 20.5 19.467 L 11.934 16.721 C 11.83 16.766 10.447 17.24 7.783 18.144 C 5.12 19.048 3.762 19.5 3.71 19.5 C 3.614 19.5 3.548 19.452 3.511 19.355 C 3.511 19.347 3.507 19.336 3.5 19.321 L 3.5 7.29 C 3.522 7.223 3.537 7.186 3.544 7.179 C 3.581 7.134 3.655 7.093 3.766 7.056 C 4.555 6.788 5.105 6.602 5.415 6.498 L 5.415 2.212 L 11.591 4.422 C 11.605 4.422 12.197 4.217 13.367 3.808 C 14.536 3.399 15.702 2.995 16.864 2.597 C 18.026 2.199 18.622 2 18.652 2 C 18.799 2 18.873 2.078 18.873 2.234 L 18.873 6.9 Z"/>
+								</svg>
+							</div>
+							<div class="color-secondary" id="title-submenu">{$word->language}:</div>
+							<div class="cont-minmincon-subtitle ellipsis-horizontal margin-r5 color-secondary"><?php echo $TEMP['#lang_names'][$TEMP['#language']]; ?></div>
+							<div class="margin-left-auto">
+								<svg class="vh-icon color-invert" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+									<path fill="currentColor" d="M 15.7 12 C 15.7 12.105 15.658 12.196 15.573 12.277 L 9.648 17.88 C 9.563 17.96 9.466 18 9.355 18 C 9.245 18 9.148 17.96 9.063 17.88 L 8.427 17.278 C 8.342 17.199 8.3 17.106 8.3 17.002 C 8.3 16.898 8.342 16.806 8.427 16.725 L 13.424 12 L 8.427 7.275 C 8.342 7.194 8.3 7.102 8.3 6.998 C 8.3 6.894 8.342 6.801 8.427 6.722 L 9.063 6.12 C 9.148 6.04 9.245 6 9.355 6 C 9.466 6 9.563 6.04 9.648 6.12 L 15.573 11.723 C 15.658 11.804 15.7 11.895 15.7 12 Z"/>
+								</svg>
+							</div>
+						</li>
+						<li class="profile-list profile-next-button vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative pointer" data-type="select-mode">
+							<div class="cont-minmincon">
+								<svg class="vh-icon color-invert" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+									<path fill="currentColor" d="M 12 19.083 L 12 4.917 C 10.715 4.917 9.53 5.234 8.446 5.867 C 7.36 6.501 6.501 7.36 5.867 8.445 C 5.234 9.53 4.917 10.715 4.917 12 C 4.917 13.285 5.234 14.47 5.867 15.555 C 6.501 16.64 7.36 17.499 8.446 18.133 C 9.53 18.766 10.715 19.083 12 19.083 Z M 22 12 C 22 13.814 21.553 15.487 20.659 17.02 C 19.765 18.552 18.552 19.765 17.019 20.659 C 15.488 21.553 13.814 22 12 22 C 10.186 22 8.512 21.553 6.981 20.659 C 5.448 19.765 4.235 18.552 3.341 17.02 C 2.447 15.487 2 13.814 2 12 C 2 10.186 2.447 8.513 3.341 6.98 C 4.235 5.448 5.448 4.235 6.981 3.341 C 8.512 2.447 10.186 2 12 2 C 13.814 2 15.488 2.447 17.019 3.341 C 18.552 4.235 19.765 5.448 20.659 6.98 C 21.553 8.513 22 10.186 22 12 Z"/>
+								</svg>
+							</div>
+							<div class="color-secondary" id="title-submenu">{$word->dark_theme}:</div>
+							<div class="cont-minmincon-subtitle ellipsis-horizontal margin-r5 color-secondary"><?php echo($TEMP['#darkmode'] == 1) ? '{$word->enabled}' : '{$word->disabled}' ?></div>
+							<div class="margin-left-auto">
+								<svg class="vh-icon color-invert" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+									<path fill="currentColor" d="M 15.7 12 C 15.7 12.105 15.658 12.196 15.573 12.277 L 9.648 17.88 C 9.563 17.96 9.466 18 9.355 18 C 9.245 18 9.148 17.96 9.063 17.88 L 8.427 17.278 C 8.342 17.199 8.3 17.106 8.3 17.002 C 8.3 16.898 8.342 16.806 8.427 16.725 L 13.424 12 L 8.427 7.275 C 8.342 7.194 8.3 7.102 8.3 6.998 C 8.3 6.894 8.342 6.801 8.427 6.722 L 9.063 6.12 C 9.148 6.04 9.245 6 9.355 6 C 9.466 6 9.563 6.04 9.648 6.12 L 15.573 11.723 C 15.658 11.804 15.7 11.895 15.7 12 Z"/>
+								</svg>
+							</div>
+						</li>
+						<li class="divider border-bottom border-primary"></li>
+						<li>
+							<a class="profile-list vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative pointer" href="{$url->{logout}}">
+								<div class="cont-minmincon">
+									<svg class="vh-icon color-invert" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+										<path fill="currentColor" d="M 22 12.769 C 22 14.019 21.735 15.213 21.206 16.351 C 20.676 17.489 19.964 18.47 19.07 19.296 C 18.176 20.121 17.113 20.778 15.88 21.267 C 14.648 21.756 13.354 22 12 22 C 10.646 22 9.352 21.756 8.12 21.267 C 6.887 20.778 5.824 20.121 4.93 19.296 C 4.036 18.47 3.324 17.489 2.794 16.351 C 2.265 15.213 2 14.019 2 12.769 C 2 11.311 2.349 9.937 3.048 8.647 C 3.747 7.357 4.73 6.275 5.997 5.401 C 6.371 5.145 6.785 5.045 7.241 5.101 C 7.697 5.157 8.059 5.357 8.328 5.702 C 8.606 6.038 8.712 6.417 8.647 6.838 C 8.582 7.258 8.367 7.597 8.003 7.853 C 7.152 8.446 6.494 9.171 6.03 10.029 C 5.566 10.886 5.333 11.8 5.333 12.769 C 5.333 13.603 5.509 14.398 5.861 15.155 C 6.212 15.912 6.688 16.567 7.286 17.12 C 7.885 17.673 8.595 18.112 9.415 18.436 C 10.236 18.761 11.097 18.923 12 18.923 C 12.903 18.923 13.764 18.761 14.585 18.436 C 15.405 18.112 16.115 17.673 16.714 17.12 C 17.313 16.567 17.788 15.912 18.139 15.155 C 18.491 14.398 18.667 13.603 18.667 12.769 C 18.667 11.8 18.434 10.886 17.97 10.029 C 17.506 9.171 16.848 8.446 15.997 7.853 C 15.633 7.597 15.418 7.258 15.353 6.838 C 15.288 6.417 15.394 6.038 15.672 5.702 C 15.941 5.357 16.306 5.157 16.766 5.101 C 17.226 5.045 17.638 5.145 18.003 5.401 C 19.27 6.275 20.253 7.357 20.952 8.647 C 21.651 9.937 22 11.311 22 12.769 Z M 13.667 3.538 L 13.667 11.231 C 13.667 11.647 13.502 12.008 13.172 12.313 C 12.842 12.617 12.451 12.769 12 12.769 C 11.549 12.769 11.158 12.617 10.828 12.313 C 10.498 12.008 10.333 11.647 10.333 11.231 L 10.333 3.538 C 10.333 3.122 10.498 2.761 10.828 2.457 C 11.158 2.152 11.549 2 12 2 C 12.451 2 12.842 2.152 13.172 2.457 C 13.502 2.761 13.667 3.122 13.667 3.538 Z"/>
+									</svg>
+								</div>
+								<span class="font-medium ellipsis-horizontal color-secondary">{$word->log_out}</span>
+							</a>
+						</li>
+					</div>
+				</ul>
+			</li>
+			<li class="container-dropdown-head vertical-center border-bottom border-primary hidden" id="submenu-header-title">
+				<button id="profile-back-button" class="container-back-button btn-trans">
+					<svg class="vh-icon color-secondary" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path fill="currentColor" d="M 20 11.343 L 20 12.657 C 20 13.02 19.882 13.33 19.647 13.587 C 19.411 13.843 19.105 13.972 18.728 13.972 L 11.076 13.972 L 14.261 16.991 C 14.536 17.237 14.674 17.546 14.674 17.915 C 14.674 18.285 14.536 18.593 14.261 18.84 L 13.446 19.62 C 13.178 19.873 12.851 20 12.467 20 C 12.091 20 11.761 19.873 11.478 19.62 L 4.402 12.924 C 4.134 12.671 4 12.363 4 12 C 4 11.644 4.134 11.332 4.402 11.065 L 11.478 4.39 C 11.754 4.13 12.083 4 12.467 4 C 12.844 4 13.17 4.13 13.446 4.39 L 14.261 5.15 C 14.536 5.41 14.674 5.722 14.674 6.085 C 14.674 6.448 14.536 6.759 14.261 7.019 L 11.076 10.028 L 18.728 10.028 C 19.105 10.028 19.411 10.157 19.647 10.413 C 19.882 10.67 20 10.98 20 11.343 Z"/>
+					</svg>
+				</button>
+				<h2 class="font-medium font-bold margin-l10 color-secondary" id="profile-submenu-title"></h2>
+			</li>
+			<li class="cont-dropdown-content hidden" id="container-profile-submenu">
+				<ul class="sublist-profile select-word hidden">
+					<div class="down-wrapper padding-top-bottom-12">
+						<?php foreach ($TEMP['#languages'] as $value) { ?>
+						<li<?php echo ($TEMP['#language'] == $value) ? ' class="selected"' : ''; ?>>
+							<a class="profile-list vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative pointer" id="language-href" href="{$lang_url}<?php echo $value; ?>">
+								<?php if($TEMP['#language'] == $value) { ?>
+								<svg class="vh-icon icon-selected color-secondary" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+									<path fill="currentColor" d="M 3.2 13.055 L 8.825 18.7 L 20.8 6.585 L 19.53 5.3 L 8.825 16.131 L 4.47 11.724 Z"/>
+								</svg>
+								<?php } ?>
+				               	<span class="font-medium ellipsis-horizontal color-secondary"><?php echo $TEMP['#lang_names'][$value]; ?></span>
+							</a>
+						</li>
+						<?php } ?>
+					</div>
+				</ul>
+				<div class="sublist-profile select-mode padding-20 hidden">
+				    <div class="font-medium margin-b10 color-secondary">
+				     	{$word->the_dark_theme_the_lightest_parts}
+					</div>
+					<div class="font-medium margin-b10 color-secondary">
+				  		{$word->the_dark_theme_settings_will_apply_only}
+				   	</div>
+				    <div class="vertical-center">
+					    <div class="font-medium font-bold font-uppercase margin-right-auto color-tertiary">
+						   	{$word->dark_theme}
+					     </div>
+					    <div class="toggle-box vertical-center position-relative margin-r10">
+			           		<input class="toggle-mode hidden" id="toggle-mode" type="checkbox" {$check_mode}>
+					        <label for="toggle-mode"></label>
+				        </div>
+					</div>
+				</div>
+			</li>
+		</div>
+	</ul>
+</li>
+<?php } ?>

@@ -1,0 +1,136 @@
+<div class="container-admin">
+    <div class="user-setting-panel">
+        <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+            <h3 class="cont-settings-title color-secondary">{$word->edit_pages}</h3>
+            <div class="margin-t10">
+                <p class="color-secondary">{$word->set_website_pages}</p>
+            </div>
+        </div> 
+        <div class="max-w-900 border-top-right-radius border-top-left-radius border-top border-right border-left border-tertiary background-primary margin-right-auto margin-left-auto">
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->terms_of_use}</label>
+                    </div>
+                    <div class="flex-grow">
+                        <textarea id="page-terms" cols="20" class="cont-control input_key background-secondary color-secondary" rows="5">{$terms}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label vertical-center">
+                        <label class="group-title color-secondary">{$word->status}</label>
+                    </div>
+                    <div class="cont-radio margin-r10">
+                        <input class="area_changed_pages terms_stat radio-paper hidden" name="terms_stat" id="terms_stat-enabled" type="radio" value="1"<?php echo($TEMP['#terms_active'] == 1) ? ' checked' : ''?>>
+                        <label class="color-secondary ellipsis-horizontal" for="terms_stat-enabled">
+                            {$word->enabled}
+                        </label>
+                    </div>
+                    <div class="cont-radio">
+                        <input class="area_changed_pages terms_stat radio-paper hidden" name="terms_stat" id="terms_stat-disabled" type="radio" value="0"<?php echo($TEMP['#terms_active'] == 0) ? ' checked' : ''?>>
+                        <label class="color-secondary ellipsis-horizontal" for="terms_stat-disabled">
+                            {$word->disabled}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->terms_of_service}</label>
+                    </div>
+                    <div class="flex-grow">
+                        <textarea id="page-privacy" cols="20" class="cont-control input_key background-secondary color-secondary" rows="5">{$privacy}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label vertical-center">
+                        <label class="group-title color-secondary">{$word->status}</label>
+                    </div>
+                    <div class="cont-radio margin-r10">
+                        <input class="area_changed_pages privacy_stat radio-paper hidden" name="privacy_stat" id="privacy_stat-enabled" type="radio" value="1"<?php echo($TEMP['#privacy_active'] == 1) ? ' checked' : ''?>>
+                        <label class="color-secondary ellipsis-horizontal" for="privacy_stat-enabled">
+                            {$word->enabled}
+                        </label>
+                    </div>
+                    <div class="cont-radio">
+                        <input class="area_changed_pages privacy_stat radio-paper hidden" name="privacy_stat" id="privacy_stat-disabled" type="radio" value="0"<?php echo($TEMP['#privacy_active'] == 0) ? ' checked' : ''?>>
+                        <label class="color-secondary ellipsis-horizontal" for="privacy_stat-disabled">
+                            {$word->disabled}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label">
+                        <label class="group-title color-secondary">{$word->about_us}</label>
+                    </div>
+                    <div class="flex-grow">
+                        <textarea id="page-about" cols="20" class="cont-control input_key background-secondary color-secondary" rows="5">{$about}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-group w-100 padding-20">
+                <div class="display-flex flex-wrap">
+                    <div class="cont-label vertical-center">
+                        <label class="group-title color-secondary">{$word->status}</label>
+                    </div>
+                    <div class="cont-radio margin-r10">
+                        <input class="area_changed_pages about_stat radio-paper hidden" name="about_stat" id="about_stat-enabled" type="radio" value="1"<?php echo($TEMP['#about_active'] == 1) ? ' checked' : ''?>>
+                        <label class="color-secondary ellipsis-horizontal" for="about_stat-enabled">
+                            {$word->enabled}
+                        </label>
+                    </div>
+                    <div class="cont-radio">
+                        <input class="area_changed_pages about_stat radio-paper hidden" name="about_stat" id="about_stat-disabled" type="radio" value="0"<?php echo($TEMP['#about_active'] == 0) ? ' checked' : ''?>>
+                        <label class="color-secondary ellipsis-horizontal" for="about_stat-disabled">
+                            {$word->disabled}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="background-primary max-w-900 border-bottom-right-radius border-bottom-left-radius border-bottom border-right border-left border-tertiary padding-20 margin-b20 margin-right-auto margin-left-auto">
+            <div class="display-flex flex-end">
+                <span class="color-secondary vertical-center margin-r10 hidden" id="alert-pages-settings">
+                    {$word->there_problems_with_some_fields}
+                </span>
+                <button id="pages-settings" class="btn-trans global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                    <span class="color-white">{$word->save}</span>
+                    <div class="tb_content-spinner-circle">
+                        <div class="tb_spinner-circle"></div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var GX = D.querySelectorAll('.area_changed_pages'),
+    GL = D.querySelectorAll('.input_key'),
+    GM = D.querySelector('#pages-settings'),
+    GK = D.querySelector('#alert-pages-settings');
+addEvent(GM, "click", function(){
+    addClass(GM, 'tb_spinner-is-loading');
+    GM.setAttribute('disabled', true);
+    Req("{$url->{req/global-admin/update-pages}}", function(e){
+        if (e.status == 200) {
+            loadAlert('{$word->changes_saved_successfully}'), addClass(GK, 'hidden'), removeClass(GM, 'tb_spinner-is-loading');
+        } else {
+            loadAlert('{$word->error}', 1), removeClass(GK, 'hidden'), removeClass(GM, 'tb_spinner-is-loading'), GM.removeAttribute('disabled');
+        }
+    }, "POST", "&terms-of-use=" + D.querySelector("#page-terms").value + "&privacy-policy=" + D.querySelector('#page-privacy').value + "&about-us=" + D.querySelector('#page-about').value + "&terms-of-use-stat=" + D.querySelector('.terms_stat:checked').value + "&privacy-policy-stat=" + D.querySelector('.privacy_stat:checked').value + "&about-us-stat=" + D.querySelector('.about_stat:checked').value);
+});
+for(var j = 0, i = GX.length; j < i; j++) addEvent(GX[j], 'change', function(){
+    GM.removeAttribute('disabled');
+})
+for(var j = 0, i = GL.length; j < i; j++) addEvent(GL[j], 'keyup', function(e){
+    GM.removeAttribute('disabled');
+});
+</script>

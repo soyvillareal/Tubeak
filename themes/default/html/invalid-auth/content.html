@@ -1,0 +1,40 @@
+<div class="login-page">
+	<div class="login-form margin-auto text-center">
+	    <div class="cont-login-center">
+	    	<div class="border-radius-4 padding-20 border-all border-primary">
+	    	    <div class="background-primary errors cont-group">{$word->invalid_request}</div>
+				<div class="color-secondary">
+					{$word->got_your_password} <a class="hover-button color-for-hover" href="{$url->{login}}" target="_self">{$word->login_}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 
+<ul class="container-bubbles">
+	<?php foreach ($TEMP['#bubbles']['avatar'] as $key => $avatar){ ?>
+	<li class="bubble-<?php echo $key;?>">
+		<img id="bubble-<?php echo $key;?>" src="<?php echo $avatar; ?>">
+	</li>
+	<?php } ?>
+</ul> 
+<script>
+var TY = "{$bubbles}".split(',');
+timeDelay(function(){
+	if(TY.length > 0){
+		Req("{$url->{req/to-access/bubbles}}", function(e){
+			if(e.status == 200){
+				TY = e.bubbles;
+				for (var j = 0, i = e.bubble.length; j < i; j++){
+					var av = e.bubble[j],
+						el = D.querySelector('#bubble-'+j);
+					if(el){
+						el.setAttribute('src', av);
+					} else {
+						D.querySelector('.container-bubbles').innerHTML += '<li class="bubble-'+j+'"><img id="bubble-'+j+'" src="'+av+'"/></li>'
+					}
+				}
+			}
+		}, "POST", "&bubbles=" + TY)
+	}
+}, 14000, 1)
+</script>

@@ -1,0 +1,13 @@
+<?php if($TEMP['#loggedin'] == true) { ?>
+<div class="no-content-found">
+	<p class="color-tertiary">{$word->no_videos_found_for_now}</p>
+	<p class="color-tertiary margin-b10">{$word->contribute_to_the_community}</p>
+	<a class="general-two-blue-button position-relative color-white hover-opacity" href="{$url->{upload-video}}" target="_self">
+		{$word->upload}
+	</a>
+</div>
+<?php } else { ?>
+<p class="no-content-found color-secondary">
+	{$word->no_videos_found_for_now}
+</p>
+<?php } ?>

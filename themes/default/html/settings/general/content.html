@@ -1,0 +1,426 @@
+<div class="user-setting-panel">
+    <div class="margin-b20 margin-t10">
+        <h3 class="cont-settings-title color-secondary">{$word->account_settings}</h3>
+        <div class="margin-t10">
+            <p class="color-secondary">{$word->change_general_data_account}</p>
+        </div>
+    </div>
+    <div class="max-w-900 border-radius-4 border-all border-tertiary background-primary">
+        <?php if($TEMP['#settings']['live_broadcast'] == 'on'){ ?>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="color-secondary">{$word->transmission_key}</label>
+                </div>
+                <div class="flex-grow position-relative">
+                    <input class="cont-control background-secondary color-secondary" id="live-key" type="text" readonly="true" value="{$data->live_key}">
+                    <button class="btn-trans cursor-disabled binput-inleft padding-5 border-top-right-radius border-bottom-right-radius background-grey hover-opacity color-whiblack" id="reset-live-key">
+                        <span class="color-white">{$word->restore}</span>
+                        <div class="tb_content-spinner-circle">
+                            <div class="tb_spinner-circle"></div>
+                        </div>
+                    </button>
+                    <div class="color-tertiary margin-t10">{$word->transmission_key_do_not_share_anyone}</div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="color-secondary">{$word->username}</label>
+                </div>
+                <div class="flex-grow">
+                    <input id="username"<?php echo($TEMP['#username_change']) ? ' readonly="true"' : ''?> type="text" class="cont-control input_key area_validate background-secondary color-secondary" value="{$data->username}">
+                    <?php if($TEMP['#username_change']) { ?>
+                    <div class="color-tertiary margin-t10">{$word->you_can_update_your_username_again_in}{$time_user}</div>
+                    <?php } ?>
+                    <div class="color-red text-left text-error"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="color-secondary">{$word->more_info}</label>
+                </div>
+                <div class="flex-grow">
+                    <textarea id="about" cols="20" class="cont-control no_aj input_key background-secondary color-secondary" rows="5">{$data->about_uncompose}</textarea>
+                    <div class="color-red text-left text-error"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="color-secondary">{$word->email_address}</label>
+                </div>
+                <div class="flex-grow">
+                    <input id="settings-email" type="text" class="cont-control input_key area_validate background-secondary color-secondary" value="<?php echo ($TEMP['#settings']['validate_email'] == 'on' && !empty($TEMP['#data']['change_email'])) ? '{$data->change_email}' : '{$data->email}'?>">
+                    <div class="<?php echo ($TEMP['#settings']['validate_email'] == 'on' && !empty($TEMP['#data']['change_email'])) ? 'display-inline-flex ' : ''?>color-red text-left text-error"><?php echo ($TEMP['#settings']['validate_email'] == 'on' && !empty($TEMP['#data']['change_email'])) ? '*{$word->unverified}' : ''?></div>
+                    <?php if($TEMP['#settings']['validate_email'] == 'on' && !empty($TEMP['#data']['change_email'])){ ?>
+                    <button class="btn-trans position-absolute pos-right color-blue underline-hover padding-right-30" id="resend-new-email">{$word->resend_email}</button>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="color-secondary">{$word->gender}</label>
+                </div>
+                <div class="flex-grow">
+                    <select id="gender" class="cont-control area_changed cont-select input_key area_validate background-secondary color-secondary">
+                        <option value="1" <?php echo ($TEMP['#data']['gender'] == 1) ? 'selected': '';?>>{$word->male}</option>
+                        <option value="2" <?php echo ($TEMP['#data']['gender'] == 2) ? 'selected': '';?>>{$word->female}</option>
+                    </select>
+                    <div class="color-red text-left text-error"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="color-secondary">{$word->country}</label>
+                </div>
+                <div class="flex-grow">
+                    <select id="country" class="cont-control area_changed cont-select background-secondary color-secondary">
+                        <?php foreach ($TEMP['#countries'] as $key => $value) {?>
+                        <option value="<?php echo $key; ?>"<?php echo($key == $TEMP['#data']['country']) ? ' selected' : '';?>><?php echo $value; ?></option>
+                        <?php } ?>
+                    </select>
+                    <div class="color-red text-left text-error"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="color-secondary">{$word->date_of_birth}</label>
+                </div>
+                <div class="flex-grow">
+                    <div class="display-flex">
+                        <input class="cont-control border-focus-blue number mw-80 input_key area_validate background-secondary color-secondary" type="text" placeholder="{$word->day}" id="day" maxlength="2" value="{$data->birthday}" required<?php echo($TEMP['#data']['age_changed'] >= 1) ? ' readonly="true" disabled="true"' : ''?>>
+                        <select class="cont-control area_changed cont-select border-focus-blue margin-l10 area_validate background-secondary color-secondary" id="month"<?php echo($TEMP['#data']['age_changed'] >= 1) ? ' disabled="true"' : ''?>>
+                            <option value="" disabled selected>{$word->month}</option>
+                            <option value="1"<?php echo($TEMP['#data']['birthday_month'] == 1) ? ' selected' : ''?>>{$word->january}</option>
+                            <option value="2"<?php echo($TEMP['#data']['birthday_month'] == 2) ? ' selected' : ''?>>{$word->february}</option>
+                            <option value="3"<?php echo($TEMP['#data']['birthday_month'] == 3) ? ' selected' : ''?>>{$word->march}</option>
+                            <option value="4"<?php echo($TEMP['#data']['birthday_month'] == 4) ? ' selected' : ''?>>{$word->april}</option>
+                            <option value="5"<?php echo($TEMP['#data']['birthday_month'] == 5) ? ' selected' : ''?>>{$word->may}</option>
+                            <option value="6"<?php echo($TEMP['#data']['birthday_month'] == 6) ? ' selected' : ''?>>{$word->june}</option>
+                            <option value="7"<?php echo($TEMP['#data']['birthday_month'] == 7) ? ' selected' : ''?>>{$word->july}</option>
+                            <option value="8"<?php echo($TEMP['#data']['birthday_month'] == 8) ? ' selected' : ''?>>{$word->august}</option>
+                            <option value="9"<?php echo($TEMP['#data']['birthday_month'] == 9) ? ' selected' : ''?>>{$word->september}</option>
+                            <option value="10"<?php echo($TEMP['#data']['birthday_month'] == 10) ? ' selected' : ''?>>{$word->october}</option>
+                            <option value="11"<?php echo($TEMP['#data']['birthday_month'] == 11) ? ' selected' : ''?>>{$word->november}</option>
+                            <option value="12"<?php echo($TEMP['#data']['birthday_month'] == 12) ? ' selected' : ''?>>{$word->december}</option>
+                        </select>
+                        <input class="cont-control border-focus-blue number mw-80 margin-l10 input_key area_validate background-secondary color-secondary" type="text" placeholder="{$word->year}" id="year" maxlength="4" value="{$data->birthday_year}" required<?php echo($TEMP['#data']['age_changed'] >= 1) ? ' readonly="true" disabled="true"' : ''?>>
+                    </div>
+                    <?php if($TEMP['#data']['age_changed'] >= 1){ ?>
+                    <div class="color-tertiary margin-t10">*{$word->can_only_change_age_once}</div>
+                    <?php } else { ?>
+                    <div class="color-red text-left text-error"></div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="margin-b20 margin-t20">
+        <h3 class="cont-settings-title color-secondary">{$word->general_settings}</h3>
+        <div class="margin-t10">
+            <p class="color-secondary">{$word->change_identification_data_account}</p>
+        </div>
+    </div>
+    <div class="max-w-900 border-radius-4 border-all border-tertiary background-primary">
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="color-secondary" for="first_name">{$word->first_name}</label>
+                </div>
+                <div class="flex-grow">
+                    <input id="first_name" type="text" class="cont-control no_aj input_key background-secondary color-secondary" value="{$data->first_name}">
+                    <div class="color-red text-left text-error"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="color-secondary" for="last_name">{$word->last_name}</label>
+                </div>
+                <div class="flex-grow">
+                    <input id="last_name" type="text" class="cont-control no_aj input_key background-secondary color-secondary" value="{$data->last_name}">
+                    <div class="color-red text-left text-error"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="color-secondary" for="facebook">{$word->facebook}</label>
+                </div>
+                <div class="flex-grow">
+                    <input id="facebook" type="text" class="cont-control no_aj input_key background-secondary color-secondary" value="{$data->facebook}">
+                    <div class="color-red text-left text-error"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="color-secondary" for="mail_contact">{$word->mail_contact}</label>
+                </div>
+                <div class="flex-grow">
+                    <input id="mail_contact" type="text" class="cont-control no_aj input_key background-secondary color-secondary" value="{$data->mail_contact}">
+                    <div class="color-red text-left text-error"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="color-secondary" for="twitter">{$word->twitter}</label>
+                </div>
+                <div class="flex-grow">
+                    <input id="twitter" type="text" class="cont-control no_aj input_key background-secondary color-secondary" value="{$data->twitter}">
+                    <div class="color-red text-left text-error"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cont-group w-100 padding-20">
+            <div class="display-flex flex-wrap">
+                <div class="cont-label">
+                    <label class="color-secondary" for="instagram">{$word->instagram}</label>
+                </div>
+                <div class="flex-grow">
+                    <input id="instagram" type="text" class="cont-control no_aj input_key background-secondary color-secondary" value="{$data->instagram}">
+                    <div class="color-red text-left text-error"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-primary max-w-900 border-radius-4 border-all border-tertiary padding-20 margin-t20 margin-b20">
+        <div class="display-flex flex-end">
+            <span class="color-secondary vertical-center margin-r10 hidden" id="alert-general-settings">
+                {$word->there_problems_with_some_fields}
+            </span>
+            <button id="general-settings" class="btn-trans global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                <span class="color-white">{$word->save}</span>
+                <div class="tb_content-spinner-circle">
+                    <div class="tb_spinner-circle"></div>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+    
+
+<script>
+var GL = D.querySelectorAll('.area_validate'),
+    GK = D.querySelectorAll('.input_key'),
+    GQ = D.querySelectorAll('.area_changed'),
+    GO = D.querySelectorAll('.no_aj'),
+    GN = D.querySelectorAll('.number'),
+    GB = D.querySelector('#general-settings'),
+    GS = D.querySelector('#alert-general-settings'),
+    GU = D.querySelector("#username"),
+    GM = D.querySelector('#settings-email'),
+    GG = D.querySelector('#gender'),
+    GD = D.querySelector('#day'),
+    GJ = D.querySelector('#month'),
+    GR = D.querySelector('#year'),
+    bDisabled = function(){
+        if((GU.value != '' && !GC) && GM.value != '' && GG.value != '' && GD.value != '' && GJ.value != '' && GR.value != ''){
+            GB.removeAttribute('disabled'), GX = !0;
+        } else {
+            GB.setAttribute('disabled', true), GX = !1;
+        }
+    },
+    GP = function(){
+        addEvent(D.querySelector('#resend-new-email'), 'click', function(){
+            var self = this;
+            self.setAttribute('disabled', true), self.innerText = "{$word->please_wait}";
+            Req("{$url->{req/to-access/resend-new-email}}", function(e){
+                var clss = e.status == 200 ? 'color-green' : 'color-red';
+                if(e.status == 200 || e.status == 400){
+                    GV = e.ecode, addClass(self, clss), self.innerText = e.message;
+                    timeDelay(function(){
+                        removeClass(self, clss)
+                        self.innerText = "{$word->resend_code}", self.removeAttribute('disabled');
+                    }, 3000)
+                } else {
+                    self.innerText = "{$word->resend_code}", self.removeAttribute('disabled'), loadAlert(e.message, 1);
+                }
+            }, "POST", "&code=" + GV + "&id={$data->user_id}")
+        })
+    },
+    GX = !1,
+    GC = !1,
+    GV = "{$data->token}";
+
+<?php if($TEMP['#settings']['validate_email'] == 'on' && !empty($TEMP['#data']['change_email'])){ ?>GP(), <?php } if($TEMP['#settings']['live_broadcast'] == 'on') { ?>addEvent(D.querySelector('#reset-live-key'), 'click', function(){
+    var self = this;
+    addClass(self, 'tb_spinner-is-loading'), self.setAttribute('disabled', true);
+    Req('{$url->{req/settings/reset-live-key}}', function(e){
+        if(e.status == 200){
+            removeClass(self, 'tb_spinner-is-loading'), timeDelay(function(){
+                self.removeAttribute('disabled');
+            }, 3000), D.querySelector('#live-key').value = e.live_key, loadAlert(e.message);
+        } else {
+            removeClass(self, 'tb_spinner-is-loading'), timeDelay(function(){
+                self.removeAttribute('disabled');
+            }, 3000), loadAlert('{$word->error}');
+        }
+    }, "POST", "&by_id={$data->id}")
+}), <?php } ?>addEvent(GB, "click", function(){
+    if((GU.value == '' && !GC) || GM.value == '' || GG.value == '' || GD.value == '' || GJ.value == '' || GR.value == '' || !GX){
+        for (var j = 0, i = GL.length; j < i; j++){
+            var el = GL[j],
+                GZ = el.parentNode,
+                GH = hasClass(GZ, 'cont-group') ? GZ : GZ.parentNode;
+            if(el.value == '' && !el.getAttribute('disabled')){
+                GH.querySelector('.text-error').innerText = '*{$word->this_field_is_empty}', removeClass(GS, 'hidden'), addClass(el, 'border-red'), addClass(el, 'boxshadow-red');
+            }
+        }
+        return false;
+    } else {
+        for (var j = 0, i = GL.length; j < i; j++) {
+            var el = GL[j],
+                GZ = el.parentNode,
+                GH = hasClass(GZ, 'cont-group') ? GZ : GZ.parentNode;
+            if(el.value != '' && !el.getAttribute('disabled')){
+                    GH.querySelector('.text-error').innerText = "", addClass(GS, 'hidden'), removeClass(el, 'border-red'), removeClass(el, 'boxshadow-red');
+                    if((el.id == 'day' || el.id == 'year') && !(GJ.value > 0 && GJ.value < 13 && GR.value > 0 && GR.value < 32768 && GD.value > 0 && GD.value <= (new Date(GR.value, GJ.value, 0)).getDate() && GR.value <= (new Date()).getFullYear())){
+                        if(GR.value > (new Date()).getFullYear()){
+                            addClass(GR, 'border-red'), addClass(GR, 'boxshadow-red');
+                        } else {
+                        addClass(GJ, 'border-red'), addClass(GJ, 'boxshadow-red'), addClass(GD, 'border-red'), addClass(GD, 'boxshadow-red');
+                    }
+                    GH.querySelector('.text-error').innerText = "*{$word->please_enter_valid_date}";
+                    return false;
+                }
+            }
+        }
+    }
+    addClass(GB, 'tb_spinner-is-loading');
+    GB.setAttribute('disabled', true);
+    Req("{$url->{req/settings/general}}", function(e){
+        if (e.status == 200) {
+            GX = !1;
+            if (e.redirect_verify == true) {
+                if(!D.querySelector('#resend-new-email')){
+                    var GE = GM.parentNode,
+                        GT = GE.querySelector('.text-error');
+                    GV = e.ecode, addClass(GT, 'display-inline-flex'), GT.innerText = '{$word->unverified}', GE.innerHTML += '<button class="btn-trans position-absolute pos-right color-blue underline-hover padding-right-30" id="resend-new-email">{$word->resend_email}</button>', GP();
+                }
+                TB_ShowElement('warning-alert', 'warning-alert','redirect_verify','{$word->redirection_notice}',1,'normal','{$word->follow}','{$word->you_will_redirected_verify_email_continue}',e.ecode,e.username);
+            } else {
+                if(e.user_changed == true){
+                    var GA = GU.parentNode,
+                        GI = D.createElement("div");
+                    GI.className = "color-tertiary margin-t10", GI.innerText = e.text, GU.setAttribute('readonly', true), GA.insertBefore(GI, GA.childNodes[5]), GC = !0
+                }
+                loadAlert(e.message);
+            }
+            addClass(GS, 'hidden'), removeClass(GB, 'tb_spinner-is-loading');
+        } else {
+            if (e.err != undefined) {
+                for (var j = 0, i = e.err.length; j < i; j++){
+                    var els = e.err[j]['el'].split('-'),
+                        el = e.err[j]['el'].indexOf('-') == -1 ? D.querySelector('#'+e.err[j]['el']) : D.querySelector('#'+els[0]),
+                        GZ = el.parentNode,
+                        GH = hasClass(GZ, 'cont-group') ? GZ : GZ.parentNode;
+                    GH.querySelector('.text-error').innerText = '*'+e.err[j]['error'];
+                    if(e.err[j]['el'].indexOf('-') == -1){
+                        addClass(el, 'border-red');
+                        addClass(el, 'boxshadow-red');
+                    } else {
+                        for (var j = 0, i = els.length; j < i; j++){
+                            var del = D.querySelector('#'+els[j]);
+                            addClass(del, 'border-red'), addClass(del, 'boxshadow-red');
+                        } 
+                    }    
+                }
+            } else {
+                for (var j = 0, i = e.emptys.length; j < i; j++){
+                    var el = D.querySelector('#'+e.emptys[j]),
+                        GZ = el.parentNode,
+                        GH = hasClass(GZ, 'cont-group') ? GZ : GZ.parentNode;
+                    if(!el.getAttribute('disabled')) GH.querySelector('.text-error').innerText = '*{$word->this_field_is_empty}', addClass(el, 'border-red'), addClass(el, 'boxshadow-red');
+                }
+            }
+            removeClass(GS, 'hidden'), removeClass(GB, 'tb_spinner-is-loading'), GB.removeAttribute('disabled');
+        }
+    }, "POST", "&by_id={$data->id}&about=" + D.querySelector('#about').value<?php echo(!$TEMP['#username_change']) ? ' + "&username_changed=" + GC + "&username=" + GU.value' : ''?> + "&settings-email=" + D.querySelector('#settings-email').value + "&gender=" + D.querySelector('#gender').value + "&country=" + D.querySelector('#country').value + "&day=" + GD.value + "&month=" + GJ.value + "&year=" + GR.value + "&first_name=" + D.querySelector('#first_name').value + "&last_name=" + D.querySelector('#last_name').value + "&facebook=" + D.querySelector('#facebook').value + "&mail_contact=" + D.querySelector('#mail_contact').value + "&twitter=" + D.querySelector('#twitter').value + "&instagram=" + D.querySelector('#instagram').value)
+});
+for(var j = 0, i = GQ.length; j < i; j++) addEvent(GQ[j], 'change', bDisabled);
+for(var j = 0, i = GN.length; j < i; j++) addEvent(GN[j], 'input', function(){
+    this.value = this.value.replace(/[^0-9]/gi, '');
+});
+for (var j = 0, i = GK.length; j < i; j++) addEvent(GK[j], 'keyup', function(e){
+    if(e.which != 13 || e.keyCode != 13){
+        var self = this,
+            GA = self.id,
+            GW = self.value,
+            GZ = self.parentNode,
+            GH = hasClass(GZ, 'cont-group') ? GZ : GZ.parentNode,
+            els = GH.querySelectorAll('.area_validate');
+        bDisabled();
+        if(GA == 'day' || GA == 'year'){
+            for (var j = 0, i = els.length; j < i; j++) removeClass(els[j], 'border-red'), removeClass(els[j], 'boxshadow-red');
+        }
+        if(GW == '' || (GA == 'year' && GW.split('')[0] == 0)){
+            GH.querySelector('.text-error').innerText = "", removeClass(self, 'border-red'), removeClass(self, 'boxshadow-red');
+            return false;
+        }
+        if(Array.prototype.slice.call(GO).indexOf(self)){
+            Req("{$url->{req/key-validate}}", function(e){
+                if(e.status == 200){
+                    var msg = e.message;
+                    if(msg == ''){
+                        removeClass(self, 'border-red'), removeClass(self, 'boxshadow-red');
+                    } else {
+                        addClass(self, 'border-red'), addClass(self, 'boxshadow-red');
+                    }
+                    GH.querySelector('.text-error').innerText = msg;
+                } else {
+                    loadAlert(e.message, 1);
+                }
+            }, "POST", "&by_id={$data->id}&input=" + GW + "&type=" + GA)
+        }
+    }
+});
+
+function TB_ShowElement(type, el_content, button, by_id = 0, video_id = 0,price = 0, txt_btn = '', next_cont = '', extra, extra_new) {
+    var c = D.querySelector('#container_alerts'),
+        u = c.querySelector('#confirm-alert') ;
+    Req('{$url->{req/get-element}}', function(e) {
+        if (e.status == 200) {
+                c.innerHTML = e.html;
+                var SF = c.querySelector('#'+el_content),
+                    SH = c.querySelector('.here_now');
+                if(button == 'redirect_verify'){
+                    addEvent(c.querySelector('.redirect_verify'), 'click', function(){
+                        preloadPage('&one=change-email&code='+extra+'&id={$data->user_id}');
+                    }, 2);
+                }
+                SF.style.display = "block";
+                addEvent(SF.querySelector('[data-dismiss]'), "click", function(){
+                    SF.style.display = "none";
+                });
+                addEvent(D, "click", function(e){
+                    if (e.target == SF) {
+                        SF.style.display = "none";
+                    }
+                });
+            c.querySelector('#'+el_content).style.display = "block";
+            
+        }else{
+            loadAlert(e.error, 1);
+        }
+    }, "POST", "&type=" + type + "&actual_form=" + el_content + "&by_id=" + by_id + "&video_id=" + video_id + "&price=" + price + "&next_cont=" + next_cont + "&txt_btn=" + txt_btn + "&class_n=" + button + "&extra=" + extra + "&extra_new=" + extra_new);
+}
+</script>

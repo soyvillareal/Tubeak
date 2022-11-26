@@ -1,0 +1,49 @@
+<div class="cont-popup background-modal">     
+  <div class="top-header">  
+    <div class="top-title color-tertiary">{$word->more_options}</div>
+    <button class="close-popup btn-trans color-tertiary" data-dismiss>
+      <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path fill="currentColor" d="M 12 13.17 L 5.17 20 L 4 18.832 L 10.83 12 L 4 5.17 L 5.17 4 L 12 10.83 L 18.832 4 L 20 5.17 L 13.17 12 L 20 18.832 L 18.832 20 Z"></path>
+      </svg>
+    </button>  
+  </div> 
+  <div class="modal-content">
+    <div class="modal-body share-body">
+      <?php if ($TEMP['#video']['is_owner'] == true && $TEMP['#live'] != 1) { ?>
+      <a class="cont-more-buttons" id="edt" href="{$url->{edit-video/{$id}}}" target="_self">
+        <svg class="vh-icon color-primary" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill="currentColor" d="M 7.313 19.479 L 8.394 18.398 L 5.602 15.606 L 4.521 16.687 L 4.521 17.958 L 6.042 17.958 L 6.042 19.479 L 7.313 19.479 Z M 13.526 8.453 C 13.526 8.279 13.44 8.192 13.265 8.192 C 13.186 8.192 13.119 8.22 13.064 8.275 L 6.623 14.715 C 6.569 14.77 6.541 14.838 6.541 14.917 C 6.541 15.092 6.628 15.178 6.802 15.178 C 6.881 15.178 6.948 15.151 7.004 15.095 L 13.444 8.656 C 13.499 8.6 13.526 8.532 13.526 8.453 Z M 12.886 6.173 L 17.828 11.115 L 7.943 21 L 3 21 L 3 16.057 Z M 21 7.313 C 21 7.733 20.853 8.09 20.561 8.382 L 18.588 10.355 L 13.645 5.412 L 15.618 3.452 C 15.903 3.15 16.26 3 16.687 3 C 17.107 3 17.468 3.15 17.768 3.452 L 20.561 6.232 C 20.853 6.541 21 6.901 21 7.313 Z"/>
+        </svg>
+        <span class="color-secondary">{$word->edit}</span>
+      </a>
+      <?php } ?>
+      <?php if ($TEMP['#video']['is_owner']) { ?>
+      <a class="cont-more-buttons" id="stst" href="{$url->{channel}}?page=video-statistics&id={$video_id}&type=today" target="_self">
+        <svg class="vh-icon color-primary" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill="currentColor" d="M 22 18.25 L 22 19.5 L 2 19.5 L 2 4.5 L 3.25 4.5 L 3.25 18.25 L 22 18.25 Z M 20.75 6.063 L 20.75 10.311 C 20.75 10.447 20.687 10.543 20.56 10.599 C 20.433 10.654 20.317 10.63 20.213 10.525 L 19.031 9.344 L 12.85 15.525 C 12.785 15.59 12.71 15.623 12.625 15.623 C 12.54 15.623 12.465 15.59 12.4 15.525 L 10.125 13.25 L 6.063 17.313 L 4.188 15.438 L 9.9 9.725 C 9.965 9.66 10.04 9.627 10.125 9.627 C 10.21 9.627 10.285 9.66 10.35 9.725 L 12.625 12 L 17.156 7.469 L 15.975 6.287 C 15.87 6.183 15.846 6.067 15.901 5.94 C 15.957 5.813 16.053 5.75 16.189 5.75 L 20.438 5.75 C 20.529 5.75 20.604 5.779 20.662 5.838 C 20.721 5.896 20.75 5.971 20.75 6.063 Z"/>
+        </svg>
+        <span class="color-secondary">{$word->analytics}</span>
+      </a>
+      <?php } ?>
+      <?php if ($TEMP['#settings']['download_videos'] == 'on' && $TEMP['#video']['converted'] == 1 && $TEMP['#is_approved'] == true) { ?>
+      <?php if ($TEMP['#video']['privacy'] != 1 || ($TEMP['#video']['privacy'] == 1 && $TEMP['#video']['is_owner'])) { ?>
+      <button class="cont-more-buttons btn-trans" id="download-video">
+        <svg class="vh-icon color-primary" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet">
+          <path fill="currentColor" d="M 11.99 16.5 L 5.54 11.355 L 18.44 11.355 Z M 9.645 3.5 L 14.335 3.5 L 14.335 5.071 L 9.645 5.071 Z M 9.645 5.856 L 14.335 5.856 L 14.335 7.427 L 9.645 7.427 Z"/>
+          <path fill="currentColor" d="M 9.65 8.247 L 14.35 8.247 L 14.35 12.3 L 9.65 12.3 Z" style=""/>
+          <path fill="currentColor" d="M 5 18 L 19 18 L 19 20.5 L 5 20.5 Z"/>
+        </svg>
+        <span class="color-secondary">{$word->download}</span>
+      </button>
+      <?php } } ?>
+      <?php if ($TEMP['#video']['is_owner'] == false) { ?>
+      <button class="cont-more-buttons btn-trans" id="report-video">
+        <svg class="vh-icon color-primary" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill="currentColor" d="M 6.019 5.75 C 6.019 6.219 5.809 6.577 5.389 6.824 L 5.389 19.188 C 5.389 19.272 5.358 19.345 5.295 19.407 C 5.233 19.469 5.159 19.5 5.074 19.5 L 4.444 19.5 C 4.359 19.5 4.285 19.469 4.223 19.407 C 4.161 19.345 4.13 19.272 4.13 19.188 L 4.13 6.824 C 3.71 6.577 3.5 6.219 3.5 5.75 C 3.5 5.405 3.623 5.11 3.869 4.866 C 4.115 4.622 4.412 4.5 4.759 4.5 C 5.107 4.5 5.404 4.622 5.65 4.866 C 5.896 5.11 6.019 5.405 6.019 5.75 Z M 20.5 6.375 L 20.5 13.826 C 20.5 13.989 20.459 14.114 20.377 14.202 C 20.295 14.29 20.166 14.38 19.988 14.471 C 18.578 15.226 17.368 15.604 16.358 15.604 C 15.958 15.604 15.553 15.532 15.143 15.389 C 14.733 15.245 14.378 15.089 14.076 14.92 C 13.774 14.751 13.395 14.594 12.94 14.451 C 12.484 14.308 12.016 14.236 11.538 14.236 C 10.278 14.236 8.757 14.712 6.973 15.662 C 6.861 15.721 6.753 15.75 6.648 15.75 C 6.478 15.75 6.33 15.688 6.205 15.564 C 6.081 15.441 6.019 15.294 6.019 15.125 L 6.019 7.879 C 6.019 7.671 6.12 7.492 6.323 7.342 C 6.461 7.251 6.72 7.111 7.101 6.922 C 8.649 6.141 10.029 5.75 11.242 5.75 C 11.944 5.75 12.6 5.844 13.21 6.033 C 13.82 6.222 14.538 6.508 15.365 6.893 C 15.614 7.016 15.902 7.078 16.23 7.078 C 16.584 7.078 16.97 7.01 17.386 6.873 C 17.803 6.736 18.163 6.583 18.468 6.414 C 18.773 6.245 19.062 6.092 19.334 5.955 C 19.606 5.818 19.785 5.75 19.87 5.75 C 20.041 5.75 20.188 5.812 20.313 5.936 C 20.438 6.059 20.5 6.206 20.5 6.375 Z"/>
+        </svg>
+        <span class="color-secondary">{$word->report}</span>
+      </button>
+      <?php } ?>
+    </div>
+  </div>
+</div>

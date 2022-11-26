@@ -1,0 +1,191 @@
+<div class="container-admin">
+    <div class="user-setting-panel">
+        <ul class="main-menu-links display-inline-flex margin-b10 border-all border-tertiary">
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary" href="{$url->{admin/manage-settings/general-settings}}" target="_self">
+                    {$word->general}
+                </a>
+            </li>
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary" href="{$url->{admin/manage-settings/site-settings}}" target="_self">
+                    {$word->website}
+                </a>
+            </li>
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary active last" href="{$url->{admin/manage-settings/email-settings}}" target="_self">
+                    {$word->email}
+                </a>
+            </li>
+        </ul>
+        <div class="margin-t10 padding-top-bottom-12 border-top border-tertiary">
+            <div class="user-setting-panel">
+                <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+                    <h3 class="cont-settings-title color-secondary">{$word->email_settings}</h3>
+                    <div class="margin-t10">
+                        <p class="color-secondary">{$word->configure_your_mail_server}</p>
+                    </div>
+                </div> 
+                <div class="max-w-900 border-top-right-radius border-top-left-radius border-top border-right border-left border-tertiary background-primary margin-right-auto margin-left-auto">
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->smtp_host}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input id="smtp_host" name="smtp_host" class="cont-control border-focus-blue area_validate_email background-secondary color-secondary" type="text" value="{$settings->smtp_host}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->smtp_username}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input id="smtp_username" name="smtp_username" class="cont-control border-focus-blue area_validate_email background-secondary color-secondary" type="text" value="{$settings->smtp_username}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->smtp_password}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input id="smtp_password" name="smtp_password" class="cont-control border-focus-blue area_validate_email background-secondary color-secondary" type="password" value="{$settings->smtp_password}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->smtp_port}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input id="smtp_port" name="smtp_port" class="cont-control border-focus-blue area_validate_email background-secondary color-secondary" type="number" min="0" value="{$settings->smtp_port}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->server_type}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_email server_type radio-paper hidden" name="server_type" id="server_type-enabled" type="radio" value="smtp" <?php echo ($TEMP['#settings']['server_type'] == 'smtp') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="server_type-enabled">
+                                        SMTP Server
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_email server_type radio-paper hidden" name="server_type" id="server_type-disabled" type="radio" value="mail"<?php echo ($TEMP['#settings']['server_type'] == 'mail') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="server_type-disabled">
+                                        Server Mail (Default)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->smtp_encryption}</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_email smtp_encryption radio-paper hidden" name="smtp_encryption" id="smtp_encryption-enabled" type="radio" value="tls" <?php echo ($TEMP['#settings']['smtp_encryption'] == 'tls') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="smtp_encryption-enabled">
+                                        TLS
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_email smtp_encryption radio-paper hidden" name="smtp_encryption" id="smtp_encryption-disabled" type="radio" value="ssl"<?php echo ($TEMP['#settings']['smtp_encryption'] == 'ssl') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="smtp_encryption-disabled">
+                                        SSL
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="background-primary max-w-900 border-bottom-right-radius border-bottom-left-radius border-bottom border-right border-left border-tertiary padding-20 margin-b20 margin-right-auto margin-left-auto">
+                    <div class="display-flex flex-end">
+                        <span class="color-secondary vertical-center margin-r10 hidden" id="alert-email-settings">
+                            {$word->there_problems_with_some_fields}
+                        </span>
+                        <button id="test-email" class="btn-trans global-button-blue background-red margin-r10 cursor-disabled color-white hover-opacity" disabled>
+                            <span class="color-white">{$word->test_connection}</span>
+                            <div class="tb_content-spinner-circle">
+                                <div class="tb_spinner-circle"></div>
+                            </div>
+                        </button>
+                        <button id="email-settings" class="btn-trans global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                            <span class="color-white">{$word->save}</span>
+                            <div class="tb_content-spinner-circle">
+                                <div class="tb_spinner-circle"></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var GN = D.querySelector('#smtp_port'),
+    gq = D.querySelectorAll('.area_changed_email'),
+    gb = D.querySelector('#email-settings'),
+    gs = D.querySelector('#alert-email-settings'),
+    gt = D.querySelectorAll('.area_validate_email'),
+    gh = D.querySelector('#test-email'),
+    bDisabled = function(GG, GB){
+        if(GG){
+            GB.removeAttribute('disabled');
+        } else {
+            GB.setAttribute('disabled', true);
+        }
+    },
+    GV = [];
+bDisabled(D.querySelector("#smtp_host").value != '' && D.querySelector("#smtp_username").value != '' && D.querySelector('#smtp_password').value != '' && GN.value != '', gh), addEvent(gb, "click", function(){
+    for(var j = 0, i = gq.length; j < i; j++) {
+        var GX = gq[j].name;
+        if(GV.indexOf(GX) == -1)
+            GV.push(GX);
+    }
+    addClass(gb, 'tb_spinner-is-loading');
+    gb.setAttribute('disabled', true);
+    Req("{$url->{req/global-admin/settings}}", function(e){
+        if (e.status == 200) {
+            loadAlert(e.message), addClass(gs, 'hidden'), removeClass(gb, 'tb_spinner-is-loading');
+            if(e.err == false){
+                removeClass(gs, 'hidden'), gs.innerText = "{$word->some_settings_were_not_saved}";
+            }
+        } else {
+            gs.innerText = "{$word->there_problems_with_some_fields}", removeClass(gs, 'hidden'), removeClass(gb, 'tb_spinner-is-loading'), gb.removeAttribute('disabled');
+        }
+    }, "POST", "&smtp_host=" + D.querySelector('#smtp_host').value + "&smtp_username=" + D.querySelector('#smtp_username').value + "&smtp_password=" + D.querySelector('#smtp_password').value + "&smtp_port=" + GN.value + "&server_type=" + D.querySelector('.server_type:checked').value + "&smtp_encryption=" + D.querySelector('.smtp_encryption:checked').value + "&radios=" + GV)
+}), addEvent(gh, 'click', function(){
+    addClass(gh, 'tb_spinner-is-loading');
+    gh.setAttribute('disabled', true);
+    Req('{$url->{req/global-admin/test-email}}', function(e){
+        if(e.status == 200){
+            loadAlert("{$word->email_sent}"), removeClass(gh, 'tb_spinner-is-loading'), gh.removeAttribute('disabled');
+        } else {
+            loadAlert('{$word->could_not_send_message_error}: ' + e.error, 1), removeClass(gh, 'tb_spinner-is-loading'), gh.removeAttribute('disabled');
+        }
+    }, "POST");
+}), addEvent(GN, 'input', function(){
+    this.value = this.value.replace(/[^0-9]/gi, '');
+});
+for(var j = 0, i = gq.length; j < i; j++) addEvent(gq[j], 'change', function(){
+    bDisabled(D.querySelector("#smtp_host").value != '' && D.querySelector("#smtp_username").value != '' && D.querySelector('#smtp_password').value != '' && GN.value != '' && D.querySelector(".server_type:checked").value != '' && D.querySelector(".smtp_encryption:checked").value != '', gb);
+});
+for(var j = 0, i = gt.length; j < i; j++) addEvent(gt[j], 'keyup', function(e){
+    bDisabled(this.value != '', gb);
+});
+for(var j = 0, i = gt.length; j < i; j++) addEvent(gt[j], 'keyup', function(e){
+    bDisabled(D.querySelector("#smtp_host").value != '' && D.querySelector("#smtp_username").value != '' && D.querySelector('#smtp_password').value != '' && GN.value != '', gh);
+});
+</script>

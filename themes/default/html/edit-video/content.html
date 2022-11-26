@@ -1,0 +1,278 @@
+<div class="content">
+	<div class="content-upload">
+		<div class="margin-t20">
+	        <div class="cont-fields-left">
+				<div class="cont-group">
+					<label class="color-secondary">{$word->video_title}*</label>  
+					<input id="title" type="text" value="{$title}" class="cont-control border-focus-blue background-secondary area_validate color-secondary">
+					<div class="color-red text-left text-error"></div>
+				</div>
+				<div class="cont-group">
+					<label class="color-secondary">{$word->video_description}</label>
+					<textarea id="description" cols="30" rows="10" class="cont-control area_validate border-focus-blue background-secondary color-secondary">{$description}</textarea>
+				</div>
+				<div class="cont-group">
+					<label class="color-secondary">{$word->tags}*</label>
+					<input class="hidden" id="tags-upload" type="text" value="{$tags}">
+                    <ul class="tags-content background-secondary color-secondary" id="tags">
+	                    <?php foreach ($TEMP['#tags'] as $key => $value) { ?>
+	    				<li class="tagit-choice border-primary">
+	    					<span class="color-secondary tagit-label"><?php echo $value; ?></span>
+	    					<span class="tagit-close"></span>
+	    				</li>
+						<?php } ?>
+	                    <li class="tagit-new">
+	                        <input class="color-secondary area_validate" type="text" id="tags-val">
+	                    </li>
+	                </ul>
+	            	<div class="color-red text-left text-error"></div>
+				</div>
+			</div>
+	        <div class="cont-fields-right">
+				<div class="cont-group">
+					<label class="color-secondary">{$word->category}</label>
+					<select id="category" class="cont-control cont-select area_changed background-secondary color-secondary">
+						<?php foreach($TEMP['#categories'] as $key => $category) {?>
+						<option value="<?php echo $key?>"<?php echo($TEMP['#video']['category'] == $key) ? ' selected' : ''?>><?php echo $category?></option>
+						<?php } ?>
+					</select>
+					<div class="color-red text-left text-error"></div>
+				</div>
+				<div class="cont-group">
+					<label class="color-secondary">{$word->privacy}</label>  
+					<select id="privacy" class="cont-control cont-select area_changed background-secondary color-secondary">
+						<option value="0"<?php echo ($TEMP['#video']['privacy'] == 0) ? ' selected' : '' ?>>{$word->public}</option>
+						<option value="1"<?php echo ($TEMP['#video']['privacy'] == 1) ? ' selected' : '' ?>>{$word->private}</option>
+						<option value="2"<?php echo ($TEMP['#video']['privacy'] == 2) ? ' selected' : '' ?>>{$word->unlisted}</option>
+					</select>
+					<div class="color-red text-left text-error"></div>
+				</div>
+				<div class="cont-group">
+	                <label class="color-secondary">{$word->can_video_seen_children}</label>  
+	           	    <select id="adults_only" class="cont-control cont-select area_changed background-secondary color-secondary">
+	                    <option value="0"<?php echo ($TEMP['#video']['adults_only'] == 0) ? ' selected' : '' ?>>{$word->yes}</option>
+	                    <option value="1"<?php echo ($TEMP['#video']['adults_only'] == 1) ? ' selected' : '' ?>>{$word->no}</option>
+	                </select>
+	                <div class="color-red text-left text-error"></div>
+	            </div>
+	            <?php if($TEMP['#video']['broadcast'] == 1){ ?>
+	            <div class="cont-group vertical-center">
+	                <label class="color-secondary">{$word->do_want_activate_deactivate_chat}</label>
+					<div class="toggle-box vertical-center position-relative margin-left-auto">
+					    <input class="hidden" id="chat-broadcast-status" type="checkbox"{$checked_chat}>
+					    <label class="no-margin" for="chat-broadcast-status" data-title="{$word->this_option_is_activated_the_chat}"></label>
+					</div>
+	            </div>
+	            <?php } ?>
+			</div>
+			<div class="clear"></div>
+	        <div class="cont-group" id="video-thumbnails">
+	            <label class="color-secondary">{$word->thumbnail}</label>
+	            <div class="vertical-center-desktop max-w-600" id="choose-thumbnail">
+	                <div class="hover-action margin-left-auto margin-right-auto margin-t10 mw-150 text-center position-relative font-low font-bold pointer{$nw_chg}" id="cont-edit">
+						<div class="cont-more-actions<?php echo (!$TEMP['#is_thumb_cus']) ? ' hidden' : ''; ?>" id="container-custhumb">
+		                    <div class="thumb-edit{$ac_draft}" data-index="3">
+		                        <img src="{$thumbnail_cus}">
+		                    </div>
+		                	<div class="no-relative">
+		                        <button class="padding-5 margin-t10 margin-r10 top-0 position-absolute pos-right background-primary border-radius-med hover-button background-primary color-secondary btn-trans tabbable" data-toggle="dropdown">
+		                            <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							            <path fill="currentColor" d="M 14 16.728 L 14 18.908 C 14 19.212 13.903 19.468 13.708 19.68 C 13.514 19.892 13.278 20 13 20 L 11 20 C 10.722 20 10.486 19.892 10.292 19.68 C 10.097 19.468 10 19.212 10 18.908 L 10 16.728 C 10 16.424 10.097 16.168 10.292 15.956 C 10.486 15.744 10.722 15.636 11 15.636 L 13 15.636 C 13.278 15.636 13.514 15.744 13.708 15.956 C 13.903 16.168 14 16.424 14 16.728 Z M 14 10.908 L 14 13.092 C 14 13.392 13.903 13.652 13.708 13.864 C 13.514 14.076 13.278 14.18 13 14.18 L 11 14.18 C 10.722 14.18 10.486 14.076 10.292 13.864 C 10.097 13.652 10 13.392 10 13.092 L 10 10.908 C 10 10.608 10.097 10.348 10.292 10.136 C 10.486 9.924 10.722 9.82 11 9.82 L 13 9.82 C 13.278 9.82 13.514 9.924 13.708 10.136 C 13.903 10.348 14 10.608 14 10.908 Z M 14 5.092 L 14 7.272 C 14 7.576 13.903 7.832 13.708 8.044 C 13.514 8.256 13.278 8.364 13 8.364 L 11 8.364 C 10.722 8.364 10.486 8.256 10.292 8.044 C 10.097 7.832 10 7.576 10 7.272 L 10 5.092 C 10 4.788 10.097 4.532 10.292 4.32 C 10.486 4.108 10.722 4 11 4 L 13 4 C 13.278 4 13.514 4.108 13.708 4.32 C 13.903 4.532 14 4.788 14 5.092 Z"/>
+							        </svg>
+		                            <div class="background-waver"></div>
+		                        </button>
+		                        <ul class="down-menu-container down-menu-right">
+		                            <div class="down-wrapper background-primary padding-top-bottom-12 border-radius-4">
+		                                <li class="vertical-center action-list-hover font-medium ellipsis-horizontal color-secondary padding-left-right-12 position-relative font-high pointer" id="chg-tb">
+		                                    {$word->change}
+		                                </li>
+		                            </div>
+		                        </ul>
+		                    </div>
+		                </div>
+	                    <div class="border-dashed padding-20 border-secondary<?php echo ($TEMP['#is_thumb_cus']) ? ' hidden' : ''; ?>" id="cont-add-tmb">
+	                        <svg class="vh-icon color-secondary" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path fill="currentColor" d="M 7.687 16.727 C 6.486 16.727 5.418 15.982 5.03 14.872 L 5.004 14.788 C 4.912 14.495 4.874 14.247 4.874 14 L 4.874 9.041 L 3.055 14.931 C 2.821 15.797 3.354 16.695 4.249 16.935 L 15.846 19.946 C 15.991 19.983 16.136 20 16.278 20 C 17.025 20 17.708 19.519 17.899 18.811 L 18.575 16.727 Z"/>
+								<path fill="currentColor" d="M 9.749 9.091 C 10.577 9.091 11.249 8.439 11.249 7.636 C 11.249 6.834 10.577 6.182 9.749 6.182 C 8.922 6.182 8.249 6.834 8.249 7.636 C 8.249 8.439 8.922 9.091 9.749 9.091 Z"/>
+								<path fill="currentColor" d="M 19.125 4 L 7.874 4 C 6.841 4 5.999 4.816 5.999 5.818 L 5.999 13.818 C 5.999 14.82 6.841 15.636 7.874 15.636 L 19.125 15.636 C 20.158 15.636 21 14.82 21 13.818 L 21 5.818 C 21 4.816 20.158 4 19.125 4 Z M 7.874 5.455 L 19.125 5.455 C 19.332 5.455 19.5 5.617 19.5 5.818 L 19.5 10.981 L 17.13 8.3 C 16.879 8.015 16.515 7.862 16.124 7.853 C 15.736 7.855 15.371 8.023 15.122 8.312 L 12.337 11.554 L 11.429 10.676 C 10.916 10.179 10.082 10.179 9.569 10.676 L 7.499 12.683 L 7.499 5.818 C 7.499 5.617 7.667 5.455 7.874 5.455 Z"/>
+							</svg>
+	                        <span class="ellipsis-horizontal color-secondary">{$word->upload_thumbnail}</span>
+	                    </div>
+	               	</div>
+	                <div class="cont-thumbs vertical-center margin-t10">
+	                    <div class="margin-r5 pointer item{$thumbnail_s1}" data-index="0"><img src="{$thumbnail_1}"></div>
+	                    <div class="margin-r5 pointer item{$thumbnail_s2}" data-index="1"><img src="{$thumbnail_2}"></div>
+	                    <div class="margin-r5 pointer item{$thumbnail_s3}" data-index="2"><img src="{$thumbnail_3}"></div>
+	           	    </div>                        
+	           </div>
+	        </div>
+	    </div>
+	    <div class="clear"></div>
+		<div class="display-flex margin-t10 margin-b10">
+			<button class="btn-trans background-red global-button-blue hover-opacity margin-left-auto margin-r10" id="delete-video">{$word->delete_videos}</button>
+			<button class="btn-trans global-button-blue cursor-disabled hover-opacity" id="edit-video" disabled>
+				<span class="color-white">{$word->publish}</span>
+		        <div class="tb_content-spinner-circle">
+		            <div class="tb_spinner-circle"></div>
+		        </div>
+			</button>
+		</div>
+	</div>
+	<input class="hidden" id="thumbnail" type="file" accept="image/jpg, image/png, image/jpeg">
+</div>
+<script>
+var ud = "",
+	ZY = "{$thumbnail}",
+	ZI = D.querySelectorAll('.area_validate'),
+	ZG = D.querySelectorAll('.area_changed'),
+	zt = D.querySelectorAll('.cont-thumbs .item'),
+	ZC = D.querySelectorAll('.tagit-close'),
+	ZA = D.querySelector('#choose-thumbnail'),
+	ZR = D.querySelector('#delete-video'),
+	ZQ = D.querySelector('#thumbnail'),
+	ZS = D.querySelector('.thumb-edit'), 
+	ZD = D.querySelector('#chg-tb'),
+	ZK = D.querySelector('#cont-edit'),
+	ZW = D.querySelector('#edit-video'),
+	ZT = D.querySelector('#tags-upload'),
+	ZO = D.querySelector('#tags'),
+	zo = Array("<?php echo $TEMP['#video']['ex_thumbnail_1'].'", "'.$TEMP['#video']['ex_thumbnail_2'].'", "'.$TEMP['#video']['ex_thumbnail_3']; echo (!empty($TEMP['#thumb_img'])) ? '", "'.$TEMP['#thumb_img'] : '' ?>"),
+	zg = ZT.value ? ZT.value.split(',') : Array(),
+	zs = D.querySelector('#tags-val'),
+	zc =  <?php echo(!$TEMP['#is_thumb_cus']) ? '!1' : '!0'?>, 
+	disableButton = function(){
+		var self = this,
+            el = self.parentNode.querySelector('.text-error');
+        ZW.removeAttribute('disabled'), removeClass(self, 'border-red'), removeClass(self, 'boxshadow-red'), el && (el.innerText = '');
+    },
+	createTag = function(zi){
+      	var FU = D.createElement("li"),
+      	    zp = zg.indexOf(zi.value, 0);
+    	removeClass(ZO, 'border-red'), removeClass(ZO, 'boxshadow-red'), ZO.parentNode.querySelector('.text-error').innerText = '';
+      	if(zp == -1){
+      		FU.className = 'border-primary tagit-choice', FU.innerHTML = '<span class="color-secondary tagit-label">' + zi.value + '</span><span class="tagit-close"></span>', D.querySelector('.tags-content').insertBefore(FU, D.querySelector('.tagit-new')), zg.push(zi.value), ZT.value = zg.join(), zi.value = "", addEvent(FU.querySelector('.tagit-close'), "click", function(){
+	        	FU.remove(), zg.splice(zg.indexOf(FU.querySelector('.tagit-label').innerText), 1), ZT.value = zg;
+	    	});
+      	} else {
+      		var zy = D.querySelectorAll('.tagit-choice');
+      		zy[zp].setAttribute('style', 'border-color: #c23321 !important;'), timeDelay(function(){
+      			zy[zp].removeAttribute('style');
+      		}, 500);
+      	}
+    };
+addEvent(window, "beforeunload", function() {
+    ud && Req("{$url->{req/media/delete-thumbnail}}", function(e){}, "POST", "&thumbnail-draft=" + ud);
+})<?php if($TEMP['#video']['broadcast'] == 1){ ?>, addEvent(D.querySelector('#chat-broadcast-status'), 'change', function(){
+    Req("{$url->{req/broadcast/chat-broadcast-status}}", function(e){
+        if (e.status == 200) {
+            loadAlert('{$word->changes_saved_successfully}');
+        } else {
+            loadAlert('{$word->there_problems_with_some_fields}', 1);
+        }
+    }, "POST", "&video_id={$video_id}&chat-broadcast-status=" + this.checked);
+})<?php } ?>, addEvent(zs, "keydown", function (c) {
+    var zi = this;
+    if (c.which == 8 && "" === zi.value) {
+        var zr = D.querySelectorAll('.tagit-choice'),
+            zl = zr[zr.length - 1];
+        (zl) && (zl.remove(), zg.splice(zg.indexOf(zl.querySelector('.tagit-label').innerText), 1), ZT.value = zg);
+    }
+    if ("" !== zi.value && zi.value.trim().length != 0 && zi.value.indexOf(',', 0) == -1 && ((c.which === 13 && !1 === c.shiftKey) || c.which === 13 || c.which == 9 || (c.which == 188 && (',' != zi.value.trim().replace(/^s*/, "").charAt(0) || (',' == zi.value.trim().charAt(0) && ',' == zi.value.trim().charAt(zi.value.trim().length - 1) && 0 !== zi.value.trim().length - 1)))  )) {
+			(c.which === 13 && "" === zi.value) || c.preventDefault(), createTag(zi);
+    }
+}), addEvent(zs, "blur", function (c) {
+    if("" !== this.value) createTag(this);
+}), addEvent(ZR, "click", function(){
+	TB_ShowElement('warning-alert', 'warning-alert','delete_video','{$word->delete_videos}',1,'normal','{$word->delete}',0,0,'{$word->delete_video_confirmation}');
+}), addEvent(ZQ, "change", function(){
+	Req("{$url->{req/media/upload-thumbnail}}?token={#token_session}&draft_thumb=" + ud, function(e){
+	    if (e.status == 200) {
+	        var zm = D.querySelector('#cont-add-tmb');
+	        ud = e.thumbnail, ZW.removeAttribute('disabled'), ZY = ud, removeClass(ZA.querySelector('.active'), 'active'), removeClass(ZK.querySelector('#container-custhumb'), 'hidden'), addClass(ZS, 'active'), ZK.querySelector('img').setAttribute('src', e.media_thumbnail), zc = !0, zo.push(e.thumbnail), removeClass(ZK, "nw-tb"), addClass(ZK, "chg-tb"), (zm) && zm.remove();
+	    }
+	}, "POST", D.querySelector('#thumbnail'), "thumbnail");
+}), addEvent(ZS, 'click', function(){
+	if (!hasClass(this, "active")) {
+	    removeClass(D.querySelector('.item.active'), 'active'), addClass(this, "active"), ZW.removeAttribute('disabled');
+	    var vsthumbs = zo[this.getAttribute('data-index')];
+	    ZY = vsthumbs;
+	}
+}), addEvent(ZD, "click", function(){
+	autoClick(ZQ);
+}), addEvent(ZK, "click", function(){
+    if(!zc){
+     	autoClick(ZQ);
+    }
+}), addEvent(ZW, "click", function(){
+	var LE = D.querySelectorAll('.border-red');
+	addClass(ZW, 'tb_spinner-is-loading'), ZW.setAttribute('disabled', true);
+	Req("{$url->{req/edit-video}}", function(e){
+		if (e.status == 200) {
+		    loadAlert(e.message), preloadPage('&one=watch&v={$video_id}');
+		    for (var j = 0, i = LE.length; j < i; j++){
+                addClass(LE[j], 'border-red'), addClass(LE[j], 'boxshadow-red');
+            }
+		} else {
+			if(e.errors.length != undefined){
+				for (var j = 0, i = e.errors.length; j < i; j++){
+	                var el = D.querySelector('#'+e.errors[j]['el']);
+	                el.parentNode.querySelector('.text-error').innerText = '*'+(e.errors[j]['type'] == 'empty' ? '{$word->this_field_is_empty}' : '{$word->there_problems_with_some_fields}'), addClass(el, 'border-red'), addClass(el, 'boxshadow-red');
+	            }
+			} else {
+				loadAlert('{$word->error}', 1);
+			}
+			removeClass(ZW, 'tb_spinner-is-loading');
+		}
+	}, "POST", "&title=" + encodeURIComponent(D.querySelector('#title').value) + "&description=" + encodeURIComponent(D.querySelector('#description').value) + "&tags=" + D.querySelector('#tags-upload').value + "&category=" + D.querySelector('#category').value + "&privacy=" + D.querySelector('#privacy').value + "&adults_only=" + D.querySelector('#adults_only').value + "&thumbnail=" + ZY + "&video-id={$id}&draft_thumb=" + ud)
+});
+for (var j = 0, i = ZI.length; j < i; j++) addEvent(ZI[j], 'keyup', disableButton);
+for (var j = 0, i = ZG.length; j < i; j++) addEvent(ZG[j], 'change', disableButton);
+for (var j = 0, i = zt.length; j < i; j++) addEvent(zt[j], 'click', function(){
+	if (!hasClass(this, "active")) {
+	    if(D.querySelector('.thumb-edit.active')){
+	        removeClass(ZS, 'active');
+	    }else{
+	        removeClass(D.querySelector('.item.active'), 'active')
+	    }
+	    addClass(this, "active"), ZW.removeAttribute('disabled');
+	    var vsthumbs = zo[this.getAttribute('data-index')];
+	    ZY = vsthumbs;
+	}
+});
+for (var j = 0, i = ZC.length; j < i; j++) addEvent(ZC[j], "click", function(){
+	var ZP = this.parentNode;
+	ZP.remove(), zg.splice(zg.indexOf(ZP.querySelector('.tagit-label').innerText), 1), ZT.value = zg;
+});
+function TB_ShowElement(type, el_content, button, by_id = 0, video_id = 0,price = 0, txt_btn = '', next_cont = '', extra, extra_new) {
+    var c = D.querySelector('#container_alerts'),
+      	u = c.querySelector('#confirm-alert') ;
+    Req('{$url->{req/get-element}}', function(e) {
+        if (e.status == 200) {
+            if(!c.querySelector('#warning-alert')) {
+	            c.innerHTML = e.html;
+	            var SF = c.querySelector('#'+el_content);
+	            addEvent(c.querySelector('.delete_video'), 'click', function(){
+	            	Req('{$url->{req/delete/video}}', function(e) {
+						if (e.status == 200) {
+				     	   preloadPage('&one=channel&page=video-producer');
+				    	}
+					}, "POST", "&id={$id}");
+	            }, 2);
+	            SF.style.display = "block";
+	          	addEvent(SF.querySelector('[data-dismiss]'), "click", function(){
+	              	SF.style.display = "none";
+            	}, 2);
+	            addEvent(D, "click", function(e){
+	           		if (e.target == SF) {
+	              		SF.style.display = "none";
+	               	}
+              	}, 2);
+	        }else{
+	          	c.querySelector('#'+el_content).style.display = "block";
+	        }
+        }else{
+            loadAlert(e.error, 1);
+        }
+    }, "POST", "&type=" + type + "&actual_form=" + el_content + "&by_id=" + by_id + "&video_id=" + video_id + "&price=" + price + "&next_cont=" + next_cont + "&txt_btn=" + txt_btn + "&class_n=" + button + "&extra=" + extra + "&extra_new=" + extra_new);
+}
+</script>

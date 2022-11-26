@@ -1,0 +1,35 @@
+<div class="container-grid-columns">
+    <div class="contsub-video-list-vertical" id="user-list">
+        {$videos}
+    </div>
+    <div class="clear"></div>
+    <div class="comments-loading hidden">
+        <div class="tb_content-spinner-circle">
+            <div class="tb_spinner-circle"></div>
+        </div>
+    </div>
+</div>
+<?php if($TEMP['#videos'] > 0) { ?>
+<script>
+var LG = !0;
+addEvent(D, 'scroll', function(){
+    if (((window.innerHeight + window.scrollY) >= D.querySelector('#global_content').offsetHeight - 200)){
+        if(LG){
+            var spin = D.querySelector(".comments-loading"),
+                N = D.querySelectorAll(".video-wrapper"),
+                ids = [];
+            removeClass(spin, 'hidden'), LG = !1;
+            for (var j = 0, i = N.length; j < i; j++) ids.push(N[j].getAttribute('data-id'));
+            Req("{$url->{req/load-more/user-videos}}", function(e){
+                if (e.status == 200) {
+                    var content = D.querySelector("#user-list");
+                    content.innerHTML += e.html, addClass(spin, 'hidden'), LG = !0, loadPage(content.querySelectorAll('a[target="_self"]'), true);      
+                } else {
+                  spin.remove();
+                }            
+            }, "POST", "&ids="+ids+"&by_id={$data->id}");
+        }
+    }
+}, 1, !1, !0);
+</script>
+<?php } ?>

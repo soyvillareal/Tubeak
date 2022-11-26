@@ -1,0 +1,465 @@
+<div class="container-admin">
+    <div class="user-setting-panel">
+	   <ul class="main-menu-links display-inline-flex margin-b10 border-all border-tertiary">
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary" href="{$url->{admin/manage-settings/general-settings}}" target="_self">
+                    {$word->general}
+                </a>
+            </li>
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary active" href="{$url->{admin/manage-settings/site-settings}}" target="_self">
+                    {$word->website}
+                </a>
+            </li>
+            <li>
+                <a class="vertical-center background-grey hover-button padding-5 border-all border-tertiary color-secondary last" href="{$url->{admin/manage-settings/email-settings}}" target="_self">
+                    {$word->email}
+                </a>
+            </li>
+        </ul>
+        <div class="margin-t10 padding-top-bottom-12 border-top border-tertiary">
+            <div class="user-setting-panel">
+                <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+                    <h3 class="cont-settings-title color-secondary">{$word->configure_your_sitemap}</h3>
+                    <div class="margin-t10">
+                        <p class="color-secondary">{$word->make_sure_configure_cron_job_server}</p>
+                    </div>
+                </div> 
+                <div class="max-w-900 margin-b20 border-radius-4 border-all border-tertiary background-primary margin-right-auto margin-left-auto">
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->sitemap}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <a class="color-blue" href="{$url->{sitemap-index.xml}}" target="_blank">{$url->{sitemap-index.xml}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->cron_job}</label>
+                            </div>
+                            <div class="flex-grow position-relative">
+                                <input type="text" readonly="true" class="cont-control background-secondary color-secondary input-value" value="0 */12 * * * curl {$url->{sitemap.php}} > /dev/null 2>&1">
+                                <button class="btn-trans binput-inleft padding-5 border-top-right-radius border-bottom-right-radius background-grey hover-opacity color-whiblack" id="copy-cron" data-copy="0 */12 * * * curl {$url->{sitemap.php}} > /dev/null 2>&1">
+                                    {$word->copy}
+                                </button>
+                                <div class="color-tertiary margin-t10">{$word->copy_url_and_configure_cron_task_necessary}.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->last_update}</label>
+                            </div>
+                            <div class="flex-grow position-relative">
+                                <input type="text" readonly="true" class="cont-control background-secondary color-secondary" id="last-sitemap" value="{$last_sitemap}">
+                                <button class="btn-trans cursor-disabled binput-inleft padding-5 border-top-right-radius border-bottom-right-radius background-grey hover-opacity color-whiblack" id="update-sitemap">
+                                    <span class="color-white">{$word->to_update}</span>
+                                    <div class="tb_content-spinner-circle">
+                                        <div class="tb_spinner-circle"></div>
+                                    </div>
+                                </button>
+                                <div class="color-tertiary margin-t10">{$word->update_every_12_hours_indication_only_valid}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+                    <h3 class="cont-settings-title color-secondary">{$word->website_settings}</h3>
+                    <div class="margin-t10">
+                        <p class="color-secondary">{$word->set_up_your_website_information}</p>
+                    </div>
+                </div> 
+                <div class="max-w-900 border-top-right-radius border-top-left-radius border-top border-right border-left border-tertiary background-primary margin-right-auto margin-left-auto">
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->website_title}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input class="cont-control border-focus-blue area_validate_website background-secondary color-secondary" id="title" type="text" name="title" value="{$settings->title}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->website_name}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input id="name" name="name" class="cont-control border-focus-blue area_validate_website background-secondary color-secondary" type="text" value="{$settings->name}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->website_email}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input id="email" name="email" class="cont-control border-focus-blue area_validate_website background-secondary color-secondary" type="text" value="{$settings->email}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->website_keywords}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input id="keyword" name="keyword" class="cont-control border-focus-blue area_validate_website background-secondary color-secondary" type="text" value="{$settings->keyword}">
+                                <div class="color-tertiary margin-t10">{$word->by_comma}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->website_description}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <textarea id="description" name="description" cols="30" class="cont-control border-focus-blue area_validate_website background-secondary color-secondary" rows="5">{$settings->description}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">Favicon</label>
+                            </div>
+                            <div class="flex-grow">
+                                <div class="content-favicon icon_favicon background-tertiary hover-opacity pointer border-radius-4 position-relative<?php echo(empty($TEMP['#settings']['icon_favicon'])) ? ' none-media' : ''?>">
+                                    <img<?php echo(empty($TEMP['#settings']['icon_favicon'])) ? ' class="hidden"' : ''?> src="{$icon_favicon}">
+                                </div>
+                                <div class="color-tertiary margin-t10">{$word->icon_displayed_in_the_browser_window}.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->site_logo}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <div class="content-logo icon_logo background-tertiary hover-opacity pointer border-radius-4 position-relative<?php echo(empty($TEMP['#settings']['icon_logo'])) ? ' none-media' : ''?>">
+                                    <img<?php echo(empty($TEMP['#settings']['icon_logo'])) ? ' class="hidden"' : ''?> src="{$icon_logo}">
+                                </div>
+                                <div class="color-tertiary margin-t10">{$word->representative_image_of_the_site}.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="background-primary max-w-900 border-bottom-right-radius border-bottom-left-radius border-bottom border-right border-left border-tertiary padding-20 margin-b20 margin-right-auto margin-left-auto">
+                    <div class="display-flex flex-end">
+                        <span class="color-secondary vertical-center margin-r10 hidden" id="alert-website-settings">
+                            {$word->there_problems_with_some_fields}
+                        </span>
+                        <button id="website-settings" class="btn-trans global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                            <span class="color-white">{$word->save}</span>
+                            <div class="tb_content-spinner-circle">
+                                <div class="tb_spinner-circle"></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="margin-b20 margin-t10 max-w-900 margin-right-auto margin-left-auto">
+                    <h3 class="cont-settings-title color-secondary">{$word->other_settings}</h3>
+                    <div class="margin-t10">
+                        <p class="color-secondary">{$word->configuracion_otras_caracteristicas_de_tu_sitio_web}</p>
+                    </div>
+                </div> 
+                <div class="max-w-900 border-top-right-radius border-top-left-radius border-top border-right border-left border-tertiary background-primary margin-right-auto margin-left-auto">
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->upload_limit_per_user}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <select id="upload_limit" class="cont-control area_changed_other cont-select background-secondary color-secondary" name="upload_limit">
+                                    <option value="8000000"<?php echo($TEMP['#settings']['upload_limit'] == '8000000') ? ' selected' : ''?>>8MB</option>
+                                    <option value="16000000"<?php echo($TEMP['#settings']['upload_limit'] == '16000000') ? ' selected' : ''?>>16MB</option>
+                                    <option value="32000000"<?php echo($TEMP['#settings']['upload_limit'] == '32000000') ? ' selected' : ''?>>32MB</option>
+                                    <option value="64000000"<?php echo($TEMP['#settings']['upload_limit'] == '64000000') ? ' selected' : ''?>>64MB</option>
+                                    <option value="128000000"<?php echo($TEMP['#settings']['upload_limit'] == '128000000') ? ' selected' : ''?>>128MB</option>
+                                    <option value="256000000"<?php echo($TEMP['#settings']['upload_limit'] == '256000000') ? ' selected' : ''?>>256MB</option>
+                                    <option value="512000000"<?php echo($TEMP['#settings']['upload_limit'] == '512000000') ? ' selected' : ''?>>512MB</option>
+                                    <option value="1000000000"<?php echo($TEMP['#settings']['upload_limit'] == '1000000000') ? ' selected' : ''?>>1GB</option>
+                                    <option value="5000000000"<?php echo($TEMP['#settings']['upload_limit'] == '5000000000') ? ' selected' : ''?>>5GB</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->upload_limit_per_video}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <select id="max_upload_size" class="cont-control area_changed_other cont-select background-secondary color-secondary" name="max_upload_size">
+                                    <option value="8000000"<?php echo($TEMP['#settings']['max_upload_size'] == '8000000') ? ' selected' : ''?>>8MB</option>
+                                    <option value="16000000"<?php echo($TEMP['#settings']['max_upload_size'] == '16000000') ? ' selected' : ''?>>16MB</option>
+                                    <option value="32000000"<?php echo($TEMP['#settings']['max_upload_size'] == '32000000') ? ' selected' : ''?>>32MB</option>
+                                    <option value="64000000"<?php echo($TEMP['#settings']['max_upload_size'] == '64000000') ? ' selected' : ''?>>64MB</option>
+                                    <option value="128000000"<?php echo($TEMP['#settings']['max_upload_size'] == '128000000') ? ' selected' : ''?>>128MB</option>
+                                    <option value="256000000"<?php echo($TEMP['#settings']['max_upload_size'] == '256000000') ? ' selected' : ''?>>256MB</option>
+                                    <option value="512000000"<?php echo($TEMP['#settings']['max_upload_size'] == '512000000') ? ' selected' : ''?>>512MB</option>
+                                    <option value="1000000000"<?php echo($TEMP['#settings']['max_upload_size'] == '1000000000') ? ' selected' : ''?>>1GB</option>
+                                    <option value="5000000000"<?php echo($TEMP['#settings']['max_upload_size'] == '5000000000') ? ' selected' : ''?>>5GB</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->censor}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <textarea id="censor" name="censor" cols="30" class="cont-control border-focus-blue area_validate_other background-secondary color-secondary" rows="5">{$settings->censor}</textarea>
+                                <div class="color-tertiary margin-t10">{$word->by_comma}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">{$word->default_language}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <select id="language" class="cont-control area_changed_other cont-select background-secondary color-secondary" name="language">
+                                    <?php foreach ($TEMP['#languages'] as $value) { ?>
+                                    <option value="<?php echo $value ?>"<?php echo($TEMP['#settings']['language'] == $value) ? ' selected' : '' ?>><?php echo strtoupper($value) ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label vertical-center">
+                                <label class="group-title color-secondary">Recaptcha</label>
+                            </div>
+                            <div class="flex-grow display-flex">
+                                <div class="cont-radio margin-r10">
+                                    <input class="area_changed_other recaptcha radio-paper hidden" name="recaptcha" id="recaptcha-enabled" type="radio" value="on" <?php echo ($TEMP['#settings']['recaptcha'] == 'on') ? 'checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="recaptcha-enabled">
+                                        {$word->enabled}
+                                    </label>
+                                </div>
+                                <div class="cont-radio">
+                                    <input class="area_changed_other recaptcha radio-paper hidden" name="recaptcha" id="recaptcha-disabled" type="radio" value="off"<?php echo ($TEMP['#settings']['recaptcha'] == 'off') ? ' checked': '';?>>
+                                    <label class="color-secondary ellipsis-horizontal" for="recaptcha-disabled">
+                                        {$word->disabled}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">{$word->recaptcha_key}</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input id="recaptcha_key" name="recaptcha_key" class="cont-control border-focus-blue area_validate_other background-secondary color-secondary" type="text" value="{$settings->recaptcha_key}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-group w-100 padding-20">
+                        <div class="display-flex flex-wrap">
+                            <div class="cont-label">
+                                <label class="group-title color-secondary">Google Analytics ID</label>
+                            </div>
+                            <div class="flex-grow">
+                                <input id="analytics_id" name="analytics_id" class="cont-control border-focus-blue area_validate_other background-secondary color-secondary" type="text" value="{$settings->analytics_id}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="background-primary max-w-900 border-bottom-right-radius border-bottom-left-radius border-bottom border-right border-left border-tertiary padding-20 margin-b20 margin-right-auto margin-left-auto">
+                    <div class="display-flex flex-end">
+                        <span class="color-secondary vertical-center margin-r10 hidden" id="alert-other-settings">
+                            {$word->there_problems_with_some_fields}
+                        </span>
+                        <button id="other-settings" class="btn-trans global-button-blue cursor-disabled color-white hover-opacity" disabled>
+                            <span class="color-white">{$word->save}</span>
+                            <div class="tb_content-spinner-circle">
+                                <div class="tb_spinner-circle"></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input class="area_changed_website hidden" id="icon_favicon" name="icon_favicon" type="file" accept="image/x-png, image/gif, image/jpeg">
+    <input class="area_changed_website hidden" id="icon_logo" name="icon_logo" type="file" accept="image/x-png, image/gif, image/jpeg">
+</div>
+<script>
+var GU = D.querySelectorAll('.area_changed_website'),
+    GL = D.querySelectorAll('.area_validate_website'),
+    GM = D.querySelector('#website-settings'),
+    GK = D.querySelector('#alert-website-settings'),
+
+    gq = D.querySelectorAll('.area_changed_other'),
+    gb = D.querySelector('#other-settings'),
+    gs = D.querySelector('#alert-other-settings'),
+    gt = D.querySelectorAll('.area_validate_other'),
+
+    MX = D.querySelector("#icon_favicon"),
+    ML = D.querySelector("#icon_logo"),
+    bDisabled = function(GG, GB){
+        GG && GB.removeAttribute('disabled');
+    },
+    GV = [];
+addEvent(D.querySelector('#update-sitemap'), 'click', function(){
+    var self = this;
+    addClass(self, 'tb_spinner-is-loading'), self.setAttribute('disabled', true);
+    Req('{$url->{req/global-admin/update-sitemap}}', function(e){
+        if(e.status == 200){
+            removeClass(self, 'tb_spinner-is-loading'), timeDelay(function(){
+                self.removeAttribute('disabled');
+            }, 3000), D.querySelector('#last-sitemap').value = e.time, loadAlert(e.message);
+        } else {
+            removeClass(self, 'tb_spinner-is-loading'), timeDelay(function(){
+                self.removeAttribute('disabled');
+            }, 3000), loadAlert('{$word->error}');
+        }
+    }, "POST")
+}), addEvent(D.querySelector('#copy-cron'), 'click', copyText), addEvent(GM, "click", function(){
+    addClass(GM, 'tb_spinner-is-loading');
+    GM.setAttribute('disabled', true);
+    Req("{$url->{req/global-admin/settings}}", function(e){
+        if (e.status == 200) {
+            loadAlert(e.message), addClass(GK, 'hidden'), removeClass(GM, 'tb_spinner-is-loading');
+            if(e.err == false){
+                removeClass(GK, 'hidden'), GK.innerText = "{$word->some_settings_were_not_saved}";
+            }
+        } else {
+            GK.innerText = "{$word->there_problems_with_some_fields}", removeClass(GK, 'hidden'), removeClass(GM, 'tb_spinner-is-loading'), GM.removeAttribute('disabled');
+        }
+    }, "POST", "&title=" + D.querySelector("#title").value + "&name=" + D.querySelector('#name').value + "&email=" + D.querySelector('#email').value + "&keyword=" + D.querySelector('#keyword').value + "&description=" + D.querySelector('#description').value);
+}), addEvent(D.querySelector('.icon_favicon'), 'click', function(){
+    autoClick(MX);
+}), addEvent(D.querySelector('.icon_logo'), 'click', function(){
+    autoClick(ML);
+}), addEvent(MX, 'change', function() {
+  readURL(D.querySelector(".icon_favicon").querySelector('img'), this), removeClass(D.querySelector('.icon_favicon'), 'none-media'), removeClass(D.querySelector('.icon_favicon').querySelector('img'), 'hidden'), TB_ShowElement('warning-alert', 'warning-alert','icon_favicon','{$word->confirmation}',1,'normal','{$word->change}','{$word->sure_want_change_icon_site}');
+}), addEvent(ML, 'change', function() {
+  readURL(D.querySelector(".icon_logo").querySelector('img'), this), removeClass(D.querySelector('.icon_logo'), 'none-media'), removeClass(D.querySelector('.icon_logo').querySelector('img'), 'hidden'), TB_ShowElement('warning-alert', 'warning-alert','icon_logo','{$word->confirmation}',1,'normal','{$word->change}','{$word->sure_want_change_website_logo}');
+}), addEvent(gb, "click", function(){
+    for(var j = 0, i = gq.length; j < i; j++) {
+        var GX = gq[j].name;
+        if(GV.indexOf(GX) == -1 && GX != 'upload_limit' && GX != 'max_upload_size' && GX != 'language')
+            GV.push(gq[j].name);
+    }
+    addClass(gb, 'tb_spinner-is-loading');
+    gb.setAttribute('disabled', true);
+    Req("{$url->{req/global-admin/settings}}", function(e){
+        if (e.status == 200) {
+            loadAlert(e.message), addClass(gs, 'hidden'), removeClass(gb, 'tb_spinner-is-loading');
+            if(e.err == false){
+                removeClass(gs, 'hidden'), gs.innerText = "{$word->some_settings_were_not_saved}";
+            }
+        } else {
+            gs.innerText = "{$word->there_problems_with_some_fields}", removeClass(gs, 'hidden'), removeClass(gb, 'tb_spinner-is-loading'), gb.removeAttribute('disabled');
+        }
+    }, "POST", "&upload_limit=" + D.querySelector('#upload_limit').value + "&max_upload_size=" + D.querySelector('#max_upload_size').value + "&censor=" + D.querySelector('#censor').value + "&language=" + D.querySelector('#language').value + "&recaptcha=" + D.querySelector('.recaptcha:checked').value + "&recaptcha_key=" + D.querySelector('#recaptcha_key').value + "&analytics_id=" + D.querySelector('#analytics_id').value + "&radios=" + GV)
+});
+for(var j = 0, i = gq.length; j < i; j++) addEvent(gq[j], 'change', function(){
+    bDisabled(D.querySelector("#upload_limit").value != '' && D.querySelector('#max_upload_size').value != '' && D.querySelector("#language").value != '' && D.querySelector(".recaptcha:checked").value != '', gb);
+});
+for(var j = 0, i = GU.length; j < i; j++) addEvent(GU[j], 'change', function(){
+    bDisabled(D.querySelector("#title").value != '' && D.querySelector("#name").value != '' && D.querySelector("#email").value != '' && D.querySelector("#keyword").value != '' && D.querySelector("#description").value != '', GM);
+});
+for(var j = 0, i = GL.length; j < i; j++) addEvent(GL[j], 'keyup', function(e){
+    bDisabled(this.value != '', GM);
+});
+
+for(var j = 0, i = gt.length; j < i; j++) addEvent(gt[j], 'keyup', function(e){
+    bDisabled(this.value != '', gb);
+});
+
+function TB_ShowElement(type, el_content, button, by_id = 0, video_id = 0,price = 0, txt_btn = '', next_cont = '', extra, extra_new) {
+  var c = D.querySelector('#container_alerts'),
+          f = c.querySelector('#'+el_content),
+          h = c.querySelector('#beforeLoad'),
+          u = c.querySelector('#confirm-alert');
+
+  Req('{$url->{req/get-element}}', function(e) {
+    if (e.status == 200) {
+      removeAllEvents(2), (button != 0 && type != 'warning-alert') && (D.querySelector('#'+button).innerText = txt_btn, D.querySelector('#'+button).removeAttribute('disabled'));
+        if(!f || (type == 'warning-alert' && u && !hasClass(u, button)) || (type == 'warning-alert' && (!u || u.getAttribute('data-extra') != extra))){
+          c.innerHTML = e.html;
+        }
+        if (button == 'icon_favicon'){
+          addEvent(c.querySelector('.icon_favicon'), 'click', function(){
+            Req("{$url->{req/global-admin/media-site}}?token={#token_session}", function(e){
+              if (e.status == 200) {
+                if(e.redirect == true){
+                    location.reload();
+                }
+                D.querySelector('#warning-alert').style.display = "none";
+                loadAlert(e.message);
+              } else {
+                loadAlert('{$word->error}', 1);
+              }
+            }, "POST", MX, "icon_favicon", function(){}, function(){}, function() {
+              loadAlert('{$word->there_error_uploading_file}', 1);
+            }, function() {
+              loadAlert('{$word->the_operation_canceled_connection_interrupted}', 1);
+            })
+          }, 2);
+        } else if (button == 'icon_logo'){
+          addEvent(c.querySelector('.icon_logo'), 'click', function(){
+            Req("{$url->{req/global-admin/media-site}}?token={#token_session}", function(e){
+              if (e.status == 200) {
+                if(e.redirect == true){
+                    location.reload();
+                }
+                D.querySelector('#warning-alert').style.display = "none";
+                loadAlert(e.message);
+              } else {
+                loadAlert('{$word->error}', 1);
+              }
+            }, "POST", ML, "icon_logo", function(){}, function(){}, function() {
+              loadAlert('{$word->there_error_uploading_file}', 1);
+            }, function() {
+              loadAlert('{$word->the_operation_canceled_connection_interrupted}', 1);
+            })
+          }, 2);
+        }
+      var bb = c.querySelector('#'+el_content),
+          k = bb.querySelector('[data-dismiss]'),
+          src = button == 'icon_favicon' ? "{$icon_favicon}" : "{$icon_logo}";
+      c.querySelector('#'+el_content).style.display = "block";
+      addEvent(k, "click", function(){
+        if(src != ''){
+            D.querySelector('.'+button).querySelector('img').src = src;
+        } else {
+            addClass(D.querySelector('.'+button), 'none-media'), addClass(D.querySelector('.'+button).querySelector('img'), 'hidden'), D.querySelector('.'+button).querySelector('img').src = "";
+        }
+        D.querySelector('#'+button).value = "";
+        c.querySelector('#'+el_content).style.display = "none";
+      }, 2);
+    }else{
+      if(button != 0 && type != 'warning-alert'){
+        D.querySelector('#'+button).innerText = txt_btn;
+        D.querySelector('#'+button).removeAttribute('disabled');
+      } else if(h){
+        h.remove();
+      }
+      loadAlert(e.error, 1);
+    }
+  },
+  "POST", "&type=" + type + "&actual_form=" + el_content + "&by_id=" + by_id + "&video_id=" + video_id + "&price=" + price + "&next_cont=" + next_cont + "&txt_btn=" + txt_btn + "&class_n=" + button + "&extra=" + extra + "&extra_new=" + extra_new);
+}
+</script>

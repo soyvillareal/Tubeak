@@ -1,0 +1,52 @@
+<div class="user-setting-panel">
+    <div id="block-container">
+        {$blocked_users}
+	</div>
+	<div class="videos-load hidden">
+		<div class="comments-loading">
+			<div class="tb_content-spinner-circle">
+                <div class="tb_spinner-circle"></div>
+            </div>
+		</div>
+	</div>
+</div>
+<?php if($TEMP['#users'] > 0) { ?>
+<script>
+var BG = !0,
+	BB = D.querySelectorAll('.block-user'),
+	BF = function(){
+	  var self = this;
+	  Req('{$url->{req/settings/block-user}}', function(e) {
+	    if (e.status == 200) {
+	      	self.innerText = e.message;
+	    }
+	  }, "POST", "&by_id=" + self.getAttribute('data-id'));
+	};
+addEvent(D, 'scroll', function(){
+	if (((window.innerHeight + window.scrollY) >= D.querySelector('#global_content').offsetHeight - 200)){
+	    if(BG){
+	        var ids = [],
+	        	spin = D.querySelector(".videos-load"),
+           		count = D.querySelectorAll('.block-user'),
+           		last_id = 0;
+           	removeClass(spin, 'hidden'), BG = !1;
+		    if(count.length > 0){
+		       	last_id = count[count.length - 1].getAttribute('data-id');
+		    }
+		    for (var j = 0, i = count.length; j < i; j++) ids.push(count[j].getAttribute('data-id'));
+	        Req("{$url->{req/load-more/blocked-users}}", function(e){
+		        if (e.status == 200) {
+		           	var content = D.querySelector("#block-container");
+                    content.innerHTML += e.html, addClass(spin, 'hidden'), BG = !0, loadPage(content.querySelectorAll('a[target="_self"]'));
+                    var BB = content.querySelectorAll('.block-user');
+                    for (var j = 0, i = BB.length; j < i; j++) addEvent(BB[j], 'click', BF);
+		        } else {
+                  spin.remove();
+                }
+	       	}, "POST", "&by_id={$data->id}&ids=" + ids + "&last_id=" + last_id);
+	    }
+	}
+}, 1, !1, !0);
+for (var j = 0, i = BB.length; j < i; j++) addEvent(BB[j], 'click', BF);
+</script>
+<?php } ?>

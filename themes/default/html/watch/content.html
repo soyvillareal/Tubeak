@@ -1,0 +1,1611 @@
+<div class="video-player-page">
+   <div class="contsub-watch"<?php echo($TEMP['#resize_on'] == 1) ? ' style="padding-top: 0;"' : ''?>>
+      <div class="cont-background">
+         <div<?php echo($TEMP['#resize_on'] == 0 || ($TEMP['#is_adult'] == false && !Specific::Admin())) ? ' class="hidden"' : ''?> id="background"></div>
+         <div class="player-video<?php echo($TEMP['#resize_on'] == 0) ? ' cont-watch-md' : ' cont-watch-lg'?>">
+            <?php if($TEMP['#is_deleted'] == false) { ?>
+            <?php if($TEMP['#is_live_processig'] == false){ ?>
+            <?php if ($TEMP['#is_approved'] == true || Specific::Admin()) { ?>
+            <?php if ($TEMP['#is_adult'] == true || Specific::Admin()) { ?> 
+            <?php if ($TEMP['#is_public'] == true || Specific::Admin()) { ?>
+            <?php if ($TEMP['#video']['converted'] == 1 && $TEMP['#in_queue'] == false){ ?>
+            <div class="video-player">
+               <div id="load-after-player">
+                  <div class="tb_overlay tb_layer">
+                     <div class="<?php echo($TEMP['#is_mobile'] == false) ? 'tb_spinner ' : 'tb_spinner-mob '?>tb_spinner-is-loading">
+                        <div class="tb_content-spinner-circle">
+                           <div class="tb_spinner-circle tb_loading-spinner-player"></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <video id="tb-video" playsinline webkit-playsinline style="width:100%; height:100%;position: relative;">
+                  Your browser does not support HTML5 video.
+               </video>
+            </div>
+            <script>
+               var er = '{$end_related}';
+               new TubeakPlayer(D.querySelector('video'), {
+                  mediaSources: '{$json_path}',
+                  videoCategory: "{$category_key}",
+                  words: {"play": "{$word->play}", "pause": "{$word->pause}", "time-slider": "{$word->time_slider}", "mute": "{$word->mute}", "unmute": "{$word->unmute}", "settings": "{$word->settings_}", "quality": "{$word->quality}", "cine-mode": "{$word->cine_mode}", "fullscreen": "{$word->fullscreen}", "t-share": "{$word->share}", "t-subscribed": "{$word->subscribed}", "t-unsubscribe": "{$word->subscribe}", "video-title": "{#title}", "username": "{$data->username}", "title-next-end": "{$title_nextend}", "p-next-end": "{$word->next_endvideo}", "owner-user": "{$owner_nextend}", "cancel-text": "{$word->cancel}", "cp-video-embed": "{$word->copy_embed_code}", "cp-video-url": "{$word->copy_video_url}", "views": "{$word->views}", "title-prev-end": "{$title_prevend}", "playlist-prev": "{$word->playlist_prev}", "playlist-next": "{$word->playlist_next}", "in-loop": "{$word->in_loop}", "replay": "{$word->replay}", "cp-url-at-time": "{$word->copy_url_at_current_time}", "time-fast-back": "{$word->time_fast_back}", "time-fast-forward": "{$word->time_fast_forward}", "seconds": "{$word->seconds}", "normal": "{$word->normal}", "speed": "{$word->speed}", "live-broadcast" : "{$word->live_broadcast}"},
+                  features: ['progress', 'prevtrack', 'playpause', 'nexttrack', 'backforward', 'volume', 'current', 'duration', 'settings', 'contextmenu', 'quality', 'cinemode', 'fullscreen'],
+                  domain: '{#site_url}',
+                  idVString: '{$video_id}',
+                  idShort: '{$short_id}',
+                  autoplay: true,
+                  userPhoto: '{$data->avatar}',
+                  userLink: '{$data->url}',
+                  waterMark: '{$watermark}',
+                  startWaterMark: '{$start_watermark}',
+                  userOwnerId: {$data->id},
+                  isSub: {$is_sub},
+                  tokenSession: '{#token_session}',
+                  poster: '{#thumbnail}',
+                  showNextWhenEnded: true,
+                  thumbNextEnd: '{$thumbnail_nextend}',
+                  urlNextEnd: '{$url_nextend}',
+                  vIdNextEnd: '{$id_nextend}',
+                  lIdNextEnd: '{$lid_nextend}',
+                  vDuraNextEnd: '{$dura_nextend}',
+                  thumbPrevEnd: '{$thumbnail_prevend}',
+                  urlPrevEnd: '{$url_prevend}',
+                  vIdPrevEnd: '{$id_prevend}',
+                  lIdPrevEnd: '{$lid_prevend}',
+                  vDuraPrevEnd: '{$dura_prevend}',
+                  noProgress: [{$no_progress}],
+                  progressCk: {$progress_value},
+                  percentPgsCk: {$percent_value},
+                  idVideo: {$id},
+                  idUserViewer: {$user_viewer},
+                  videoDuration: '{$duration}',
+                  idPlayList: '{$video_id}',
+                  endRelatedVideos: er,
+                  nowUrl: '{#now_url}',
+                  isLogged: {#loggedin},
+                  forceLive: {$force_live},
+                  forceProgress: {$force_progress},
+                  typeWatch: '{#type_watch}'
+               });
+            </script>
+            <?php }else{ ?>
+            <div class="video-processing">
+               <img class="position-absolute" src="{#thumbnail}" alt="{$title}">
+               <div class="vertical-center margin-auto">
+                  <div class="cont-block-wtch">
+                     <div class="w-25 margin-l10 margin-r10 position-relative">
+                        <div class="tb_content-spinner-circle showing">
+                           <div class="tb_spinner-circle"></div>
+                        </div>
+                     </div>
+                     <div class="contsub-info-wtch">
+                        <div class="cont-info-wtch">
+                           <?php if ($TEMP['#in_queue'] == true) { ?>
+                           <div class="title-wtch">{$word->the_video_is_in_queue}</div>
+                           <div class="message-wtch">
+                              <?php if ($TEMP['#video_owner'] == true){ ?>
+                              {$word->video_preparing_for_processing}
+                              <?php }else{ ?>
+                              {$word->this_video_queue}
+                              <?php } ?>
+                           </div>
+                           <?php }else{ ?>
+                           <div class="title-wtch">{$word->processing_the_video}</div>
+                           <div class="message-wtch">
+                              <?php if ($TEMP['#video_owner'] == true){ ?>
+                              {$word->this_video_being_converted_few_resolutions}
+                              <?php }else{ ?>
+                              {$word->this_video_porcessing}
+                              <?php } ?>
+                           </div>
+                           <?php if($TEMP['#video_owner'] == true){ ?>
+                           <div class="position-relative">
+                              <div class="progress-processing-bar" style="width:{$ffmpeg_progress}"></div>
+                              <div class="cont-progress-processing" id="progress-processing">{$ffmpeg_progress}</div>
+                           </div>
+                           <?php } ?>
+                           <?php } ?>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <?php } ?>
+            <?php } else { ?>
+            <div class="video-processing">
+               <div class="vertical-center margin-auto">
+                  <div class="cont-block-wtch">
+                     <svg class="margin-l10 mw-80 w-100" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M 40 4.5 C 46.441 4.5 52.38 6.087 57.819 9.261 C 63.258 12.435 67.565 16.742 70.739 22.181 C 73.913 27.62 75.5 33.559 75.5 40 C 75.5 46.441 73.913 52.38 70.739 57.819 C 67.565 63.258 63.258 67.565 57.819 70.739 C 52.38 73.913 46.441 75.5 40 75.5 C 33.559 75.5 27.62 73.913 22.181 70.739 C 16.742 67.565 12.435 63.258 9.261 57.819 C 6.087 52.38 4.5 46.441 4.5 40 C 4.5 33.559 6.087 27.62 9.261 22.181 C 12.435 16.742 16.742 12.435 22.181 9.261 C 27.62 6.087 33.559 4.5 40 4.5 Z M 45.917 62.141 L 45.917 53.359 C 45.917 52.927 45.778 52.565 45.501 52.272 C 45.223 51.98 44.884 51.833 44.484 51.833 L 35.609 51.833 C 35.208 51.833 34.854 51.987 34.546 52.296 C 34.237 52.604 34.083 52.958 34.083 53.359 L 34.083 62.141 C 34.083 62.542 34.237 62.896 34.546 63.204 C 34.854 63.513 35.208 63.667 35.609 63.667 L 44.484 63.667 C 44.884 63.667 45.223 63.52 45.501 63.228 C 45.778 62.935 45.917 62.573 45.917 62.141 Z M 45.824 46.24 L 46.656 17.535 C 46.656 17.165 46.502 16.888 46.194 16.703 C 45.886 16.457 45.516 16.333 45.085 16.333 L 34.915 16.333 C 34.484 16.333 34.114 16.457 33.806 16.703 C 33.498 16.888 33.344 17.165 33.344 17.535 L 34.13 46.24 C 34.13 46.548 34.284 46.818 34.592 47.049 C 34.9 47.28 35.27 47.396 35.701 47.396 L 44.253 47.396 C 44.684 47.396 45.046 47.28 45.339 47.049 C 45.632 46.818 45.793 46.548 45.824 46.24 Z"/>
+                     </svg>
+                     <div class="contsub-info-wtch">
+                        <div class="cont-info-wtch">
+                           <div class="title-wtch">{$word->private_video}</div>
+                           <div class="message-wtch">{$word->video_private_text}</div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <?php } ?>
+            <?php } else { ?>
+            <div class="video-processing">
+               <div class="vertical-center margin-auto">
+                  <div class="cont-block-wtch">
+                     <svg class="margin-l10 mw-80 w-100" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M 40 4.5 C 46.441 4.5 52.38 6.087 57.819 9.261 C 63.258 12.435 67.565 16.742 70.739 22.181 C 73.913 27.62 75.5 33.559 75.5 40 C 75.5 46.441 73.913 52.38 70.739 57.819 C 67.565 63.258 63.258 67.565 57.819 70.739 C 52.38 73.913 46.441 75.5 40 75.5 C 33.559 75.5 27.62 73.913 22.181 70.739 C 16.742 67.565 12.435 63.258 9.261 57.819 C 6.087 52.38 4.5 46.441 4.5 40 C 4.5 33.559 6.087 27.62 9.261 22.181 C 12.435 16.742 16.742 12.435 22.181 9.261 C 27.62 6.087 33.559 4.5 40 4.5 Z M 45.917 62.141 L 45.917 53.359 C 45.917 52.927 45.778 52.565 45.501 52.272 C 45.223 51.98 44.884 51.833 44.484 51.833 L 35.609 51.833 C 35.208 51.833 34.854 51.987 34.546 52.296 C 34.237 52.604 34.083 52.958 34.083 53.359 L 34.083 62.141 C 34.083 62.542 34.237 62.896 34.546 63.204 C 34.854 63.513 35.208 63.667 35.609 63.667 L 44.484 63.667 C 44.884 63.667 45.223 63.52 45.501 63.228 C 45.778 62.935 45.917 62.573 45.917 62.141 Z M 45.824 46.24 L 46.656 17.535 C 46.656 17.165 46.502 16.888 46.194 16.703 C 45.886 16.457 45.516 16.333 45.085 16.333 L 34.915 16.333 C 34.484 16.333 34.114 16.457 33.806 16.703 C 33.498 16.888 33.344 17.165 33.344 17.535 L 34.13 46.24 C 34.13 46.548 34.284 46.818 34.592 47.049 C 34.9 47.28 35.27 47.396 35.701 47.396 L 44.253 47.396 C 44.684 47.396 45.046 47.28 45.339 47.049 C 45.632 46.818 45.793 46.548 45.824 46.24 Z"/>
+                     </svg>
+                     <div class="contsub-info-wtch">
+                        <div class="cont-info-wtch">
+                           <?php if ($TEMP['#loggedin'] === false) { ?>
+                           <div class="title-wtch">{$word->login_confirm_age}</div>
+                           <div class="message-wtch">{$word->video_restricted_under_18_years_age}</div>
+                           <div class="only-adult">
+                              <a href="{$url->{login}}" target="_self">
+                                 <button class="button-adult pointer">{$word->login_}</button>
+                              </a>
+                           </div>
+                           <?php } else { ?>
+                           <div class="title-wtch">{$word->youre_not_old_enough_yet}</div>
+                           <div class="message-wtch">{$word->video_restricted_under_18_years_age}</div>
+                           <?php } ?>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <?php } ?>
+            <?php } else { ?>
+            <div class="video-processing">
+               <div class="vertical-center margin-auto">
+                  <div class="cont-block-wtch">
+                     <svg class="margin-l10 mw-80 w-100" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M 40 4.5 C 46.441 4.5 52.38 6.087 57.819 9.261 C 63.258 12.435 67.565 16.742 70.739 22.181 C 73.913 27.62 75.5 33.559 75.5 40 C 75.5 46.441 73.913 52.38 70.739 57.819 C 67.565 63.258 63.258 67.565 57.819 70.739 C 52.38 73.913 46.441 75.5 40 75.5 C 33.559 75.5 27.62 73.913 22.181 70.739 C 16.742 67.565 12.435 63.258 9.261 57.819 C 6.087 52.38 4.5 46.441 4.5 40 C 4.5 33.559 6.087 27.62 9.261 22.181 C 12.435 16.742 16.742 12.435 22.181 9.261 C 27.62 6.087 33.559 4.5 40 4.5 Z M 45.917 62.141 L 45.917 53.359 C 45.917 52.927 45.778 52.565 45.501 52.272 C 45.223 51.98 44.884 51.833 44.484 51.833 L 35.609 51.833 C 35.208 51.833 34.854 51.987 34.546 52.296 C 34.237 52.604 34.083 52.958 34.083 53.359 L 34.083 62.141 C 34.083 62.542 34.237 62.896 34.546 63.204 C 34.854 63.513 35.208 63.667 35.609 63.667 L 44.484 63.667 C 44.884 63.667 45.223 63.52 45.501 63.228 C 45.778 62.935 45.917 62.573 45.917 62.141 Z M 45.824 46.24 L 46.656 17.535 C 46.656 17.165 46.502 16.888 46.194 16.703 C 45.886 16.457 45.516 16.333 45.085 16.333 L 34.915 16.333 C 34.484 16.333 34.114 16.457 33.806 16.703 C 33.498 16.888 33.344 17.165 33.344 17.535 L 34.13 46.24 C 34.13 46.548 34.284 46.818 34.592 47.049 C 34.9 47.28 35.27 47.396 35.701 47.396 L 44.253 47.396 C 44.684 47.396 45.046 47.28 45.339 47.049 C 45.632 46.818 45.793 46.548 45.824 46.24 Z"/>
+                     </svg>
+                     <div class="contsub-info-wtch">
+                        <div class="cont-info-wtch">
+                           <div class="title-wtch">{$word->video_not_approved}</div>
+                           <div class="message-wtch">{$word->video_approve_text}</div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <?php } ?>
+            <?php } else { ?>
+            <div class="video-processing">
+               <div class="vertical-center margin-auto">
+                  <div class="cont-block-wtch">
+                     <svg class="margin-l10 mw-80 w-100" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M 40 4.5 C 46.441 4.5 52.38 6.087 57.819 9.261 C 63.258 12.435 67.565 16.742 70.739 22.181 C 73.913 27.62 75.5 33.559 75.5 40 C 75.5 46.441 73.913 52.38 70.739 57.819 C 67.565 63.258 63.258 67.565 57.819 70.739 C 52.38 73.913 46.441 75.5 40 75.5 C 33.559 75.5 27.62 73.913 22.181 70.739 C 16.742 67.565 12.435 63.258 9.261 57.819 C 6.087 52.38 4.5 46.441 4.5 40 C 4.5 33.559 6.087 27.62 9.261 22.181 C 12.435 16.742 16.742 12.435 22.181 9.261 C 27.62 6.087 33.559 4.5 40 4.5 Z M 45.917 62.141 L 45.917 53.359 C 45.917 52.927 45.778 52.565 45.501 52.272 C 45.223 51.98 44.884 51.833 44.484 51.833 L 35.609 51.833 C 35.208 51.833 34.854 51.987 34.546 52.296 C 34.237 52.604 34.083 52.958 34.083 53.359 L 34.083 62.141 C 34.083 62.542 34.237 62.896 34.546 63.204 C 34.854 63.513 35.208 63.667 35.609 63.667 L 44.484 63.667 C 44.884 63.667 45.223 63.52 45.501 63.228 C 45.778 62.935 45.917 62.573 45.917 62.141 Z M 45.824 46.24 L 46.656 17.535 C 46.656 17.165 46.502 16.888 46.194 16.703 C 45.886 16.457 45.516 16.333 45.085 16.333 L 34.915 16.333 C 34.484 16.333 34.114 16.457 33.806 16.703 C 33.498 16.888 33.344 17.165 33.344 17.535 L 34.13 46.24 C 34.13 46.548 34.284 46.818 34.592 47.049 C 34.9 47.28 35.27 47.396 35.701 47.396 L 44.253 47.396 C 44.684 47.396 45.046 47.28 45.339 47.049 C 45.632 46.818 45.793 46.548 45.824 46.24 Z"/>
+                     </svg>
+                     <div class="contsub-info-wtch">
+                        <div class="cont-info-wtch">
+                           <div class="title-wtch">{$word->this_direct_ended}</div>
+                           <div class="message-wtch">{$word->this_live_has_already_ended_watch}.</div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <?php } ?>
+            <?php } else { ?>
+            <div class="video-processing">
+               <div class="vertical-center margin-auto">
+                  <div class="cont-block-wtch">
+                     <svg class="margin-l10 mw-80 w-100" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M 40 4.5 C 46.441 4.5 52.38 6.087 57.819 9.261 C 63.258 12.435 67.565 16.742 70.739 22.181 C 73.913 27.62 75.5 33.559 75.5 40 C 75.5 46.441 73.913 52.38 70.739 57.819 C 67.565 63.258 63.258 67.565 57.819 70.739 C 52.38 73.913 46.441 75.5 40 75.5 C 33.559 75.5 27.62 73.913 22.181 70.739 C 16.742 67.565 12.435 63.258 9.261 57.819 C 6.087 52.38 4.5 46.441 4.5 40 C 4.5 33.559 6.087 27.62 9.261 22.181 C 12.435 16.742 16.742 12.435 22.181 9.261 C 27.62 6.087 33.559 4.5 40 4.5 Z M 45.917 62.141 L 45.917 53.359 C 45.917 52.927 45.778 52.565 45.501 52.272 C 45.223 51.98 44.884 51.833 44.484 51.833 L 35.609 51.833 C 35.208 51.833 34.854 51.987 34.546 52.296 C 34.237 52.604 34.083 52.958 34.083 53.359 L 34.083 62.141 C 34.083 62.542 34.237 62.896 34.546 63.204 C 34.854 63.513 35.208 63.667 35.609 63.667 L 44.484 63.667 C 44.884 63.667 45.223 63.52 45.501 63.228 C 45.778 62.935 45.917 62.573 45.917 62.141 Z M 45.824 46.24 L 46.656 17.535 C 46.656 17.165 46.502 16.888 46.194 16.703 C 45.886 16.457 45.516 16.333 45.085 16.333 L 34.915 16.333 C 34.484 16.333 34.114 16.457 33.806 16.703 C 33.498 16.888 33.344 17.165 33.344 17.535 L 34.13 46.24 C 34.13 46.548 34.284 46.818 34.592 47.049 C 34.9 47.28 35.27 47.396 35.701 47.396 L 44.253 47.396 C 44.684 47.396 45.046 47.28 45.339 47.049 C 45.632 46.818 45.793 46.548 45.824 46.24 Z"/>
+                     </svg>
+                     <div class="contsub-info-wtch margin-r10">
+                        <div class="cont-info-wtch">
+                           <?php if($TEMP['#video']['broadcast'] == 0){ ?>
+                           <div class="title-wtch">{$word->video_deleted}</div>
+                           <div class="message-wtch">{$word->content_longer_available_because_removed}</div>
+                           <?php } else { ?>
+                           <div class="title-wtch">{$word->this_direct_ended}</div>
+                           <div class="message-wtch">{$word->live_ended_author_decided_not_save}</div>
+                           <?php } ?>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <?php } ?>
+            <div class="clear"></div>
+         </div>
+      </div>
+      <?php if($TEMP['#is_deleted'] == false) { ?>
+      <div class="cont-watch-xs float-right cont-sidepl no-padding-left desktop"<?php echo($TEMP['#resize_on'] == 1) ? " style='padding-top: 20px;'" : ""?>>
+         <?php if($TEMP['#is_streaming'] == true && $TEMP['#is_live_processig'] == false) { ?>
+         {$broadcast_chat}
+         <?php } ?>
+
+         <?php if($TEMP['#type_watch'] == 'playlist'){ ?>
+         <div class="play-list-cont-wrapper overflow-hidden border-all border-radius-4 border-primary<?php echo($TEMP['#is_streaming'] == true && $TEMP['#is_live_processig'] == false) ? ' margin-t20' : ''?>">
+            <div class="display-flex padding-10 background-primary" id="next-list-video">
+               <div class="w-100">
+                  <h3 class="font-medium no-margin ellipsis-horizontal color-secondary">
+                     {$playlist_title}
+                  </h3>
+                  <div class="vertical-center margin-t5">
+                     <div class="vertical-center display-block background-soft font-low margin-r10 padding-5 border-radius-4">
+                        {$icon_privacy}
+                        <span class="color-tertiary">{$privacy}</span>
+                     </div>
+                     <div class="display-flex font-low color-tertiary">
+                        <a class="color-tertiary ellipsis-horizontal mw-80" href="{$data->url}" target="_self">{$list_ownername}</a> - {$video_index}/{$list_count}
+                     </div>
+                  </div>
+               </div>
+               <button class="btn-trans hover-button margin-r10" id="cont-list-btn">
+                  <svg class="vh-icon color-primary" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                     <path fill="currentColor" d="M 17.859 14.384 L 16.623 15.564 C 16.529 15.655 16.417 15.7 16.288 15.7 C 16.159 15.7 16.047 15.655 15.953 15.564 L 12 11.768 L 8.047 15.564 C 7.953 15.655 7.841 15.7 7.712 15.7 C 7.583 15.7 7.471 15.655 7.377 15.564 L 6.141 14.384 C 6.047 14.294 6 14.185 6 14.059 C 6 13.933 6.047 13.824 6.141 13.734 L 11.665 8.436 C 11.759 8.345 11.871 8.3 12 8.3 C 12.129 8.3 12.241 8.345 12.335 8.436 L 17.859 13.734 C 17.953 13.824 18 13.933 18 14.059 C 18 14.185 17.953 14.294 17.859 14.384 Z"/>
+                  </svg>
+               </button>
+               <div class="clear"></div>
+            </div>
+            <div class="videos-list overflow-auto padding-5 no-padding-left no-padding-right h-100 background-tertiary" id="next-video-list">{$playlist}</div>
+         </div>
+         <?php } ?>
+         <div class="desktop">
+            <div class="margin-t10 position-relative" id="ad-sidebar"<?php echo($TEMP['#resize_on'] == 1) ? ' style="margin-top: 22px;"' : ''?>>{$watch_sidebar_ad}</div>
+            <div class="content-desktop">
+               <?php if ($TEMP['#settings']['autoplay'] == 'on') { ?>
+               <div class="next-video vertical-center">
+                  <div class="title-next font-medium font-bold font-uppercase color-primary">
+                     {$word->up_next}
+                  </div>
+                  <div class="font-medium font-bold font-uppercase margin-left-auto color-tertiary">
+                     {$word->autoplay}
+                  </div>
+                  <div class="toggle-box vertical-center position-relative margin-l10">
+                     <input class="autoplay-video hidden" id="autoplay" type="checkbox"{$checked}>
+                     <label for="autoplay" data-title="{$word->autoplay_message}"></label>
+                  </div>
+               </div>
+               <?php } ?>
+               <?php if($TEMP['#related_videos'] > 0){ ?>
+               <div class="videos-list" id="next-video">
+                  {$next_video}
+               </div>
+               <div class="videos-list related-videos">
+                  {$video_sidebar}
+               </div>
+               <div class="load-related-videos">
+                  <span id="load-related-videos">
+                     <div class="side-videos-load hidden">
+                        <div class="comments-loading">
+                           <div class="tb_content-spinner-circle">
+                              <div class="tb_spinner-circle"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </span>
+               </div>
+               <?php } ?>
+            </div>
+         </div>
+      </div>
+
+      <div class="container-watch-info cont-watch-md">
+         <div class="content content_n display-inline-block">
+            <div class="container-meta-info">
+               <div class="content-info-1">
+                  <div class="video-watch-title">
+                     <a class="font-low color-blue no-visited" href="{$url->{categories/{$category_key}}}" target="_self">#{$category_name}</a>
+                     <div class="display-flex">
+                        <h1 class="font-high ellipsis-vertical-2 no-margin color-secondary" itemprop="title">{#title}</h1>
+                        <div class="slim-more-meta margin-left-auto color-secondary hide-in-desktop">
+                           <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path fill="currentColor" d="M 17.859 10.266 L 12.335 15.564 C 12.241 15.655 12.129 15.7 12 15.7 C 11.871 15.7 11.759 15.655 11.665 15.564 L 6.141 10.266 C 6.047 10.176 6 10.067 6 9.941 C 6 9.815 6.047 9.706 6.141 9.616 L 7.377 8.436 C 7.471 8.345 7.583 8.3 7.712 8.3 C 7.841 8.3 7.953 8.345 8.047 8.436 L 12 12.232 L 15.953 8.436 C 16.047 8.345 16.159 8.3 16.288 8.3 C 16.417 8.3 16.529 8.345 16.623 8.436 L 17.859 9.616 C 17.953 9.706 18 9.815 18 9.941 C 18 10.067 17.953 10.176 17.859 10.266 Z"/>
+                           </svg>
+                        </div>
+                     </div>
+                     <?php if ($TEMP['#video']['privacy'] == 1) { ?>
+                     <div class="vertical-center">
+                        <div class="vertical-center background-soft font-low font-bold margin-t5 padding-5 border-radius-4">
+                           <svg class="icon-little color-tertiary" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path fill="currentColor" d="M 9.556 11.364 L 14.444 11.364 L 14.444 9.455 C 14.444 8.752 14.206 8.152 13.728 7.655 C 13.251 7.158 12.675 6.909 12 6.909 C 11.325 6.909 10.749 7.158 10.272 7.655 C 9.794 8.152 9.556 8.752 9.556 9.455 L 9.556 11.364 Z M 17.5 12.318 L 17.5 18.045 C 17.5 18.311 17.411 18.536 17.233 18.722 C 17.054 18.907 16.838 19 16.583 19 L 7.417 19 C 7.162 19 6.946 18.907 6.767 18.722 C 6.589 18.536 6.5 18.311 6.5 18.045 L 6.5 12.318 C 6.5 12.053 6.589 11.828 6.767 11.642 C 6.946 11.456 7.162 11.364 7.417 11.364 L 7.722 11.364 L 7.722 9.455 C 7.722 8.235 8.142 7.187 8.983 6.312 C 9.823 5.437 10.829 5 12 5 C 13.171 5 14.177 5.437 15.017 6.312 C 15.858 7.187 16.278 8.235 16.278 9.455 L 16.278 11.364 L 16.583 11.364 C 16.838 11.364 17.054 11.456 17.233 11.642 C 17.411 11.828 17.5 12.053 17.5 12.318 Z"></path>
+                           </svg>
+                           <span class="color-tertiary">{$word->private}</span>
+                        </div>
+                     </div>
+                     <?php } ?>
+                     <?php if ($TEMP['#video']['privacy'] == 2) { ?>
+                     <div class="vertical-center">
+                        <div class="vertical-center background-soft font-low font-bold margin-t5 padding-5 border-radius-4">
+                           <svg class="icon-little color-tertiary" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path fill="currentColor" d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path>
+                           </svg>
+                           <span class="color-tertiary">{$word->unlisted}</span>
+                        </div>
+                     </div>
+                     <?php } ?>
+                  </div>
+                  <div class="container-submain-watch">
+                     <div class="font-medium vertical-center">
+                        <div class="color-tertiary" id="video-views-count">{$views}</div>
+                        <div class="color-tertiary views-num">{$word_views}</div>
+                     </div>
+                     <div class="video-buttons display-flex margin-left-auto">
+                        <button class="btn-trans vertical-center-desktop waber-container likes-disl tabbable{$like_active_class}" data-title="{$like_active_word}" id="likes-bar" data-type="liked_video" data-likes="{$norm_likes}" liked="{$isliked}">
+                           <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path fill="currentColor" d="M 6.56 16.667 C 6.56 16.485 6.497 16.329 6.37 16.197 C 6.243 16.065 6.093 16 5.92 16 C 5.74 16 5.588 16.065 5.465 16.197 C 5.342 16.329 5.28 16.485 5.28 16.667 C 5.28 16.853 5.342 17.012 5.465 17.14 C 5.588 17.268 5.74 17.333 5.92 17.333 C 6.093 17.333 6.243 17.268 6.37 17.14 C 6.497 17.012 6.56 16.853 6.56 16.667 Z M 8.16 11.332 L 8.16 18 C 8.16 18.18 8.097 18.336 7.97 18.468 C 7.843 18.6 7.693 18.667 7.52 18.667 L 4.64 18.667 C 4.467 18.667 4.317 18.6 4.19 18.468 C 4.063 18.336 4 18.18 4 18 L 4 11.332 C 4 11.152 4.063 10.996 4.19 10.864 C 4.317 10.732 4.467 10.667 4.64 10.667 L 7.52 10.667 C 7.693 10.667 7.843 10.732 7.97 10.864 C 8.097 10.996 8.16 11.152 8.16 11.333 Z M 20 11.332 C 20 11.929 19.817 12.447 19.45 12.884 C 19.55 13.191 19.6 13.455 19.6 13.676 C 19.62 14.204 19.477 14.68 19.17 15.104 C 19.283 15.493 19.283 15.899 19.17 16.323 C 19.07 16.719 18.89 17.045 18.63 17.303 C 18.69 18.08 18.527 18.708 18.14 19.188 C 17.713 19.715 17.056 19.987 16.17 20 L 14.879 20 C 14.439 20 13.959 19.947 13.439 19.839 C 12.919 19.731 12.514 19.631 12.225 19.537 C 11.935 19.443 11.533 19.305 11.02 19.125 C 10.199 18.827 9.673 18.673 9.439 18.667 C 9.266 18.66 9.116 18.592 8.989 18.464 C 8.863 18.335 8.799 18.18 8.799 18 L 8.799 11.323 C 8.799 11.149 8.859 10.997 8.979 10.869 C 9.099 10.741 9.242 10.669 9.409 10.656 C 9.569 10.643 9.823 10.437 10.17 10.041 C 10.516 9.645 10.853 9.225 11.18 8.781 C 11.633 8.177 11.969 7.76 12.189 7.531 C 12.309 7.405 12.413 7.239 12.499 7.031 C 12.586 6.823 12.644 6.653 12.674 6.525 C 12.704 6.397 12.749 6.187 12.809 5.896 C 12.855 5.625 12.897 5.413 12.934 5.26 C 12.97 5.107 13.036 4.927 13.129 4.719 C 13.222 4.511 13.336 4.337 13.469 4.199 C 13.596 4.067 13.745 4 13.919 4 C 14.225 4 14.5 4.036 14.744 4.109 C 14.987 4.183 15.187 4.272 15.344 4.38 C 15.501 4.488 15.634 4.628 15.744 4.803 C 15.854 4.976 15.934 5.132 15.984 5.271 C 16.034 5.409 16.074 5.583 16.104 5.792 C 16.133 6 16.15 6.156 16.154 6.26 C 16.157 6.364 16.159 6.5 16.159 6.667 C 16.159 6.931 16.127 7.195 16.064 7.459 C 16.001 7.723 15.937 7.931 15.874 8.084 C 15.81 8.236 15.719 8.431 15.599 8.667 C 15.579 8.708 15.545 8.771 15.499 8.855 C 15.452 8.937 15.416 9.013 15.389 9.084 C 15.362 9.153 15.335 9.236 15.309 9.333 L 18.079 9.333 C 18.599 9.333 19.049 9.532 19.428 9.928 C 19.808 10.324 19.998 10.792 19.999 11.333 Z"></path>
+                           </svg>
+                           <div class="title-button">
+                              <div class="likes{$like_active_class}" id="likes">{$likes}</div>
+                           </div>
+                           <div class="background-waver"></div>
+                        </button>
+                        <button class="btn-trans vertical-center-desktop waber-container likes-disl tabbable{$dis_active_class}" data-title="{$dis_active_word}" id="dislikes-bar" data-type="disliked_video" data-likes="{$norm_dislikes}" disliked="{$isdisliked}">
+                           <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path fill="currentColor" d="M 6.557 16.667 C 6.557 16.485 6.493 16.329 6.367 16.197 C 6.239 16.065 6.089 16 5.915 16 C 5.736 16 5.583 16.065 5.46 16.197 C 5.337 16.329 5.276 16.485 5.276 16.667 C 5.276 16.853 5.337 17.012 5.46 17.14 C 5.583 17.268 5.736 17.332 5.915 17.332 C 6.089 17.332 6.239 17.268 6.367 17.14 C 6.493 17.012 6.557 16.853 6.557 16.667 Z M 8.157 11.332 L 8.157 18 C 8.157 18.18 8.095 18.336 7.967 18.468 C 7.841 18.6 7.689 18.665 7.517 18.665 L 4.635 18.665 C 4.462 18.665 4.312 18.6 4.184 18.468 C 4.058 18.336 3.996 18.18 3.996 18 L 3.996 11.332 C 3.996 11.152 4.058 10.996 4.184 10.864 C 4.312 10.732 4.462 10.665 4.635 10.665 L 7.517 10.665 C 7.689 10.665 7.841 10.732 7.967 10.864 C 8.095 10.996 8.157 11.152 8.157 11.332 Z M 19.453 12.884 C 19.82 12.461 20.003 11.944 20.003 11.332 C 19.995 10.791 19.805 10.323 19.427 9.927 C 19.052 9.531 18.604 9.333 18.082 9.332 L 15.311 9.332 C 15.338 9.235 15.365 9.152 15.391 9.083 C 15.418 9.013 15.453 8.937 15.501 8.853 C 15.548 8.769 15.582 8.707 15.601 8.665 C 15.721 8.409 15.812 8.211 15.871 8.072 C 15.931 7.933 15.995 7.729 16.061 7.463 C 16.128 7.196 16.161 6.929 16.161 6.665 C 16.161 6.499 16.158 6.364 16.155 6.26 C 16.153 6.156 16.136 6 16.107 5.791 C 16.076 5.583 16.037 5.409 15.986 5.271 C 15.936 5.132 15.855 4.976 15.746 4.801 C 15.636 4.628 15.502 4.488 15.346 4.38 C 15.19 4.272 14.989 4.183 14.746 4.109 C 14.502 4.036 14.226 4 13.92 4 C 13.747 4 13.597 4.065 13.47 4.197 C 13.337 4.337 13.222 4.511 13.13 4.719 C 13.037 4.927 12.972 5.107 12.935 5.26 C 12.897 5.413 12.856 5.624 12.81 5.895 C 12.749 6.187 12.705 6.397 12.675 6.525 C 12.645 6.653 12.586 6.823 12.5 7.031 C 12.413 7.239 12.311 7.405 12.19 7.531 C 11.97 7.76 11.633 8.176 11.179 8.78 C 10.852 9.225 10.515 9.645 10.169 10.041 C 9.821 10.437 9.569 10.643 9.409 10.656 C 9.241 10.669 9.098 10.741 8.978 10.869 C 8.859 10.997 8.798 11.149 8.798 11.323 L 8.798 18 C 8.798 18.18 8.862 18.335 8.988 18.463 C 9.114 18.592 9.264 18.66 9.439 18.667 C 9.672 18.673 10.199 18.827 11.019 19.125 C 11.533 19.305 11.935 19.443 12.225 19.536 C 12.514 19.631 12.919 19.731 13.441 19.839 C 13.96 19.947 14.441 20 14.881 20 L 16.172 20 C 17.058 19.987 17.716 19.715 18.143 19.187 C 18.529 18.708 18.693 18.08 18.633 17.301 C 18.893 17.045 19.074 16.719 19.173 16.323 C 19.287 15.899 19.287 15.493 19.173 15.104 C 19.481 14.68 19.623 14.204 19.604 13.676 C 19.604 13.455 19.553 13.191 19.454 12.884 Z" transform="matrix(-1, 0, 0, -1, 23.999, 24)"/>
+                           </svg>
+                           <div class="title-button">
+                              <div class="likes{$dis_active_class}" id="dislikes">{$dislikes}</div>
+                           </div>
+                           <div class="background-waver"></div>
+                        </button>
+                        <div class="video-info-element hide-in-mobile" data-title="{$likes} / {$dislikes}">
+                           <div class="views-bar" id="views_dislikes" style="width: {$dislikes_p}%"></div>
+                           <div class="views-bar blue{$like_active_class}{$dis_active_class}" id="views_likes" style="width: {$likes_p}%"></div>
+                        </div>
+                        <button class="btn-trans vertical-center-desktop color-grey waber-container tabbable" id="share-video" data-title="{$word->share}">
+                           <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path fill="currentColor" d="M 20 9.9 C 20 10.062 19.943 10.203 19.83 10.322 L 15.259 15.122 C 15.146 15.241 15.012 15.3 14.857 15.3 C 14.702 15.3 14.568 15.241 14.455 15.122 C 14.342 15.003 14.286 14.863 14.286 14.7 L 14.286 12.3 L 12.286 12.3 C 11.702 12.3 11.18 12.319 10.719 12.356 C 10.257 12.394 9.799 12.461 9.344 12.558 C 8.888 12.655 8.493 12.788 8.156 12.956 C 7.82 13.125 7.506 13.342 7.214 13.608 C 6.923 13.873 6.685 14.189 6.5 14.555 C 6.315 14.92 6.171 15.353 6.067 15.853 C 5.963 16.353 5.911 16.919 5.911 17.55 C 5.911 17.894 5.926 18.278 5.955 18.703 C 5.955 18.741 5.963 18.814 5.978 18.923 C 5.993 19.033 6 19.116 6 19.172 C 6 19.266 5.975 19.344 5.924 19.406 C 5.874 19.469 5.804 19.5 5.714 19.5 C 5.619 19.5 5.536 19.447 5.464 19.341 C 5.423 19.284 5.384 19.216 5.348 19.134 C 5.313 19.053 5.272 18.959 5.228 18.853 C 5.183 18.747 5.152 18.672 5.134 18.628 C 4.378 16.847 4 15.438 4 14.4 C 4 13.156 4.158 12.116 4.473 11.278 C 5.438 8.759 8.042 7.5 12.286 7.5 L 14.286 7.5 L 14.286 5.1 C 14.286 4.938 14.342 4.797 14.455 4.678 C 14.568 4.559 14.702 4.5 14.857 4.5 C 15.012 4.5 15.146 4.559 15.259 4.678 L 19.83 9.478 C 19.943 9.597 20 9.738 20 9.9 Z"></path>
+                           </svg>
+                           <div class="title-button">
+                              <div class="color-tertiary">{$word->share}</div>
+                           </div>
+                           <div class="background-waver"></div>
+                        </button> 
+                        <button class="btn-trans vertical-center-desktop color-grey waber-container tabbable" id="show-lists" data-id="{$id}">
+                           <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path fill="currentColor" d="M 12.8 12.8 L 16 12.8 C 16.616 12.8 17.001 12.133 16.692 11.6 C 16.549 11.353 16.285 11.2 16 11.2 L 12.8 11.2 L 12.8 8 C 12.8 7.384 12.133 6.999 11.6 7.308 C 11.353 7.451 11.2 7.715 11.2 8 L 11.2 11.2 L 8 11.2 C 7.384 11.2 6.999 11.867 7.308 12.4 C 7.451 12.647 7.715 12.8 8 12.8 L 11.2 12.8 L 11.2 16 C 11.2 16.616 11.867 17.001 12.4 16.692 C 12.647 16.549 12.8 16.285 12.8 16 L 12.8 12.8 Z M 12 20 C 7.581 20 4 16.419 4 12 C 4 7.581 7.581 4 12 4 C 16.419 4 20 7.581 20 12 C 20 16.419 16.419 20 12 20 Z"/>
+                           </svg>
+                           <div class="title-button">
+                              <div class="color-tertiary">{$word->save}</div>
+                           </div>
+                           <div class="background-waver"></div>
+                        </button> 
+                        <div class="vertical-center-desktop hide-in-mobile">
+                           <button class="btn-trans waber-container hover-button color-for-hover tabbable" id="ellip" data-toggle="dropdown">
+                              <svg class="vh-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                 <path fill="currentColor" d="M 8.363 11 L 8.363 13 C 8.363 13.278 8.257 13.514 8.046 13.708 C 7.833 13.903 7.576 14 7.273 14 L 5.09 14 C 4.787 14 4.53 13.903 4.319 13.708 C 4.106 13.514 4 13.278 4 13 L 4 11 C 4 10.722 4.106 10.486 4.319 10.292 C 4.53 10.097 4.787 10 5.09 10 L 7.273 10 C 7.576 10 7.833 10.097 8.046 10.292 C 8.257 10.486 8.363 10.722 8.363 11 Z M 14.182 11 L 14.182 13 C 14.182 13.278 14.075 13.514 13.864 13.708 C 13.651 13.903 13.393 14 13.09 14 L 10.91 14 C 10.607 14 10.347 13.903 10.136 13.708 C 9.923 13.514 9.818 13.278 9.818 13 L 9.818 11 C 9.818 10.722 9.923 10.486 10.136 10.292 C 10.347 10.097 10.607 10 10.91 10 L 13.09 10 C 13.393 10 13.651 10.097 13.864 10.292 C 14.075 10.486 14.182 10.722 14.182 11 Z M 20 11 L 20 13 C 20 13.278 19.894 13.514 19.681 13.708 C 19.47 13.903 19.211 14 18.91 14 L 16.727 14 C 16.424 14 16.167 13.903 15.954 13.708 C 15.743 13.514 15.635 13.278 15.635 13 L 15.635 11 C 15.635 10.722 15.743 10.486 15.954 10.292 C 16.167 10.097 16.424 10 16.727 10 L 18.91 10 C 19.211 10 19.47 10.097 19.681 10.292 C 19.894 10.486 20 10.722 20 11 Z"/>
+                              </svg>
+                              <div class="background-waver"></div>
+                           </button>
+                           <ul class="down-menu-container down-menu-mob-left">
+                              <div class="down-wrapper background-primary padding-top-bottom-12 border-radius-4">
+                                 <?php if ($TEMP['#video']['is_owner'] == true && $TEMP['#is_live_now'] == false) { ?>
+                                 <li class="vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative">
+                                    <a class="vertical-center-desktop position-relative waber-subcontainer tabbable" href="{$url->{edit-video/{$id}}}" target="_self">
+                                       <svg class="vh-icon color-grey" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                          <path fill="currentColor" d="M 7.313 19.479 L 8.394 18.398 L 5.602 15.606 L 4.521 16.687 L 4.521 17.958 L 6.042 17.958 L 6.042 19.479 L 7.313 19.479 Z M 13.526 8.453 C 13.526 8.279 13.44 8.192 13.265 8.192 C 13.186 8.192 13.119 8.22 13.064 8.275 L 6.623 14.715 C 6.569 14.77 6.541 14.838 6.541 14.917 C 6.541 15.092 6.628 15.178 6.802 15.178 C 6.881 15.178 6.948 15.151 7.004 15.095 L 13.444 8.656 C 13.499 8.6 13.526 8.532 13.526 8.453 Z M 12.886 6.173 L 17.828 11.115 L 7.943 21 L 3 21 L 3 16.057 Z M 21 7.313 C 21 7.733 20.853 8.09 20.561 8.382 L 18.588 10.355 L 13.645 5.412 L 15.618 3.452 C 15.903 3.15 16.26 3 16.687 3 C 17.107 3 17.468 3.15 17.768 3.452 L 20.561 6.232 C 20.853 6.541 21 6.901 21 7.313 Z"/>
+                                       </svg>
+                                       <div class="color-secondary">{$word->edit}</div>
+                                       <div class="background-waver"></div>
+                                    </a>
+                                 </li>
+                                 <?php } ?>
+                                 <?php if ($TEMP['#settings']['download_videos'] == 'on' && $TEMP['#video']['converted'] == 1 && $TEMP['#is_adult'] == true && $TEMP['#is_approved'] == true) { ?>
+                                 <?php if ($TEMP['#video']['privacy'] != 1 && !empty($TEMP['#video']['download_key']) || ($TEMP['#video']['privacy'] == 1 && $TEMP['#video']['is_owner'])) { ?>
+                                 <li class="vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative">
+                                    <button class="vertical-center-desktop position-relative waber-subcontainer btn-trans tabbable" id="download-video">
+                                       <svg class="vh-icon color-grey" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet">
+                                          <path fill="currentColor" d="M 11.99 16.5 L 5.54 11.355 L 18.44 11.355 Z M 9.645 3.5 L 14.335 3.5 L 14.335 5.071 L 9.645 5.071 Z M 9.645 5.856 L 14.335 5.856 L 14.335 7.427 L 9.645 7.427 Z"/>
+                                          <path fill="currentColor" d="M 9.65 8.247 L 14.35 8.247 L 14.35 12.3 L 9.65 12.3 Z" style=""/>
+                                          <path fill="currentColor" d="M 5 18 L 19 18 L 19 20.5 L 5 20.5 Z"/>
+                                       </svg>
+                                       <div class="color-secondary">{$word->download}</div>
+                                       <div class="background-waver"></div>
+                                    </button>
+                                 </li>
+                                 <?php } } ?>
+                                 <?php if ($TEMP['#video']['is_owner']) { ?>
+                                 <li class="vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative">
+                                    <a class="vertical-center-desktop position-relative waber-subcontainer tabbable" href="{$url->{channel}}?page=video-statistics&id={$video_id}&type=today" target="_self">
+                                       <svg class="vh-icon color-grey" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                          <path fill="currentColor" d="M 22 18.25 L 22 19.5 L 2 19.5 L 2 4.5 L 3.25 4.5 L 3.25 18.25 L 22 18.25 Z M 20.75 6.063 L 20.75 10.311 C 20.75 10.447 20.687 10.543 20.56 10.599 C 20.433 10.654 20.317 10.63 20.213 10.525 L 19.031 9.344 L 12.85 15.525 C 12.785 15.59 12.71 15.623 12.625 15.623 C 12.54 15.623 12.465 15.59 12.4 15.525 L 10.125 13.25 L 6.063 17.313 L 4.188 15.438 L 9.9 9.725 C 9.965 9.66 10.04 9.627 10.125 9.627 C 10.21 9.627 10.285 9.66 10.35 9.725 L 12.625 12 L 17.156 7.469 L 15.975 6.287 C 15.87 6.183 15.846 6.067 15.901 5.94 C 15.957 5.813 16.053 5.75 16.189 5.75 L 20.438 5.75 C 20.529 5.75 20.604 5.779 20.662 5.838 C 20.721 5.896 20.75 5.971 20.75 6.063 Z"/>
+                                       </svg>
+                                       <div class="color-secondary">{$word->analytics}</div>
+                                       <div class="background-waver"></div>
+                                    </a>
+                                 </li>
+                                 <?php } ?>
+                                 <?php if ($TEMP['#video']['is_owner'] == false) { ?>
+                                 <li class="vertical-center action-list-hover font-medium ellipsis-horizontal padding-left-right-12 position-relative">
+                                    <button class="vertical-center-desktop position-relative waber-subcontainer btn-trans tabbable" id="report-video">
+                                       <svg class="vh-icon color-grey" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                          <path fill="currentColor" d="M 6.019 5.75 C 6.019 6.219 5.809 6.577 5.389 6.824 L 5.389 19.188 C 5.389 19.272 5.358 19.345 5.295 19.407 C 5.233 19.469 5.159 19.5 5.074 19.5 L 4.444 19.5 C 4.359 19.5 4.285 19.469 4.223 19.407 C 4.161 19.345 4.13 19.272 4.13 19.188 L 4.13 6.824 C 3.71 6.577 3.5 6.219 3.5 5.75 C 3.5 5.405 3.623 5.11 3.869 4.866 C 4.115 4.622 4.412 4.5 4.759 4.5 C 5.107 4.5 5.404 4.622 5.65 4.866 C 5.896 5.11 6.019 5.405 6.019 5.75 Z M 20.5 6.375 L 20.5 13.826 C 20.5 13.989 20.459 14.114 20.377 14.202 C 20.295 14.29 20.166 14.38 19.988 14.471 C 18.578 15.226 17.368 15.604 16.358 15.604 C 15.958 15.604 15.553 15.532 15.143 15.389 C 14.733 15.245 14.378 15.089 14.076 14.92 C 13.774 14.751 13.395 14.594 12.94 14.451 C 12.484 14.308 12.016 14.236 11.538 14.236 C 10.278 14.236 8.757 14.712 6.973 15.662 C 6.861 15.721 6.753 15.75 6.648 15.75 C 6.478 15.75 6.33 15.688 6.205 15.564 C 6.081 15.441 6.019 15.294 6.019 15.125 L 6.019 7.879 C 6.019 7.671 6.12 7.492 6.323 7.342 C 6.461 7.251 6.72 7.111 7.101 6.922 C 8.649 6.141 10.029 5.75 11.242 5.75 C 11.944 5.75 12.6 5.844 13.21 6.033 C 13.82 6.222 14.538 6.508 15.365 6.893 C 15.614 7.016 15.902 7.078 16.23 7.078 C 16.584 7.078 16.97 7.01 17.386 6.873 C 17.803 6.736 18.163 6.583 18.468 6.414 C 18.773 6.245 19.062 6.092 19.334 5.955 C 19.606 5.818 19.785 5.75 19.87 5.75 C 20.041 5.75 20.188 5.812 20.313 5.936 C 20.438 6.059 20.5 6.206 20.5 6.375 Z"/>
+                                       </svg>
+                                       <div class="color-secondary">{$word->report}</div>
+                                       <div class="background-waver"></div>
+                                    </button>
+                                 </li>
+                                 <?php } ?>
+                              </div>
+                           </ul>
+                        </div>
+                        <button class="vertical-center-desktop color-grey hide-in-desktop btn-trans" id="more-options">
+                           <svg class="icon-vhm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path fill="currentColor" d="M 8.363 11 L 8.363 13 C 8.363 13.278 8.257 13.514 8.046 13.708 C 7.833 13.903 7.576 14 7.273 14 L 5.09 14 C 4.787 14 4.53 13.903 4.319 13.708 C 4.106 13.514 4 13.278 4 13 L 4 11 C 4 10.722 4.106 10.486 4.319 10.292 C 4.53 10.097 4.787 10 5.09 10 L 7.273 10 C 7.576 10 7.833 10.097 8.046 10.292 C 8.257 10.486 8.363 10.722 8.363 11 Z M 14.182 11 L 14.182 13 C 14.182 13.278 14.075 13.514 13.864 13.708 C 13.651 13.903 13.393 14 13.09 14 L 10.91 14 C 10.607 14 10.347 13.903 10.136 13.708 C 9.923 13.514 9.818 13.278 9.818 13 L 9.818 11 C 9.818 10.722 9.923 10.486 10.136 10.292 C 10.347 10.097 10.607 10 10.91 10 L 13.09 10 C 13.393 10 13.651 10.097 13.864 10.292 C 14.075 10.486 14.182 10.722 14.182 11 Z M 20 11 L 20 13 C 20 13.278 19.894 13.514 19.681 13.708 C 19.47 13.903 19.211 14 18.91 14 L 16.727 14 C 16.424 14 16.167 13.903 15.954 13.708 C 15.743 13.514 15.635 13.278 15.635 13 L 15.635 11 C 15.635 10.722 15.743 10.486 15.954 10.292 C 16.167 10.097 16.424 10 16.727 10 L 18.91 10 C 19.211 10 19.47 10.097 19.681 10.292 C 19.894 10.486 20 10.722 20 11 Z"/>
+                           </svg>
+                           <div class="title-button hide-in-desktop">
+                              <div class="color-tertiary">{$word->more}</div>
+                           </div>
+                        </button>
+                     </div>
+                  </div>
+               </div>
+               <div class="content-info-2">
+                  <div class="publisher-element border-primary">
+                     <div class="publisher-avatar">
+                        <a tabindex="-1" href="{$data->url}"><img src="{$data->avatar}" alt="{$data->username}"></a>
+                     </div>
+                     <div class="info-published">
+                        <div class="publisher-name">
+                           {$data->user_v}
+                        </div>
+                        <div class="video-published color-tertiary hide-in-mobile">
+                           {$word_published} {$time}
+                        </div>
+                     </div>
+                     <div class="margin-left-auto">
+                        {$subscribe_button}
+                     </div>
+                     <div class="clear"></div>
+                  </div>
+               </div>
+               <div class="clear"></div>
+               <div class="content-info-3 border-primary">
+                  <div class="watch-video-description overflow-hidden position-relative">
+                     <div class="video-published color-tertiary hide-in-desktop">
+                        {$word_published} {$time}
+                     </div>
+                     <?php if(!empty($TEMP['#video']['compose_description'])){ ?>
+                        <p class="font-low color-secondary" dir="{#language_dir}" itemprop="description">{$description}</p>
+                     <?php } ?>
+                  </div>
+                  <?php if(!empty($TEMP['#video']['compose_description'])){ ?>
+                  <button class="btn-trans color-tertiary font-medium font-bold font-uppercase margin-t5 hide-in-mobile" id="desc">
+                     {$word->show_more}
+                  </button>
+                  <?php } ?>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="cont-watch-xs mobile">
+         <div class="content">
+            <div class="margin-b10 position-relative">{$watch_sidebar_ad}</div>
+            <?php if ($TEMP['#settings']['autoplay'] == 'on') { ?>
+            <div class="border-primary next-video vertical-center">
+               <div class="title-next font-medium font-bold font-uppercase color-primary">
+                  {$word->up_next}
+               </div>
+               <div class="font-medium font-bold font-uppercase margin-left-auto color-tertiary">
+                  {$word->autoplay}
+               </div>
+               <div class="toggle-box vertical-center position-relative margin-l10">
+                  <input class="autoplay-video hidden" id="autoplay-2" type="checkbox"{$checked}>
+                  <label for="autoplay-2" data-title="{$word->autoplay_message}"></label>
+               </div>
+            </div>
+            <?php } ?>
+            <?php if($TEMP['#related_videos'] > 0){ ?>
+            <div class="videos-list" id="next-video">
+               {$next_video}
+            </div>
+            <div class="videos-list related-videos-2">
+               {$video_sidebar}
+            </div>
+            <div class="load-related-videos">
+               <button class="btn-trans background-grey w-100 border-radius-4 margin-t10 padding-5 color-white" id="load-related-videos-2">
+                  {$word->load_more}
+               </button>
+               <div class="load-related-videos">
+                  <span>
+                     <div class="side-videos-load-2 hidden">
+                        <div class="comments-loading">
+                           <div class="tb_content-spinner-circle">
+                              <div class="tb_spinner-circle"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </span>
+               </div>
+            </div>
+            <?php } ?>
+         </div>
+      </div>
+      <?php if($TEMP['#is_streaming'] == false || $TEMP['#is_live_now'] == false) { ?>
+      <div class="cont-watch-md">
+         {$video_comments}
+      </div>
+      <?php } ?>
+      <div class="clear"></div>
+      <?php } ?>
+   </div>
+</div>
+<?php if($TEMP['#is_deleted'] == false) { ?>
+<script>
+   var W = D.querySelector('#download-video'),
+       R = D.querySelector('#report-video'),
+       K = D.querySelectorAll('.likes-disl'),
+       Y = D.querySelectorAll('.autoplay-video'),
+       E = D.querySelectorAll('#del-from-{#type_list}'),
+       CW = D.querySelectorAll('.show-replys'),
+       cg = D.querySelectorAll('#time-goto'),
+       CS = D.querySelectorAll('.reply_input'),
+       CP = D.querySelectorAll('#delete-comm'),
+       CA = D.querySelectorAll('#hide-area'),
+       CF = D.querySelectorAll('#pin-comm'),
+       CB = D.querySelectorAll('#comment-rp'),
+       CC = D.querySelectorAll('#reply-comm'),
+       cl = D.querySelectorAll('#comm_like'),
+       CN = D.querySelectorAll("li.sort-comments"),
+       CU = D.querySelectorAll('.expanded-area'),
+       WK = D.querySelector('#progress-processing'),
+       WG = !0,
+       sort_by = 2,
+       CG = function(e) {
+         var self = this,
+             comm_id = self.getAttribute('data-comm-id'),
+             name = self.getAttribute('data-name'),
+             reply_id = self.getAttribute('data-id');
+         if (!comm_id) { return false;}
+         var name   = (name) ? '@'+name+' ' : '';
+         if(!{#loggedin} && M){
+           preloadPage('&one=login&to='+M);
+           return false;
+         }else{
+           var reply_form = D.querySelector('#comm-reply-' + comm_id);
+           removeClass(reply_form, 'hidden');
+           reply_form.querySelector('textarea').value = name;
+           reply_form.querySelector('textarea').focus();
+           scrollTo(reply_form.offsetTop);
+           if (reply_id) {
+             reply_form.setAttribute('data-reply-id',reply_id); 
+           }      
+         }
+       },
+       CZ = function() {
+         var id = this.getAttribute('data-id');
+         if (!id) { return false; }
+         TB_ShowElement('warning-alert', 'warning-alert','delete_reply','{$word->delete_comment}',1,'normal','{$word->yes_delete_it}',0,id,'{$word->delete_confirmation}');
+       },
+       CJ = function() {
+         var id = this.getAttribute('data-id');
+         if (!id) { return false; }
+         TB_ShowElement('warning-alert', 'warning-alert','delete_comment','{$word->delete_comment}',1,'normal','{$word->yes_delete_it}',0,id,'{$word->delete_confirmation}');
+       },
+       cf = function(){
+         var comm_id = this.getAttribute('data-id');
+         addClass(D.querySelector("#comm-reply-"+comm_id), 'hidden');
+       },
+       ct = function(){
+         var id = this.getAttribute('data-id');
+         TB_ShowElement('warning-alert', 'warning-alert','pin-comm','{$word->you_replace_it_pin}',1,'normal','{$word->pin_up}',0,id,'{$word->do_you_want_post_cmt}');
+       },
+       cv = function(){
+         var self = this,
+             comm_id = self.getAttribute('data-id'),
+             CR = D.querySelector('#comm-reply-'+comm_id),
+             CT = CR.querySelector('.reply_input'),
+             text = CT.value,
+             reply_id = CR.getAttribute('data-reply-id');
+         if (!text || !comm_id) {
+           addClass(CT, 'border-red');
+           return false;
+         }
+         self.setAttribute('disabled', true);
+         Req('{$url->{req/comment-actions/add-reply}}', function(e) {
+           if (e.status == 200) {
+             var CQ = document.createElement("div"),
+                 CE = D.querySelector("#comment-replies-cont-"+comm_id);
+             CT.value = "", CT.blur(), addClass(CR, 'hidden'), removeClass(CT, 'border-red'), CQ.className = "reply-container", CQ.innerHTML = e.html, loadPage(CQ.querySelectorAll('a[target="_self"]'));
+             if(D.querySelector('.main-comment-reply')){
+               CE.insertBefore(CQ, CE.childNodes[0]);
+             }else{
+               CE.appendChild(CQ);
+             }
+             var cz = CQ.querySelector('#time-goto'),
+                 cr = CQ.querySelectorAll('#reply-like');
+             cz && addEvent(cz, 'click', cd);
+             addEvent(CQ.querySelector('#delete-reply'), 'click', CZ);
+             addEvent(CQ.querySelector('#comment-rp'), 'click', CG);
+             addEvent(CQ.querySelector('.time-url'), 'click', copyText);
+             for (var j = 0, i = cr.length; j < i; j++) addEvent(cr[j], "click", ch);
+           } else {
+               loadAlert('{$word->error}', 1);
+           }
+         }, "POST", "&text=" + encodeURIComponent(text) + "&id=" + comm_id + "&video_id={$id}&reply=" + reply_id);
+       },
+       cd = function() {
+         window.scrollTo(0, 0);
+         var duration = this.getAttribute('data-duration'),
+             vid = D.querySelector("video");
+         vid.currentTime = duration, vid.play();
+       },
+       cb = function(){
+         var element = this,
+             comm_id = element.getAttribute('data-id'),
+             containerB = D.querySelector("#comm-reply-"+comm_id);
+         if(!element.value){
+           containerB.querySelector('#reply-comm').setAttribute('disabled', true);
+         } else {
+           containerB.querySelector('#reply-comm').removeAttribute('disabled');
+         }
+       },
+       ch = function(){
+         var self = this,
+             type = self.getAttribute('data-type'),
+             reply_id = self.getAttribute('data-reply-id'),
+             data_likes = D.querySelector('[data-reply-id="'+reply_id+'"][data-type="like"]'),
+             data_dislikes = D.querySelector('[data-reply-id="'+reply_id+'"][data-type="dislike"]'),
+             likes = data_likes.getAttribute('data-likes'),
+             dislikes = data_dislikes.getAttribute('data-dislikes'),
+             svgli = data_likes.querySelector('.svg-reply-like'),
+             svgdis = data_dislikes.querySelector('.svg-reply-dislike'),
+             num_likes = data_likes.querySelector('.number-replys'),
+             num_dislikes = data_dislikes.querySelector('.number-replys'),
+             result = 0;
+         if (!self || !type || !reply_id){
+           return false;
+         }else if (!{#loggedin} && M) {
+           preloadPage('&one=login&to='+M);
+           return false;
+         }
+         Req('{$url->{req/comment-actions/reply-reaction}}', function(e) {
+            if(e.status == 200){
+               if(type == 'like'){
+                  if (self.getAttribute('liked') == 'true') {
+                     if(likes < 1000000){
+                       result = Number(likes) - 1;
+                     }
+                     removeClass(svgdis, 'active'), removeClass(svgli, 'active'), self.removeAttribute('liked'), self.setAttribute('data-title', '{$word->i_like_it}');
+                     if(hasClass(svgdis, 'active')){
+                        data_dislikes.setAttribute('data-title', '{$word->remove_i_dont_like}');
+                     }
+                  } else {
+                     if(likes < 1000000){
+                        result = Number(likes) + 1;
+                     }
+                     self.setAttribute('liked', true), self.setAttribute('data-title', '{$word->i_dont_like_it_enymore}'), data_dislikes.setAttribute('data-title', '{$word->i_dont_like}'), removeClass(svgdis, 'active'), addClass(svgli, 'active');
+                  }
+                  if(likes < 1000000){
+                     num_likes.innerText = commaNumber(result), self.setAttribute('data-likes', result);
+                  }
+                  if (dislikes > 0) {
+                     if (data_dislikes.getAttribute('disliked') == 'true') {
+                        data_dislikes.removeAttribute('disliked'), removeClass(svgdis, 'active');
+                        if(dislikes < 1000000){
+                           result = Number(dislikes) - 1;
+                           num_dislikes.innerText = commaNumber(result), data_dislikes.setAttribute('data-dislikes', result);
+                        }  
+                     }
+                  }
+               } else if (type == 'dislike'){
+                  if(self.getAttribute('disliked') == 'true'){
+                     if(dislikes < 1000000){
+                        result = Number(dislikes) - 1;
+                     }
+                     removeClass(svgdis, 'active'), removeClass(svgli, 'active'), self.removeAttribute('disliked'), self.setAttribute('data-title', '{$word->i_dont_like}');
+                     if(hasClass(svgli, 'active')){
+                        data_likes.setAttribute('data-title', '{$word->i_dont_like_it_enymore}');
+                     }
+                  } else {
+                     if(dislikes < 1000000){
+                        result = Number(dislikes) + 1;
+                     }
+                     removeClass(svgli, 'active'), addClass(svgdis, 'active'), self.setAttribute('disliked', true), self.setAttribute('data-title', '{$word->remove_i_dont_like}'), data_likes.setAttribute('data-title', '{$word->i_like_it}');
+                  }
+                  if(dislikes < 1000000){
+                     num_dislikes.innerText = commaNumber(result), self.setAttribute('data-dislikes', result);
+                  }
+                  if (likes > 0) {
+                     if (data_likes.getAttribute('liked') == 'true') {
+                        data_likes.removeAttribute('liked'), removeClass(svgli, 'active');
+                        if(likes < 1000000){
+                           result = Number(likes) - 1;
+                           num_likes.innerText = commaNumber(result), data_likes.setAttribute('data-likes', result);
+                        }
+                     }
+                  }
+               }
+            } else {
+             TB_ShowElement('warning-alert', 'warning-alert','confirm_wrng','{$word->error}',1,'warning','ok',0,0,'{$word->unknown_error}');
+           }
+         }, "POST", "&id=" + reply_id + "&type=" + type);
+       },
+       ck = function(){
+         var self = this,
+             type = self.getAttribute('data-type'),
+             comm_id = self.getAttribute('data-comm-id'),
+             data_likes = D.querySelector('[data-comm-id="'+comm_id+'"][data-type="like"]'),
+             data_dislikes = D.querySelector('[data-comm-id="'+comm_id+'"][data-type="dislike"]'),
+             likes = data_likes.getAttribute('data-likes'),
+             dislikes = data_dislikes.getAttribute('data-dislikes'),
+             svgcl = data_likes.querySelector('.svg-reply-like'),
+             svgcd = data_dislikes.querySelector('.svg-reply-dislike'),
+             num_likes = data_likes.querySelector('.number-replys'),
+             num_dislikes = data_dislikes.querySelector('.number-replys'),
+             result = 0;
+         if (!self || !type || !comm_id){
+           return false;
+         } else if (!{#loggedin} && M) {
+           preloadPage('&one=login&to='+M);
+           return false;
+         }
+         Req('{$url->{req/comment-actions/comment-reaction}}', function(e) {
+            if(e.status == 200){
+               if(type == 'like'){
+                  if (self.getAttribute('liked') == 'true') {
+                     if(likes < 1000000){
+                       result = Number(likes) - 1;
+                     }
+                     removeClass(svgcd, 'active'), removeClass(svgcl, 'active'), self.removeAttribute('liked'), self.setAttribute('data-title', '{$word->i_like_it}');
+                     if(hasClass(svgcd, 'active')){
+                        data_dislikes.setAttribute('data-title', '{$word->remove_i_dont_like}');
+                     }
+                  } else {
+                     if(likes < 1000000){
+                        result = Number(likes) + 1;
+                     }
+                     self.setAttribute('liked', true), self.setAttribute('data-title', '{$word->i_dont_like_it_enymore}'), data_dislikes.setAttribute('data-title', '{$word->i_dont_like}'), removeClass(svgcd, 'active'), addClass(svgcl, 'active');
+                  }
+                  if(likes < 1000000){
+                     num_likes.innerText = commaNumber(result), self.setAttribute('data-likes', result);
+                  }
+                  if (dislikes > 0) {
+                     if (data_dislikes.getAttribute('disliked') == 'true') {
+                        data_dislikes.removeAttribute('disliked'), removeClass(svgcd, 'active');
+                        if(dislikes < 1000000){
+                           result = Number(dislikes) - 1;
+                           num_dislikes.innerText = commaNumber(result), data_dislikes.setAttribute('data-dislikes', result);
+                        }  
+                     }
+                  }
+               } else if (type == 'dislike'){
+                  if(self.getAttribute('disliked') == 'true'){
+                     if(dislikes < 1000000){
+                        result = Number(dislikes) - 1;
+                     }
+                     removeClass(svgcd, 'active'), removeClass(svgcl, 'active'), self.removeAttribute('disliked'), self.setAttribute('data-title', '{$word->i_dont_like}');
+                     if(hasClass(svgcl, 'active')){
+                        data_likes.setAttribute('data-title', '{$word->i_dont_like_it_enymore}');
+                     }
+                  } else {
+                     if(dislikes < 1000000){
+                        result = Number(dislikes) + 1;
+                     }
+                     removeClass(svgcl, 'active'), addClass(svgcd, 'active'), self.setAttribute('disliked', true), self.setAttribute('data-title', '{$word->remove_i_dont_like}'), data_likes.setAttribute('data-title', '{$word->i_like_it}');
+                  }
+                  if(dislikes < 1000000){
+                     num_dislikes.innerText = commaNumber(result), self.setAttribute('data-dislikes', result);
+                  }
+                  if (likes > 0) {
+                     if (data_likes.getAttribute('liked') == 'true') {
+                        data_likes.removeAttribute('liked'), removeClass(svgcl, 'active');
+                        if(likes < 1000000){
+                           result = Number(likes) - 1;
+                           num_likes.innerText = commaNumber(result), data_likes.setAttribute('data-likes', result);
+                        }
+                     }
+                  }
+               }
+            } else {
+               TB_ShowElement('warning-alert', 'warning-alert','confirm_wrng','{$word->error}',1,'warning','ok',0,0,'{$word->unknown_error}');
+           }
+         }, "POST", "&id=" + comm_id + "&type=" + type);
+       },
+       ce = function() {
+         var self = this,
+             stat = self.getAttribute('data-type'),
+             comm_id = self.getAttribute('data-comm-id'),
+             all_r = self.getAttribute('data-treplys'),
+             CX = D.querySelector('#comment-replies-cont-'+comm_id),
+             CK = D.querySelector('#comment-'+comm_id).querySelector('.comment-replies'),
+             cs = CK.querySelector('#show-rmore'),
+             iconVHM = '<svg class="icon-vhm color-blue" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M 17 13.944 C 17 14.095 16.938 14.225 16.814 14.335 C 16.691 14.445 16.544 14.5 16.375 14.5 L 7.625 14.5 C 7.456 14.5 7.309 14.445 7.186 14.335 C 7.062 14.225 7 14.095 7 13.944 C 7 13.794 7.062 13.664 7.186 13.554 L 11.561 9.665 C 11.684 9.555 11.831 9.5 12 9.5 C 12.169 9.5 12.316 9.555 12.439 9.665 L 16.814 13.554 C 16.938 13.664 17 13.794 17 13.944 Z"></path></svg>';
+         if(stat == 'show'){
+           event.preventDefault();
+           self.innerHTML += loadingReplys;
+           var replys_ids = [],
+               CI = CK.querySelectorAll('.main-comment-reply');
+           for (var j = 0, i = CI.length; j < i; j++) replys_ids.push(CI[j].getAttribute('data-id'));
+
+           Req('{$url->{req/load-more-replys}}', function(e) {
+             if (e.status == 200) {
+               CX.innerHTML += e.html, loadPage(CX.querySelectorAll('a[target="_self"]'));
+               var CO = document.createElement("button"),
+                   CB = CX.querySelectorAll('#comment-rp'),
+                   CY = CX.querySelectorAll('#delete-reply'),
+                   cr = CX.querySelectorAll('#reply-like'),
+                   CI = CX.querySelectorAll('.time-url');
+               if(e.count_r >= {$settings->comments_load_limit}){
+                 CO.className = "btn-trans vertical-center show-replys margin-b20", CO.id = "show-rmore", CO.setAttribute('data-comm-id', comm_id), CO.innerHTML = '<svg class="icon-vhm color-blue" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M 6 2 L 6 7.566 C 6 10.392 7.705 12.704 9.789 12.704 L 13.579 12.704 L 13.579 16 L 18 10.991 L 13.579 5.982 L 13.579 9.278 L 9.789 9.278 C 9.095 9.278 8.526 8.508 8.526 7.566 L 8.526 2 L 6 2 Z"></path></svg><span class="margin-r5 color-blue">{$word->show_more_answers}</span>', CK.appendChild(CO);
+                 addEvent(CO, 'click', function() {
+                   event.preventDefault();
+                   var self = this,
+                       comm_id = self.getAttribute('data-comm-id'),
+                       CX = D.querySelector('#comment-replies-cont-'+comm_id),
+                       CK = D.querySelector('#comment-'+comm_id).querySelector('.comment-replies'),
+                       CM = CK.querySelector('#show-rmore');
+                   self.innerHTML = loadingReplys;
+                   var replys_ids = [],
+                       CI = CK.querySelectorAll('.main-comment-reply');
+                   for (var j = 0, i = CI.length; j < i; j++) replys_ids.push(CI[j].getAttribute('data-id'));
+                   Req('{$url->{req/load-more-replys}}', function(e) {
+                     if (e.status == 200) {
+                       CX.innerHTML += e.html, loadPage(CX.querySelectorAll('a[target="_self"]'));
+                       CM.innerHTML = '<svg class="icon-vhm color-blue" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M 6 2 L 6 7.566 C 6 10.392 7.705 12.704 9.789 12.704 L 13.579 12.704 L 13.579 16 L 18 10.991 L 13.579 5.982 L 13.579 9.278 L 9.789 9.278 C 9.095 9.278 8.526 8.508 8.526 7.566 L 8.526 2 L 6 2 Z"></path></svg><span class="margin-r5 color-blue">{$word->show_more_answers}</span>';
+                        var CB = CX.querySelectorAll('#comment-rp'),
+                            CY = CX.querySelectorAll('#delete-reply'),
+                            cr = CX.querySelectorAll('#reply-like'),
+                            CI = CX.querySelectorAll('.time-url');
+                        for (var j = 0, i = CB.length; j < i; j++) addEvent(CB[j], 'click', CG);
+                        for (var j = 0, i = CY.length; j < i; j++) addEvent(CY[j], 'click', CZ);
+                        for (var j = 0, i = cr.length; j < i; j++) addEvent(cr[j], "click", ch);
+                        for (var j = 0, i = CI.length; j < i; j++) addEvent(CI[j], 'click', copyText);
+                     }else{
+                       CM.remove();
+                     }
+                   }, "POST", "&this_comm=" + comm_id + "&video_id={$id}&replys=" + replys_ids);
+                 });
+               }else{
+                  CK.querySelector('.replys-load').remove();
+               }
+               for (var j = 0, i = CB.length; j < i; j++) addEvent(CB[j], 'click', CG);
+               for (var j = 0, i = CY.length; j < i; j++) addEvent(CY[j], 'click', CZ);
+               for (var j = 0, i = cr.length; j < i; j++) addEvent(cr[j], "click", ch);
+               for (var j = 0, i = CI.length; j < i; j++) addEvent(CI[j], 'click', copyText);
+               self.setAttribute('data-type', 'hide');
+               self.innerHTML = '<div class="vertical-center">' +iconVHM+'<span class="color-blue">{$word->hide} '+all_r+' {$word->answers}</span></div>';
+             }else{
+               CK.querySelector('.replys-load').remove();
+             }
+           }, "POST", "&this_comm=" + comm_id + "&video_id={$id}&replys=" + replys_ids);
+         }else if(stat == 'hide'){
+           if(hasClass(CX, 'hidden')){
+             removeClass(CX, 'hidden');
+             cs && removeClass(cs, 'hidden');
+             self.innerHTML = '<div class="vertical-center">' +iconVHM+'<span class="color-blue">{$word->hide} '+all_r+' {$word->answers}</span></div>';
+           } else {
+             cs && addClass(cs, 'hidden');
+             addClass(CX, 'hidden');
+             self.innerHTML = '<div class="vertical-center"><svg class="icon-vhm color-blue" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M 17 10.056 C 17 10.206 16.938 10.336 16.814 10.446 L 12.439 14.335 C 12.316 14.445 12.169 14.5 12 14.5 C 11.831 14.5 11.684 14.445 11.561 14.335 L 7.186 10.446 C 7.062 10.336 7 10.206 7 10.056 C 7 9.905 7.062 9.775 7.186 9.665 C 7.309 9.555 7.456 9.5 7.625 9.5 L 16.375 9.5 C 16.544 9.5 16.691 9.555 16.814 9.665 C 16.938 9.775 17 9.905 17 10.056 Z"></path></svg><span class="color-blue">{$word->see} '+all_r+' {$word->answers}</span></div>';
+           } 
+         }
+      },
+      loading_html = '<div class="tb_content-spinner-circle showing"><div class="tb_spinner-circle tb_loading-spinner-player"></div></div>';
+   <?php if ($TEMP['#settings']['download_videos'] == 'on' && $TEMP['#video']['converted'] == 1 && $TEMP['#is_adult'] == true && $TEMP['#is_approved'] == true) {
+   if ($TEMP['#video']['privacy'] != 1 && !empty($TEMP['#video']['download_key']) || ($TEMP['#video']['privacy'] == 1 && $TEMP['#video']['is_owner'])) { ?>  
+   addEvent(W, "click", function(){
+      downloadVideo();
+   });
+   function downloadVideo() {
+      <?php if(($TEMP['#loggedin'] === true && $TEMP['#settings']['download_type'] == '1') || $TEMP['#settings']['download_type'] == '0' || Specific::Admin()){ ?>
+         var html = "<div class='vertical-center'><?php if (!empty($TEMP['#video_2160'])) { ?><a class='padding-10 background-red hover-button border-radius-4 margin-r10 color-white' href='{$download_path_2160}' target='_blank'>4K</a><?php } if (!empty($TEMP['#video_1440'])) { ?><a class='padding-10 background-red hover-button border-radius-4  margin-r10 color-white' href='{$download_path_1440}' target='_blank'>2K</a><?php } if (!empty($TEMP['#video_1080'])) { ?><a class='padding-10 background-red hover-button border-radius-4  margin-r10 color-white' href='{$download_path_1080}' target='_blank'>1080p</a><?php } if (!empty($TEMP['#video_720'])) { ?><a class='padding-10 background-red hover-button border-radius-4  margin-r10 color-white' href='{$download_path_720}' target='_blank'>720p</a><?php } if (!empty($TEMP['#video_480'])) { ?><a class='padding-10 background-red hover-button border-radius-4  margin-r10 color-white' href='{$download_path_480}' target='_blank'>480p</a><?php } if (!empty($TEMP['#video_360'])) { ?><a class='padding-10 background-red hover-button border-radius-4  margin-r10 color-white' href='{$download_path_360}' target='_blank'>360p</a><?php } if (!empty($TEMP['#video_240'])) { ?><a class='padding-10 background-red hover-button border-radius-4  margin-r10 color-white' href='{$download_path_240}' target='_blank'>240p</a><?php } if (!empty($TEMP['#video_144'])) { ?><a class='padding-10 background-red hover-button border-radius-4 margin-r10 color-white' href='{$download_path_144}' target='_blank'>144p</a><?php } ?></div>";
+         TB_ShowElement('warning-alert', 'warning-alert','close_alert','{$word->download}',1,'normal',0,'form_download',0,html);
+      <?php } else { ?>
+         TB_ShowElement('warning-alert', 'warning-alert','download_video','{$word->do_you_want_download}',1,'normal','{$word->login}',0,0,'{$word->logged_do_you_want_download}');
+      <?php } ?>
+   }
+   <?php } } ?>
+   <?php if ($TEMP['#video']['is_owner'] == false) { ?>
+   function reportVideo(self){
+      if (!self) { return false;}
+      if (!{#loggedin} && M) {
+         TB_ShowElement('warning-alert', 'warning-alert','report_video','{$word->do_you_want_report}',1,'normal','{$word->login}',0,0,'{$word->logged_do_you_want_repor}');
+      } else {
+         var html = '<ul><li><div class="cont-radio"><input class="radio-paper report-v hidden" type="radio" name="option" id="report-1" value="1"><label class="color-secondary" for="report-1">{$word->spam}</label></div></li><li><div class="cont-radio"><input class="radio-paper report-v hidden" type="radio" name="option" id="report-2" value="2"><label class="color-secondary" for="report-2">{$word->infringes_on_my_copyright}</label></div></li><li><div class="cont-radio"><input class="radio-paper report-v hidden" type="radio" name="option" id="report-3" value="3"><label class="color-secondary" for="report-3">{$word->no_video_play}</label></div></li><li><div class="cont-radio"><input class="radio-paper report-v hidden" type="radio" name="option" id="report-4" value="4"><label class="color-secondary" for="report-4">{$word->sexual_content}</label></div></li><li><div class="cont-radio"><input class="radio-paper report-v hidden" type="radio" name="option" id="report-6" value="6"><label class="color-secondary" for="report-6">{$word->invasion_privacy}</label></div></li><li><div class="cont-radio"><input class="radio-paper report-v hidden" type="radio" name="option" id="report-7" value="7"><label class="color-secondary" for="report-7">{$word->noting_reply}</label></div></li></ul>';
+         TB_ShowElement('warning-alert', 'warning-alert','send_report','{$word->report_this_video}',1,'normal','{$word->send}','form_report',0,html);
+      }
+   }
+   addEvent(R, "click", function(){
+      reportVideo(this);
+   });
+   <?php } ?>
+   for (var P = 0, S = K.length; P < S; P++) addEvent(K[P], "click", function() {
+      var self = this,
+          type = self.getAttribute('data-type'),
+          result = 0,
+          Z = D.querySelector('#likes'),
+          V = D.querySelector('#views_dislikes'),
+          G = D.querySelector('#views_likes'),
+          F = D.querySelector('#dislikes-bar'),
+          U = D.querySelector('#dislikes'),
+          O = D.querySelector('#likes-bar'),
+          likes = O.getAttribute('data-likes'),
+          dislikes = F.getAttribute('data-likes'),
+          total = Number(likes) + Number(dislikes),
+          likes_percent = 0,
+          dislikes_percent = 0;
+      if (!type) {
+         return false;
+      } 
+      if (!{#loggedin} && M) {
+         if (type == 'like') {
+            TB_ShowElement('warning-alert', 'warning-alert','like_video','{$word->do_you_like_this_video}',1,'normal','{$word->login}',0,0,'{$word->logged_for_like}');
+         } else {
+            TB_ShowElement('warning-alert', 'warning-alert','dislike_video','{$word->logged_for_dislike}',1,'normal','{$word->login}',0,0,'{$word->logged_for_like}');
+         }
+      }
+      Req('{$url->{req/video-reaction}}', function(e) {
+         if(e.status == 200){
+            if (type == 'liked_video') {
+               if (self.getAttribute('liked') == 'true') {
+                  if(Number(likes) < 1000000){
+                    result = Number(likes) - 1;
+                    if (F.getAttribute('data-likes') == 0) {
+                     V.style.width = '50%', likes_percent = 50;
+                    } else {
+                     V.style.width = Math.round(((Number(dislikes)) / (total - 1)) * 100) + '%', likes_percent = (result / (total - 1)) * 100;
+                    }
+                  }
+                  self.removeAttribute('liked'), self.setAttribute('data-title', '{$word->i_like_it}');
+                  if(hasClass(F, 'active')){
+                     F.setAttribute('data-title', '{$word->remove_i_dont_like}');
+                  }
+                  removeClass(self, 'active'), removeClass(Z, 'active'), removeClass(G, 'active');
+               } else {
+                   if(Number(likes) < 1000000){
+                     result = Number(likes) + 1, likes_percent = (result / (total + 1)) * 100, V.style.width = Math.round(((Number(dislikes)) / (total + 1)) * 100) + '%';
+                   }
+                   self.setAttribute('liked', true), self.setAttribute('data-title', '{$word->i_dont_like_it_enymore}'), F.setAttribute('data-title', '{$word->i_dont_like}'), addClass(self, 'active'), addClass(Z, 'active'), addClass(G, 'active');
+               }
+               if(Number(likes) < 1000000){
+                 G.style.width = Math.round(likes_percent) + '%', Z.innerText = commaNumber(result), self.setAttribute('data-likes', result);
+               }
+               if (F.getAttribute('data-likes') > 0) {
+                  if (hasClass(F, 'active')) {
+                     F.removeAttribute('disliked'), removeClass(F, 'active'), removeClass(U, 'active');
+                     if(Number(dislikes) < 1000000){
+                        result = Number(F.getAttribute('data-likes')) - 1;
+                        if (O.getAttribute('data-likes') > 0) {
+                           G.style.width = Math.round((Number(O.getAttribute('data-likes')) / total) * 100) + '%';
+                        } else {
+                           V.style.width = Math.round((result / (total + 1)) * 100) + '%';
+                        }
+                        if (F.getAttribute('data-likes') > 0) {
+                           V.style.width = Math.round((result / (total)) * 100) + '%';
+                        } else { 
+                           G.style.width = Math.round((F.getAttribute('data-likes') / total) * 100) + '%';
+                        }
+                        U.innerText = commaNumber(result), F.setAttribute('data-likes', result);
+                     }  
+                  }
+               }
+            }else if(type == 'disliked_video') {
+               if (self.getAttribute('disliked') == 'true') {
+                 if(Number(dislikes) < 1000000){
+                   result = Number(dislikes) - 1;
+                   if (O.getAttribute('data-likes') == 0) {
+                     G.style.width = '50%', dislikes_percent = 50;
+                   } else {
+                     dislikes_percent = (result / (total - 1)) * 100, G.style.width = Math.round(((Number(likes)) / (total - 1)) * 100) + '%';
+                   }
+                 }
+                 self.removeAttribute('disliked'), self.setAttribute('data-title', '{$word->i_dont_like}');
+                 if(hasClass(O, 'active')){
+                  O.setAttribute('data-title', '{$word->i_dont_like_it_enymore}');
+                 }
+                 removeClass(self, 'active'), removeClass(U, 'active'), removeClass(G, 'active');
+               } else {
+                 if(Number(dislikes) < 1000000){
+                   result = Number(dislikes) + 1, dislikes_percent = (result / (total + 1)) * 100, G.style.width = Math.round(((Number(likes)) / (total + 1)) * 100) + '%';
+                 }
+                 self.setAttribute('disliked', true), self.setAttribute('data-title', '{$word->remove_i_dont_like}'), O.setAttribute('data-title', '{$word->i_like_it}'), addClass(self, 'active'), addClass(U, 'active'), addClass(G, 'active');
+               }
+               if(Number(dislikes) < 1000000){
+                 V.style.width = Math.round(dislikes_percent) + '%', self.setAttribute('data-likes', result), U.innerText = commaNumber(result);
+               }
+               if (O.getAttribute('data-likes') > 0) {
+                  if (hasClass(O, 'active')) {
+                     O.removeAttribute('liked'), removeClass(O, 'active'), removeClass(Z, 'active');
+                     if(Number(likes) < 1000000){
+                        result = Number(O.getAttribute('data-likes')) - 1;
+                        if (F.getAttribute('data-likes') > 0) {
+                           V.style.width = Math.round((Number(F.getAttribute('data-likes')) / total) * 100) + '%';
+                        } else {
+                           G.style.width = Math.round((result / (total + 1)) * 100) + '%';
+                        }
+                        if (O.getAttribute('data-likes') > 0) {
+                           G.style.width = Math.round((result / (total)) * 100) + '%';
+                        } else {
+                           V.style.width = Math.round((Number(O.getAttribute('data-likes')) / total) * 100) + '%';
+                        }
+                       Z.innerText = commaNumber(result), O.setAttribute('data-likes', result);
+                     }
+                  }
+               }
+            }
+         }
+      }, "POST", "&id={$id}&type=" + type);
+   });
+   <?php if($TEMP['#video_owner'] == false) { ?>
+   addEvent(D.querySelector('#bt-subscribe'), "click", function() {
+     var self = this,
+         by_id = self.getAttribute('data-id'),
+         type = self.getAttribute('data-type'),
+         subscribe_button = D.querySelector('.subscribe-id-' + by_id),
+         player_sub = D.querySelector('#tb_bt-subscribe'),
+         subs = subscribe_button.getAttribute('data-subs'),
+         sub_plus = Number(subs) + 1,
+         sub_m = Number(subs) - 1;
+      if (!by_id || !type) { return false; }
+      if (!{#loggedin} && M) {
+         preloadPage('&one=login&to='+M);
+         return false;
+      }
+      if (type == 'subscribe') {
+         Req('{$url->{req/subscribe/channel}}', function(e) {
+            removeClass(subscribe_button, 'btn-subscribe');
+            addClass(subscribe_button, 'btn-subscribed');
+            if (sub_plus < 1000) {
+               subscribe_button.innerHTML = '{$word->subscribed} <span class="margin-r5">'+sub_plus+'</span>';
+            }
+            subscribe_button.setAttribute('data-type', 'subscribed');
+            subscribe_button.setAttribute('data-subs', sub_plus);
+            <?php if($TEMP['#video']['by_id'] != $TEMP['#user']['id'] && !empty($TEMP['watermark'])){ ?>
+            addClass(player_sub, 'tb_subscribed'), player_sub.innerText = '{$word->subscribed}';
+            <?php } ?>
+         }, "POST", "&by_id=" + by_id);
+      } else {
+         TB_ShowElement('warning-alert', 'warning-alert','sub_cancel','{$word->unsubscribe}',1,'normal','{$word->cancel_subscription}',0,by_id,'{$word->unsubscribe_from_channel}');
+      }
+   })
+   <?php } ?>
+   addEvent(D.querySelector('#show-lists'), "click", function(){
+      var video_id = this.getAttribute('data-id');
+      if (!video_id) {
+       return false;
+      }
+      if (!{#loggedin} && M) {
+         TB_ShowElement('warning-alert', 'warning-alert','add_list','{$word->title_no_logged_add_playlist}',1,'normal','{$word->login}',0,0,'{$word->no_logged_add_playlist}');
+      } else {
+         Req("{$url->{req/list-actions/get-saved}}", function(e) {
+            if (e.status == 200) {
+               TB_ShowElement('warning-alert', 'warning-alert','create_list','{$word->add_to}',1,'normal','{$word->new_list}','form_show_lists',0,e.html);
+             }else{
+               TB_ShowElement('warning-alert', 'warning-alert','confirm_wrng','{$word->error}',1,'warning','ok','{$word->unknown_error}');
+          }
+         }, "POST", "&id=" + video_id);
+      }
+   });
+   <?php if ($TEMP['#video']['converted'] != 1){ ?>
+   timeDelay(function(){
+      Req("{$url->{req/watch-actions/video-status}}", function(e) {
+         if(e.status == 200){
+            <?php if($TEMP['#video_owner'] == true){ ?>
+            if(e.progress != 0){
+               WK.style.left = e.progress + '%';
+               WK.innerText = e.progress + '%';
+               D.querySelector('.progress-processing-bar').style.width = e.progress + '%';
+            }
+            <?php } ?>
+            if(e.reload == 1){
+               location.reload();
+            }
+         } else if(e.reload == 2){
+            location.reload();
+         }
+      }, "POST", "&video_id={$id}");
+   }, 2000, 1);
+   <?php } ?>
+   <?php if($TEMP['#related_videos'] > 0){ ?>
+   addEvent(D, 'scroll', function(){
+      var Q = window.innerWidth || D.documentElement.clientWidth || D.body.clientWidth;
+      if (((window.innerHeight + window.scrollY) >= D.querySelector('#global_content').offsetHeight - 200) && Q > 992){
+         if(WG){
+            var spin = D.querySelector('.side-videos-load'),
+                N = D.querySelector('.cont-watch-xs.desktop').querySelectorAll('div[data-sidebar-video]'),
+                ids = [];
+            removeClass(spin, 'hidden'), WG = !1;
+            for (var j = 0, i = N.length; j < i; j++) ids.push(N[j].getAttribute('data-sidebar-video'));
+            Req("{$url->{req/load-more/related-videos}}", function(e) {
+               if(e.status  == 200){
+                  var content = D.querySelector(".related-videos");
+                  content.innerHTML += e.html, addClass(spin, 'hidden'), WG = !0, loadPage(content.querySelectorAll('a[target="_self"]'), true); 
+               }else{
+                  spin.remove();
+               }
+            }, "POST", "&video_id={$id}&ids=" + ids);
+         }
+      }
+   }), addEvent(D.querySelector("#load-related-videos-2"), "click", function(event) {
+      var self = this,
+          spin = D.querySelector('.side-videos-load-2'),
+          r = D.querySelector(".related-videos-2"),
+          N = D.querySelector('.cont-watch-xs.mobile').querySelectorAll('div[data-sidebar-video]'),
+          ids = [];
+      removeClass(spin, 'hidden');
+      addClass(self, 'hidden');
+      for (var j = 0, i = N.length; j < i; j++) ids.push(N[j].getAttribute('data-sidebar-video'));
+      Req("{$url->{req/load-more/related-videos}}", function(e) { 
+         if (e.status == 200) {
+            var content = D.querySelector(".related-videos-2");
+            content.innerHTML += e.html, addClass(spin, 'hidden'), removeClass(self, 'hidden'), loadPage(content.querySelectorAll('a[target="_self"]'), true); 
+         }else{
+            spin.remove();
+            self.remove();
+         }
+      }, "POST", "&video_id={$id}&ids=" + ids);
+   });
+   <?php } ?>
+   addEvent(D.querySelector('#share-video'), "click", function(){
+      TB_ShowElement('share-video', 'share-videobtn',0, 0,{$id},0);
+   });
+   addEvent(D.querySelector('#more-options'), "click", function(){
+      TB_ShowElement('more-options', 'more-optionsbtn',0, 0,{$id},0);
+   });
+   <?php if(!empty($TEMP['#video']['compose_description'])){ ?>
+   addEvent(D.querySelector('#desc'), 'click', function(event) {
+      event.preventDefault();
+      var d = D.querySelector('.watch-video-description');
+      if (hasClass(this, 'expended')) {
+         d.style.maxHeight = "96px", d.style.height = "auto", d.style.overflow = "hidden";
+         removeClass(this, 'expended');
+         this.innerText = "{$word->show_more}";
+      } else {
+         d.style.maxHeight = "4000px", d.style.height = "auto", d.style.overflow = "auto";
+         addClass(this, 'expended');
+         this.innerText = "{$word->show_less}";
+      }
+   });
+   <?php } ?>
+   if(WIDTH < 591) {
+      addEvent(D.querySelector('.video-watch-title'), "click", function() {
+         var d = D.querySelector('.watch-video-description'),
+             f = D.querySelector('.content-info-3');
+         if (hasClass(this, 'expended')) {
+            d.style.maxHeight = "0", d.style.height = "0", d.style.overflow = "hidden", f.style.display = "none";
+           removeClass(this, 'expended');
+         } else {
+            d.style.maxHeight = "4000px", d.style.height = "auto", d.style.overflow = "auto", f.style.display = "block";
+           addClass(this, 'expended');
+         }
+      });
+   }
+   <?php if ((($TEMP['#is_approved'] == true && $TEMP['#is_public'] == true && $TEMP['#video']['views'] < 1000000) || $TEMP['#video']['is_owner'] || Specific::Admin()) && $TEMP['#is_live_now'] == false && $TEMP['#video']['converted'] == 1) { ?>
+   Req("{$url->{req/watch-actions/set-views}}", function(e){
+      if(e.status == 200){
+         D.querySelector('#video-views-count').innerText = e.count;
+      }
+   }, "POST", "&video_id={$id}&fingerprint=" + (new Fingerprint({canvas: true,ie_activex: true})).get())
+   <?php } else if($TEMP['#is_live_now'] == true){ ?>
+      var fingerprint = (new Fingerprint({canvas: true,ie_activex: true})).get();
+      timeDelay(function(){
+         Req("{$url->{req/watch-actions/rtmp-viewers}}", function(e){
+            if(e.status == 200){
+               if(e.reload == 1){
+                  preloadPage('&one=watch&v={$video_id}<?php echo($TEMP["#type_watch"] == "playlist") ? "&list={$list_id}" : ""?>');
+               } else {
+                  D.querySelector('#video-views-count').innerText = e.viewers;
+               }
+            }
+         }, "POST", "&video_id={$video_id}&fingerprint=" + fingerprint)
+      }, 5000, 1)
+   <?php } ?>
+   <?php if ($TEMP['#settings']['autoplay'] == 'on') { ?>
+   for (var j = 0, i = Y.length; j < i; j++) addEvent(Y[j], 'change', function(event) {
+      var self = this;
+      setCookie('autoplay', self.checked, 365);
+   });
+   <?php } ?>
+   <?php if($TEMP['#type_watch'] == 'playlist'){ ?>
+   var w = D.querySelector('.player-video'),
+       B = w.innerHeight || w.clientHeight,
+       X = D.querySelector("#next-video-list"),
+       u = D.querySelector(".play-list-cont-wrapper");
+   u.style.maxHeight = B + "px";
+   X.style.maxHeight = (B - 67) + "px";
+   if (D.querySelectorAll('[data-video-id]').length > 4) {
+      var listItemtopPos = D.querySelector('.side-barlist-wrapper.active').offsetTop;
+      X.scrollTop = listItemtopPos - 170;
+   }
+   addEvent(window, "resize", function(){
+      var s = X.innerHeight || X.clientHeight,
+          z = w.innerHeight || w.clientHeight;
+      u.style.maxHeight = z + "px";
+      s != 0 && (X.style.maxHeight = (z - 67) + "px");
+   })
+   addEvent(D.querySelector('#next-list-video'), "click", function() {
+      var nL = D.querySelector('#next-video-list'),
+          aH = D.querySelector('.player-video'),
+          nH = aH.innerHeight || aH.clientHeight,
+          nB = D.querySelector('#cont-list-btn');
+      if (hasClass(nB, 'more-plbtn')) {
+        nL.style.padding = "", nL.style.maxHeight = (nH - 67) + "px", removeClass(nB, 'more-plbtn');
+      } else {
+         nL.style.maxHeight = 0, nL.style.padding = 0, addClass(nB, 'more-plbtn');
+      }
+   });
+   for (var j = 0, i = E.length; j < i; j++) addEvent(E[j], 'click', function(){
+      var video_id = this.getAttribute('data-id');
+      if (!video_id) {
+         return false;
+      }
+      Req('{$url->{req/list-actions/delete-video-{#type_list}}}', function(e) {
+         if (e.status == 200) {
+            D.querySelector(".side-barlist-wrapper[data-id='"+video_id+"']").remove();
+          }else{
+            TB_ShowElement('warning-alert', 'warning-alert','confirm_wrng','{$word->error}',1,'warning','ok','{$word->unknown_error}');
+          }
+      }, "POST", "&video_id=" + video_id<?php echo($TEMP['#type_list'] == 'list') ? '+ "&list_id={$list_id}"' : ''?>);
+   });
+   <?php } ?>
+   <?php if($TEMP['#is_streaming'] == false || $TEMP['#is_live_now'] == false) { ?>
+   addEvent(D.querySelector('#comment-bp'), 'click', function() {
+      var text = D.querySelector('#comment-textarea').value;
+      if (!text) {
+         addClass(D.querySelector('#comment-textarea'), 'border-red');
+         return false;
+      }
+      this.setAttribute('disabled', true);
+      Req('{$url->{req/comment-actions/add-comment}}', function(e) {
+         if (e.status == 200) {
+            var CQ = document.createElement("div"),
+                CE = D.querySelector('#video-user-comments');
+            CQ.className = "comment-container", CQ.innerHTML = e.html, loadPage(CQ.querySelectorAll('a[target="_self"]'));
+            D.querySelector('#comment-textarea').value = "", removeClass(D.querySelector('#comment-textarea'), 'border-red');
+            if(D.querySelector('.main-comment')){
+               CE.insertBefore(CQ, CE.childNodes[0]);
+            }else{
+               CE.appendChild(CQ);
+            }
+            var cz = CQ.querySelector('#time-goto'),
+                cl = CQ.querySelectorAll('#comm_like');
+            cz && addEvent(cz, 'click', cd);
+            addEvent(CQ.querySelector('.reply_input'), 'keyup', cb);
+            addEvent(CQ.querySelector('#hide-area'), 'click', cf);
+            <?php if($TEMP['#video_owner'] == true){ ?>
+            addEvent(CQ.querySelector('#pin-comm'), 'click', ct);
+            <?php } ?>
+            addEvent(CQ.querySelector('#delete-comm'), 'click', CJ);
+            addEvent(CQ.querySelector('#comment-rp'), 'click', CG);
+            addEvent(CQ.querySelector('#reply-comm'), 'click', cv);
+            addEvent(CQ.querySelector('.time-url'), 'click', copyText);
+            for (var j = 0, i = cl.length; j < i; j++) addEvent(cl[j], "click", ck);
+         } else {
+            loadAlert('{$word->error}', 1);
+         }
+      }, "POST", "&video_id={$id}&text=" + encodeURIComponent(text));
+   });
+   <?php if ($TEMP['#pin'] == true && ($TEMP['#is_comment_owner'] == true || $TEMP['#video_owner'] == true)){ ?>
+   addEvent(D.querySelector('#unpin-comm'), 'click', function(){
+      var id = this.getAttribute('data-id');
+      if (!id) { return false; }
+      let pinned_comments = D.querySelector('#video-pinned-comments');
+      Req('{$url->{req/comment-actions/pin-comment}}', function(e) {
+         if (e.status == 304) {
+            var cm = document.createElement("div");
+            pinned_comments.innerHTML = "", cm.className = "unpin-element", cm.innerHTML = e.html, D.querySelector("#video-user-comments").appendChild(cm), loadPage(cm.querySelectorAll('a[target="_self"]'));
+            <?php if($TEMP['#video_owner'] == true){ ?>
+            addEvent(cm.querySelector('#pin-comm'), 'click', ct);
+            <?php } ?>
+            addEvent(cm.querySelector('#delete-comm'), 'click', CJ);
+            addEvent(cm.querySelector('#hide-area'), 'click', cf);
+            addEvent(cm.querySelector('#comment-rp'), 'click', CG);
+            addEvent(cm.querySelector('.time-url'), 'click', copyText);
+            loadAlert('{$word->comment_unpinned}');
+         }
+      }, "POST", "&id=" + id);
+   });
+   <?php } ?>
+   for (var j = 0, i = CU.length; j < i; j++) addEvent(CU[j], "focus", function(){
+      var s = this,
+          savedValue = s.value;
+      s.value = '', s.baseScrollHeight = s.scrollHeight, s.value = savedValue;
+   });
+   for (var j = 0, i = CU.length; j < i; j++) addEvent(CU[j], 'input', function(){
+      var s = this,
+          minRows = s.getAttribute('data-min-rows')|0, rows;
+      s.value != '' && removeClass(s, 'border-red'), s.rows = minRows, rows = Math.ceil((s.scrollHeight - s.baseScrollHeight) / 24), s.rows = minRows + rows;
+   });
+   for (var j = 0, i = CN.length; j < i; j++) addEvent(CN[j], "click", function(event) {
+      var CO = D.querySelector('#video-outstanding-comments .main-comment'),
+          ID = CO ? CO.getAttribute('data-id') : 0;
+      sort_by = this.getAttribute('data-type'), D.querySelector('#video-user-comments').innerHTML = "", removeClass(D.querySelector(".comments-load"), 'hidden'), OG = !1;
+      Req('{$url->{req/watch-actions/sort-commens}}', function(e) {
+        if (e.status == 200) {
+          timeDelay(function(){
+            addClass(D.querySelector(".comments-load"), 'hidden');
+            var cw = D.querySelector('#video-user-comments');
+            cw.innerHTML = e.html, OG = !0, loadPage(cw.querySelectorAll('a[target="_self"]'));
+            var CW = cw.querySelectorAll('.show-replys'),
+                  cg = cw.querySelectorAll('#time-goto'),
+                  CS = cw.querySelectorAll('.reply_input'),
+                  CP = cw.querySelectorAll('#delete-comm'),
+                  CA = cw.querySelectorAll('#hide-area'),
+                  CF = cw.querySelectorAll('#pin-comm'),
+                  CB = cw.querySelectorAll('#comment-rp'),
+                  CC = cw.querySelectorAll('#reply-comm'),
+                  cl = cw.querySelectorAll('#comm_like'),
+                  CI = cw.querySelectorAll('.time-url');
+               for (var j = 0, i = CW.length; j < i; j++) addEvent(CW[j], 'click', ce);
+               for (var j = 0, i = cg.length; j < i; j++) addEvent(cg[j], 'click', cd);
+               for (var j = 0, i = CS.length; j < i; j++) addEvent(CS[j], 'keyup', cb);
+               <?php if($TEMP['#video_owner'] == true){ ?>
+               for (var j = 0, i = CF.length; j < i; j++) addEvent(CF[j], 'click', ct);
+               <?php } ?>
+               for (var j = 0, i = CP.length; j < i; j++) addEvent(CP[j], 'click', CJ);
+               for (var j = 0, i = CA.length; j < i; j++) addEvent(CA[j], 'click', cf);
+               for (var j = 0, i = CB.length; j < i; j++) addEvent(CB[j], 'click', CG);
+               for (var j = 0, i = CC.length; j < i; j++) addEvent(CC[j], 'click', cv);
+               for (var j = 0, i = cl.length; j < i; j++) addEvent(cl[j], 'click', ck);
+               for (var j = 0, i = CI.length; j < i; j++) addEvent(CI[j], 'click', copyText);
+          },200);
+        }else{
+          timeDelay(function(){
+            addClass(D.querySelector(".comments-load"), 'hidden');
+          },200);
+        }
+      }, "POST", "&video_id={$id}&sort_by=" + sort_by + "&comment=" + ID);
+   }); 
+   
+   for (var j = 0, i = CW.length; j < i; j++) addEvent(CW[j], 'click', ce);
+   for (var j = 0, i = cg.length; j < i; j++) addEvent(cg[j], 'click', cd);
+   for (var j = 0, i = CS.length; j < i; j++) addEvent(CS[j], 'keyup', cb);
+   <?php if($TEMP['#video_owner'] == true){ ?>
+   for (var j = 0, i = CF.length; j < i; j++) addEvent(CF[j], 'click', ct);
+   <?php } ?>
+   for (var j = 0, i = CP.length; j < i; j++) addEvent(CP[j], 'click', CJ);
+   for (var j = 0, i = CA.length; j < i; j++) addEvent(CA[j], 'click', cf);
+   for (var j = 0, i = CB.length; j < i; j++) addEvent(CB[j], 'click', CG);
+   for (var j = 0, i = CC.length; j < i; j++) addEvent(CC[j], 'click', cv);
+   for (var j = 0, i = cl.length; j < i; j++) addEvent(cl[j], 'click', ck);
+   <?php } ?>
+   
+   function TB_ShowElement(type, el_content, button, by_id = 0, video_id = 0,price = 0, txt_btn = '', next_cont = '', extra, extra_new) {
+      var c = D.querySelector('#container_alerts'),
+          f = c.querySelector('#'+el_content),
+          h = c.querySelector('#beforeLoad'),
+          u = c.querySelector('#confirm-alert');
+      Req('{$url->{req/get-element}}', function(e) {
+            if (e.status == 200) {
+               removeAllEvents(2), (button != 0 && type != 'warning-alert') && (D.querySelector('#'+button) && (D.querySelector('#'+button).innerText = txt_btn, D.querySelector('#'+button).removeAttribute('disabled')));
+               if(!f && button != 'pin-comm' && button != 'sub_cancel' && button != 'delete_comment' && button != 'delete_reply' && (type == 'warning-alert' || type == 'share-video') && next_cont != 'form_show_lists' && next_cont != 'form_report' && next_cont != 'form_download' && next_cont != 'form_create_list'){
+                  c.innerHTML += e.html;
+                  if (el_content == 'share-videobtn'){
+                     addEvent(c.querySelector('#copy_short'), 'click', copyText), c.querySelector('#copy_embed') && addEvent(c.querySelector('#copy_embed'), 'click', copyText);
+                     var r = c.querySelectorAll('.open_share');
+                     for (var j = 0, i = r.length; j < i; j++) addEvent(r[j], "click", function(){
+                        var url = this.getAttribute('data-url'),
+                            windowName = this.getAttribute('data-wname');
+                        newwindow = window.open(url, windowName, 'height=600,width=800');
+                        if (window.focus) {
+                           newwindow.focus();
+                        }
+                        return false;
+                     });
+                     c.querySelector('#embed-video') && addEvent(c.querySelector('#embed-video'), "click", function(){
+                        toggleClass(c.querySelector('#embed-input'), 'hidden');
+                     })
+                  }
+               }else{
+                  if(!f || (type == 'warning-alert' && u && !hasClass(u, button)) || (type == 'warning-alert' && (!u || u.getAttribute('data-extra') != extra)) || (type == 'warning-alert' && button == 'close_alert')){
+                     c.innerHTML = e.html;
+                  }
+                  if(next_cont == 'form_report'){
+                     addEvent(c.querySelector('.send_report'), 'click', function(){
+                        var option = c.querySelector('.report-v:checked').value;
+                        if (!option) {
+                           loadAlert('{$word->there_problems_with_some_fields}', 1);
+                        }
+
+                        Req("{$url->{req/report/video}}", function(e) {
+                           if (e.status == 200) {
+                              TB_ShowElement('warning-alert', 'warning-alert','confirm_scs','{$word->thanks}',1,'success','ok','{$word->we_have_received_complaint}');
+                           }
+                        }, "POST", "&id={$id}&option=" + option);
+                     }, 2);
+                  }else if(next_cont == 'form_show_lists'){
+                     var t = c.querySelectorAll('.list-toggle');
+                     for (var j = 0, i = t.length; j < i; j++) addEvent(t[j], 'change', function(){
+                        var self = this,
+                            list_id = self.getAttribute('data-id');
+                        if (!self || !list_id) {
+                           return false;
+                        }
+                        Req("{$url->{req/list-actions/toggle-list}}", function(e) {
+                           if (e.status == 200) {
+                              loadAlert(e.message, 2);
+                           }else{
+                              TB_ShowElement('warning-alert', 'warning-alert','confirm_wrng','{$word->error}',1,'warning','ok','{$word->unknown_error}');
+                           }
+                        }, "POST", "&id={$id}&list_id=" + list_id);
+                     }, 2);
+                     addEvent(c.querySelector('#check-wl'), 'change', function(){
+                        var self = this;
+                        if (!self) {
+                           return false;
+                        }
+                        Req("{$url->{req/list-actions/toggle-later}}", function(e) {
+                           if (e.status == 200) {
+                              loadAlert(e.message, 2);
+                           }else{
+                              TB_ShowElement('warning-alert', 'warning-alert','confirm_wrng','{$word->error}',1,'warning','ok','{$word->unknown_error}');
+                           }
+                        }, "POST", "&id={$id}");
+                     }, 2);
+                     addEvent(c.querySelector('.create_list'), 'click', function(){
+                       var html = '<div class="cont-group"><input type="text" class="cont-control background-secondary color-secondary" id="new_list_title" placeholder="{$word->playlist_name}"></div><div class="cont-group"><select class="cont-control cont-select background-secondary color-secondary" id="new_list_type"><option value="" selected disabled>{$word->privacy}</option><option value="1">{$word->public}</option><option value="0">{$word->private}</option></select></div><div class="cont-group"><textarea id="new_list_desc" rows="3" class="cont-control background-secondary color-secondary" placeholder="{$word->description}"></textarea></div>';
+                       TB_ShowElement('warning-alert', 'warning-alert','create_new_list','{$word->create_new_playlist}',1,'normal','{$word->create}','form_create_list',0,html);
+                     }, 2);
+                  }else if (next_cont == 'form_create_list'){
+                     addEvent(c.querySelector('.create_new_list'), 'click', function(){
+                       var title     = c.querySelector('#new_list_title').value,
+                           privacy  = c.querySelector('#new_list_type').value,
+                           desc     = c.querySelector('#new_list_desc').value;
+                        if (title == '') {
+                           loadAlert('{$word->the_name_playlist_required}', 1);
+                        } else if (['0', '1'].indexOf(privacy) == -1){
+                           loadAlert('{$word->there_problems_with_some_fields}', 1);
+                        } else {
+                          if (!title){ return false; }
+                           Req("{$url->{req/list-actions/new-list}}", function(e) {
+                              if (e.status == 200) {
+                                 TB_ShowElement('warning-alert', 'warning-alert','confirm_scs',title,1,'success','ok','{$word->the_playlist_created_successfully}');
+                              } else {
+                                 loadAlert(e.error, 1);
+                              }
+                           }, "POST", "&title=" + title + "&desc=" + desc + "&privacy=" + privacy);
+                       }
+                     }, 2);
+                  }else if(type == 'more-options'){
+                     var Dl = c.querySelector('#download-video'),
+                         rV = c.querySelector('#report-video'),
+                         mC = c.querySelector('#'+el_content);
+                     <?php if ($TEMP['#settings']['download_videos'] == 'on' && $TEMP['#video']['converted'] == 1 && $TEMP['#is_adult'] == true && $TEMP['#is_approved'] == true) { 
+                     if ($TEMP['#video']['privacy'] != 1 && !empty($TEMP['#video']['download_key']) || ($TEMP['#video']['privacy'] == 1 && $TEMP['#video']['is_owner'])) { ?>   
+                     addEvent(Dl, 'click', function(){
+                        downloadVideo(), (mC) && (mC.style.display = "none");
+                     }, 2);
+                     <?php } } ?>
+                     <?php if ($TEMP['#video']['is_owner'] == false) { ?>
+                     addEvent(rV, 'click', function(){
+                        reportVideo(this), mC && (mC.style.display = "none");
+                     }, 2);
+                     <?php } ?>
+                     loadPage(mC.querySelectorAll('a[target="_self"]'));
+                  }else if(button == 'pin-comm'){
+                     addEvent(c.querySelector('.pin-comm'), "click", function(){
+                        if (!extra) { return false; }
+                        let pinned_comments = D.querySelector('#video-pinned-comments');
+                        Req('{$url->{req/comment-actions/pin-comment}}', function(e) {
+                           if (e.status == 200) {
+                              removeAllEvents(2), c.querySelector('#warning-alert').remove();
+                              D.querySelector('#comment-'+extra).remove();
+                              pinned_comments.innerHTML = e.html, loadPage(pinned_comments.querySelectorAll('a[target="_self"]'));
+                              var CP = D.querySelector('#comment-'+extra);
+                              addEvent(CP.querySelector('#unpin-comm'), 'click', function(){
+                                 var id = this.getAttribute('data-id');
+                                 if (!id) { return false; }
+                                 let pinned_comments = D.querySelector('#video-pinned-comments');
+
+                                 Req('{$url->{req/comment-actions/pin-comment}}', function(e) {
+                                    if (e.status == 304) {
+                                       var cm = document.createElement("div");
+                                       pinned_comments.innerHTML = "", cm.className = "unpin-element", cm.innerHTML = e.html, D.querySelector("#video-user-comments").appendChild(cm), loadPage(cm.querySelectorAll('a[target="_self"]'));
+                                       var cz = cm.querySelector('#time-goto'),
+                                           cw = cm.querySelector('.show-replys'),
+                                           cl = cm.querySelectorAll('#comm_like');
+                                       cz && addEvent(cz, 'click', cd, 2), cw && addEvent(cw, 'click', ce, 2);
+                                       addEvent(cm.querySelector('.reply_input'), 'keyup', cb, 2);
+                                       <?php if($TEMP['#video_owner'] == true){ ?>
+                                       addEvent(cm.querySelector('#pin-comm'), 'click', ct, 2);
+                                       <?php } ?>
+                                       addEvent(cm.querySelector('#delete-comm'), 'click', CJ, 2);
+                                       addEvent(cm.querySelector('#hide-area'), 'click', cf, 2);
+                                       addEvent(cm.querySelector('#comment-rp'), 'click', CG, 2);
+                                       addEvent(cm.querySelector('#reply-comm'), 'click', cv, 2);
+                                       addEvent(cm.querySelector('.time-url'), 'click', copyText, 2);
+                                       for (var j = 0, i = cl.length; j < i; j++) addEvent(cl[j], "click", ck, 2);
+                                       loadAlert('{$word->comment_unpinned}');
+                                    }
+                                 }, "POST", "&id=" + id);
+                              }, 2);
+
+                              var cz = CP.querySelector('#time-goto'),
+                                  cw = CP.querySelector('.show-replys'),
+                                  cl = CP.querySelectorAll('#comm_like');
+                              cz && addEvent(cz, 'click', cd, 2), cw && addEvent(cw, 'click', ce, 2);
+                              addEvent(CP.querySelector('#delete-comm'), 'click', CJ, 2);
+                              addEvent(CP.querySelector('.reply_input'), 'keyup', cb, 2);
+                              addEvent(CP.querySelector('#hide-area'), 'click', cf, 2);
+                              addEvent(CP.querySelector('#comment-rp'), 'click', CG, 2);
+                              addEvent(CP.querySelector('#reply-comm'), 'click', cv, 2);
+                              addEvent(CP.querySelector('.time-url'), 'click', copyText, 2);
+                              for (var j = 0, i = cl.length; j < i; j++) addEvent(cl[j], "click", ck, 2);
+                              scrollTo(pinned_comments.offsetTop);        
+                              loadAlert('{$word->comment_pinned}');
+                           }
+                        }, "POST", "&id=" + extra);
+                     }, 2)
+                  }else if(button == 'sub_cancel'){
+                     addEvent(c.querySelector('.sub_cancel'), 'click', function(){
+                        var subscribe_button = D.querySelector('.subscribe-id-' + extra),
+                            player_sub = D.querySelector('#tb_bt-subscribe'),
+                            subs = subscribe_button.getAttribute('data-subs'),
+                            sub_plus = Number(subs) + 1,
+                            sub_m = Number(subs) - 1;
+                        self.innerText = '{$word->please_wait}';
+                        Req('{$url->{req/subscribe/channel}}', function(e) {
+                           if(e.status == 304){
+                              removeClass(subscribe_button, 'btn-subscribed')
+                              addClass(subscribe_button, 'btn-subscribe');
+                              if (sub_plus < 1000) {
+                                 subscribe_button.innerHTML = '{$word->subscribe} <span class="margin-r5">'+sub_m+'</span>';
+                              }
+                              subscribe_button.setAttribute('data-type', 'subscribe');
+                              subscribe_button.setAttribute('data-subs', sub_m);
+                              <?php if($TEMP['#video']['by_id'] != $TEMP['#user']['id'] && !empty($TEMP['watermark'])){ ?>
+                              removeClass(player_sub, 'tb_subscribed'), player_sub.innerText = '{$word->subscribe}';
+                              <?php } ?>
+                              c.querySelector('#warning-alert').remove();
+                           }
+                        }, "POST", "&by_id=" + extra);
+                     }, 2);
+                  }else if(button == 'delete_comment'){
+                     addEvent(c.querySelector('.delete_comment'), 'click', function(){
+                        var self = this;
+                        self.innerText = '{$word->please_wait}';
+                        Req('{$url->{req/delete/comment}}', function(e) {
+                           if(e.status == 200){
+                             D.querySelector('#comment-' + extra).remove(), c.querySelector('#'+el_content).style.display = 'none', loadAlert(e.message);
+                           }
+                        }, "POST", "&id=" + extra);
+                     }, 2);
+                  } else if(button == 'delete_reply'){
+                     addEvent(c.querySelector('.delete_reply'), 'click', function(){
+                        var self = this;
+                        self.innerText = '{$word->please_wait}';
+                        Req('{$url->{req/delete/reply}}', function(e) {
+                           if(e.status == 200){
+                              if(e.replies == 1){
+                                 D.querySelector('#reply-' + extra).remove(), D.querySelector('.show-replys[data-comm-id="'+e.comment_id+'"]').remove(), c.querySelector('#'+el_content).style.display = 'none';
+                              }
+                              loadAlert(e.message);
+                          }
+                        }, "POST", "&id=" + extra);
+                     }, 2);
+                  }
+                  var x = c.querySelector('.here_now');
+                  x && x.focus();  
+               }
+               if(!{#loggedin} && M && c.querySelector('#confirm-alert')){
+                  addEvent(c.querySelector('#confirm-alert'), "click", function(){
+                     preloadPage('&one=login&to='+M)
+                  }, 2)
+               }
+               var bb = c.querySelector('#'+el_content),
+                   k = bb.querySelector('[data-dismiss]');
+               c.querySelector('#'+el_content).style.display = "block";
+               k && addEvent(k, "click", function(){
+                  c.querySelector('#'+el_content).style.display = "none";
+               }, 2);
+               addEvent(D, "click", function(e) {
+                  if (e.target == c.querySelector('#'+el_content)) {
+                     var WE = c.querySelector('#embed-input');
+                     c.querySelector('#'+el_content).style.display = "none", WE && addClass(WE, 'hidden')
+                  }
+               }, 2);
+            }else{
+               if(button != 0 && type != 'warning-alert'){
+                 D.querySelector('#'+button).innerText = txt_btn;
+                 D.querySelector('#'+button).removeAttribute('disabled');
+               } else if(h){
+                 c.querySelector('#beforeLoad').remove();
+               }
+               loadAlert(e.error, 1);
+            }
+         }, "POST", "&type=" + type + "&actual_form=" + el_content + "&by_id=" + by_id + "&video_id=" + video_id + "&price=" + price + "&next_cont=" + next_cont + "&txt_btn=" + txt_btn + "&class_n=" + button + "&extra=" + extra + "&extra_new=" + extra_new);
+   }
+   <?php if(!empty($_GET['goto']) && $_GET['goto'] == 'share'){ ?>
+   timeDelay(function(){TB_ShowElement('share-video', 'share-videobtn',0, 0,{$id},0)}, 1000);
+   <?php } ?>
+</script>
+<?php } ?>

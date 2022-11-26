@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$word->error_1009_access_denied}</title>
+	<style>
+		.container{margin: 200px auto; padding: 15px; text-align: center;}
+		.logout{color:#065fd4;}
+		h1{font-family: arial; font-size: 45px; color: #909090; margin: 0px;}
+		h2{font-family: arial; font-size: 28px; color: #000; margin: 10px;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>{$word->access_denied}</h1>
+		<h2>{$word->what_happened}</h4>
+		<p>{$word->looks_like_were_blocked_site_administrator}.</p>
+		<?php if($TEMP['#email_banned']){ ?>
+		<a class="logout" href="{$url->{logout}}">{$word->log_out}</a>
+		<?php } ?>
+	</div>
+</body>
+</html>

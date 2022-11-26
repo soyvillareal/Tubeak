@@ -1,0 +1,24 @@
+<div class="video-wrap video-wrapper sidebar-video margin-top-12 mouse_hover" data-sidebar-video="{!id}">
+	<div class="video-thumb margin-r10 float-left">
+		<a tabindex="-1" href="{!url}" target="_self">
+			<img src="{!thumbnail}" alt="{!title}">
+			<div class="hover_animation" data-img="{!animation}"></div>
+	        <?php if($TEMP['!live'] == true){ ?>
+			<div class="video-duration font-low font-bold position-absolute color-white">{!duration}</div>
+			<?php } ?>
+	        <?php if(!empty($TEMP['!get_progress'])){ ?>
+            <div class="cont-time-loaded position-absolute background-grey">
+            	<div class="background-red h-100" style="width: {!progress_value}%;"></div>
+            </div>
+            <?php } ?>
+		</a>
+	</div>
+	<div class="video-title font-medium ellipsis-vertical-2">
+		<a class="url_sidebar color-secondary" href="{!url}" target="_self">{!title}</a>
+	</div>
+	{!data->user_v}
+	<div class="color-tertiary">
+        {!views} {$word->views}
+	</div>
+	<div class="clear"></div>
+</div>
