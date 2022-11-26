@@ -447,7 +447,7 @@ $site_url = "' . $_POST['site_url'] . '"; // e.g (http://example.com)
 	<div class="max-w-900 display-flex h-600 border-radius-4 margin-left-auto margin-right-auto padding-20 border-all border-tertiary background-secondary">
 		<div class="margin-auto text-center">
 			<div class="font-high margin-b10 color-green">Installation completed</div>
-			<div class="font-high margin-b10 color-red">To avoid problems in general, look for the "install" folder in the root directory of the script and delete it, also delete your browser cookies.</div>
+			<div class="font-high margin-b10 color-red">To avoid problems in general, look for the "install" folder in the root directory of the script and delete it, also delete your browser's cache.</div>
 			<a class="general-two-blue-button position-relative color-white hover-opacity" href="<?php echo $site_url ?>">
 				Go to my platform
 			</a>
