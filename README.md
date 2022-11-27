@@ -53,7 +53,7 @@ Due to the high consumption of resources that this platform represents, I have n
 
 1. Clone the repository
 ```bash
-git clone https://github.com/soyvillareal/PHP-Magazine
+git clone https://github.com/soyvillareal/Tubeak.git
 ```
 2. Once you clone the repository just go to the URL that points to where it is hosted and follow the easy to use installer.
 
